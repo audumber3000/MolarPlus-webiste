@@ -1,0 +1,150 @@
+import { defineField, defineType } from 'sanity';
+
+export default defineType({
+  name: 'post',
+  title: 'Blog Post',
+  type: 'document',
+  groups: [
+    { name: 'content', title: 'Content', default: true },
+    { name: 'seo', title: 'SEO & AEO' },
+  ],
+  fields: [
+    defineField({
+      name: 'title',
+      title: 'Title',
+      type: 'string',
+      group: 'content',
+      validation: (Rule) => Rule.required().max(120),
+    }),
+    defineField({
+      name: 'slug',
+      title: 'Slug (URL)',
+      type: 'slug',
+      group: 'content',
+      options: { source: 'title', maxLength: 96 },
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: 'description',
+      title: 'Short description / excerpt',
+      type: 'text',
+      rows: 3,
+      group: 'content',
+      description: 'Shown on the blog listing card and used as fallback meta description.',
+      validation: (Rule) => Rule.required().min(50).max(200),
+    }),
+    defineField({
+      name: 'coverImage',
+      title: 'Cover image',
+      type: 'image',
+      group: 'content',
+      options: { hotspot: true },
+      fields: [
+        {
+          name: 'alt',
+          type: 'string',
+          title: 'Alt text (required for SEO)',
+          validation: (Rule) => Rule.required(),
+        },
+      ],
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: 'category',
+      title: 'Category',
+      type: 'reference',
+      group: 'content',
+      to: [{ type: 'category' }],
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: 'author',
+      title: 'Author',
+      type: 'reference',
+      group: 'content',
+      to: [{ type: 'author' }],
+    }),
+    defineField({
+      name: 'publishedAt',
+      title: 'Published at',
+      type: 'datetime',
+      group: 'content',
+      initialValue: () => new Date().toISOString(),
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: 'isTrending',
+      title: 'Mark as trending',
+      type: 'boolean',
+      group: 'content',
+      initialValue: false,
+    }),
+    defineField({
+      name: 'body',
+      title: 'Body',
+      type: 'blockContent',
+      group: 'content',
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: 'faqs',
+      title: 'FAQs (optional, boosts AEO)',
+      type: 'array',
+      of: [{ type: 'faq' }],
+      group: 'content',
+      description: 'These render as an FAQ section AND emit FAQPage JSON-LD for Google / AI search.',
+    }),
+    defineField({
+      name: 'seoTitle',
+      title: 'SEO title',
+      type: 'string',
+      group: 'seo',
+      description: 'Overrides the page <title>. Leave blank to use the post title.',
+      validation: (Rule) => Rule.max(70),
+    }),
+    defineField({
+      name: 'seoDescription',
+      title: 'SEO meta description',
+      type: 'text',
+      rows: 2,
+      group: 'seo',
+      description: 'Overrides the meta description. Leave blank to use the short description.',
+      validation: (Rule) => Rule.max(170),
+    }),
+    defineField({
+      name: 'canonicalUrl',
+      title: 'Canonical URL (override)',
+      type: 'url',
+      group: 'seo',
+      description: 'Only fill this if this post is republished from elsewhere.',
+    }),
+    defineField({
+      name: 'noIndex',
+      title: 'Hide from search engines',
+      type: 'boolean',
+      group: 'seo',
+      initialValue: false,
+    }),
+  ],
+  orderings: [
+    {
+      title: 'Published date, new first',
+      name: 'publishedAtDesc',
+      by: [{ field: 'publishedAt', direction: 'desc' }],
+    },
+  ],
+  preview: {
+    select: {
+      title: 'title',
+      media: 'coverImage',
+      date: 'publishedAt',
+    },
+    prepare({ title, media, date }) {
+      return {
+        title,
+        media,
+        subtitle: date ? new Date(date).toLocaleDateString('en-IN') : 'unpublished',
+      };
+    },
+  },
+});

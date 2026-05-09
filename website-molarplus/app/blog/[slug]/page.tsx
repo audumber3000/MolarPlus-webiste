@@ -4,41 +4,116 @@ import Image from 'next/image';
 import { ArrowLeft, Calendar, Clock, Share2 } from 'lucide-react';
 import { notFound } from 'next/navigation';
 import { SITE_URL } from '@/lib/seo';
-import { getBlogPostBySlug, getBlogSlugs } from '@/lib/mdx';
+import {
+  getBlogPostBySlug,
+  getAllSlugs,
+  imageUrl,
+  readingTimeFromBlocks,
+  extractHeadings,
+} from '@/lib/sanity';
 import { TOC } from '@/components/blog/TOC';
+import PortableContent from '@/components/blog/PortableContent';
+
+export const revalidate = 60;
 
 interface Props {
   params: Promise<{ slug: string }>;
 }
 
 export async function generateStaticParams() {
-  return getBlogSlugs().map((slug) => ({ slug: slug.replace(/\.mdx$/, '') }));
+  const slugs = await getAllSlugs();
+  return slugs.map((slug) => ({ slug }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const post = getBlogPostBySlug(slug);
+  const post = await getBlogPostBySlug(slug);
   if (!post) return { title: 'Blog Post | MolarPlus' };
+
+  const title = post.seoTitle || post.title;
+  const description = post.seoDescription || post.description;
+  const canonical = post.canonicalUrl || `${SITE_URL}/blog/${slug}`;
+  const ogImage = imageUrl(post.coverImage, 1200, 630);
+
   return {
-    title: `${post.title} | MolarPlus`,
-    description: post.description,
-    alternates: { canonical: `${SITE_URL}/blog/${slug}` },
+    title: `${title} | MolarPlus`,
+    description,
+    alternates: { canonical },
+    robots: post.noIndex ? { index: false, follow: false } : undefined,
     openGraph: {
-      title: `${post.title} | MolarPlus`,
-      description: post.description,
+      title: `${title} | MolarPlus`,
+      description,
       url: `${SITE_URL}/blog/${slug}`,
-      images: [post.coverImage],
+      type: 'article',
+      publishedTime: post.publishedAt,
+      authors: post.author?.name ? [post.author.name] : undefined,
+      images: [{ url: ogImage, width: 1200, height: 630, alt: post.title }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: [ogImage],
     },
   };
 }
 
 export default async function BlogPostPage({ params }: Props) {
   const { slug } = await params;
-  const post = getBlogPostBySlug(slug);
+  const post = await getBlogPostBySlug(slug);
   if (!post) notFound();
+
+  const headings = extractHeadings(post.body);
+  const readingTime = readingTimeFromBlocks(post.body);
+  const cover = imageUrl(post.coverImage, 1600, 900);
+  const authorName = post.author?.name || 'MolarPlus Team';
+
+  // JSON-LD: BlogPosting (SEO + AEO)
+  const blogPostingLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: post.title,
+    description: post.seoDescription || post.description,
+    image: imageUrl(post.coverImage, 1200, 630),
+    datePublished: post.publishedAt,
+    dateModified: post.publishedAt,
+    author: { '@type': 'Person', name: authorName },
+    publisher: {
+      '@type': 'Organization',
+      name: 'MolarPlus',
+      logo: { '@type': 'ImageObject', url: `${SITE_URL}/logo.png` },
+    },
+    mainEntityOfPage: { '@type': 'WebPage', '@id': `${SITE_URL}/blog/${slug}` },
+    articleSection: post.category,
+  };
+
+  // JSON-LD: FAQPage (only if FAQs exist) — boosts AEO
+  const faqLd =
+    post.faqs && post.faqs.length > 0
+      ? {
+          '@context': 'https://schema.org',
+          '@type': 'FAQPage',
+          mainEntity: post.faqs.map((f) => ({
+            '@type': 'Question',
+            name: f.question,
+            acceptedAnswer: { '@type': 'Answer', text: f.answer },
+          })),
+        }
+      : null;
 
   return (
     <div className="min-h-screen bg-white">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(blogPostingLd) }}
+      />
+      {faqLd && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }}
+        />
+      )}
+
       {/* Blog Hero */}
       <section className="relative pt-40 pb-20 bg-gray-50 overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -49,36 +124,36 @@ export default async function BlogPostPage({ params }: Props) {
             >
               <ArrowLeft className="w-4 h-4 mr-2 group-hover:-translate-x-1 transition-transform" /> Back to Blog
             </Link>
-            
+
             <div className="mb-6">
               <span className="px-4 py-1.5 bg-blue-100 text-blue-700 text-xs font-bold rounded-full uppercase tracking-widest">
                 {post.category}
               </span>
             </div>
-            
+
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-[#1a1c4b] mb-8 leading-tight">
               {post.title}
             </h1>
-            
+
             <div className="flex flex-wrap items-center gap-6 pt-6 border-t border-gray-200">
               <div className="flex items-center gap-3">
                 <div className="w-12 h-12 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold">
-                  M+
+                  {authorName.split(' ').map((n) => n[0]).slice(0, 2).join('')}
                 </div>
                 <div>
-                  <p className="text-[#1a1c4b] font-bold">MolarPlus Team</p>
+                  <p className="text-[#1a1c4b] font-bold">{authorName}</p>
                   <div className="flex items-center gap-4 text-sm text-gray-500">
                     <span className="flex items-center gap-1.5">
                       <Calendar className="w-4 h-4" />
-                      {new Date(post.date).toLocaleDateString('en-IN', {
+                      {new Date(post.publishedAt).toLocaleDateString('en-IN', {
                         day: 'numeric',
                         month: 'long',
-                        year: 'numeric'
+                        year: 'numeric',
                       })}
                     </span>
                     <span className="flex items-center gap-1.5">
                       <Clock className="w-4 h-4" />
-                      {post.readingTime}
+                      {readingTime}
                     </span>
                   </div>
                 </div>
@@ -90,36 +165,35 @@ export default async function BlogPostPage({ params }: Props) {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col lg:flex-row gap-12 py-16">
-          {/* Sidebar - Table of Contents */}
           <aside className="lg:w-1/4 hidden lg:block">
             <div className="sticky top-32">
-              <TOC headings={post.headings} />
+              <TOC headings={headings} />
             </div>
           </aside>
 
-          {/* Content */}
           <div className="lg:w-3/4">
-            {/* Featured Image */}
             <div className="mb-16 relative aspect-[21/9] rounded-3xl overflow-hidden shadow-2xl">
-              <Image 
-                src={post.coverImage} 
-                alt={post.title} 
-                fill
-                className="object-cover"
-                priority
-              />
+              <Image src={cover} alt={post.title} fill className="object-cover" priority />
             </div>
 
             <article className="prose prose-lg lg:prose-xl prose-blue max-w-none prose-headings:text-[#1a1c4b] prose-headings:font-extrabold prose-p:text-gray-600 prose-p:leading-relaxed prose-a:text-blue-600 prose-img:rounded-3xl prose-code:text-blue-600 prose-code:bg-blue-50 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded-md prose-code:before:content-none prose-code:after:content-none">
-              <div dangerouslySetInnerHTML={{ 
-                __html: post.content
-                  .replace(/\n\n/g, '<br /><br />')
-                  .replace(/^# (.+)$/gm, '<h1>$1</h1>')
-                  .replace(/^## (.+)$/gm, (match, p1) => `<h2 id="${p1.toLowerCase().replace(/[^\w\s-]/g, '').replace(/\s+/g, '-')}">${p1}</h2>`)
-                  .replace(/^### (.+)$/gm, (match, p1) => `<h3 id="${p1.toLowerCase().replace(/[^\w\s-]/g, '').replace(/\s+/g, '-')}">${p1}</h3>`)
-              }} />
+              <PortableContent value={post.body} />
             </article>
-            
+
+            {post.faqs && post.faqs.length > 0 && (
+              <section className="mt-20 pt-10 border-t border-gray-100">
+                <h2 className="text-3xl font-extrabold text-[#1a1c4b] mb-8">Frequently Asked Questions</h2>
+                <div className="space-y-6">
+                  {post.faqs.map((faq, i) => (
+                    <div key={i} className="bg-gray-50 rounded-2xl p-6">
+                      <h3 className="text-lg font-bold text-[#1a1c4b] mb-3">{faq.question}</h3>
+                      <p className="text-gray-700 leading-relaxed whitespace-pre-line">{faq.answer}</p>
+                    </div>
+                  ))}
+                </div>
+              </section>
+            )}
+
             <div className="mt-20 pt-10 border-t border-gray-100 flex items-center justify-between">
               <div className="flex items-center gap-4">
                 <span className="text-gray-500 font-bold uppercase text-xs tracking-widest">Share this post</span>
@@ -129,7 +203,7 @@ export default async function BlogPostPage({ params }: Props) {
                   </button>
                 </div>
               </div>
-              
+
               <Link href="/blog" className="text-blue-600 font-bold hover:underline">
                 All Posts
               </Link>

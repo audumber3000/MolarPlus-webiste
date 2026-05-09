@@ -1,11 +1,10 @@
-const withMDX = require('@next/mdx')();
-
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'export',
   trailingSlash: false,
   images: {
-    unoptimized: true,
+    remotePatterns: [
+      { protocol: 'https', hostname: 'cdn.sanity.io' },
+    ],
   },
   async redirects() {
     return [
@@ -21,7 +20,7 @@ const nextConfig = {
       },
     ];
   },
-  pageExtensions: ['js', 'jsx', 'md', 'mdx', 'ts', 'tsx'],
+  pageExtensions: ['js', 'jsx', 'ts', 'tsx'],
 };
 
-module.exports = withMDX(nextConfig);
+module.exports = nextConfig;

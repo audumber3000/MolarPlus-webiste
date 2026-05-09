@@ -1,12 +1,13 @@
 import { MetadataRoute } from 'next';
 import { SITE_URL } from '@/lib/seo';
-import { getBlogSlugs } from '@/lib/mdx';
+import { getAllSlugs } from '@/lib/sanity';
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export const revalidate = 60;
+
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = SITE_URL;
   const lastModified = new Date();
 
-  // Define static routes with their specific change frequencies and priorities
   const staticRoutes = [
     { url: '', changeFrequency: 'daily', priority: 1.0 },
     { url: '/features', changeFrequency: 'weekly', priority: 0.9 },
@@ -29,10 +30,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: route.priority,
   }));
 
-  // Generate dynamic blog entries from MDX files
-  const blogSlugs = getBlogSlugs();
-  const blogEntries: MetadataRoute.Sitemap = blogSlugs.map((slug) => ({
-    url: `${baseUrl}/blog/${slug.replace(/\.mdx$/, '')}`,
+  const slugs = await getAllSlugs();
+  const blogEntries: MetadataRoute.Sitemap = slugs.map((slug) => ({
+    url: `${baseUrl}/blog/${slug}`,
     lastModified,
     changeFrequency: 'weekly' as const,
     priority: 0.8,

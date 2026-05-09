@@ -1,7 +1,9 @@
 import type { Metadata } from 'next';
 import { SITE_URL } from '@/lib/seo';
-import { getAllBlogPosts, getAllCategories } from '@/lib/mdx';
+import { getAllBlogPosts, getAllCategories, imageUrl } from '@/lib/sanity';
 import BlogClient from '@/components/blog/BlogClient';
+
+export const revalidate = 60;
 
 export const metadata: Metadata = {
   title: 'Blog | Best Dental Software & Clinic Management | MolarPlus',
@@ -16,16 +18,26 @@ export const metadata: Metadata = {
   },
 };
 
-export default function BlogPage() {
-  const posts = getAllBlogPosts();
-  const categories = getAllCategories();
+export default async function BlogPage() {
+  const [rawPosts, categories] = await Promise.all([
+    getAllBlogPosts(),
+    getAllCategories(),
+  ]);
+
+  const posts = rawPosts.map((p) => ({
+    title: p.title,
+    description: p.description,
+    date: p.publishedAt,
+    slug: p.slug,
+    coverImage: imageUrl(p.coverImage, 800, 500),
+    category: p.category,
+    isTrending: p.isTrending,
+  }));
 
   return (
     <div className="min-h-screen bg-white">
-      {/* Search Header Space (Matching Nav padding) */}
       <div className="pt-24" />
-      
-      <BlogClient initialPosts={posts} categories={categories} />
+      <BlogClient initialPosts={posts as any} categories={categories} />
     </div>
   );
 }
