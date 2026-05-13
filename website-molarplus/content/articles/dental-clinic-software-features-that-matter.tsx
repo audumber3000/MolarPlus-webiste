@@ -6,7 +6,7 @@ export default function ArticleContent() {
       <p>
         Not all <strong>dental clinic management software</strong> is created equal. Some pack in features
         you will rarely use, while others miss the ones that actually save time and improve patient care.
-        Here are the <strong>dental software</strong> features that matter most — and how MolarPlus
+        Here are the <strong>dental software</strong> features that matter most, and how MolarPlus
         delivers them as the <strong>best dental software</strong> for modern practices.
       </p>
 
@@ -40,7 +40,7 @@ export default function ArticleContent() {
 
       <h3 className="text-xl font-semibold text-gray-900 mt-8 mb-3">4. Reporting and Analytics</h3>
       <p>
-        Understanding clinic performance — appointments, revenue, no-shows — helps you grow. Solid{' '}
+        Understanding clinic performance, appointments, revenue, no-shows, helps you grow. Solid{' '}
         <strong>dental clinic management software</strong> offers dashboards and reports so you can see
         trends at a glance. MolarPlus provides analytics and reporting as part of the platform, so you
         can make data-driven decisions without exporting to spreadsheets. This is a key differentiator
@@ -69,8 +69,8 @@ export default function ArticleContent() {
         MolarPlus bundles these features into one <strong>dental clinic management software</strong>
         platform: scheduling with reminders, patient records, billing, analytics, and native mobile
         apps, with security built in. Instead of juggling multiple tools, you get the <strong>best
-        dental software</strong> experience in a single product. See our <Link href="/features">features</Link>{' '}
-        and <Link href="/pricing">pricing</Link>, or <Link href="/contact">contact us</Link> for a demo.
+        dental software</strong> experience in a single product. See our <Link href="/clinic/features">features</Link>{' '}
+        and <Link href="/clinic/pricing">pricing</Link>, or <Link href="/contact">contact us</Link> for a demo.
       </p>
     </div>
   );

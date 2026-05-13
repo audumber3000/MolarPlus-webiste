@@ -28,7 +28,7 @@ export const metadata = {
         url: `${SITE_URL}/hero-molarplus.png`,
         width: 1200,
         height: 630,
-        alt: 'MolarPlus — Best Dental Clinic Management Software',
+        alt: 'MolarPlus, Best Dental Clinic Management Software',
       },
     ],
   },

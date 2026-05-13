@@ -112,8 +112,8 @@ export default function TermsOfUsePage() {
             <section>
               <h2 className="text-2xl font-bold text-gray-900 mb-4">7. Intellectual Property</h2>
               <p>
-                All content, features, and functionality of the Service — including but not limited to text, graphics,
-                logos, icons, and software — are the exclusive property of Upclick Labs (OPC) Pvt. Ltd. and are
+                All content, features, and functionality of the Service, including but not limited to text, graphics,
+                logos, icons, and software, are the exclusive property of Upclick Labs (OPC) Pvt. Ltd. and are
                 protected by applicable intellectual property laws. You may not copy, modify, distribute, or create
                 derivative works without our express written consent.
               </p>

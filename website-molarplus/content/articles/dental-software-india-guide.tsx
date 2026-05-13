@@ -16,7 +16,7 @@ export default function ArticleContent() {
         language support, and billing that does not align with Indian tax rules. The <strong>best dental
         software</strong> for Indian practices should offer INR pricing, optional Hindi (and other local
         language) support, and workflows that make GST and local compliance straightforward. MolarPlus is
-        built with Indian dental clinics in mind — from day-one INR pricing to communication tools like
+        built with Indian dental clinics in mind, from day-one INR pricing to communication tools like
         WhatsApp that patients and staff already use.
       </p>
 
@@ -35,7 +35,7 @@ export default function ArticleContent() {
         Patient reminders and clinic communication work better in the language your staff and patients
         prefer. The <strong>best dental software</strong> for India should support English and Hindi (and
         ideally more regional languages). MolarPlus supports English and Hindi and integrates with
-        WhatsApp and SMS for reminders and updates — the channels most used by Indian patients. This
+        WhatsApp and SMS for reminders and updates, the channels most used by Indian patients. This
         makes it a strong <strong>dental software India</strong> choice for clinics that want to reduce
         no-shows and improve follow-up.
       </p>
@@ -53,10 +53,10 @@ export default function ArticleContent() {
       <p>
         MolarPlus combines all of the above: INR pricing, Hindi support, WhatsApp/SMS communication,
         and billing built for Indian practices. It is full <strong>dental clinic management
-        software</strong> — appointments, patient records, billing, and analytics — on web and mobile.
+        software</strong>, appointments, patient records, billing, and analytics, on web and mobile.
         For clinics looking for the <strong>best dental software</strong> in India that is affordable,
         easy to use, and tailored to local needs, MolarPlus is the top choice. Explore our{' '}
-        <Link href="/features">features</Link> and <Link href="/pricing">pricing</Link>, or{' '}
+        <Link href="/clinic/features">features</Link> and <Link href="/clinic/pricing">pricing</Link>, or{' '}
         <Link href="/contact">contact us</Link> for a demo.
       </p>
     </div>

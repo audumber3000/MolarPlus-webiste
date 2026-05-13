@@ -7,7 +7,7 @@ export default function ArticleContent() {
         Finding the <strong>best dental software</strong> for your practice can transform how you manage
         appointments, patient records, and daily operations. <strong>Dental clinic management software</strong>{' '}
         like MolarPlus is designed to give dentists and clinic staff one unified platform for scheduling,
-        patient management, billing, and analytics — so you spend less time on admin and more time with
+        patient management, billing, and analytics, so you spend less time on admin and more time with
         patients.
       </p>
       <p>
@@ -44,8 +44,8 @@ export default function ArticleContent() {
         covers appointments, patient files, payments, and analytics in a single platform. We prioritize
         security and compliance so your patient data stays protected. If you are looking for{' '}
         <strong>dental practice management software</strong> that grows with your practice and saves time
-        every day, explore our <Link href="/features" className="text-blue-600 hover:underline">features</Link>{' '}
-        and <Link href="/pricing" className="text-blue-600 hover:underline">pricing</Link>, or{' '}
+        every day, explore our <Link href="/clinic/features" className="text-blue-600 hover:underline">features</Link>{' '}
+        and <Link href="/clinic/pricing" className="text-blue-600 hover:underline">pricing</Link>, or{' '}
         <Link href="/contact" className="text-blue-600 hover:underline">contact us</Link> for a demo.
       </p>
     </div>

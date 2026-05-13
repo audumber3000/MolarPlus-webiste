@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   alternates: { canonical: `${SITE_URL}/blog` },
   openGraph: {
     title: 'Blog | Dental Clinic Management Insights | MolarPlus',
-    description: 'Expert guides on dental software, practice management, and growing your dental clinic in India.',
+    description: 'Expert guides on dental software, practice management, and growing your dental clinic.',
     url: `${SITE_URL}/blog`,
     images: [{ url: `${SITE_URL}/hero-molarplus.png`, width: 1200, height: 630, alt: 'MolarPlus Blog' }],
   },

@@ -6,7 +6,7 @@ export default function ArticleContent() {
       <p>
         Selecting the right <strong>dental practice management software</strong> is one of the most
         important decisions for your clinic. The <strong>best dental software</strong> should simplify
-        scheduling, patient records, billing, and reporting — not add complexity. This guide walks you
+        scheduling, patient records, billing, and reporting, not add complexity. This guide walks you
         through how to choose <strong>dental clinic management software</strong> that fits your practice
         size, budget, and workflow, with MolarPlus as a reference for what to look for.
       </p>
@@ -14,7 +14,7 @@ export default function ArticleContent() {
       <h3 className="text-xl font-semibold text-gray-900 mt-8 mb-3">1. Define Your Must-Have Features</h3>
       <p>
         Every <strong>dental software</strong> should cover the basics: appointment scheduling, patient
-        records, and billing. Beyond that, decide what matters most — automated reminders (SMS/WhatsApp),
+        records, and billing. Beyond that, decide what matters most, automated reminders (SMS/WhatsApp),
         clinical notes and treatment plans, reporting and analytics, or multi-location support. Tools like
         MolarPlus bundle these in one platform so you do not have to juggle multiple systems. List your
         top 5 features and check that your shortlisted <strong>dental clinic management software</strong>{' '}
@@ -55,7 +55,7 @@ export default function ArticleContent() {
         use it. Many providers, including MolarPlus, offer a free trial or demo. Use that time to run
         through real scenarios: booking appointments, adding a patient, generating a bill, and checking
         reports. If the software feels intuitive and covers your must-haves, it is a strong candidate.
-        MolarPlus is built to be easy to adopt from day one — you can <Link href="/">explore our
+        MolarPlus is built to be easy to adopt from day one, you can <Link href="/">explore our
         platform</Link> and <Link href="/contact">request a demo</Link> to see why it is one of the best
         dental software choices for growing practices.
       </p>

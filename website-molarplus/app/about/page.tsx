@@ -7,13 +7,13 @@ import { APP_URL } from '@/lib/constants';
 export const metadata: Metadata = {
   title: 'About MolarPlus - Best Dental Clinic Management Software Company',
   description:
-    'Learn about MolarPlus, the dental clinic management software trusted by dental practices across India. Our mission: simplify clinic operations with the best dental software.',
+    'Learn about MolarPlus, the dental clinic management software trusted by dental practices worldwide. Our mission: simplify clinic operations with the best dental software.',
   keywords:
-    'about MolarPlus, dental software company, clinic management software India, dental practice management, healthcare technology India',
+    'about MolarPlus, dental software company, clinic management software, dental practice management, healthcare technology',
   alternates: { canonical: `${SITE_URL}/about` },
   openGraph: {
     title: 'About MolarPlus - Dental Clinic Management Software',
-    description: 'Making dental practice management simple, efficient, and accessible for dentists across India.',
+    description: 'Making dental practice management simple, efficient, and accessible for dentists everywhere.',
     url: `${SITE_URL}/about`,
   },
 };
@@ -22,7 +22,7 @@ const aboutJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'AboutPage',
   name: 'About MolarPlus',
-  description: 'MolarPlus is the best dental clinic management software for modern dental practices in India.',
+  description: 'MolarPlus is the best dental clinic management software for modern dental practices.',
   publisher: { '@type': 'Organization', name: 'MolarPlus', url: SITE_URL },
 };
 
@@ -37,7 +37,7 @@ export default function AboutPage() {
               About <span style={{ color: colors.primary }}>MolarPlus</span>
             </h1>
             <p className="text-xl text-gray-600 mb-8">
-              Making dental practice management simple, efficient, and accessible for dentists across India
+              Making dental practice management simple, efficient, and accessible for dentists everywhere
             </p>
           </div>
         </div>
@@ -49,12 +49,12 @@ export default function AboutPage() {
             <div>
               <h2 className="text-4xl font-bold text-gray-900 mb-6">Our Mission</h2>
               <p className="text-lg text-gray-600 mb-6">
-                At MolarPlus, we are on a mission to transform dental practice management in India by providing
+                At MolarPlus, we are on a mission to transform dental practice management worldwide by providing
                 the <strong>best dental software</strong> and <strong>dental clinic management software</strong> that
                 simplifies daily operations for dentists and clinic staff.
               </p>
               <p className="text-lg text-gray-600 mb-6">
-                We understand the challenges dental professionals face — from managing patient records and
+                We understand the challenges dental professionals face, from managing patient records and
                 appointments to handling payments and communications. That is why we built a comprehensive
                 <strong> dental clinic management software</strong> that addresses every aspect of practice
                 management.
@@ -125,15 +125,15 @@ export default function AboutPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">Why Dentists Choose MolarPlus</h2>
-            <p className="text-xl text-gray-600">The best dental software trusted by practices across India</p>
+            <p className="text-xl text-gray-600">The best dental software trusted by leading practices</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
             {[
-              { title: 'Complete Dental Clinic Management', desc: 'Everything you need — patient management to revenue tracking' },
-              { title: 'Built for Indian Dental Practices', desc: 'Designed for Indian clinics with local payment methods and WhatsApp' },
+              { title: 'Complete Dental Clinic Management', desc: 'Everything you need, patient management to revenue tracking' },
+              { title: 'Built for Modern Dental Practices', desc: 'Designed for clinics with local payment methods and WhatsApp' },
               { title: '24/7 Support in Hindi & English', desc: 'Get help whenever you need it in your preferred language' },
               { title: 'Secure & HIPAA Compliant', desc: 'Enterprise-grade security to protect patient data' },
-              { title: 'Affordable Pricing', desc: 'Starting at ₹1,499/month — best value dental software in India' },
+              { title: 'Affordable Pricing', desc: 'Starting at ₹1,499/month, best-value dental software for clinics of every size' },
               { title: 'Quick Setup & Training', desc: 'Get started in 24 hours with free onboarding and staff training' },
             ].map((item, i) => (
               <div key={i} className="flex items-start gap-4">
@@ -152,7 +152,7 @@ export default function AboutPage() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-4xl font-bold text-white mb-6">Ready to Transform Your Practice?</h2>
           <p className="text-xl text-white/90 mb-8">
-            Join 250+ dental practices using MolarPlus — the best dental clinic management software
+            Join 250+ dental practices using MolarPlus, the best dental clinic management software
           </p>
           <a
             href={`${APP_URL}/signup`}

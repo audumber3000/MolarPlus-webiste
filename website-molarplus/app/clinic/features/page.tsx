@@ -209,7 +209,7 @@ export default function FeaturesPage() {
               <span style={{ color: colors.primary }}>Dental Clinic Management</span>
             </h1>
             <p className="text-xl text-gray-600 mb-8">
-              Everything you need to run your dental practice efficiently — all in one comprehensive platform
+              Everything you need to run your dental practice efficiently, all in one comprehensive platform
             </p>
             <a
               href={`${APP_URL}/signup`}
@@ -222,7 +222,7 @@ export default function FeaturesPage() {
         </div>
       </section>
 
-      {/* Features — alternating layout with browser screenshots */}
+      {/* Features, alternating layout with browser screenshots */}
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="space-y-24">
@@ -299,7 +299,7 @@ export default function FeaturesPage() {
             Ready to Experience Better Dental Practice Management?
           </h2>
           <p className="text-xl text-white/90 mb-8">
-            Join 180+ dental practices using MolarPlus — the best dental software for clinics across India
+            Join 180+ dental practices using MolarPlus, the best dental software for clinics across India
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a

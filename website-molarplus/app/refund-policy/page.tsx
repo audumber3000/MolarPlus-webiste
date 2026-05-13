@@ -41,7 +41,7 @@ export default function RefundPolicyPage() {
             </section>
 
             <section>
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">2. Pro Plan — Refund Eligibility</h2>
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">2. Pro Plan, Refund Eligibility</h2>
 
               <h3 className="text-xl font-semibold text-gray-900 mt-6 mb-3">2.1 Monthly Subscriptions</h3>
               <p>
@@ -70,7 +70,7 @@ export default function RefundPolicyPage() {
             </section>
 
             <section>
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">3. Enterprise Plan — Refund Eligibility</h2>
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">3. Enterprise Plan, Refund Eligibility</h2>
               <p>
                 Enterprise Plan agreements are governed by a separate contract between MolarPlus and your
                 organisation. Refund terms for Enterprise Plans are specified in the individual agreement.
@@ -97,7 +97,7 @@ export default function RefundPolicyPage() {
               <ol className="list-decimal pl-6 space-y-3 mt-4">
                 <li>
                   Email us at <strong>support@molarplus.com</strong> with the subject line{' '}
-                  <em>&quot;Refund Request — [Your Clinic Name]&quot;</em>
+                  <em>&quot;Refund Request, [Your Clinic Name]&quot;</em>
                 </li>
                 <li>Include your registered email address, the plan you subscribed to, and the payment date</li>
                 <li>Briefly describe the reason for your refund request (optional but helpful for us to improve)</li>

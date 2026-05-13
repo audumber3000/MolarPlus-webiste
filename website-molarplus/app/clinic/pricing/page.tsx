@@ -87,19 +87,19 @@ export default function PricingPage() {
             <div>
               <h3 className="text-xl font-semibold text-gray-900 mb-3">Free plan</h3>
               <p>
-                The <strong>Free</strong> plan supports one chair and up to two employees. It includes core clinic features such as appointments and patient records, plus access to MolarPlus on mobile, web, and desktop. It does not include admin controls or communication tools like WhatsApp, email, or bulk notifications. The Free plan remains free with no pricing — ideal for getting started. <Link href={`${APP_URL}/signup`} className="text-blue-600 hover:underline font-medium">Sign up for free</Link>.
+                The <strong>Free</strong> plan supports one chair and up to two employees. It includes core clinic features such as appointments and patient records, plus access to MolarPlus on mobile, web, and desktop. It does not include admin controls or communication tools like WhatsApp, email, or bulk notifications. The Free plan remains free with no pricing, ideal for getting started. <Link href={`${APP_URL}/signup`} className="text-blue-600 hover:underline font-medium">Sign up for free</Link>.
               </p>
             </div>
             <div>
               <h3 className="text-xl font-semibold text-gray-900 mb-3">Pro plan</h3>
               <p>
-                The <strong>Pro</strong> plan is suitable for clinics with 2–5 chairs. It includes everything in Free plus full admin features: staff attendance, employee device management, clinic finance and reports, and a complete communication suite including bulk WhatsApp, email, and notifications. Pricing is country-based: <strong>₹1299 per month in India</strong> and <strong>$20 per month for all other countries</strong>. You can bill yearly at a 25% discount. <Link href={`${APP_URL}/signup`} className="text-blue-600 hover:underline font-medium">Start a free trial</Link> or compare <Link href="/features" className="text-blue-600 hover:underline font-medium">features</Link>.
+                The <strong>Pro</strong> plan is suitable for clinics with 2–5 chairs. It includes everything in Free plus full admin features: staff attendance, employee device management, clinic finance and reports, and a complete communication suite including bulk WhatsApp, email, and notifications. Pricing is country-based: <strong>₹1299 per month in India</strong> and <strong>$20 per month for all other countries</strong>. You can bill yearly at a 25% discount. <Link href={`${APP_URL}/signup`} className="text-blue-600 hover:underline font-medium">Start a free trial</Link> or compare <Link href="/clinic/features" className="text-blue-600 hover:underline font-medium">features</Link>.
               </p>
             </div>
             <div>
               <h3 className="text-xl font-semibold text-gray-900 mb-3">Enterprise plan</h3>
               <p>
-                The <strong>Enterprise</strong> plan is for larger clinics and includes everything in Pro plus offline software support and assisted installation. Pricing is custom — <Link href="/contact" className="text-blue-600 hover:underline font-medium">request a call back</Link> or <Link href="/contact" className="text-blue-600 hover:underline font-medium">connect with us</Link> for a quote.
+                The <strong>Enterprise</strong> plan is for larger clinics and includes everything in Pro plus offline software support and assisted installation. Pricing is custom, <Link href="/contact" className="text-blue-600 hover:underline font-medium">request a call back</Link> or <Link href="/contact" className="text-blue-600 hover:underline font-medium">connect with us</Link> for a quote.
               </p>
             </div>
           </div>
@@ -142,7 +142,7 @@ export default function PricingPage() {
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-2xl font-bold text-gray-900 mb-4">Explore More</h2>
           <p className="text-gray-600 mb-8">
-            See our <Link href="/features" className="text-blue-600 hover:underline font-medium">features</Link>,{' '}
+            See our <Link href="/clinic/features" className="text-blue-600 hover:underline font-medium">features</Link>,{' '}
             <Link href="/contact" className="text-blue-600 hover:underline font-medium">contact us</Link> for Enterprise or demos, or get started now.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">

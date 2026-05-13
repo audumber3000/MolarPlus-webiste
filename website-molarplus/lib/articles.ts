@@ -43,7 +43,7 @@ export const articles: ArticleMeta[] = [
     slug: 'dental-clinic-software-features-that-matter',
     title: 'Dental Clinic Software Features That Actually Matter',
     description:
-      'Which features matter most in dental clinic management software? Scheduling, patient records, billing, and mobile access — and how MolarPlus delivers them.',
+      'Which features matter most in dental clinic management software? Scheduling, patient records, billing, and mobile access, and how MolarPlus delivers them.',
     date: '2025-01-28',
     readMinutes: 5,
   },

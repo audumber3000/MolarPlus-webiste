@@ -87,7 +87,7 @@ export default async function BlogPostPage({ params }: Props) {
     articleSection: post.category,
   };
 
-  // JSON-LD: FAQPage (only if FAQs exist) — boosts AEO
+  // JSON-LD: FAQPage (only if FAQs exist), boosts AEO
   const faqLd =
     post.faqs && post.faqs.length > 0
       ? {

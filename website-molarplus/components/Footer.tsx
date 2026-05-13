@@ -1,5 +1,6 @@
 import { SITE_NAME } from '@/lib/seo';
 import Link from 'next/link';
+import { WindowsBadge, MacBadge } from '@/components/DesktopBadges';
 
 export default function Footer() {
   return (
@@ -9,15 +10,20 @@ export default function Footer() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-12">
             {/* Column 1: Logo & Info */}
             <div className="lg:col-span-1">
-              <Link href="/" className="inline-block mb-6">
+              <Link href="/" className="inline-block mb-3">
                 <img
                   src="/molarplus-logo-transparent.svg"
                   alt="MolarPlus"
                   className="h-14 w-auto brightness-0 invert"
                 />
               </Link>
+              <div className="text-[11px] font-bold tracking-tight leading-none mb-6">
+                <span className="text-white/40 font-medium mr-0.5">by</span>
+                <span className="text-[#a3d977]">Clino</span>
+                <span className="text-[#7eb049] ml-1">Health</span>
+              </div>
               <p className="text-blue-100/70 text-sm leading-relaxed mb-8 font-medium">
-                Best Dental Clinic Management Software To Make Your Work Easy And Efficient!
+                Software for everyone in dentistry. Built for clinics, laboratories, and colleges.
               </p>
               <div className="flex flex-wrap gap-3">
                 <a href="https://www.instagram.com/molarplus_dental/" target="_blank" rel="noopener noreferrer" className="w-8 h-8 flex items-center justify-center rounded-lg bg-white/10 text-white hover:bg-white/20 transition-colors" aria-label="Instagram">
@@ -38,39 +44,78 @@ export default function Footer() {
               </div>
             </div>
 
-            {/* Column 2: Quick Links */}
+            {/* Column 2: Products */}
             <div>
-              <h3 className="text-white font-bold text-lg mb-6">Quick Links</h3>
+              <h3 className="text-white font-bold text-lg mb-6">Products</h3>
               <ul className="space-y-4 text-blue-100/60 text-sm font-semibold">
-                <li><Link href="/" className="hover:text-white transition-colors">Home</Link></li>
-                <li><Link href="/blog" className="hover:text-white transition-colors">Blogs</Link></li>
-                <li><Link href="/features" className="hover:text-white transition-colors">Features</Link></li>
-                <li><Link href="/pricing" className="hover:text-white transition-colors">Pricing</Link></li>
-                <li><Link href="/about" className="hover:text-white transition-colors">About Us</Link></li>
+                <li>
+                  <Link href="/clinic" className="hover:text-white transition-colors">
+                    MolarPlus Clinic
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/lab" className="hover:text-white transition-colors inline-flex items-center gap-2">
+                    MolarPlus Lab
+                    <span className="text-[9px] font-bold uppercase tracking-widest text-amber-300 px-1.5 py-0.5 rounded bg-amber-500/10 border border-amber-400/30">
+                      Soon
+                    </span>
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/college" className="hover:text-white transition-colors inline-flex items-center gap-2">
+                    MolarPlus College
+                    <span className="text-[9px] font-bold uppercase tracking-widest text-amber-300 px-1.5 py-0.5 rounded bg-amber-500/10 border border-amber-400/30">
+                      Soon
+                    </span>
+                  </Link>
+                </li>
+                <li className="pt-4">
+                  <Link href="/clinic/features" className="hover:text-white transition-colors">
+                    Clinic Features
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/clinic/pricing" className="hover:text-white transition-colors">
+                    Clinic Pricing
+                  </Link>
+                </li>
               </ul>
             </div>
 
-            {/* Column 3: Our Resources */}
+            {/* Column 3: Company */}
             <div>
-              <h3 className="text-white font-bold text-lg mb-6">Our Resources</h3>
-              <ul className="space-y-4 text-gray-400 text-sm font-semibold">
-                <li><Link href="/privacy-policy" className="hover:text-white transition-colors">Privacy Policy</Link></li>
-                <li><Link href="/terms-of-use" className="hover:text-white transition-colors">Terms of Use</Link></li>
-                <li><Link href="/cookies-policy" className="hover:text-white transition-colors">Cookies Policy</Link></li>
-                <li><Link href="/refund-policy" className="hover:text-white transition-colors">Refund Policy</Link></li>
+              <h3 className="text-white font-bold text-lg mb-6">Company</h3>
+              <ul className="space-y-4 text-blue-100/60 text-sm font-semibold">
+                <li><Link href="/about" className="hover:text-white transition-colors">About</Link></li>
+                <li><Link href="/blog" className="hover:text-white transition-colors">Blog</Link></li>
+                <li><Link href="/contact" className="hover:text-white transition-colors">Contact</Link></li>
+                <li><Link href="/clinic/find-dentist" className="hover:text-white transition-colors">Find a Dentist</Link></li>
+                <li className="pt-4">
+                  <Link href="/privacy-policy" className="hover:text-white transition-colors text-xs">Privacy</Link>
+                  <span className="text-white/20 mx-2 text-xs">·</span>
+                  <Link href="/terms-of-use" className="hover:text-white transition-colors text-xs">Terms</Link>
+                </li>
+                <li>
+                  <Link href="/cookies-policy" className="hover:text-white transition-colors text-xs">Cookies</Link>
+                  <span className="text-white/20 mx-2 text-xs">·</span>
+                  <Link href="/refund-policy" className="hover:text-white transition-colors text-xs">Refund</Link>
+                </li>
               </ul>
             </div>
 
-            {/* Column 4: Support */}
+            {/* Column 4: Contact */}
             <div>
-              <h3 className="text-white font-bold text-lg mb-6">Support</h3>
+              <h3 className="text-white font-bold text-lg mb-6">Get in touch</h3>
               <ul className="space-y-4 text-blue-100/60 text-sm font-semibold">
-                <li><Link href="/contact" className="hover:text-white transition-colors">Contact Us</Link></li>
-                <li><Link href="/find-dentist" className="hover:text-white transition-colors">Find Doctors</Link></li>
-                <li><a href="mailto:support@molarplus.com" className="hover:text-white transition-colors">support@molarplus.com</a></li>
-                <li className="leading-tight text-xs mt-4">
+                <li>
+                  <a href="mailto:support@molarplus.com" className="hover:text-white transition-colors">
+                    support@molarplus.com
+                  </a>
+                </li>
+                <li className="leading-relaxed text-xs text-blue-100/50 font-medium">
                   Sky Loft, Shastrinagar,<br />
-                  Yerawada, Pune 411006
+                  Yerawada, Pune 411006<br />
+                  India
                 </li>
               </ul>
             </div>
@@ -78,31 +123,43 @@ export default function Footer() {
             {/* Column 5: Download Apps */}
             <div>
               <h3 className="text-white font-bold text-lg mb-6 tracking-tight">Download Apps</h3>
-              <div className="flex flex-col space-y-4 max-w-[160px]">
-                <a 
-                  href="https://apps.apple.com/app/molarplus" 
-                  target="_blank" 
+
+              <div className="text-[10px] font-bold uppercase tracking-[0.18em] text-blue-100/40 mb-3">
+                Mobile
+              </div>
+              <div className="flex flex-col gap-3 mb-7 max-w-[160px]">
+                <a
+                  href="https://apps.apple.com/app/molarplus/id6765472713"
+                  target="_blank"
                   rel="noopener noreferrer"
-                  className="transition-transform hover:scale-105 active:scale-95"
+                  className="transition-opacity hover:opacity-90"
                 >
-                  <img 
-                    src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg" 
-                    alt="Download on App Store" 
-                    className="w-full h-auto" 
+                  <img
+                    src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg"
+                    alt="Download MolarPlus on App Store"
+                    className="w-full h-auto"
                   />
                 </a>
-                <a 
+                <a
                   href="https://play.google.com/store/apps/details?id=com.molarplus.app&pcampaignid=web_share"
-                  target="_blank" 
+                  target="_blank"
                   rel="noopener noreferrer"
-                  className="transition-transform hover:scale-105 active:scale-95"
+                  className="transition-opacity hover:opacity-90"
                 >
-                  <img 
-                    src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" 
-                    alt="Get it on Google Play" 
-                    className="w-full h-auto" 
+                  <img
+                    src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg"
+                    alt="Get it on Google Play"
+                    className="w-full h-auto"
                   />
                 </a>
+              </div>
+
+              <div className="text-[10px] font-bold uppercase tracking-[0.18em] text-blue-100/40 mb-3">
+                Desktop
+              </div>
+              <div className="flex flex-col gap-3">
+                <WindowsBadge comingSoon={false} href="https://pub-376f22e59eee415286747973b95ba075.r2.dev/MolarPlus-windows.msi" />
+                <MacBadge comingSoon={false} href="https://pub-376f22e59eee415286747973b95ba075.r2.dev/MolarPlus-mac.dmg" />
               </div>
             </div>
           </div>

@@ -91,9 +91,9 @@ export default function CookiesPolicyPage() {
               <h2 className="text-2xl font-bold text-gray-900 mb-4">3. Third-Party Cookies</h2>
               <p>Some cookies on our website are set by third-party services. These include:</p>
               <ul className="list-disc pl-6 space-y-2 mt-4">
-                <li><strong>Google Analytics</strong> — for usage analytics (analytics.google.com)</li>
-                <li><strong>Google Ads</strong> — for marketing attribution (ads.google.com)</li>
-                <li><strong>Razorpay / Stripe</strong> — for payment processing (only when completing a transaction)</li>
+                <li><strong>Google Analytics</strong>, for usage analytics (analytics.google.com)</li>
+                <li><strong>Google Ads</strong>, for marketing attribution (ads.google.com)</li>
+                <li><strong>Razorpay / Stripe</strong>, for payment processing (only when completing a transaction)</li>
               </ul>
               <p className="mt-4">
                 These third parties have their own privacy and cookie policies. We encourage you to review them
