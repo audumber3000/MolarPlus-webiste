@@ -158,7 +158,7 @@ export default function Footer() {
                 Desktop
               </div>
               <div className="flex flex-col gap-3">
-                <WindowsBadge comingSoon={false} href="https://pub-376f22e59eee415286747973b95ba075.r2.dev/MolarPlus-windows.msi" />
+                <WindowsBadge comingSoon={false} href="https://pub-376f22e59eee415286747973b95ba075.r2.dev/MolarPlus_0.1.0_x64_en-US.msi" />
                 <MacBadge comingSoon={false} href="https://pub-376f22e59eee415286747973b95ba075.r2.dev/MolarPlus-mac.dmg" />
               </div>
             </div>
