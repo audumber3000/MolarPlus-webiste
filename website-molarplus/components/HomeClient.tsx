@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import {
   Layout,
   Smartphone,
@@ -25,24 +25,13 @@ import { colors } from '@/lib/seo';
 import Link from 'next/link';
 import ContactForm from '@/components/ContactForm';
 import { WindowsBadge, MacBadge } from '@/components/DesktopBadges';
+import ClinicLogoMarquee from '@/components/ClinicLogoMarquee';
+import WhatsAppIcon from '@/components/WhatsAppIcon';
 
 const stats = [
   { value: '180+', label: 'Clinics on MolarPlus' },
   { value: '35,000+', label: 'Patients managed' },
   { value: '82+', label: 'Cities served' },
-];
-
-const trustedClinics = [
-  { name: 'Clove Dental', domain: 'clovedental.in' },
-  { name: 'Apollo Dental', domain: 'apollodental.in' },
-  { name: 'Sabka Dentist', domain: 'sabkadentist.com' },
-  { name: 'FMS Dental', domain: 'fmsdental.com' },
-  { name: 'Partha Dental', domain: 'parthadental.com' },
-  { name: 'MyDentist', domain: 'mydentist.in' },
-  { name: 'Clinikk', domain: 'clinikk.com' },
-  { name: 'Dentzz Dental', domain: 'dentzz.com' },
-  { name: 'Pearl Dental', domain: 'pearldentalclinic.in' },
-  { name: 'Axiss Dental', domain: 'axissdental.com' },
 ];
 
 const testimonials = [
@@ -99,7 +88,7 @@ const faqs = [
   },
   {
     q: 'What is the difference between Pro and Enterprise plans?',
-    a: 'Pro (₹1,299/month in India, $20/month internationally) adds admin controls, staff attendance, WhatsApp and email notifications, and clinic finance reports. Enterprise adds offline support and assisted on-site installation. Ideal for larger clinics.',
+    a: 'Pro (₹899/month in India, $10/month internationally) adds admin controls, staff attendance, WhatsApp and email notifications, and clinic finance reports. Enterprise adds offline support and assisted on-site installation. Ideal for larger clinics.',
   },
 ];
 
@@ -187,15 +176,15 @@ const pricingPlans = [
     price: '₹0',
     period: 'forever',
     desc: '1 chair, up to 2 staff. Full access to core clinic features.',
-    cta: 'Get started free',
+    cta: 'Start Here',
     href: 'https://app.molarplus.com/signup',
     highlight: false,
   },
   {
     name: 'Pro',
-    price: '₹1,299',
+    price: '₹899',
     period: '/month',
-    desc: 'Admin controls, WhatsApp reminders, billing & analytics. $20/month outside India.',
+    desc: 'Admin controls, WhatsApp reminders, billing & analytics.',
     cta: 'Start Pro trial',
     href: 'https://app.molarplus.com/signup',
     highlight: true,
@@ -227,6 +216,16 @@ const mobileBenefits = [
 
 export default function HomeClient() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
+  const [isIndia, setIsIndia] = useState(true);
+
+  useEffect(() => {
+    try {
+      const tz = Intl.DateTimeFormat().resolvedOptions().timeZone ?? '';
+      setIsIndia(tz === 'Asia/Kolkata' || tz === 'Asia/Calcutta');
+    } catch {
+      setIsIndia(true);
+    }
+  }, []);
 
   return (
     <div className="flex flex-col min-h-screen bg-white">
@@ -245,14 +244,7 @@ export default function HomeClient() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <div className="grid lg:grid-cols-[1.1fr_1fr] gap-16 items-center">
             <div>
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-gray-200 bg-white/80 backdrop-blur-sm shadow-sm">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#2a276e]" />
-                <span className="text-xs font-bold uppercase tracking-[0.18em] text-gray-700">
-                  Dental practice management
-                </span>
-              </div>
-
-              <h1 className="mt-8 text-5xl md:text-6xl lg:text-[64px] font-extrabold text-[#1a1c4b] tracking-tight leading-[1.05]">
+              <h1 className="text-5xl md:text-6xl lg:text-[64px] font-extrabold text-[#1a1c4b] tracking-tight leading-[1.05]">
                 Practice management,{' '}
                 <span style={{ color: colors.primary }}>built for modern dental clinics</span>.
               </h1>
@@ -268,13 +260,14 @@ export default function HomeClient() {
                   className="inline-flex items-center gap-2 px-7 py-4 rounded-xl font-semibold text-white shadow-lg shadow-[#2a276e]/20 hover:shadow-xl hover:-translate-y-0.5 transition-all"
                   style={{ backgroundColor: colors.primary }}
                 >
-                  Get started free
+                  Start Here
                   <ArrowRight className="w-4 h-4" />
                 </a>
                 <a
-                  href="#contact"
+                  href="/chat"
                   className="inline-flex items-center gap-2 px-7 py-4 rounded-xl font-semibold text-gray-900 bg-white border border-gray-200 hover:border-gray-300 hover:bg-gray-50 transition-all"
                 >
+                  <WhatsAppIcon className="w-5 h-5 text-[#25D366]" />
                   Book a demo
                 </a>
               </div>
@@ -317,7 +310,7 @@ export default function HomeClient() {
                     Desktop
                   </div>
                   <div className="flex flex-wrap items-center gap-3">
-                    <WindowsBadge comingSoon={false} href="https://pub-376f22e59eee415286747973b95ba075.r2.dev/MolarPlus_0.1.0_x64_en-US.msi" />
+                    <WindowsBadge comingSoon={false} href="https://apps.microsoft.com/detail/9n78rx7phv9k" />
                     <MacBadge comingSoon={false} href="https://pub-376f22e59eee415286747973b95ba075.r2.dev/MolarPlus-mac.dmg" />
                   </div>
                 </div>
@@ -340,32 +333,8 @@ export default function HomeClient() {
         </div>
       </section>
 
-      {/* ── Trusted by (logo bar) ── */}
-      <section className="py-14 bg-white border-t border-gray-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <p className="text-center text-[13px] font-semibold text-gray-500 tracking-wide mb-10">
-            Trusted by leading dental clinics
-          </p>
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-x-8 gap-y-7 items-center justify-items-center">
-            {trustedClinics.map((clinic) => (
-              <div
-                key={clinic.name}
-                className="flex items-center gap-2 grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all"
-              >
-                <img
-                  src={`https://www.google.com/s2/favicons?domain=${clinic.domain}&sz=64`}
-                  alt={`${clinic.name} logo`}
-                  className="w-6 h-6 flex-shrink-0"
-                  loading="lazy"
-                />
-                <span className="text-[15px] font-semibold text-gray-600 whitespace-nowrap">
-                  {clinic.name}
-                </span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* ── Trusted by (logo marquee) ── */}
+      <ClinicLogoMarquee />
 
       {/* ── Stats ── */}
       <section className="py-20 bg-slate-50/60 border-y border-gray-100">
@@ -583,7 +552,7 @@ export default function HomeClient() {
                     Desktop
                   </div>
                   <div className="flex flex-wrap items-center gap-3">
-                    <WindowsBadge comingSoon={false} href="https://pub-376f22e59eee415286747973b95ba075.r2.dev/MolarPlus_0.1.0_x64_en-US.msi" />
+                    <WindowsBadge comingSoon={false} href="https://apps.microsoft.com/detail/9n78rx7phv9k" />
                     <MacBadge comingSoon={false} href="https://pub-376f22e59eee415286747973b95ba075.r2.dev/MolarPlus-mac.dmg" />
                   </div>
                 </div>
@@ -705,7 +674,7 @@ export default function HomeClient() {
                       plan.highlight ? 'text-white' : 'text-[#1a1c4b]'
                     }`}
                   >
-                    {plan.price}
+                    {plan.name === 'Pro' && !isIndia ? '$10' : plan.price}
                   </span>
                   {plan.period && (
                     <span

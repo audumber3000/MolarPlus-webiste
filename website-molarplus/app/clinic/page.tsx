@@ -57,7 +57,7 @@ const softwareJsonLd = {
   url: SITE_URL,
   offers: [
     { '@type': 'Offer', name: 'Free', price: '0', priceCurrency: 'INR' },
-    { '@type': 'Offer', name: 'Pro', price: '1299', priceCurrency: 'INR', priceValidUntil: '2026-12-31' },
+    { '@type': 'Offer', name: 'Pro', price: '899', priceCurrency: 'INR', priceValidUntil: '2026-12-31' },
     { '@type': 'Offer', name: 'Enterprise', description: 'Custom pricing with offline support' },
   ],
   aggregateRating: {
@@ -110,7 +110,7 @@ const faqJsonLd = {
       name: 'What is the difference between Pro and Enterprise plans?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Pro (₹1,299/month in India, $20/month internationally) adds admin controls, staff attendance, WhatsApp and email notifications, and clinic finance reports. Enterprise adds offline support and assisted on-site installation. Ideal for larger clinics.',
+        text: 'Pro (₹899/month in India, $10/month internationally) adds admin controls, staff attendance, WhatsApp and email notifications, and clinic finance reports. Enterprise adds offline support and assisted on-site installation. Ideal for larger clinics.',
       },
     },
   ],

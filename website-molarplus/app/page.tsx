@@ -11,16 +11,19 @@ import {
   Compass,
   Building2,
   Check,
+  Lock,
 } from 'lucide-react';
 import { colors, SITE_URL, SITE_NAME } from '@/lib/seo';
+import ClinicLogoMarquee from '@/components/ClinicLogoMarquee';
+import WhatsAppIcon from '@/components/WhatsAppIcon';
 
 export const metadata: Metadata = {
-  title: 'MolarPlus, Software for everyone in dentistry. By Clino Health.',
+  title: 'MolarPlus — Dental Practice Management Software',
   description:
     'MolarPlus is a connected suite of products built for dentistry. MolarPlus Clinic for practices, MolarPlus Lab for dental laboratories, and MolarPlus College for dental education, by Clino Health.',
   alternates: { canonical: SITE_URL },
   openGraph: {
-    title: 'MolarPlus, Software for everyone in dentistry',
+    title: 'MolarPlus — Dental Practice Management Software',
     description:
       'A connected suite of products for clinics, labs, and dental colleges. By Clino Health.',
     url: SITE_URL,
@@ -136,7 +139,7 @@ export default function UmbrellaHome() {
       />
 
       {/* ── Hero ── */}
-      <section className="relative pt-36 pb-28 overflow-hidden">
+      <section className="relative pt-44 pb-28 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-blue-50/40 via-white to-white" />
         <div
           className="absolute inset-x-0 top-0 h-[600px] opacity-[0.04]"
@@ -148,15 +151,7 @@ export default function UmbrellaHome() {
         />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <div className="max-w-4xl mx-auto text-center">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-gray-200 bg-white/80 backdrop-blur-sm shadow-sm">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#73a942]" />
-              <span className="text-xs font-semibold text-gray-700 tracking-wide">
-                A product family by{' '}
-                <span className="text-[#245501] font-bold">Clino Health</span>
-              </span>
-            </div>
-
-            <h1 className="mt-10 text-5xl md:text-6xl lg:text-7xl font-extrabold text-[#1a1c4b] tracking-tight leading-[1.05]">
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold text-[#1a1c4b] tracking-tight leading-[1.05]">
               Software for everyone
               <br />
               in <span style={{ color: colors.primary }}>dentistry</span>.
@@ -177,9 +172,10 @@ export default function UmbrellaHome() {
                 <ArrowRight className="w-4 h-4" />
               </Link>
               <Link
-                href="/contact"
+                href="/chat"
                 className="inline-flex items-center gap-2 px-7 py-4 rounded-xl font-semibold text-gray-900 bg-white border border-gray-200 hover:border-gray-300 hover:bg-gray-50 transition-all"
               >
+                <WhatsAppIcon className="w-5 h-5 text-[#25D366]" />
                 Talk to our team
               </Link>
             </div>
@@ -190,6 +186,9 @@ export default function UmbrellaHome() {
           </div>
         </div>
       </section>
+
+      {/* ── Trusted by (logo marquee) ── */}
+      <ClinicLogoMarquee />
 
       {/* ── Products ── */}
       <section className="py-24 bg-slate-50/60 border-y border-gray-100">
@@ -294,6 +293,69 @@ export default function UmbrellaHome() {
         </div>
       </section>
 
+      {/* ── Security & compliance ── */}
+      <section className="py-24 bg-slate-50/60 border-y border-gray-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-3xl mb-14">
+            <div className="text-xs font-bold uppercase tracking-[0.2em] text-gray-500 mb-4">
+              Security &amp; compliance
+            </div>
+            <h2 className="text-4xl md:text-5xl font-extrabold text-[#1a1c4b] tracking-tight leading-[1.1]">
+              Patient data, protected to the highest standard.
+            </h2>
+            <p className="mt-6 text-lg text-gray-600 leading-relaxed">
+              We store and safeguard patient records in a uniquely secure way, encrypted,
+              access-controlled, and never sold. For us, compliance isn&apos;t a checkbox, it&apos;s
+              how we build.
+            </p>
+            <Link
+              href="/privacy-policy"
+              className="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold group"
+              style={{ color: colors.primary }}
+            >
+              Read our privacy &amp; data policy
+              <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+            </Link>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-6">
+            <div className="flex gap-5 p-8 rounded-2xl bg-white border border-gray-200">
+              <div
+                className="flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center"
+                style={{ backgroundColor: `${colors.primary}10` }}
+              >
+                <ShieldCheck className="w-6 h-6" style={{ color: colors.primary }} />
+              </div>
+              <div>
+                <h3 className="text-lg font-bold text-[#1a1c4b]">ABDM-aligned, for India</h3>
+                <p className="mt-2 text-[15px] text-gray-600 leading-relaxed">
+                  Built in line with India&apos;s Ayushman Bharat Digital Mission (ABDM) standards
+                  for health data, so your clinic stays compliant with national digital-health
+                  regulations.
+                </p>
+              </div>
+            </div>
+
+            <div className="flex gap-5 p-8 rounded-2xl bg-white border border-gray-200">
+              <div
+                className="flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center"
+                style={{ backgroundColor: `${colors.primary}10` }}
+              >
+                <Lock className="w-6 h-6" style={{ color: colors.primary }} />
+              </div>
+              <div>
+                <h3 className="text-lg font-bold text-[#1a1c4b]">HIPAA-compliant, for the US</h3>
+                <p className="mt-2 text-[15px] text-gray-600 leading-relaxed">
+                  For practices in the United States, and anyone handling protected health
+                  information, MolarPlus meets HIPAA requirements for storing and transmitting
+                  medical data.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* ── Trust / Stats ── */}
       <section className="py-24 bg-[#1a1548] relative overflow-hidden">
         <div
@@ -386,9 +448,10 @@ export default function UmbrellaHome() {
               <ArrowRight className="w-4 h-4" />
             </Link>
             <Link
-              href="/contact"
+              href="/chat"
               className="inline-flex items-center gap-2 px-7 py-4 rounded-xl font-semibold text-white border border-white/30 hover:bg-white/10 transition-all"
             >
+              <WhatsAppIcon className="w-5 h-5 text-[#25D366]" />
               Talk to our team
             </Link>
           </div>

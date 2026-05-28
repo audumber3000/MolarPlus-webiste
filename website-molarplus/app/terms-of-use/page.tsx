@@ -71,7 +71,7 @@ export default function TermsOfUsePage() {
               <p>MolarPlus offers the following subscription plans:</p>
               <ul className="list-disc pl-6 space-y-2 mt-4">
                 <li><strong>Free Plan:</strong> Available at no charge for single-chair clinics with up to 2 staff members. Includes core clinic features.</li>
-                <li><strong>Pro Plan:</strong> Paid monthly or annually. Priced at ₹1,299/month (India) or $20/month (international). Includes admin controls, staff management, WhatsApp and email notifications, billing reports, and more.</li>
+                <li><strong>Pro Plan:</strong> Paid monthly or annually. Priced at ₹899/month (India) or $10/month (international). Includes admin controls, staff management, WhatsApp and email notifications, billing reports, and more.</li>
                 <li><strong>Enterprise Plan:</strong> Custom pricing. Includes offline support, assisted installation, and dedicated account management. Contact us for details.</li>
               </ul>
               <p className="mt-4">

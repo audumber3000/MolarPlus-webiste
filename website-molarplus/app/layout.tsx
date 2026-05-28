@@ -1,6 +1,8 @@
 import './globals.css';
 import { Inter } from 'next/font/google';
 import Nav from '@/components/Nav';
+import HomeTopBanner from '@/components/HomeTopBanner';
+import CookieConsent from '@/components/CookieConsent';
 import Footer from '@/components/Footer';
 import { SITE_URL, SITE_NAME, DEFAULT_DESCRIPTION, DEFAULT_KEYWORDS } from '@/lib/seo';
 
@@ -62,9 +64,11 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID || ''} />
+        <HomeTopBanner />
         <Nav />
         <main>{children}</main>
         <Footer />
+        <CookieConsent />
       </body>
     </html>
   );

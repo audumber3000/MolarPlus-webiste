@@ -8,13 +8,13 @@ import PricingPlans from '@/components/PricingPlans';
 export const metadata: Metadata = {
   title: 'Pricing - Free, Pro & Enterprise Dental Clinic Software | MolarPlus',
   description:
-    'MolarPlus pricing: Free plan for 1 chair, Pro from ₹1299/month in India or $20/month elsewhere with full admin & WhatsApp. Enterprise with offline support. Country-based pricing.',
+    'MolarPlus pricing: Free plan for 1 chair, Pro from ₹899/month in India or $10/month elsewhere with full admin & WhatsApp. Enterprise with offline support. Country-based pricing.',
   keywords:
     'dental software pricing, dental clinic management cost, free dental software, dental practice plans India, clinic software pricing INR USD',
   alternates: { canonical: `${SITE_URL}/pricing` },
   openGraph: {
     title: 'Pricing - Free, Pro & Enterprise | MolarPlus Dental Software',
-    description: 'Free for 1 chair. Pro from ₹1299/mo (India) or $20/mo. Enterprise with offline support. See plans.',
+    description: 'Free for 1 chair. Pro from ₹899/mo (India) or $10/mo. Enterprise with offline support. See plans.',
     url: `${SITE_URL}/pricing`,
   },
 };
@@ -44,12 +44,12 @@ const pricingJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'Product',
   name: 'MolarPlus Dental Clinic Management Software',
-  description: 'Pricing plans: Free (1 chair), Pro (2–5 chairs, ₹1299/mo India or $20/mo), Enterprise (custom).',
+  description: 'Pricing plans: Free (1 chair), Pro (2–5 chairs, ₹899/mo India or $10/mo), Enterprise (custom).',
   brand: { '@type': 'Brand', name: 'MolarPlus' },
   offers: [
     { '@type': 'Offer', name: 'Free', price: '0', priceCurrency: 'INR', description: '1 chair, up to 2 employees, core features' },
-    { '@type': 'Offer', name: 'Pro', price: '1299', priceCurrency: 'INR', priceValidUntil: '2026-12-31', description: 'India: ₹1299/month. Other: $20/month. Yearly 25% off.' },
-    { '@type': 'Offer', name: 'Pro USD', price: '20', priceCurrency: 'USD', priceValidUntil: '2026-12-31' },
+    { '@type': 'Offer', name: 'Pro', price: '899', priceCurrency: 'INR', priceValidUntil: '2026-12-31', description: 'India: ₹899/month. Other: $10/month. Yearly 25% off.' },
+    { '@type': 'Offer', name: 'Pro USD', price: '10', priceCurrency: 'USD', priceValidUntil: '2026-12-31' },
     { '@type': 'Offer', name: 'Enterprise', description: 'Custom pricing. Offline support and assisted installation.' },
   ],
 };
@@ -93,7 +93,7 @@ export default function PricingPage() {
             <div>
               <h3 className="text-xl font-semibold text-gray-900 mb-3">Pro plan</h3>
               <p>
-                The <strong>Pro</strong> plan is suitable for clinics with 2–5 chairs. It includes everything in Free plus full admin features: staff attendance, employee device management, clinic finance and reports, and a complete communication suite including bulk WhatsApp, email, and notifications. Pricing is country-based: <strong>₹1299 per month in India</strong> and <strong>$20 per month for all other countries</strong>. You can bill yearly at a 25% discount. <Link href={`${APP_URL}/signup`} className="text-blue-600 hover:underline font-medium">Start a free trial</Link> or compare <Link href="/clinic/features" className="text-blue-600 hover:underline font-medium">features</Link>.
+                The <strong>Pro</strong> plan is suitable for clinics with 2–5 chairs. It includes everything in Free plus full admin features: staff attendance, employee device management, clinic finance and reports, and a complete communication suite including bulk WhatsApp, email, and notifications. Pricing is country-based: <strong>₹899 per month in India</strong> and <strong>$10 per month for all other countries</strong>. You can bill yearly at a 25% discount. <Link href={`${APP_URL}/signup`} className="text-blue-600 hover:underline font-medium">Start a free trial</Link> or compare <Link href="/clinic/features" className="text-blue-600 hover:underline font-medium">features</Link>.
               </p>
             </div>
             <div>

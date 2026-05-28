@@ -40,7 +40,7 @@ const ENTERPRISE_FEATURES = [
   'Dedicated success manager',
 ];
 
-const PRO_PRICE = { IN: { monthly: 1299, yearly: 11691 }, OTHER: { monthly: 20, yearly: 180 } };
+const PRO_PRICE = { IN: { monthly: 899, yearly: 8091 }, OTHER: { monthly: 10, yearly: 90 } };
 const YEARLY_DISCOUNT = 25; // 25% off = pay 9 months for 12
 
 async function detectCountry(): Promise<CountryCode> {
@@ -167,7 +167,7 @@ export default function PricingPlans() {
             href={`${APP_URL}/signup`}
             className="w-full py-3 rounded-lg font-semibold text-center block border-2 border-gray-300 text-gray-800 hover:bg-gray-50 transition-colors"
           >
-            Get Started Free
+            Start Here
           </a>
         </div>
 

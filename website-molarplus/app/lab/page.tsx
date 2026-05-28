@@ -85,14 +85,7 @@ export default function LabPage() {
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-amber-200 bg-amber-50">
-              <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse" />
-              <span className="text-xs font-bold uppercase tracking-[0.18em] text-amber-800">
-                Coming soon
-              </span>
-            </div>
-
-            <div className="mt-8 flex items-center gap-3">
+            <div className="flex items-center gap-3">
               <div
                 className="w-12 h-12 rounded-xl flex items-center justify-center"
                 style={{ backgroundColor: `${colors.primary}0d` }}

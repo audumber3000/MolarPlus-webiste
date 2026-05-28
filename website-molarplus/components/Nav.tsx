@@ -109,12 +109,17 @@ export default function Nav() {
   const [isMobileProductsOpen, setIsMobileProductsOpen] = useState(false);
   const pathname = usePathname();
   const context = detectContext(pathname);
+  const isHome = pathname === '/';
 
   const navLinkClass =
     'text-[15px] text-gray-700 hover:text-[#2a276e] font-medium transition-colors';
 
   return (
-    <nav className="fixed top-0 w-full bg-white/95 backdrop-blur-md border-b border-gray-100 z-50">
+    <nav
+      className={`fixed w-full bg-white/95 backdrop-blur-md border-b border-gray-100 z-50 ${
+        isHome ? 'top-10' : 'top-0'
+      }`}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
           {/* Logo + product chip */}
