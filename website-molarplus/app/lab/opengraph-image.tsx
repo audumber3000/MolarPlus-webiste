@@ -60,17 +60,17 @@ export default function Image() {
               display: 'flex',
               alignItems: 'center',
               padding: '10px 20px',
-              background: 'rgba(251, 191, 36, 0.12)',
-              border: '1px solid rgba(251, 191, 36, 0.4)',
+              background: 'rgba(34, 197, 94, 0.12)',
+              border: '1px solid rgba(34, 197, 94, 0.4)',
               borderRadius: '999px',
               fontSize: 14,
               fontWeight: 800,
-              color: '#fcd34d',
+              color: '#4ade80',
               textTransform: 'uppercase',
               letterSpacing: '0.2em',
             }}
           >
-            Coming soon
+            Now live
           </div>
         </div>
 

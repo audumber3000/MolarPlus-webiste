@@ -3,7 +3,6 @@ import type { Metadata } from 'next';
 import {
   Stethoscope,
   FlaskConical,
-  GraduationCap,
   ArrowRight,
   ArrowUpRight,
   ShieldCheck,
@@ -20,12 +19,12 @@ import WhatsAppIcon from '@/components/WhatsAppIcon';
 export const metadata: Metadata = {
   title: 'MolarPlus — Dental Practice Management Software',
   description:
-    'MolarPlus is a connected suite of products built for dentistry. MolarPlus Clinic for practices, MolarPlus Lab for dental laboratories, and MolarPlus College for dental education, by Clino Health.',
+    'MolarPlus is a connected suite of products built for dentistry. MolarPlus Clinic for practices and MolarPlus Lab for dental laboratories, by Clino Health.',
   alternates: { canonical: SITE_URL },
   openGraph: {
     title: 'MolarPlus — Dental Practice Management Software',
     description:
-      'A connected suite of products for clinics, labs, and dental colleges. By Clino Health.',
+      'A connected suite of products for dental clinics and laboratories. By Clino Health.',
     url: SITE_URL,
     siteName: SITE_NAME,
     type: 'website',
@@ -42,7 +41,7 @@ const jsonLd = {
     name: 'Clino Health',
   },
   description:
-    'MolarPlus is a suite of dental software products by Clino Health, for clinics, laboratories, and dental colleges.',
+    'MolarPlus is a suite of dental software products by Clino Health, for clinics and laboratories.',
   sameAs: [
     'https://www.instagram.com/molarplus_dental/',
     'https://www.linkedin.com/company/molarplus/',
@@ -80,24 +79,8 @@ const products = [
       'Lab-to-clinic delivery pipeline',
     ],
     href: '/lab',
-    cta: 'Preview Lab',
-    status: 'preview' as const,
-  },
-  {
-    Icon: GraduationCap,
-    eyebrow: 'For dental colleges',
-    name: 'MolarPlus College',
-    summary:
-      'Clinical training and case management for dental institutions. Designed for faculty, students, and the patients they serve.',
-    capabilities: [
-      'Student rotations & competency tracking',
-      'Faculty grading & feedback',
-      'Patient pool & case allocation',
-      'Department-wide analytics',
-    ],
-    href: '/college',
-    cta: 'Preview College',
-    status: 'preview' as const,
+    cta: 'Explore Lab',
+    status: 'live' as const,
   },
 ];
 
@@ -110,7 +93,7 @@ const principles = [
   {
     Icon: Network,
     title: 'A connected ecosystem',
-    desc: 'Clinic, lab, and college are designed to work together. Cases, records, and referrals will flow seamlessly across the products you use.',
+    desc: 'Clinic and lab are designed to work together. Cases, records, and referrals flow seamlessly across the products you use.',
   },
   {
     Icon: Building2,
@@ -198,7 +181,7 @@ export default function UmbrellaHome() {
               The MolarPlus suite
             </div>
             <h2 className="text-4xl md:text-5xl font-extrabold text-[#1a1c4b] tracking-tight leading-[1.1]">
-              Three products. One ecosystem.
+              Two products. One ecosystem.
             </h2>
             <p className="mt-6 text-lg text-gray-600 leading-relaxed">
               Each MolarPlus product is built for a specific role in dentistry, designed to
@@ -206,19 +189,13 @@ export default function UmbrellaHome() {
             </p>
           </div>
 
-          <div className="grid lg:grid-cols-3 gap-6">
-            {products.map(({ Icon, eyebrow, name, summary, capabilities, href, cta, status }) => (
+          <div className="grid md:grid-cols-2 gap-6">
+            {products.map(({ Icon, eyebrow, name, summary, capabilities, href, cta }) => (
               <Link
                 key={name}
                 href={href}
                 className="group relative flex flex-col p-8 lg:p-10 rounded-2xl bg-white border border-gray-200 hover:border-[#2a276e]/30 hover:shadow-2xl hover:shadow-[#2a276e]/5 hover:-translate-y-1 transition-all"
               >
-                {status === 'preview' && (
-                  <span className="absolute top-6 right-6 inline-flex items-center px-2.5 py-1 rounded-md bg-amber-50 border border-amber-200 text-amber-800 text-[10px] font-bold uppercase tracking-widest">
-                    Coming soon
-                  </span>
-                )}
-
                 <div
                   className="w-12 h-12 rounded-xl flex items-center justify-center mb-8"
                   style={{ backgroundColor: `${colors.primary}10` }}
@@ -376,7 +353,7 @@ export default function UmbrellaHome() {
             </h2>
             <p className="mt-6 text-lg text-blue-100/70 leading-relaxed max-w-2xl">
               MolarPlus Clinic is already powering dental practices in tier-1 metros and small
-              towns alike. Lab and College are next.
+              towns alike, and MolarPlus Lab is now live for dental laboratories.
             </p>
           </div>
 
@@ -436,8 +413,7 @@ export default function UmbrellaHome() {
             Ready to bring MolarPlus to your practice?
           </h2>
           <p className="mt-6 text-lg text-blue-100/80 leading-relaxed max-w-2xl mx-auto">
-            Start with MolarPlus Clinic today, or talk to our team about Lab and College early
-            access.
+            Start with MolarPlus Clinic for your practice, or MolarPlus Lab for your laboratory.
           </p>
           <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
             <Link

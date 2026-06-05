@@ -12,16 +12,17 @@ import {
   Mail,
 } from 'lucide-react';
 import { colors, SITE_URL, SITE_NAME } from '@/lib/seo';
+import { LAB_URL } from '@/lib/constants';
 
 export const metadata: Metadata = {
   title: 'MolarPlus Lab, Workflow software for dental laboratories',
   description:
-    'MolarPlus Lab is case management software built specifically for dental laboratories. Track cases from intake to delivery, manage technician workflows, and stay connected with partner clinics. Coming soon.',
+    'MolarPlus Lab is case management software built specifically for dental laboratories. Track cases from intake to delivery, manage technician workflows, and stay connected with partner clinics. Now live.',
   alternates: { canonical: `${SITE_URL}/lab` },
   openGraph: {
     title: 'MolarPlus Lab, For dental laboratories',
     description:
-      'Case management, technician workflows, and clinic-to-lab visibility, built for dental labs. Coming soon.',
+      'Case management, technician workflows, and clinic-to-lab visibility, built for dental labs. Now live.',
     url: `${SITE_URL}/lab`,
     siteName: SITE_NAME,
     type: 'website',
@@ -102,7 +103,17 @@ export default function LabPage() {
               </div>
             </div>
 
-            <h1 className="mt-10 text-5xl md:text-6xl font-extrabold text-[#1a1c4b] tracking-tight leading-[1.05]">
+            <div className="mt-8 inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-green-50 border border-green-200">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500" />
+              </span>
+              <span className="text-xs font-bold uppercase tracking-[0.18em] text-green-700">
+                Now live
+              </span>
+            </div>
+
+            <h1 className="mt-6 text-5xl md:text-6xl font-extrabold text-[#1a1c4b] tracking-tight leading-[1.05]">
               Workflow software, built for{' '}
               <span style={{ color: colors.primary }}>dental laboratories</span>.
             </h1>
@@ -114,19 +125,19 @@ export default function LabPage() {
             </p>
 
             <div className="mt-10 flex flex-wrap items-center gap-4">
-              <Link
-                href="/contact"
+              <a
+                href={`${LAB_URL}/login`}
                 className="inline-flex items-center gap-2 px-7 py-4 rounded-xl font-semibold text-white shadow-lg shadow-[#2a276e]/20 hover:shadow-xl hover:-translate-y-0.5 transition-all"
                 style={{ backgroundColor: colors.primary }}
               >
-                Get notified at launch
+                Login / Signup
                 <ArrowRight className="w-4 h-4" />
-              </Link>
+              </a>
               <Link
-                href="/"
+                href="/contact"
                 className="inline-flex items-center gap-2 px-7 py-4 rounded-xl font-semibold text-gray-900 bg-white border border-gray-200 hover:border-gray-300 hover:bg-gray-50 transition-all"
               >
-                Back to MolarPlus
+                Talk to our team
               </Link>
             </div>
           </div>
@@ -138,7 +149,7 @@ export default function LabPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mb-16">
             <div className="text-xs font-bold uppercase tracking-[0.2em] text-gray-500 mb-4">
-              What MolarPlus Lab will do
+              What MolarPlus Lab does
             </div>
             <h2 className="text-4xl md:text-5xl font-extrabold text-[#1a1c4b] tracking-tight leading-[1.1]">
               Every case. Every technician. Every step.
@@ -206,25 +217,35 @@ export default function LabPage() {
       >
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 border border-white/20">
-            <Mail className="w-3.5 h-3.5 text-blue-200" />
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-green-400" />
+            </span>
             <span className="text-xs font-bold uppercase tracking-[0.18em] text-blue-100">
-              Launching soon
+              Now live
             </span>
           </div>
           <h2 className="mt-8 text-4xl md:text-5xl font-extrabold text-white tracking-tight leading-[1.1]">
-            Be among the first to know.
+            Run your lab on MolarPlus.
           </h2>
           <p className="mt-6 text-lg text-blue-100/80 leading-relaxed max-w-2xl mx-auto">
-            We're building MolarPlus Lab with input from real dental labs. Get in touch to share
-            your workflow, or to be notified when we're ready.
+            Bring every case, technician, and partner clinic into one connected workspace. Create
+            your lab account today, or talk to our team to see it in action.
           </p>
-          <div className="mt-10">
-            <Link
-              href="/contact"
+          <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
+            <a
+              href={`${LAB_URL}/login`}
               className="inline-flex items-center gap-2 px-7 py-4 rounded-xl font-semibold text-[#1a1548] bg-white hover:bg-gray-50 shadow-lg hover:-translate-y-0.5 transition-all"
             >
-              Contact our team
+              Login / Signup
               <ArrowRight className="w-4 h-4" />
+            </a>
+            <Link
+              href="/contact"
+              className="inline-flex items-center gap-2 px-7 py-4 rounded-xl font-semibold text-white bg-white/10 border border-white/20 hover:bg-white/15 transition-all"
+            >
+              <Mail className="w-4 h-4" />
+              Talk to our team
             </Link>
           </div>
         </div>

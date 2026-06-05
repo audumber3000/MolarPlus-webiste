@@ -78,7 +78,7 @@ export default function Image() {
             marginBottom: '36px',
           }}
         >
-          {['Clinic', 'Lab', 'College'].map((p) => (
+          {['Clinic', 'Lab'].map((p) => (
             <div
               key={p}
               style={{

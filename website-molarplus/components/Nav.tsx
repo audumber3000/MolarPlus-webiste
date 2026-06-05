@@ -2,17 +2,16 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Menu, X, ChevronDown, Stethoscope, FlaskConical, GraduationCap, ArrowUpRight } from 'lucide-react';
+import { Menu, X, ChevronDown, Stethoscope, FlaskConical, ArrowUpRight } from 'lucide-react';
 import { useState } from 'react';
 import { colors } from '@/lib/seo';
-import { APP_URL } from '@/lib/constants';
+import { APP_URL, LAB_URL } from '@/lib/constants';
 
-type ProductContext = 'umbrella' | 'clinic' | 'lab' | 'college';
+type ProductContext = 'umbrella' | 'clinic' | 'lab';
 
 const productLabels: Record<Exclude<ProductContext, 'umbrella'>, string> = {
   clinic: 'Clinic',
   lab: 'Lab',
-  college: 'College',
 };
 
 const productItems = [
@@ -32,16 +31,7 @@ const productItems = [
     desc: 'For dental laboratories',
     href: '/lab',
     live: true,
-    soon: true,
-  },
-  {
-    key: 'college' as const,
-    Icon: GraduationCap,
-    name: 'MolarPlus College',
-    desc: 'For dental colleges',
-    href: '/college',
-    live: true,
-    soon: true,
+    soon: false,
   },
 ];
 
@@ -49,7 +39,6 @@ function detectContext(pathname: string | null): ProductContext {
   if (!pathname) return 'umbrella';
   if (pathname.startsWith('/clinic')) return 'clinic';
   if (pathname.startsWith('/lab')) return 'lab';
-  if (pathname.startsWith('/college')) return 'college';
   return 'umbrella';
 }
 
@@ -202,14 +191,14 @@ export default function Nav() {
                 Get Started
               </Link>
             )}
-            {(context === 'lab' || context === 'college') && (
-              <Link
-                href="/contact"
+            {context === 'lab' && (
+              <a
+                href={`${LAB_URL}/login`}
                 className="inline-flex items-center px-5 py-2.5 rounded-lg font-semibold text-white text-sm transition-all hover:opacity-90"
                 style={{ backgroundColor: colors.primary }}
               >
-                Get in touch
-              </Link>
+                Login / Signup
+              </a>
             )}
           </div>
 
@@ -353,15 +342,15 @@ export default function Nav() {
                   Get Started
                 </Link>
               )}
-              {(context === 'lab' || context === 'college') && (
-                <Link
-                  href="/contact"
+              {context === 'lab' && (
+                <a
+                  href={`${LAB_URL}/login`}
                   className="block text-center px-6 py-3 rounded-lg font-semibold text-white"
                   style={{ backgroundColor: colors.primary }}
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  Get in touch
-                </Link>
+                  Login / Signup
+                </a>
               )}
             </div>
           </div>

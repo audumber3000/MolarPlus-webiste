@@ -23,7 +23,7 @@ export default function Footer() {
                 <span className="text-[#7eb049] ml-1">Health</span>
               </div>
               <p className="text-blue-100/70 text-sm leading-relaxed mb-8 font-medium">
-                Software for everyone in dentistry. Built for clinics, laboratories, and colleges.
+                Software for everyone in dentistry. Built for clinics and laboratories.
               </p>
               <div className="flex flex-wrap gap-3">
                 <a href="https://www.instagram.com/molarplus_dental/" target="_blank" rel="noopener noreferrer" className="w-8 h-8 flex items-center justify-center rounded-lg bg-white/10 text-white hover:bg-white/20 transition-colors" aria-label="Instagram">
@@ -54,19 +54,8 @@ export default function Footer() {
                   </Link>
                 </li>
                 <li>
-                  <Link href="/lab" className="hover:text-white transition-colors inline-flex items-center gap-2">
+                  <Link href="/lab" className="hover:text-white transition-colors">
                     MolarPlus Lab
-                    <span className="text-[9px] font-bold uppercase tracking-widest text-amber-300 px-1.5 py-0.5 rounded bg-amber-500/10 border border-amber-400/30">
-                      Soon
-                    </span>
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/college" className="hover:text-white transition-colors inline-flex items-center gap-2">
-                    MolarPlus College
-                    <span className="text-[9px] font-bold uppercase tracking-widest text-amber-300 px-1.5 py-0.5 rounded bg-amber-500/10 border border-amber-400/30">
-                      Soon
-                    </span>
                   </Link>
                 </li>
                 <li className="pt-4">
