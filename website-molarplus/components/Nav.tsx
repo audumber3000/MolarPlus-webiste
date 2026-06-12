@@ -6,6 +6,7 @@ import { Menu, X, ChevronDown, Stethoscope, FlaskConical, ArrowUpRight } from 'l
 import { useState } from 'react';
 import { colors } from '@/lib/seo';
 import { APP_URL, LAB_URL } from '@/lib/constants';
+import { trackSignupStarted, trackCtaClick } from '@/analytics/track';
 
 type ProductContext = 'umbrella' | 'clinic' | 'lab';
 
@@ -175,6 +176,7 @@ export default function Nav() {
                 </Link>
                 <a
                   href={`${APP_URL}/login`}
+                  onClick={() => trackSignupStarted('nav', `${APP_URL}/login`)}
                   className="inline-flex items-center px-5 py-2.5 rounded-lg font-semibold text-white text-sm transition-all hover:opacity-90"
                   style={{ backgroundColor: colors.primary }}
                 >
@@ -185,6 +187,7 @@ export default function Nav() {
             {context === 'umbrella' && (
               <Link
                 href="/clinic"
+                onClick={() => trackCtaClick('nav', 'Get Started')}
                 className="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-lg font-semibold text-white text-sm transition-all hover:opacity-90"
                 style={{ backgroundColor: colors.primary }}
               >
@@ -194,6 +197,7 @@ export default function Nav() {
             {context === 'lab' && (
               <a
                 href={`${LAB_URL}/login`}
+                onClick={() => trackSignupStarted('nav', `${LAB_URL}/login`)}
                 className="inline-flex items-center px-5 py-2.5 rounded-lg font-semibold text-white text-sm transition-all hover:opacity-90"
                 style={{ backgroundColor: colors.primary }}
               >
@@ -327,7 +331,10 @@ export default function Nav() {
                   href={`${APP_URL}/login`}
                   className="block text-center px-6 py-3 rounded-lg font-semibold text-white"
                   style={{ backgroundColor: colors.primary }}
-                  onClick={() => setIsMenuOpen(false)}
+                  onClick={() => {
+                    trackSignupStarted('nav', `${APP_URL}/login`);
+                    setIsMenuOpen(false);
+                  }}
                 >
                   Login / Signup
                 </a>
@@ -337,7 +344,10 @@ export default function Nav() {
                   href="/clinic"
                   className="block text-center px-6 py-3 rounded-lg font-semibold text-white"
                   style={{ backgroundColor: colors.primary }}
-                  onClick={() => setIsMenuOpen(false)}
+                  onClick={() => {
+                    trackCtaClick('nav', 'Get Started');
+                    setIsMenuOpen(false);
+                  }}
                 >
                   Get Started
                 </Link>
@@ -347,7 +357,10 @@ export default function Nav() {
                   href={`${LAB_URL}/login`}
                   className="block text-center px-6 py-3 rounded-lg font-semibold text-white"
                   style={{ backgroundColor: colors.primary }}
-                  onClick={() => setIsMenuOpen(false)}
+                  onClick={() => {
+                    trackSignupStarted('nav', `${LAB_URL}/login`);
+                    setIsMenuOpen(false);
+                  }}
                 >
                   Login / Signup
                 </a>

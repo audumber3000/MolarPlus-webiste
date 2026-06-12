@@ -27,6 +27,13 @@ import ContactForm from '@/components/ContactForm';
 import { WindowsBadge, MacBadge } from '@/components/DesktopBadges';
 import ClinicLogoMarquee from '@/components/ClinicLogoMarquee';
 import WhatsAppIcon from '@/components/WhatsAppIcon';
+import {
+  trackSignupStarted,
+  trackDemoRequested,
+  trackAppStoreClick,
+  trackDesktopDownload,
+  trackFaqExpanded,
+} from '@/analytics/track';
 
 const stats = [
   { value: '180+', label: 'Clinics on MolarPlus' },
@@ -257,6 +264,7 @@ export default function HomeClient() {
               <div className="mt-10 flex flex-wrap items-center gap-4">
                 <a
                   href="https://app.molarplus.com/signup"
+                  onClick={() => trackSignupStarted('hero', 'https://app.molarplus.com/signup')}
                   className="inline-flex items-center gap-2 px-7 py-4 rounded-xl font-semibold text-white shadow-lg shadow-[#2a276e]/20 hover:shadow-xl hover:-translate-y-0.5 transition-all"
                   style={{ backgroundColor: colors.primary }}
                 >
@@ -265,6 +273,7 @@ export default function HomeClient() {
                 </a>
                 <a
                   href="/chat"
+                  onClick={() => trackDemoRequested('hero')}
                   className="inline-flex items-center gap-2 px-7 py-4 rounded-xl font-semibold text-gray-900 bg-white border border-gray-200 hover:border-gray-300 hover:bg-gray-50 transition-all"
                 >
                   <WhatsAppIcon className="w-5 h-5 text-[#25D366]" />
@@ -282,6 +291,7 @@ export default function HomeClient() {
                       href="https://play.google.com/store/apps/details?id=com.molarplus.app&pcampaignid=web_share"
                       target="_blank"
                       rel="noopener noreferrer"
+                      onClick={() => trackAppStoreClick('google')}
                       className="h-12 inline-flex items-center"
                     >
                       <img
@@ -294,6 +304,7 @@ export default function HomeClient() {
                       href="https://apps.apple.com/app/molarplus/id6765472713"
                       target="_blank"
                       rel="noopener noreferrer"
+                      onClick={() => trackAppStoreClick('apple')}
                       className="h-12 inline-flex items-center"
                     >
                       <img
@@ -310,8 +321,8 @@ export default function HomeClient() {
                     Desktop
                   </div>
                   <div className="flex flex-wrap items-center gap-3">
-                    <WindowsBadge comingSoon={false} href="https://apps.microsoft.com/detail/9n78rx7phv9k" />
-                    <MacBadge comingSoon={false} href="https://pub-376f22e59eee415286747973b95ba075.r2.dev/MolarPlus-mac.dmg" />
+                    <WindowsBadge comingSoon={false} href="https://apps.microsoft.com/detail/9n78rx7phv9k" onClick={() => trackDesktopDownload('windows')} />
+                    <MacBadge comingSoon={false} href="https://pub-376f22e59eee415286747973b95ba075.r2.dev/MolarPlus-mac.dmg" onClick={() => trackDesktopDownload('mac')} />
                   </div>
                 </div>
               </div>
@@ -390,6 +401,7 @@ export default function HomeClient() {
           <div className="mt-12">
             <a
               href="https://app.molarplus.com/signup"
+              onClick={() => trackSignupStarted('hero', 'https://app.molarplus.com/signup')}
               className="inline-flex items-center gap-2 text-sm font-semibold transition-colors group"
               style={{ color: colors.primary }}
             >
@@ -524,6 +536,7 @@ export default function HomeClient() {
                       href="https://play.google.com/store/apps/details?id=com.molarplus.app&pcampaignid=web_share"
                       target="_blank"
                       rel="noopener noreferrer"
+                      onClick={() => trackAppStoreClick('google')}
                       className="h-12 inline-flex items-center transition-opacity hover:opacity-90"
                     >
                       <img
@@ -536,6 +549,7 @@ export default function HomeClient() {
                       href="https://apps.apple.com/app/molarplus/id6765472713"
                       target="_blank"
                       rel="noopener noreferrer"
+                      onClick={() => trackAppStoreClick('apple')}
                       className="h-12 inline-flex items-center transition-opacity hover:opacity-90"
                     >
                       <img
@@ -552,8 +566,8 @@ export default function HomeClient() {
                     Desktop
                   </div>
                   <div className="flex flex-wrap items-center gap-3">
-                    <WindowsBadge comingSoon={false} href="https://apps.microsoft.com/detail/9n78rx7phv9k" />
-                    <MacBadge comingSoon={false} href="https://pub-376f22e59eee415286747973b95ba075.r2.dev/MolarPlus-mac.dmg" />
+                    <WindowsBadge comingSoon={false} href="https://apps.microsoft.com/detail/9n78rx7phv9k" onClick={() => trackDesktopDownload('windows')} />
+                    <MacBadge comingSoon={false} href="https://pub-376f22e59eee415286747973b95ba075.r2.dev/MolarPlus-mac.dmg" onClick={() => trackDesktopDownload('mac')} />
                   </div>
                 </div>
               </div>
@@ -752,7 +766,10 @@ export default function HomeClient() {
                   <div key={i}>
                     <button
                       type="button"
-                      onClick={() => setOpenFaq(isOpen ? null : i)}
+                      onClick={() => {
+                        if (!isOpen) trackFaqExpanded(faq.q);
+                        setOpenFaq(isOpen ? null : i);
+                      }}
                       className="w-full flex items-center justify-between py-6 text-left group"
                     >
                       <span className="text-lg font-semibold text-[#1a1c4b] group-hover:text-[#2a276e] transition-colors pr-6">

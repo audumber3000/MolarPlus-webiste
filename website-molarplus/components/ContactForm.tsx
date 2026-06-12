@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { Send } from 'lucide-react';
+import { trackContactSubmitted } from '@/analytics/track';
 
 type Props = {
   colors: { primary: string };
@@ -24,6 +25,8 @@ export default function ContactForm({ colors }: Props) {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    // form_id only — never send raw email/phone as event properties.
+    trackContactSubmitted('homepage_contact');
     setIsSubmitting(true);
     setTimeout(() => {
       setSubmitStatus("Thank you for your message! We'll get back to you within 24 hours.");

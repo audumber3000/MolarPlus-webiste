@@ -2,6 +2,7 @@ type BadgeProps = {
   comingSoon?: boolean;
   href?: string;
   className?: string;
+  onClick?: () => void;
 };
 
 const BADGES = {
@@ -21,6 +22,7 @@ function Badge({
   comingSoon,
   href,
   className = '',
+  onClick,
 }: {
   src: string;
   alt: string;
@@ -50,18 +52,34 @@ function Badge({
 
   if (!href) return img;
   return (
-    <a href={href} target="_blank" rel="noopener noreferrer" className="inline-block">
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="inline-block"
+      onClick={onClick}
+    >
       {img}
     </a>
   );
 }
 
-export function WindowsBadge({ comingSoon = true, href, className = '' }: BadgeProps) {
-  return <Badge {...BADGES.windows} comingSoon={comingSoon} href={href} className={className} />;
+export function WindowsBadge({ comingSoon = true, href, className = '', onClick }: BadgeProps) {
+  return (
+    <Badge
+      {...BADGES.windows}
+      comingSoon={comingSoon}
+      href={href}
+      className={className}
+      onClick={onClick}
+    />
+  );
 }
 
-export function MacBadge({ comingSoon = true, href, className = '' }: BadgeProps) {
-  return <Badge {...BADGES.mac} comingSoon={comingSoon} href={href} className={className} />;
+export function MacBadge({ comingSoon = true, href, className = '', onClick }: BadgeProps) {
+  return (
+    <Badge {...BADGES.mac} comingSoon={comingSoon} href={href} className={className} onClick={onClick} />
+  );
 }
 
 export default function DesktopBadges({ comingSoon = true }: { comingSoon?: boolean }) {

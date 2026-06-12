@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { CheckCircle, X, ArrowRight, Phone, MessageCircle } from 'lucide-react';
 import { APP_URL } from '@/lib/constants';
 import { colors } from '@/lib/seo';
+import { trackPricingViewed, trackSignupStarted } from '@/analytics/track';
 
 export type CountryCode = 'IN' | 'OTHER';
 
@@ -67,6 +68,10 @@ export default function PricingPlans() {
 
   useEffect(() => {
     detectCountry().then(setCountry);
+  }, []);
+
+  useEffect(() => {
+    trackPricingViewed();
   }, []);
 
   const proMonthly = isIndia ? PRO_PRICE.IN.monthly : PRO_PRICE.OTHER.monthly;
@@ -165,6 +170,7 @@ export default function PricingPlans() {
           </ul>
           <a
             href={`${APP_URL}/signup`}
+            onClick={() => trackSignupStarted('pricing', `${APP_URL}/signup`)}
             className="w-full py-3 rounded-lg font-semibold text-center block border-2 border-gray-300 text-gray-800 hover:bg-gray-50 transition-colors"
           >
             Start Here
@@ -194,6 +200,7 @@ export default function PricingPlans() {
           </ul>
           <a
             href={`${APP_URL}/signup`}
+            onClick={() => trackSignupStarted('pricing', `${APP_URL}/signup`)}
             className="w-full py-3 rounded-lg font-semibold text-center block text-white transition-colors hover:opacity-90"
             style={{ backgroundColor: colors.primary }}
           >

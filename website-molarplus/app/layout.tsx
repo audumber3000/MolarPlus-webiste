@@ -54,6 +54,7 @@ export const metadata = {
 };
 
 import GoogleAnalytics from '@/components/GoogleAnalytics';
+import PostHogProvider from '@/analytics/PostHogProvider';
 
 export default function RootLayout({
   children,
@@ -64,11 +65,13 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID || ''} />
-        <HomeTopBanner />
-        <Nav />
-        <main>{children}</main>
-        <Footer />
-        <CookieConsent />
+        <PostHogProvider>
+          <HomeTopBanner />
+          <Nav />
+          <main>{children}</main>
+          <Footer />
+          <CookieConsent />
+        </PostHogProvider>
       </body>
     </html>
   );
