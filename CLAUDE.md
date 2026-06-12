@@ -60,5 +60,8 @@ Two stacks load from `app/layout.tsx`:
 - **Google Analytics** — `components/GoogleAnalytics.tsx` (`NEXT_PUBLIC_GA_ID`).
 - **PostHog** — the `analytics/` module (`events.ts` catalog, `track.ts` fail-safe wrapper, `PostHogProvider.tsx`). Shares the **same PostHog project as the MolarPlus app**. Every event carries `source: 'marketing_site'`; all custom marketing events are prefixed `mkt_`. Keep event names in `analytics/events.ts` — don't scatter string literals. Full details in `analytics/README.md`.
 
+### Deployment
+**Hosted on Vercel.** The production domain (`www.molarplus.com`) points at Vercel, which **auto-deploys on every push to `main`** — there is no manual deploy step. (Do not deploy this elsewhere; an earlier Railway experiment was removed.)
+
 ### Environment
-`.env.local` (gitignored) holds `NEXT_PUBLIC_GA_ID`, `NEXT_PUBLIC_POSTHOG_KEY`/`_HOST`, Sanity project vars (`NEXT_PUBLIC_SANITY_*`), and `SANITY_API_WRITE_TOKEN` (migration script only). These `NEXT_PUBLIC_*` vars must also be set in the Vercel project for prod.
+`.env.local` (gitignored) holds `NEXT_PUBLIC_GA_ID`, `NEXT_PUBLIC_POSTHOG_KEY`/`_HOST`, Sanity project vars (`NEXT_PUBLIC_SANITY_*`), and `SANITY_API_WRITE_TOKEN` (migration script only). The `NEXT_PUBLIC_*` vars are **inlined at build time**, so any new one must be added in the **Vercel project settings → Environment Variables** before it takes effect in production — setting it only in `.env.local` affects local dev, not the deployed site.
