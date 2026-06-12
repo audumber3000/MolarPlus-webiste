@@ -33,6 +33,13 @@ if (typeof window !== 'undefined' && POSTHOG_KEY && !posthog.__loaded) {
     person_profiles: 'always', // we WANT anonymous visitor analytics here
     // cross_subdomain_cookie defaults to true — DO NOT disable it. It's what
     // lets the anonymous id carry from www.molarplus.com to app.molarplus.com.
+    disable_session_recording: false, // opt this site INTO session replay
+    session_recording: {
+      // Full-fidelity replays — nothing masked (no PHI / no login on this site).
+      // Note: the contact form's email/phone WILL be visible in replays.
+      maskAllInputs: false,
+      maskInputOptions: { password: false },
+    },
     loaded: (ph) => {
       // Separation tag: stamped on EVERY event automatically.
       ph.register({ source: MARKETING_SOURCE });
