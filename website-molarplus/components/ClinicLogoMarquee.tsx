@@ -1,13 +1,13 @@
 const trustedClinics = [
-  { name: 'Dr Bharat Agravat', logo: '/images/dental_clinics/dr-bharat-agravat.png' },
-  { name: 'Smile India Dental Clinic', logo: '/images/dental_clinics/smile-india.png' },
-  { name: 'The Tooth Studio', logo: '/images/dental_clinics/the-tooth-studio.png' },
-  { name: 'Anant Dental Clinic', logo: '/images/dental_clinics/anant-dental.png' },
-  { name: 'Alcadent India', logo: '/images/dental_clinics/alcadent-india.png' },
-  { name: 'Nagu Dental Speciality', logo: '/images/dental_clinics/nagu-dental.png' },
-  { name: 'Indu Dental Clinic', logo: '/images/dental_clinics/indu-dental.png' },
-  { name: "Dr. Poornima's Paravur Dental Care", logo: '/images/dental_clinics/paravur-dental.png' },
-  { name: 'Smilez Dental Studio', logo: '/images/dental_clinics/smilez-dental.png' },
+  { name: 'Dr Bharat Agravat', logo: '/images/dental_clinics_nobg/dr-bharat-agravat.png' },
+  { name: 'Smile India Dental Clinic', logo: '/images/dental_clinics_nobg/smile-india.png' },
+  { name: 'The Tooth Studio', logo: '/images/dental_clinics_nobg/the-tooth-studio.png' },
+  { name: 'Anant Dental Clinic', logo: '/images/dental_clinics_nobg/anant-dental.png' },
+  { name: 'Alcadent India', logo: '/images/dental_clinics_nobg/alcadent-india.png' },
+  { name: 'Nagu Dental Speciality', logo: '/images/dental_clinics_nobg/nagu-dental.png' },
+  { name: 'Indu Dental Clinic', logo: '/images/dental_clinics_nobg/indu-dental.png' },
+  { name: "Dr. Poornima's Paravur Dental Care", logo: '/images/dental_clinics_nobg/paravur-dental.png' },
+  { name: 'Smilez Dental Studio', logo: '/images/dental_clinics_nobg/smilez-dental.png' },
 ];
 
 export default function ClinicLogoMarquee() {

@@ -6,25 +6,28 @@ import {
   ArrowRight,
   ArrowUpRight,
   ShieldCheck,
-  Network,
-  Compass,
-  Building2,
-  Check,
   Lock,
+  KeyRound,
+  DatabaseBackup,
+  FileCheck2,
+  Globe2,
+  Check,
 } from 'lucide-react';
 import { colors, SITE_URL, SITE_NAME } from '@/lib/seo';
+import { APP_URL, LAB_URL } from '@/lib/constants';
 import ClinicLogoMarquee from '@/components/ClinicLogoMarquee';
 import WhatsAppIcon from '@/components/WhatsAppIcon';
+import ProductShowcase from '@/components/ProductShowcase';
 
 export const metadata: Metadata = {
-  title: 'MolarPlus — Dental Practice Management Software',
+  title: 'MolarPlus: Software for Dental Clinics and Dental Labs',
   description:
-    'MolarPlus is a connected suite of products built for dentistry. MolarPlus Clinic for practices and MolarPlus Lab for dental laboratories, by Clino Health.',
+    'MolarPlus is one connected suite for dentistry. MolarPlus Dental Clinic is free for a single dental clinic with every feature included; MolarPlus Dental Lab is workflow software for dental laboratories. By Clino Health.',
   alternates: { canonical: SITE_URL },
   openGraph: {
-    title: 'MolarPlus — Dental Practice Management Software',
+    title: 'MolarPlus: Software for Dental Clinics and Dental Labs',
     description:
-      'A connected suite of products for dental clinics and laboratories. By Clino Health.',
+      'One connected suite for dentistry. Dental Clinic for the practice, Dental Lab for the laboratory. By Clino Health.',
     url: SITE_URL,
     siteName: SITE_NAME,
     type: 'website',
@@ -36,12 +39,9 @@ const jsonLd = {
   '@type': 'Organization',
   name: 'MolarPlus',
   url: SITE_URL,
-  parentOrganization: {
-    '@type': 'Organization',
-    name: 'Clino Health',
-  },
+  parentOrganization: { '@type': 'Organization', name: 'Clino Health' },
   description:
-    'MolarPlus is a suite of dental software products by Clino Health, for clinics and laboratories.',
+    'MolarPlus is a suite of dental software products by Clino Health, for dental clinics and dental laboratories.',
   sameAs: [
     'https://www.instagram.com/molarplus_dental/',
     'https://www.linkedin.com/company/molarplus/',
@@ -49,66 +49,62 @@ const jsonLd = {
   ],
 };
 
-const products = [
+const clinicPoints = [
+  'Appointments, online booking & reminders',
+  'Records, charting & treatment plans',
+  'Billing, payments & analytics',
+  'Web, iOS, Android & desktop apps',
+];
+
+const labSlides = [
   {
-    Icon: Stethoscope,
-    eyebrow: 'For dental practices',
-    name: 'MolarPlus Clinic',
-    summary:
-      'Practice management for modern dental clinics. Appointments, patient records, billing, and analytics, on web and mobile.',
-    capabilities: [
-      'Appointment scheduling & reminders',
-      'Patient records & treatment history',
-      'Billing, payments, and analytics',
-      'Native apps for iOS and Android',
-    ],
-    href: '/clinic',
-    cta: 'Explore Clinic',
-    status: 'live' as const,
+    img: '/product-lab/lab-dashboard.png',
+    alt: 'MolarPlus Dental Lab dashboard showing cases received, in production, due, overdue, revenue and active clients',
+    label: 'Dashboard',
+    title: 'Run your dental lab at a glance',
+    desc: 'Cases received, in production, due and overdue, plus monthly revenue and active clients, the moment you log in.',
   },
   {
-    Icon: FlaskConical,
-    eyebrow: 'For dental laboratories',
-    name: 'MolarPlus Lab',
-    summary:
-      'Workflow and case management built for dental labs. Track cases from intake to delivery, with full clinic-to-lab visibility.',
-    capabilities: [
-      'Case intake & status tracking',
-      'Technician assignment & queues',
-      'Shade & material specifications',
-      'Lab-to-clinic delivery pipeline',
-    ],
-    href: '/lab',
-    cta: 'Explore Lab',
-    status: 'live' as const,
+    img: '/product-lab/lab-cases.png',
+    alt: 'MolarPlus Dental Lab cases list with clinic, doctor, patient, status and delivery timeline',
+    label: 'Cases',
+    title: 'Every case, intake to delivery',
+    desc: 'Filter by due today, overdue, in production or delivered, with clinic, patient, status and timeline in one view.',
+  },
+  {
+    img: '/product-lab/lab-clients.png',
+    alt: 'MolarPlus Dental Lab clients list showing each partner clinic with open cases, unbilled work and outstanding balance',
+    label: 'Clients',
+    title: 'Every clinic you work with',
+    desc: 'Each partner dental clinic with their open cases, unbilled work and outstanding balance, at a glance.',
+  },
+  {
+    img: '/product-lab/lab-billing.png',
+    alt: 'MolarPlus Dental Lab billing with monthly statements, outstanding and collected totals',
+    label: 'Billing',
+    title: 'Statements and balances, sorted',
+    desc: 'Generate monthly statements, track outstanding and collected, and mark clinic payments as paid.',
+  },
+  {
+    img: '/product-lab/lab-analytics.png',
+    alt: 'MolarPlus Dental Lab analytics showing cases by status and top clients by revenue',
+    label: 'Insights',
+    title: 'Production and top clients',
+    desc: 'Cases by status and your highest-revenue clients, so you can see where the work and the money come from.',
   },
 ];
 
-const principles = [
-  {
-    Icon: Compass,
-    title: 'Built specifically for dentistry',
-    desc: 'Every workflow, every form, every report is designed for how dental professionals actually work, not adapted from generic healthcare software.',
-  },
-  {
-    Icon: Network,
-    title: 'A connected ecosystem',
-    desc: 'Clinic and lab are designed to work together. Cases, records, and referrals flow seamlessly across the products you use.',
-  },
-  {
-    Icon: Building2,
-    title: 'Built for the world',
-    desc: 'Localized pricing, regional workflows, and language support. Engineered to scale from a single chair to multi-location enterprises.',
-  },
-  {
-    Icon: ShieldCheck,
-    title: 'Secure by design',
-    desc: 'End-to-end encryption, role-based access, and compliance-grade infrastructure, because patient data deserves nothing less.',
-  },
+const compliance = [
+  { Icon: ShieldCheck, name: 'HIPAA', note: 'Aligned with US health-data privacy rules' },
+  { Icon: FileCheck2, name: 'ABDM', note: 'Built for India’s Ayushman Bharat Digital Mission' },
+  { Icon: Globe2, name: 'GDPR', note: 'Respects EU data-protection rights' },
+  { Icon: KeyRound, name: 'Encryption', note: 'Encrypted in transit and at rest' },
+  { Icon: DatabaseBackup, name: 'Daily backups', note: 'Automatic, redundant and recoverable' },
+  { Icon: Lock, name: 'Role-based access', note: 'Every action is permission-controlled' },
 ];
 
 const stats = [
-  { value: '180+', label: 'Clinics on MolarPlus' },
+  { value: '180+', label: 'Dental clinics on MolarPlus' },
   { value: '35,000+', label: 'Patients managed' },
   { value: '82+', label: 'Cities served' },
 ];
@@ -116,55 +112,60 @@ const stats = [
 export default function UmbrellaHome() {
   return (
     <div className="flex flex-col min-h-screen bg-white">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
-      {/* ── Hero ── */}
-      <section className="relative pt-44 pb-28 overflow-hidden">
+      {/* ── Hero (product-neutral) ── */}
+      <section className="relative pt-44 pb-24 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-blue-50/40 via-white to-white" />
         <div
           className="absolute inset-x-0 top-0 h-[600px] opacity-[0.04]"
           style={{
-            backgroundImage:
-              'radial-gradient(circle at 1px 1px, #2a276e 1px, transparent 0)',
+            backgroundImage: 'radial-gradient(circle at 1px 1px, #2a276e 1px, transparent 0)',
             backgroundSize: '32px 32px',
           }}
         />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold text-[#1a1c4b] tracking-tight leading-[1.05]">
-              Software for everyone
+            <div className="text-xs font-bold uppercase tracking-[0.2em] text-gray-500 mb-5">
+              For dental clinics &amp; dental labs, by Clino Health
+            </div>
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold text-[#1a1c4b] tracking-tight leading-[1.04]">
+              Built for the business
               <br />
-              in <span style={{ color: colors.primary }}>dentistry</span>.
+              of <span style={{ color: colors.primary }}>dentistry</span>.
             </h1>
 
-            <p className="mt-8 text-xl md:text-2xl text-gray-600 leading-relaxed max-w-3xl mx-auto">
-              MolarPlus is a connected suite of products built for the people who deliver oral
-              healthcare, from the clinic chair, to the lab bench, to the lecture hall.
+            <p className="mt-8 text-xl text-gray-600 leading-relaxed max-w-2xl mx-auto">
+              We build two separate products: MolarPlus Dental Clinic for practices, and MolarPlus
+              Dental Lab for laboratories. Each is purpose-built for how that side of dentistry actually
+              works.
             </p>
 
-            <div className="mt-12 flex flex-wrap items-center justify-center gap-4">
+            {/* Two co-equal product paths */}
+            <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
               <Link
                 href="/clinic"
-                className="inline-flex items-center gap-2 px-7 py-4 rounded-xl font-semibold text-white shadow-lg shadow-[#2a276e]/20 hover:shadow-xl hover:shadow-[#2a276e]/25 hover:-translate-y-0.5 transition-all"
+                className="inline-flex items-center gap-2.5 px-7 py-4 rounded-xl font-semibold text-white shadow-lg shadow-[#2a276e]/20 hover:shadow-xl hover:-translate-y-0.5 transition-all"
                 style={{ backgroundColor: colors.primary }}
               >
-                Explore MolarPlus Clinic
-                <ArrowRight className="w-4 h-4" />
+                <span className="flex h-6 w-6 items-center justify-center rounded-full bg-white/20 text-[11px] font-extrabold">01</span>
+                MolarPlus Dental Clinic
               </Link>
               <Link
-                href="/chat"
-                className="inline-flex items-center gap-2 px-7 py-4 rounded-xl font-semibold text-gray-900 bg-white border border-gray-200 hover:border-gray-300 hover:bg-gray-50 transition-all"
+                href="/lab"
+                className="inline-flex items-center gap-2.5 px-7 py-4 rounded-xl font-semibold text-white shadow-lg shadow-[#1a1548]/20 hover:shadow-xl hover:-translate-y-0.5 transition-all"
+                style={{ backgroundColor: colors.dark }}
               >
-                <WhatsAppIcon className="w-5 h-5 text-[#25D366]" />
-                Talk to our team
+                <span className="flex h-6 w-6 items-center justify-center rounded-full bg-white/20 text-[11px] font-extrabold">02</span>
+                MolarPlus Dental Lab
               </Link>
             </div>
 
-            <p className="mt-10 text-sm text-gray-500">
-              Trusted by 180+ clinics across 82 cities worldwide.
+            <p className="mt-6 text-sm text-gray-500">
+              Prefer to talk first?{' '}
+              <Link href="/chat" className="font-semibold hover:underline" style={{ color: colors.primary }}>
+                <WhatsAppIcon className="inline w-4 h-4 text-[#25D366] -mt-0.5" /> Chat with our team
+              </Link>
             </p>
           </div>
         </div>
@@ -173,173 +174,130 @@ export default function UmbrellaHome() {
       {/* ── Trusted by (logo marquee) ── */}
       <ClinicLogoMarquee />
 
-      {/* ── Products ── */}
-      <section className="py-24 bg-slate-50/60 border-y border-gray-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl mb-16">
-            <div className="text-xs font-bold uppercase tracking-[0.2em] text-gray-500 mb-4">
-              The MolarPlus suite
-            </div>
-            <h2 className="text-4xl md:text-5xl font-extrabold text-[#1a1c4b] tracking-tight leading-[1.1]">
-              Two products. One ecosystem.
-            </h2>
-            <p className="mt-6 text-lg text-gray-600 leading-relaxed">
-              Each MolarPlus product is built for a specific role in dentistry, designed to
-              work brilliantly on its own, and even better together.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-6">
-            {products.map(({ Icon, eyebrow, name, summary, capabilities, href, cta }) => (
-              <Link
-                key={name}
-                href={href}
-                className="group relative flex flex-col p-8 lg:p-10 rounded-2xl bg-white border border-gray-200 hover:border-[#2a276e]/30 hover:shadow-2xl hover:shadow-[#2a276e]/5 hover:-translate-y-1 transition-all"
-              >
-                <div
-                  className="w-12 h-12 rounded-xl flex items-center justify-center mb-8"
-                  style={{ backgroundColor: `${colors.primary}10` }}
-                >
-                  <Icon className="w-6 h-6" style={{ color: colors.primary }} />
-                </div>
-
-                <div className="text-[11px] font-bold uppercase tracking-[0.18em] text-gray-500 mb-3">
-                  {eyebrow}
-                </div>
-                <h3 className="text-2xl font-bold text-[#1a1c4b] mb-4 tracking-tight">{name}</h3>
-                <p className="text-gray-600 leading-relaxed mb-8">{summary}</p>
-
-                <ul className="space-y-3 mb-10 flex-grow">
-                  {capabilities.map((cap) => (
-                    <li key={cap} className="flex items-start gap-3">
-                      <Check
-                        className="w-4 h-4 mt-1 flex-shrink-0"
-                        style={{ color: colors.primary }}
-                      />
-                      <span className="text-sm text-gray-700 leading-relaxed">{cap}</span>
-                    </li>
-                  ))}
-                </ul>
-
-                <span
-                  className="inline-flex items-center gap-1.5 text-sm font-semibold transition-colors"
-                  style={{ color: colors.primary }}
-                >
-                  {cta}
-                  <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-                </span>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── Principles ── */}
+      {/* ── Product 1: MolarPlus Dental Clinic ── */}
       <section className="py-28 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-[1fr_1.4fr] gap-16 items-start">
-            <div className="lg:sticky lg:top-32">
-              <div className="text-xs font-bold uppercase tracking-[0.2em] text-gray-500 mb-4">
-                What we believe
+          <div className="max-w-3xl mb-12">
+            <div className="flex items-center gap-3 mb-5">
+              <div
+                className="w-10 h-10 rounded-lg flex items-center justify-center"
+                style={{ backgroundColor: `${colors.primary}10` }}
+              >
+                <Stethoscope className="w-5 h-5" style={{ color: colors.primary }} />
               </div>
-              <h2 className="text-4xl md:text-5xl font-extrabold text-[#1a1c4b] tracking-tight leading-[1.1]">
-                A serious platform for a specialized profession.
-              </h2>
-              <p className="mt-6 text-lg text-gray-600 leading-relaxed">
-                We build for dental professionals because they deserve software that
-                understands their work, not a one-size-fits-all healthcare tool stretched to
-                fit.
-              </p>
+              <div className="text-xs font-bold uppercase tracking-[0.2em] text-gray-500">
+                <span style={{ color: colors.primary }}>01</span>
+                <span className="mx-1.5 text-gray-300">/</span>
+                MolarPlus Dental Clinic
+              </div>
+              <span
+                className="rounded-full px-3 py-1 text-xs font-bold"
+                style={{ backgroundColor: `${colors.primary}12`, color: colors.primary }}
+              >
+                Free for a single dental clinic
+              </span>
             </div>
-
-            <div className="grid sm:grid-cols-2 gap-8">
-              {principles.map(({ Icon, title, desc }) => (
-                <div key={title} className="space-y-4">
-                  <div
-                    className="w-11 h-11 rounded-lg flex items-center justify-center"
-                    style={{ backgroundColor: `${colors.primary}0d` }}
-                  >
-                    <Icon className="w-5 h-5" style={{ color: colors.primary }} />
-                  </div>
-                  <h3 className="text-lg font-bold text-[#1a1c4b]">{title}</h3>
-                  <p className="text-gray-600 leading-relaxed text-[15px]">{desc}</p>
+            <h2 className="text-4xl md:text-5xl font-extrabold text-[#1a1c4b] tracking-tight leading-[1.1]">
+              Run your whole dental clinic, free.
+            </h2>
+            <p className="mt-6 text-lg text-gray-600 leading-relaxed">
+              Every feature is free for a single dental clinic, with no trial and no card. Appointments,
+              records, charting, billing, staff and WhatsApp reminders, on every device. You only pay
+              when you grow to multiple branches.
+            </p>
+            <div className="mt-7 grid sm:grid-cols-2 gap-x-8 gap-y-3 max-w-xl">
+              {clinicPoints.map((pt) => (
+                <div key={pt} className="flex items-start gap-2.5">
+                  <Check className="w-4 h-4 mt-1 flex-shrink-0" style={{ color: colors.primary }} />
+                  <span className="text-[15px] text-gray-700">{pt}</span>
                 </div>
               ))}
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── Security & compliance ── */}
-      <section className="py-24 bg-slate-50/60 border-y border-gray-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl mb-14">
-            <div className="text-xs font-bold uppercase tracking-[0.2em] text-gray-500 mb-4">
-              Security &amp; compliance
-            </div>
-            <h2 className="text-4xl md:text-5xl font-extrabold text-[#1a1c4b] tracking-tight leading-[1.1]">
-              Patient data, protected to the highest standard.
-            </h2>
-            <p className="mt-6 text-lg text-gray-600 leading-relaxed">
-              We store and safeguard patient records in a uniquely secure way, encrypted,
-              access-controlled, and never sold. For us, compliance isn&apos;t a checkbox, it&apos;s
-              how we build.
-            </p>
             <Link
-              href="/privacy-policy"
-              className="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold group"
-              style={{ color: colors.primary }}
+              href="/clinic"
+              className="mt-8 inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-white transition-all hover:-translate-y-0.5"
+              style={{ backgroundColor: colors.primary }}
             >
-              Read our privacy &amp; data policy
-              <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+              Explore MolarPlus Dental Clinic
+              <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-6">
-            <div className="flex gap-5 p-8 rounded-2xl bg-white border border-gray-200">
-              <div
-                className="flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center"
-                style={{ backgroundColor: `${colors.primary}10` }}
-              >
-                <ShieldCheck className="w-6 h-6" style={{ color: colors.primary }} />
-              </div>
-              <div>
-                <h3 className="text-lg font-bold text-[#1a1c4b]">ABDM-aligned, for India</h3>
-                <p className="mt-2 text-[15px] text-gray-600 leading-relaxed">
-                  Built in line with India&apos;s Ayushman Bharat Digital Mission (ABDM) standards
-                  for health data, so your clinic stays compliant with national digital-health
-                  regulations.
-                </p>
-              </div>
-            </div>
-
-            <div className="flex gap-5 p-8 rounded-2xl bg-white border border-gray-200">
-              <div
-                className="flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center"
-                style={{ backgroundColor: `${colors.primary}10` }}
-              >
-                <Lock className="w-6 h-6" style={{ color: colors.primary }} />
-              </div>
-              <div>
-                <h3 className="text-lg font-bold text-[#1a1c4b]">HIPAA-compliant, for the US</h3>
-                <p className="mt-2 text-[15px] text-gray-600 leading-relaxed">
-                  For practices in the United States, and anyone handling protected health
-                  information, MolarPlus meets HIPAA requirements for storing and transmitting
-                  medical data.
-                </p>
-              </div>
-            </div>
-          </div>
+          {/* Clinic product visual: live screens */}
+          <ProductShowcase />
         </div>
       </section>
 
-      {/* ── Trust / Stats ── */}
+      {/* ── Product 2: MolarPlus Dental Lab ── */}
+      <section className="py-28 bg-slate-50/60 border-y border-gray-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-3xl mb-12">
+            <div className="flex items-center gap-3 mb-5">
+              <div
+                className="w-10 h-10 rounded-lg flex items-center justify-center"
+                style={{ backgroundColor: `${colors.primary}10` }}
+              >
+                <FlaskConical className="w-5 h-5" style={{ color: colors.primary }} />
+              </div>
+              <div className="text-xs font-bold uppercase tracking-[0.2em] text-gray-500">
+                <span style={{ color: colors.primary }}>02</span>
+                <span className="mx-1.5 text-gray-300">/</span>
+                MolarPlus Dental Lab
+              </div>
+              <span className="inline-flex items-center gap-1.5 rounded-full bg-green-50 border border-green-200 px-3 py-1 text-xs font-bold text-green-700">
+                <span className="relative flex h-1.5 w-1.5">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
+                  <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-green-500" />
+                </span>
+                Now live
+              </span>
+            </div>
+            <h2 className="text-4xl md:text-5xl font-extrabold text-[#1a1c4b] tracking-tight leading-[1.1]">
+              Run your dental lab, intake to delivery.
+            </h2>
+            <p className="mt-6 text-lg text-gray-600 leading-relaxed">
+              Case management built for the people who craft every crown, bridge and aligner. Track
+              cases, coordinate technicians, run quality control and stay connected with every partner
+              dental clinic, in one workspace.
+            </p>
+            <Link
+              href="/lab"
+              className="mt-8 inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-white transition-all hover:-translate-y-0.5"
+              style={{ backgroundColor: colors.dark }}
+            >
+              Explore MolarPlus Dental Lab
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
+
+          {/* Lab product visual: live screens */}
+          <ProductShowcase slides={labSlides} frameUrl="lab.molarplus.com" />
+        </div>
+      </section>
+
+      {/* ── How they connect ── */}
+      <section className="py-20 bg-white">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div className="text-xs font-bold uppercase tracking-[0.2em] text-gray-500 mb-4">
+            One ecosystem
+          </div>
+          <h2 className="text-3xl md:text-4xl font-extrabold text-[#1a1c4b] tracking-tight leading-[1.15]">
+            Dental clinic and dental lab, working as one.
+          </h2>
+          <p className="mt-5 text-lg text-gray-600 leading-relaxed">
+            When a dental clinic raises a crown or aligner case, it can flow straight to the dental
+            lab, and status updates flow back to the clinic automatically. Cases, records and referrals
+            move both ways, no phone calls, no lost paperwork.
+          </p>
+        </div>
+      </section>
+
+      {/* ── Stats ── */}
       <section className="py-24 bg-[#1a1548] relative overflow-hidden">
         <div
           className="absolute inset-0 opacity-[0.03]"
           style={{
-            backgroundImage:
-              'radial-gradient(circle at 1px 1px, #ffffff 1px, transparent 0)',
+            backgroundImage: 'radial-gradient(circle at 1px 1px, #ffffff 1px, transparent 0)',
             backgroundSize: '40px 40px',
           }}
         />
@@ -349,11 +307,11 @@ export default function UmbrellaHome() {
               By the numbers
             </div>
             <h2 className="text-4xl md:text-5xl font-extrabold text-white tracking-tight leading-[1.1]">
-              Trusted by clinics worldwide.
+              Trusted across dentistry.
             </h2>
             <p className="mt-6 text-lg text-blue-100/70 leading-relaxed max-w-2xl">
-              MolarPlus Clinic is already powering dental practices in tier-1 metros and small
-              towns alike, and MolarPlus Lab is now live for dental laboratories.
+              MolarPlus Dental Clinic powers practices in tier-1 metros and small towns alike, and
+              MolarPlus Dental Lab is now live for dental laboratories.
             </p>
           </div>
 
@@ -372,64 +330,72 @@ export default function UmbrellaHome() {
         </div>
       </section>
 
-      {/* ── Parent brand ── */}
+      {/* ── Trust & compliance ── */}
       <section className="py-28 bg-white">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-[auto_1fr] gap-12 items-start">
-            <div className="flex-shrink-0">
-              <div className="text-3xl font-extrabold tracking-tight">
-                <span className="text-[#73a942]">Clino</span>
-                <span className="text-[#245501] ml-1">Health</span>
-              </div>
-              <div className="mt-2 text-xs font-semibold uppercase tracking-widest text-gray-400">
-                Parent company
-              </div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-3xl mb-14">
+            <div className="text-xs font-bold uppercase tracking-[0.2em] text-gray-500 mb-4">
+              Trust &amp; compliance
             </div>
+            <h2 className="text-4xl md:text-5xl font-extrabold text-[#1a1c4b] tracking-tight leading-[1.1]">
+              Built to handle health data.
+            </h2>
+            <p className="mt-6 text-lg text-gray-600 leading-relaxed">
+              Patient records are some of the most sensitive data there is. MolarPlus is built to the
+              standards that protect it, and your data is always yours to export.
+            </p>
+          </div>
 
-            <div>
-              <h2 className="text-3xl md:text-4xl font-extrabold text-[#1a1c4b] tracking-tight leading-[1.15]">
-                MolarPlus is a Clino Health product family.
-              </h2>
-              <p className="mt-6 text-lg text-gray-600 leading-relaxed">
-                Clino Health is a healthcare technology company building specialized software
-                for medical professionals. MolarPlus is our dedicated product line for the
-                dental industry, engineered with the same standards of security, reliability,
-                and clinical precision as the rest of the Clino Health portfolio.
-              </p>
-            </div>
+          <div className="grid grid-cols-2 lg:grid-cols-3 gap-4">
+            {compliance.map(({ Icon, name, note }) => (
+              <div
+                key={name}
+                className="flex items-center gap-4 rounded-2xl border border-gray-200 bg-white p-6"
+              >
+                <div
+                  className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl"
+                  style={{ backgroundColor: `${colors.primary}10` }}
+                >
+                  <Icon className="h-6 w-6" style={{ color: colors.primary }} />
+                </div>
+                <div>
+                  <div className="font-bold text-[#1a1c4b] leading-tight">{name}</div>
+                  <p className="text-sm text-gray-500 mt-1 leading-snug">{note}</p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* ── Final CTA ── */}
+      {/* ── Final CTA (both products) ── */}
       <section
         className="py-24"
-        style={{
-          background: `linear-gradient(135deg, ${colors.primary} 0%, ${colors.dark} 100%)`,
-        }}
+        style={{ background: `linear-gradient(135deg, ${colors.primary} 0%, ${colors.dark} 100%)` }}
       >
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-4xl md:text-5xl font-extrabold text-white tracking-tight leading-[1.1]">
-            Ready to bring MolarPlus to your practice?
+            Bring MolarPlus to your practice.
           </h2>
           <p className="mt-6 text-lg text-blue-100/80 leading-relaxed max-w-2xl mx-auto">
-            Start with MolarPlus Clinic for your practice, or MolarPlus Lab for your laboratory.
+            Start with the Dental Clinic app, free for a single dental clinic, or set up MolarPlus
+            Dental Lab for your laboratory. Same suite, built for both sides of the case.
           </p>
           <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
-            <Link
-              href="/clinic"
+            <a
+              href={`${APP_URL}/signup`}
               className="inline-flex items-center gap-2 px-7 py-4 rounded-xl font-semibold text-[#1a1548] bg-white hover:bg-gray-50 shadow-lg hover:-translate-y-0.5 transition-all"
             >
-              Explore Clinic
-              <ArrowRight className="w-4 h-4" />
-            </Link>
-            <Link
-              href="/chat"
+              <Stethoscope className="w-5 h-5" />
+              Start Dental Clinic free
+            </a>
+            <a
+              href={`${LAB_URL}/login`}
               className="inline-flex items-center gap-2 px-7 py-4 rounded-xl font-semibold text-white border border-white/30 hover:bg-white/10 transition-all"
             >
-              <WhatsAppIcon className="w-5 h-5 text-[#25D366]" />
-              Talk to our team
-            </Link>
+              <FlaskConical className="w-5 h-5" />
+              Set up your dental lab
+            </a>
           </div>
         </div>
       </section>

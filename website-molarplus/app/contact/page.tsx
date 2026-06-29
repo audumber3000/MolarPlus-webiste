@@ -58,10 +58,10 @@ const offices = [
 ];
 
 const faqs = [
-  { q: 'How quickly can I get started with MolarPlus?', a: 'You can start immediately with our free trial. Full setup typically takes 24-48 hours, including data migration and staff training.' },
+  { q: 'How quickly can I get started with MolarPlus?', a: 'You can start immediately — a single clinic is free, with no trial to sign up for. Full setup typically takes 24-48 hours, including data migration and staff training.' },
   { q: 'Is MolarPlus HIPAA compliant?', a: 'Yes, MolarPlus is fully HIPAA compliant with end-to-end encryption, secure data storage, and regular security audits.' },
   { q: 'Can I import my existing patient data?', a: 'Yes, we provide free data migration services to import your existing patient records, appointments, and treatment history.' },
-  { q: 'What kind of support do you offer?', a: 'We offer email, phone, and chat support. Professional and Enterprise plans include priority support with faster response times.' },
+  { q: 'What kind of support do you offer?', a: 'We offer email, phone, and chat support for every clinic, free included. The Multi-Branch plan adds priority support with faster response times.' },
 ];
 
 export default function ContactPage() {
@@ -177,7 +177,7 @@ export default function ContactPage() {
               href={`${APP_URL}/signup`}
               className="inline-flex items-center justify-center bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-50 transition-colors"
             >
-              Start Free Trial
+              Start free
             </a>
             <Link
               href="/clinic/pricing"

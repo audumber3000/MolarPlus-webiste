@@ -56,9 +56,8 @@ const softwareJsonLd = {
   description: DEFAULT_DESCRIPTION,
   url: SITE_URL,
   offers: [
-    { '@type': 'Offer', name: 'Free', price: '0', priceCurrency: 'INR' },
-    { '@type': 'Offer', name: 'Pro', price: '899', priceCurrency: 'INR', priceValidUntil: '2026-12-31' },
-    { '@type': 'Offer', name: 'Enterprise', description: 'Custom pricing with offline support' },
+    { '@type': 'Offer', name: 'Single Clinic', price: '0', priceCurrency: 'INR', description: 'Free forever for one clinic — every feature included.' },
+    { '@type': 'Offer', name: 'Multi-Branch', price: '899', priceCurrency: 'INR', priceValidUntil: '2026-12-31', description: 'India ₹899/mo or $10/mo internationally. Adds unlimited branches, single-login switching, cross-branch reporting and priority support.' },
   ],
   aggregateRating: {
     '@type': 'AggregateRating',
@@ -78,7 +77,7 @@ const faqJsonLd = {
       name: 'Is MolarPlus free to use?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Yes! MolarPlus has a free plan for single-chair clinics with up to 2 staff members. You get full access to core clinic features including appointments, patient records, and mobile apps. No cost, forever.',
+        text: 'Yes. A single clinic gets the entire product for free, forever — appointments, patient records, charting, treatment plans, prescriptions, billing, staff management, inventory, WhatsApp reminders and the web, mobile and desktop apps. No trial, no credit card. Nothing is feature-locked.',
       },
     },
     {
@@ -107,10 +106,10 @@ const faqJsonLd = {
     },
     {
       '@type': 'Question',
-      name: 'What is the difference between Pro and Enterprise plans?',
+      name: 'When do I need to pay for MolarPlus?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Pro (₹899/month in India, $10/month internationally) adds admin controls, staff attendance, WhatsApp and email notifications, and clinic finance reports. Enterprise adds offline support and assisted on-site installation. Ideal for larger clinics.',
+        text: 'Only when you run more than one branch. The Multi-Branch plan (₹899/month in India, $10/month internationally, less when billed annually) lets you add unlimited clinic branches, switch between them in a single login, run cross-branch reporting and get priority support. A single clinic never needs to pay.',
       },
     },
   ],

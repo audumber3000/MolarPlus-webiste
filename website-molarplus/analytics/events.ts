@@ -46,4 +46,9 @@ export type CtaLocation =
   | 'pricing'
   | 'footer'
   | 'contact'
-  | 'mobile_section';
+  | 'mobile_section'
+  | 'workflow'
+  | 'final_cta'
+  | 'path_solo'
+  | 'path_pro'
+  | 'path_enterprise';

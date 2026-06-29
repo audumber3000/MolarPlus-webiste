@@ -1,6 +1,7 @@
 import { SITE_NAME } from '@/lib/seo';
 import Link from 'next/link';
 import { WindowsBadge, MacBadge } from '@/components/DesktopBadges';
+import PaymentMethods from '@/components/PaymentMethods';
 
 export default function Footer() {
   return (
@@ -151,6 +152,11 @@ export default function Footer() {
                 <MacBadge comingSoon={false} href="https://pub-376f22e59eee415286747973b95ba075.r2.dev/MolarPlus-mac.dmg" />
               </div>
             </div>
+          </div>
+
+          {/* Accepted payment methods */}
+          <div className="border-t border-white/10 pt-10">
+            <PaymentMethods />
           </div>
         </div>
       </footer>

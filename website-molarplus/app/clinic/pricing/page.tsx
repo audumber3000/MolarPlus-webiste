@@ -1,162 +1,293 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { CheckCircle, ArrowRight, X } from 'lucide-react';
+import { CheckCircle, ArrowRight, Building2, GitBranch, BarChart3, Headphones } from 'lucide-react';
 import { SITE_URL, colors } from '@/lib/seo';
 import { APP_URL } from '@/lib/constants';
 import PricingPlans from '@/components/PricingPlans';
 
 export const metadata: Metadata = {
-  title: 'Pricing - Free, Pro & Enterprise Dental Clinic Software | MolarPlus',
+  title: 'Pricing - Free for a Single Clinic | MolarPlus Dental Software',
   description:
-    'MolarPlus pricing: Free plan for 1 chair, Pro from ₹899/month in India or $10/month elsewhere with full admin & WhatsApp. Enterprise with offline support. Country-based pricing.',
+    'MolarPlus is free forever for a single clinic — every feature included, no trial, no credit card. Pay only to run multiple branches: Multi-Branch from ₹899/mo (India) or $10/mo. Country-based pricing.',
   keywords:
-    'dental software pricing, dental clinic management cost, free dental software, dental practice plans India, clinic software pricing INR USD',
+    'free dental software, dental clinic management free, dental practice software pricing India, multi-branch dental software, clinic software pricing INR USD',
   alternates: { canonical: `${SITE_URL}/pricing` },
   openGraph: {
-    title: 'Pricing - Free, Pro & Enterprise | MolarPlus Dental Software',
-    description: 'Free for 1 chair. Pro from ₹899/mo (India) or $10/mo. Enterprise with offline support. See plans.',
+    title: 'Pricing - Free for a Single Clinic | MolarPlus',
+    description:
+      'Your whole clinic, free. Every feature included for a single clinic. Pay only when you grow to multiple branches — from ₹899/mo (India) or $10/mo.',
     url: `${SITE_URL}/pricing`,
   },
 };
 
-type CompareCell = boolean | string;
-const comparisonRows: { feature: string; free: CompareCell; pro: CompareCell; enterprise: CompareCell }[] = [
-  { feature: 'Chairs / scale', free: '1 chair', pro: '2–5 chairs', enterprise: 'Larger clinics' },
-  { feature: 'Employees', free: 'Up to 2', pro: 'More', enterprise: 'Unlimited' },
-  { feature: 'Core clinic features', free: true, pro: true, enterprise: true },
-  { feature: 'Mobile, web & desktop apps', free: true, pro: true, enterprise: true },
-  { feature: 'Admin controls', free: false, pro: true, enterprise: true },
-  { feature: 'Staff attendance', free: false, pro: true, enterprise: true },
-  { feature: 'Device management', free: false, pro: true, enterprise: true },
-  { feature: 'Clinic finance & reports', free: false, pro: true, enterprise: true },
-  { feature: 'WhatsApp, email, bulk notifications', free: false, pro: true, enterprise: true },
-  { feature: 'Offline support & assisted installation', free: false, pro: false, enterprise: true },
+// The full product — all of this is FREE for a single clinic.
+const featureGroups: { group: string; items: string[] }[] = [
+  {
+    group: 'Patients & Clinical',
+    items: [
+      'Patient management — records, history, intake, birthday/DOB reminders',
+      'Digital case papers / case sheets',
+      'Interactive dental charting (tooth chart, surfaces, conditions)',
+      'Treatment planning',
+      'Prescriptions — medication catalogue, PDF generation, WhatsApp share',
+      'Media uploads — X-rays, DICOM viewer, file thumbnails',
+      'Lab order management',
+      'Digital consent forms',
+    ],
+  },
+  {
+    group: 'Scheduling & Front Desk',
+    items: [
+      'Appointment scheduling + calendar (day / week / month views)',
+      'Public online booking page',
+      'Patient visit history',
+    ],
+  },
+  {
+    group: 'Billing & Finance',
+    items: ['Billing & invoicing (GST / tax-aware)', 'Payment tracking'],
+  },
+  {
+    group: 'Team & Admin',
+    items: [
+      'Staff & roles (multi-user access)',
+      'Staff attendance tracking',
+      'Permissions / role-based access control',
+      'Inventory & vendor management',
+      'Referring-doctor management',
+      'Customisable message & document templates (invoice / prescription / consent)',
+    ],
+  },
+  {
+    group: 'Communication & Growth',
+    items: [
+      'WhatsApp + email reminders & notifications',
+      'Own-number WhatsApp (WA Reach — send from your own number, no per-message charge)',
+      'Google review management',
+      'AI report generation',
+      'AI handwritten-register scanner (digitise paper patient registers)',
+    ],
+  },
+  {
+    group: 'Platform',
+    items: [
+      'Works on web, iOS / Android mobile app, and desktop app',
+      'Cloud storage, backup & sync',
+      'Dashboard analytics & reports',
+    ],
+  },
 ];
 
-function Cell({ value }: { value: CompareCell }) {
-  if (typeof value === 'boolean') {
-    return value ? <CheckCircle className="w-5 h-5 text-green-500 mx-auto" /> : <X className="w-5 h-5 text-gray-300 mx-auto" />;
-  }
-  return <span className="text-gray-600 text-sm">{value}</span>;
-}
+const multiBranchAdds = [
+  { icon: Building2, title: 'Add unlimited clinic branches', desc: 'Spin up new locations under one account as you grow.' },
+  { icon: GitBranch, title: 'Switch between branches in one login', desc: 'Move between locations without logging out or juggling accounts.' },
+  { icon: BarChart3, title: 'Cross-branch reporting', desc: 'See patients, revenue and performance across every location in one view.' },
+  { icon: Headphones, title: 'Priority support', desc: 'Faster response times for multi-location groups.' },
+];
+
+const faqs = [
+  {
+    q: 'Is MolarPlus really free for a single clinic?',
+    a: 'Yes. A single clinic gets the entire product — every clinical, scheduling, billing, team and communication feature — for ₹0 / $0, forever. There is no trial that expires and no credit card required. It is free because it is one clinic, not a limited version of the software.',
+  },
+  {
+    q: 'What do I get on the free plan?',
+    a: 'Everything: patient records and charting, treatment planning, prescriptions, lab orders, consent forms, appointments and online booking, billing, staff and roles, inventory, WhatsApp and email reminders, Google reviews, AI reports, and the web, mobile and desktop apps. Nothing is feature-locked behind a paid tier.',
+  },
+  {
+    q: 'So what does the paid plan add?',
+    a: 'Only multi-branch capability. The Multi-Branch plan lets you add unlimited clinic branches, switch between them in a single login, run cross-branch reporting, and get priority support. If you operate one location, you never need it.',
+  },
+  {
+    q: 'How much is Multi-Branch?',
+    a: 'In India it is ₹899/month, or ₹675/month billed annually (₹8,100/year, ~25% off). For other countries it is $10/month, or $8/month billed annually ($96/year).',
+  },
+  {
+    q: 'Is there a free trial?',
+    a: 'There is no trial — because a single clinic is simply free, with no time limit. You only pay if and when you add a second branch.',
+  },
+];
 
 const pricingJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'Product',
   name: 'MolarPlus Dental Clinic Management Software',
-  description: 'Pricing plans: Free (1 chair), Pro (2–5 chairs, ₹899/mo India or $10/mo), Enterprise (custom).',
+  description:
+    'Free forever for a single clinic with every feature included. Multi-Branch plan (₹899/mo in India or $10/mo) adds unlimited branches, single-login switching, cross-branch reporting and priority support.',
   brand: { '@type': 'Brand', name: 'MolarPlus' },
   offers: [
-    { '@type': 'Offer', name: 'Free', price: '0', priceCurrency: 'INR', description: '1 chair, up to 2 employees, core features' },
-    { '@type': 'Offer', name: 'Pro', price: '899', priceCurrency: 'INR', priceValidUntil: '2026-12-31', description: 'India: ₹899/month. Other: $10/month. Yearly 25% off.' },
-    { '@type': 'Offer', name: 'Pro USD', price: '10', priceCurrency: 'USD', priceValidUntil: '2026-12-31' },
-    { '@type': 'Offer', name: 'Enterprise', description: 'Custom pricing. Offline support and assisted installation.' },
+    {
+      '@type': 'Offer',
+      name: 'Single Clinic',
+      price: '0',
+      priceCurrency: 'INR',
+      description: 'Free forever for one clinic. Every feature included — no trial, no credit card.',
+    },
+    {
+      '@type': 'Offer',
+      name: 'Multi-Branch',
+      price: '899',
+      priceCurrency: 'INR',
+      priceValidUntil: '2026-12-31',
+      description:
+        'India: ₹899/month (₹675/mo billed annually). Adds unlimited branches, single-login switching, cross-branch reporting and priority support.',
+    },
+    {
+      '@type': 'Offer',
+      name: 'Multi-Branch USD',
+      price: '10',
+      priceCurrency: 'USD',
+      priceValidUntil: '2026-12-31',
+      description: 'Other countries: $10/month ($8/mo billed annually).',
+    },
   ],
+};
+
+const faqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
 };
 
 export default function PricingPage() {
   return (
     <div className="min-h-screen bg-gray-50 pt-20">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(pricingJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
 
       {/* Hero + plans */}
       <section className="bg-gradient-to-br from-blue-50 to-white py-16 md:py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-              Simple, Transparent Pricing for Dental Clinics
+              Your whole clinic, free.
             </h1>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-6">
-              Start free with one chair, or upgrade to Pro for full admin and communication. Enterprise gets offline support and assisted installation.
+              Every feature in MolarPlus is free, forever, for a single clinic — no trial, no credit
+              card. The only reason to pay is running more than one branch from one account.
             </p>
             <p className="text-sm text-gray-500">
-              Pricing in <strong>India (INR)</strong> and <strong>other countries (USD)</strong>. Use the selector above to switch.
+              Pricing in <strong>India (INR)</strong> and <strong>other countries (USD)</strong>. Use the selector below to switch.
             </p>
           </div>
           <PricingPlans />
         </div>
       </section>
 
-      {/* Crawlable plan descriptions for SEO */}
-      <section className="py-16 bg-white" aria-labelledby="plan-details-heading">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 id="plan-details-heading" className="text-2xl font-bold text-gray-900 mb-8 text-center">
-            What Each MolarPlus Plan Includes
+      {/* Full feature set — all free for a single clinic */}
+      <section className="py-16 bg-white" aria-labelledby="everything-heading">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-4">
+            <span
+              className="inline-block rounded-full px-3 py-1 text-sm font-semibold"
+              style={{ backgroundColor: `${colors.primary}12`, color: colors.primary }}
+            >
+              Free for a single clinic
+            </span>
+          </div>
+          <h2 id="everything-heading" className="text-2xl md:text-3xl font-bold text-gray-900 mb-2 text-center">
+            Everything below is included at ₹0 / $0
           </h2>
-          <div className="space-y-10 text-gray-700">
-            <div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">Free plan</h3>
-              <p>
-                The <strong>Free</strong> plan supports one chair and up to two employees. It includes core clinic features such as appointments and patient records, plus access to MolarPlus on mobile, web, and desktop. It does not include admin controls or communication tools like WhatsApp, email, or bulk notifications. The Free plan remains free with no pricing, ideal for getting started. <Link href={`${APP_URL}/signup`} className="text-blue-600 hover:underline font-medium">Sign up for free</Link>.
-              </p>
-            </div>
-            <div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">Pro plan</h3>
-              <p>
-                The <strong>Pro</strong> plan is suitable for clinics with 2–5 chairs. It includes everything in Free plus full admin features: staff attendance, employee device management, clinic finance and reports, and a complete communication suite including bulk WhatsApp, email, and notifications. Pricing is country-based: <strong>₹899 per month in India</strong> and <strong>$10 per month for all other countries</strong>. You can bill yearly at a 25% discount. <Link href={`${APP_URL}/signup`} className="text-blue-600 hover:underline font-medium">Start a free trial</Link> or compare <Link href="/clinic/features" className="text-blue-600 hover:underline font-medium">features</Link>.
-              </p>
-            </div>
-            <div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">Enterprise plan</h3>
-              <p>
-                The <strong>Enterprise</strong> plan is for larger clinics and includes everything in Pro plus offline software support and assisted installation. Pricing is custom, <Link href="/contact" className="text-blue-600 hover:underline font-medium">request a call back</Link> or <Link href="/contact" className="text-blue-600 hover:underline font-medium">connect with us</Link> for a quote.
-              </p>
-            </div>
+          <p className="text-gray-600 text-center max-w-2xl mx-auto mb-12">
+            This is the full product, not a stripped-down free tier. A solo clinic gets all of it.
+          </p>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            {featureGroups.map((g) => (
+              <div key={g.group}>
+                <h3 className="text-sm font-bold uppercase tracking-wide text-gray-900 mb-4">{g.group}</h3>
+                <ul className="space-y-3">
+                  {g.items.map((item) => (
+                    <li key={item} className="flex items-start gap-2.5">
+                      <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
+                      <span className="text-gray-700 text-sm leading-relaxed">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Comparison table */}
-      <section className="py-16 bg-gray-50" aria-labelledby="compare-heading">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 id="compare-heading" className="text-2xl font-bold text-gray-900 mb-8 text-center">
-            Compare Plans
+      {/* The only paid bit: Multi-Branch */}
+      <section className="py-16 bg-gray-50" aria-labelledby="multibranch-heading">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 id="multibranch-heading" className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">
+              The only paid plan: Multi-Branch
+            </h2>
+            <p className="text-gray-600 max-w-2xl mx-auto">
+              Pay only when you grow to multiple locations. Multi-Branch keeps everything above and
+              adds the tools to run several clinics from one account.
+            </p>
+          </div>
+          <div className="grid sm:grid-cols-2 gap-6">
+            {multiBranchAdds.map(({ icon: Icon, title, desc }) => (
+              <div key={title} className="bg-white rounded-xl p-6 border border-gray-200 flex gap-4">
+                <div
+                  className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-lg"
+                  style={{ backgroundColor: `${colors.primary}10` }}
+                >
+                  <Icon className="h-5 w-5" style={{ color: colors.primary }} />
+                </div>
+                <div>
+                  <h3 className="font-semibold text-gray-900">{title}</h3>
+                  <p className="text-sm text-gray-600 mt-1">{desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+          <p className="text-center text-gray-700 mt-10">
+            <strong>India:</strong> ₹899/month, or ₹675/month billed annually (₹8,100/year).{' '}
+            <strong>Other countries:</strong> $10/month, or $8/month billed annually ($96/year).
+          </p>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="py-16 bg-white" aria-labelledby="faq-heading">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 id="faq-heading" className="text-2xl md:text-3xl font-bold text-gray-900 mb-10 text-center">
+            Pricing questions
           </h2>
-          <div className="overflow-x-auto">
-            <table className="w-full min-w-[600px] bg-white rounded-xl shadow-sm border border-gray-200">
-              <thead>
-                <tr className="border-b border-gray-200 bg-gray-50">
-                  <th className="text-left py-4 px-4 font-semibold text-gray-900">Feature</th>
-                  <th className="text-center py-4 px-4 font-semibold text-gray-900">Free</th>
-                  <th className="text-center py-4 px-4 font-semibold text-gray-900">Pro</th>
-                  <th className="text-center py-4 px-4 font-semibold text-gray-900">Enterprise</th>
-                </tr>
-              </thead>
-              <tbody>
-                {comparisonRows.map((row, i) => (
-                  <tr key={i} className="border-b border-gray-100">
-                    <td className="py-4 px-4 font-medium text-gray-800">{row.feature}</td>
-                    <td className="text-center py-4 px-4"><Cell value={row.free} /></td>
-                    <td className="text-center py-4 px-4"><Cell value={row.pro} /></td>
-                    <td className="text-center py-4 px-4"><Cell value={row.enterprise} /></td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+          <div className="space-y-8">
+            {faqs.map((f) => (
+              <div key={f.q}>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">{f.q}</h3>
+                <p className="text-gray-600 leading-relaxed">{f.a}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Internal links + CTA */}
-      <section className="py-16 bg-white">
+      {/* CTA */}
+      <section className="py-16 bg-gray-50">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">Explore More</h2>
+          <h2 className="text-2xl font-bold text-gray-900 mb-4">
+            Start free — pay only when you grow.
+          </h2>
           <p className="text-gray-600 mb-8">
-            See our <Link href="/clinic/features" className="text-blue-600 hover:underline font-medium">features</Link>,{' '}
-            <Link href="/contact" className="text-blue-600 hover:underline font-medium">contact us</Link> for Enterprise or demos, or get started now.
+            Get your whole clinic running on MolarPlus in minutes. Add branches whenever you&apos;re ready;{' '}
+            <Link href="/contact" className="text-blue-600 hover:underline font-medium">talk to us</Link> if you have questions.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
               href={`${APP_URL}/signup`}
               className="inline-flex items-center justify-center gap-2 bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors"
             >
-              Start Free Trial <ArrowRight className="w-5 h-5" />
+              Start free <ArrowRight className="w-5 h-5" />
             </a>
             <Link
               href="/contact"
               className="inline-flex items-center justify-center gap-2 border-2 border-gray-300 text-gray-800 px-8 py-3 rounded-lg font-semibold hover:bg-gray-50 transition-colors"
             >
-              Contact Sales
+              Contact us
             </Link>
           </div>
         </div>

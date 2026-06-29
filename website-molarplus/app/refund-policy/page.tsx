@@ -5,7 +5,7 @@ import { SITE_URL } from '@/lib/seo';
 export const metadata: Metadata = {
   title: 'Refund Policy - MolarPlus Dental Clinic Management Software',
   description:
-    'MolarPlus Refund Policy. Learn about our refund and cancellation terms for Pro and Enterprise dental clinic management software subscriptions.',
+    'MolarPlus Refund Policy. Learn about our refund and cancellation terms for the Multi-Branch dental clinic management software subscription. The single-clinic plan is free.',
   keywords: 'MolarPlus refund policy, dental software refund, subscription cancellation, clinic software money back',
   alternates: { canonical: `${SITE_URL}/refund-policy` },
   openGraph: {
@@ -35,24 +35,24 @@ export default function RefundPolicyPage() {
                 subscriptions.
               </p>
               <p className="mt-4">
-                Our <strong>Free Plan</strong> has no charges and is therefore not subject to this policy. This
-                policy applies to the <strong>Pro Plan</strong> and <strong>Enterprise Plan</strong> only.
+                Our <strong>Single Clinic</strong> plan is free, forever, and is therefore not subject to this
+                policy. This policy applies only to the paid <strong>Multi-Branch</strong> subscription.
               </p>
             </section>
 
             <section>
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">2. Pro Plan, Refund Eligibility</h2>
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">2. Multi-Branch Plan, Refund Eligibility</h2>
 
               <h3 className="text-xl font-semibold text-gray-900 mt-6 mb-3">2.1 Monthly Subscriptions</h3>
               <p>
-                If you subscribed to the Pro Plan on a monthly basis and are not satisfied with the Service, you may
-                request a full refund within <strong>7 days</strong> of your initial payment or renewal date.
+                If you subscribed to the Multi-Branch plan on a monthly basis and are not satisfied with the Service,
+                you may request a full refund within <strong>7 days</strong> of your initial payment or renewal date.
                 Refund requests received after 7 days will not be eligible.
               </p>
 
               <h3 className="text-xl font-semibold text-gray-900 mt-6 mb-3">2.2 Annual Subscriptions</h3>
               <p>
-                If you subscribed to the Pro Plan on an annual basis, you may request a full refund within{' '}
+                If you subscribed to the Multi-Branch plan on an annual basis, you may request a full refund within{' '}
                 <strong>14 days</strong> of your initial annual payment. After 14 days, refunds for annual
                 subscriptions are issued on a pro-rata basis for the remaining unused months, subject to a processing
                 review.
@@ -60,26 +60,10 @@ export default function RefundPolicyPage() {
               <p className="mt-4">
                 Annual subscription renewals follow the same 14-day refund window from the renewal date.
               </p>
-
-              <h3 className="text-xl font-semibold text-gray-900 mt-6 mb-3">2.3 Free Trial</h3>
-              <p>
-                Where a free trial period is offered, no charges are made during the trial. If you are charged
-                immediately after a trial period ends and wish to cancel, please contact us within 48 hours and
-                we will review the case on a goodwill basis.
-              </p>
             </section>
 
             <section>
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">3. Enterprise Plan, Refund Eligibility</h2>
-              <p>
-                Enterprise Plan agreements are governed by a separate contract between MolarPlus and your
-                organisation. Refund terms for Enterprise Plans are specified in the individual agreement.
-                Please contact your account manager or email support@molarplus.com for queries.
-              </p>
-            </section>
-
-            <section>
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">4. Non-Refundable Situations</h2>
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">3. Non-Refundable Situations</h2>
               <p>Refunds will <strong>not</strong> be issued in the following circumstances:</p>
               <ul className="list-disc pl-6 space-y-2 mt-4">
                 <li>The refund request is made after the applicable refund window (7 days for monthly, 14 days for annual)</li>
@@ -87,12 +71,12 @@ export default function RefundPolicyPage() {
                 <li>Partial months of usage in a monthly subscription cycle</li>
                 <li>Add-on services, onboarding support, or custom development work already delivered</li>
                 <li>Charges arising from WhatsApp or SMS notification usage beyond the included quota</li>
-                <li>Downgrades from Pro to Free Plan mid-cycle (downgrade takes effect at the next renewal)</li>
+                <li>Downgrades from Multi-Branch to the free Single Clinic plan mid-cycle (downgrade takes effect at the next renewal)</li>
               </ul>
             </section>
 
             <section>
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">5. How to Request a Refund</h2>
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">4. How to Request a Refund</h2>
               <p>To request a refund, please follow these steps:</p>
               <ol className="list-decimal pl-6 space-y-3 mt-4">
                 <li>
@@ -110,7 +94,7 @@ export default function RefundPolicyPage() {
             </section>
 
             <section>
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">6. Cancellation</h2>
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">5. Cancellation</h2>
               <p>
                 You can cancel your subscription at any time from within the MolarPlus platform under Account
                 Settings, or by contacting us at support@molarplus.com. Cancellation stops future billing but does
@@ -124,7 +108,7 @@ export default function RefundPolicyPage() {
             </section>
 
             <section>
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">7. Payment Disputes</h2>
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">6. Payment Disputes</h2>
               <p>
                 If you believe you have been charged incorrectly, please contact us at support@molarplus.com before
                 initiating a chargeback with your bank or payment provider. Chargebacks initiated without contacting
@@ -133,7 +117,7 @@ export default function RefundPolicyPage() {
             </section>
 
             <section>
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">8. Contact Us</h2>
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">7. Contact Us</h2>
               <p>For any questions regarding refunds or cancellations, please contact:</p>
               <p className="mt-2">
                 <strong>Email:</strong> support@molarplus.com<br />

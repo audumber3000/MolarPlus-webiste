@@ -1,48 +1,36 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import Link from 'next/link';
-import { CheckCircle, X, ArrowRight, Phone, MessageCircle } from 'lucide-react';
+import { CheckCircle } from 'lucide-react';
 import { APP_URL } from '@/lib/constants';
 import { colors } from '@/lib/seo';
 import { trackPricingViewed, trackSignupStarted } from '@/analytics/track';
 
 export type CountryCode = 'IN' | 'OTHER';
 
-const FREE_FEATURES = [
-  '1 chair, up to 2 employees',
-  'Core clinic features',
-  'Appointments & patient records',
-  'Mobile, web & desktop apps',
-  'Data backup & HIPAA compliance',
+// Free plan: the whole product, for one clinic.
+const FREE_HIGHLIGHTS = [
+  'One clinic — every feature included',
+  'Patients, charting, treatment plans & prescriptions',
+  'Appointments, online booking & billing',
+  'Staff, roles, inventory & WhatsApp reminders',
+  'Web, iOS, Android & desktop apps',
+  '₹0 forever — no trial, no credit card',
 ];
 
-const FREE_EXCLUDED = [
-  'Admin controls',
-  'WhatsApp & email messaging',
-  'Bulk notifications',
+// Multi-Branch is the only paid plan, and the only thing it adds.
+const MULTI_BRANCH_ADDS = [
+  'Everything in Single Clinic, plus:',
+  'Add unlimited clinic branches',
+  'Switch between branches in one login',
+  'Cross-branch reporting',
+  'Priority support',
 ];
 
-const PRO_FEATURES = [
-  '2–5 chairs',
-  'Everything in Free, plus:',
-  'Staff attendance',
-  'Employee device management',
-  'Clinic finance & reports',
-  'Bulk WhatsApp, email & notifications',
-  'Full admin features',
-];
-
-const ENTERPRISE_FEATURES = [
-  'Larger clinics & groups',
-  'Everything in Pro, plus:',
-  'Offline software support',
-  'Assisted installation',
-  'Dedicated success manager',
-];
-
-const PRO_PRICE = { IN: { monthly: 899, yearly: 8091 }, OTHER: { monthly: 10, yearly: 90 } };
-const YEARLY_DISCOUNT = 25; // 25% off = pay 9 months for 12
+const PRICE = {
+  IN: { monthly: 899, annualMonthly: 675, annualTotal: 8100, currency: '₹' },
+  OTHER: { monthly: 10, annualMonthly: 8, annualTotal: 96, currency: '$' },
+};
 
 async function detectCountry(): Promise<CountryCode> {
   try {
@@ -60,7 +48,7 @@ async function detectCountry(): Promise<CountryCode> {
 export default function PricingPlans() {
   const [country, setCountry] = useState<CountryCode | null>(null);
   const [overrideCountry, setOverrideCountry] = useState<CountryCode | null>(null);
-  const [billingCycle, setBillingCycle] = useState<'monthly' | 'yearly'>('monthly');
+  const [billingCycle, setBillingCycle] = useState<'monthly' | 'annual'>('monthly');
   const [showCountrySelect, setShowCountrySelect] = useState(false);
 
   const effectiveCountry = overrideCountry ?? country ?? 'OTHER';
@@ -74,11 +62,10 @@ export default function PricingPlans() {
     trackPricingViewed();
   }, []);
 
-  const proMonthly = isIndia ? PRO_PRICE.IN.monthly : PRO_PRICE.OTHER.monthly;
-  const proYearly = isIndia ? PRO_PRICE.IN.yearly : PRO_PRICE.OTHER.yearly;
-  const currency = isIndia ? '₹' : '$';
-  const proPrice = billingCycle === 'monthly' ? proMonthly : proYearly;
-  const period = billingCycle === 'monthly' ? '/month' : '/year';
+  const p = isIndia ? PRICE.IN : PRICE.OTHER;
+  const isAnnual = billingCycle === 'annual';
+  const displayPrice = isAnnual ? p.annualMonthly : p.monthly;
+  const savePct = Math.round((1 - p.annualTotal / (p.monthly * 12)) * 100);
 
   return (
     <div className="mb-12">
@@ -124,47 +111,42 @@ export default function PricingPlans() {
         <span className="text-gray-500 text-sm">Prices shown in {isIndia ? 'INR' : 'USD'}</span>
       </div>
 
-      {/* Billing toggle (Pro only) */}
+      {/* Billing toggle (Multi-Branch only) */}
       <div className="flex items-center justify-center gap-4 mb-10">
-        <span className={`text-lg ${billingCycle === 'monthly' ? 'font-semibold text-gray-900' : 'text-gray-500'}`}>
+        <span className={`text-lg ${!isAnnual ? 'font-semibold text-gray-900' : 'text-gray-500'}`}>
           Monthly
         </span>
         <button
           type="button"
-          onClick={() => setBillingCycle(billingCycle === 'monthly' ? 'yearly' : 'monthly')}
+          onClick={() => setBillingCycle(isAnnual ? 'monthly' : 'annual')}
           className="relative inline-flex h-8 w-14 items-center rounded-full transition-colors"
-          style={{ backgroundColor: billingCycle === 'yearly' ? colors.primary : '#d1d5db' }}
+          style={{ backgroundColor: isAnnual ? colors.primary : '#d1d5db' }}
         >
           <span
             className={`inline-block h-6 w-6 rounded-full bg-white transition-transform ${
-              billingCycle === 'yearly' ? 'translate-x-7' : 'translate-x-1'
+              isAnnual ? 'translate-x-7' : 'translate-x-1'
             }`}
           />
         </button>
-        <span className={`text-lg ${billingCycle === 'yearly' ? 'font-semibold text-gray-900' : 'text-gray-500'}`}>
-          Yearly <span className="text-green-600 text-sm">(Save {YEARLY_DISCOUNT}%)</span>
+        <span className={`text-lg ${isAnnual ? 'font-semibold text-gray-900' : 'text-gray-500'}`}>
+          Annual <span className="text-green-600 text-sm">(Save {savePct}%)</span>
         </span>
       </div>
 
-      <div className="grid md:grid-cols-3 gap-8 items-stretch">
-        {/* Free */}
+      <div className="grid md:grid-cols-2 gap-8 items-stretch max-w-4xl mx-auto">
+        {/* Single Clinic — Free */}
         <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-200 flex flex-col">
-          <h2 className="text-2xl font-bold text-gray-900 mb-2">Free</h2>
-          <p className="text-gray-600 mb-6">For single-chair setups</p>
-          <div className="text-center mb-6">
-            <span className="text-3xl font-bold text-gray-900">Free</span>
+          <h2 className="text-2xl font-bold text-gray-900 mb-2">Single Clinic</h2>
+          <p className="text-gray-600 mb-6">The whole of MolarPlus, for one clinic</p>
+          <div className="mb-6">
+            <span className="text-4xl font-bold text-gray-900">Free</span>
+            <span className="text-gray-500 ml-2">forever</span>
           </div>
           <ul className="space-y-3 mb-6 flex-1">
-            {FREE_FEATURES.map((f, i) => (
+            {FREE_HIGHLIGHTS.map((f, i) => (
               <li key={i} className="flex items-start gap-2">
                 <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
                 <span className="text-gray-700 text-sm">{f}</span>
-              </li>
-            ))}
-            {FREE_EXCLUDED.map((f, i) => (
-              <li key={i} className="flex items-start gap-2 opacity-60">
-                <X className="w-5 h-5 text-gray-400 flex-shrink-0 mt-0.5" />
-                <span className="text-gray-500 text-sm">{f}</span>
               </li>
             ))}
           </ul>
@@ -173,28 +155,39 @@ export default function PricingPlans() {
             onClick={() => trackSignupStarted('pricing', `${APP_URL}/signup`)}
             className="w-full py-3 rounded-lg font-semibold text-center block border-2 border-gray-300 text-gray-800 hover:bg-gray-50 transition-colors"
           >
-            Start Here
+            Start free
           </a>
         </div>
 
-        {/* Pro */}
-        <div className="bg-white rounded-2xl p-8 shadow-xl border-2 border-blue-500 flex flex-col relative scale-105 z-10">
+        {/* Multi-Branch — Paid */}
+        <div className="bg-white rounded-2xl p-8 shadow-xl border-2 border-blue-500 flex flex-col relative z-10">
           <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-blue-600 text-white text-xs font-semibold px-3 py-1 rounded-full">
-            Most Popular
+            For growing groups
           </div>
-          <h2 className="text-2xl font-bold text-gray-900 mb-2">Pro</h2>
-          <p className="text-gray-600 mb-6">For clinics with 2–5 chairs</p>
-          <div className="text-center mb-6">
+          <h2 className="text-2xl font-bold text-gray-900 mb-2">Multi-Branch</h2>
+          <p className="text-gray-600 mb-6">Run multiple locations from one account</p>
+          <div className="mb-1">
             <span className="text-4xl font-bold" style={{ color: colors.primary }}>
-              {currency}{proPrice}
+              {p.currency}{displayPrice}
             </span>
-            <span className="text-gray-500 ml-1">{period}</span>
+            <span className="text-gray-500 ml-1">/month</span>
           </div>
+          <p className="text-sm text-gray-500 mb-6 h-5">
+            {isAnnual
+              ? `billed annually — ${p.currency}${p.annualTotal}/year`
+              : `or ${p.currency}${p.annualMonthly}/mo billed annually`}
+          </p>
           <ul className="space-y-3 mb-6 flex-1">
-            {PRO_FEATURES.map((f, i) => (
+            {MULTI_BRANCH_ADDS.map((f, i) => (
               <li key={i} className="flex items-start gap-2">
-                <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
-                <span className="text-gray-700 text-sm">{f}</span>
+                {i === 0 ? (
+                  <span className="text-sm font-semibold text-gray-900">{f}</span>
+                ) : (
+                  <>
+                    <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
+                    <span className="text-gray-700 text-sm">{f}</span>
+                  </>
+                )}
               </li>
             ))}
           </ul>
@@ -204,44 +197,15 @@ export default function PricingPlans() {
             className="w-full py-3 rounded-lg font-semibold text-center block text-white transition-colors hover:opacity-90"
             style={{ backgroundColor: colors.primary }}
           >
-            Start Free Trial
+            Get Multi-Branch
           </a>
         </div>
-
-        {/* Enterprise */}
-        <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-200 flex flex-col">
-          <h2 className="text-2xl font-bold text-gray-900 mb-2">Enterprise</h2>
-          <p className="text-gray-600 mb-6">For larger clinics</p>
-          <div className="text-center mb-6">
-            <span className="text-lg font-semibold text-gray-600">Custom pricing</span>
-          </div>
-          <ul className="space-y-3 mb-6 flex-1">
-            {ENTERPRISE_FEATURES.map((f, i) => (
-              <li key={i} className="flex items-start gap-2">
-                <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
-                <span className="text-gray-700 text-sm">{f}</span>
-              </li>
-            ))}
-          </ul>
-          <div className="space-y-3">
-            <Link
-              href="/contact"
-              className="w-full py-3 rounded-lg font-semibold text-center flex items-center justify-center gap-2 border-2 text-gray-800 hover:bg-gray-50 transition-colors"
-              style={{ borderColor: colors.primary }}
-            >
-              <Phone className="w-4 h-4" />
-              Request a Call Back
-            </Link>
-            <Link
-              href="/contact"
-              className="w-full py-3 rounded-lg font-semibold text-center flex items-center justify-center gap-2 bg-gray-100 text-gray-800 hover:bg-gray-200 transition-colors"
-            >
-              <MessageCircle className="w-4 h-4" />
-              Connect with Us
-            </Link>
-          </div>
-        </div>
       </div>
+
+      <p className="text-center text-sm text-gray-500 mt-8">
+        Solo or single-location clinics get the entire product for free — no trial, no credit card.
+        The only reason to pay is running more than one branch.
+      </p>
     </div>
   );
 }
