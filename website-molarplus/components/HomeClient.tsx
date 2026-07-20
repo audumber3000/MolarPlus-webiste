@@ -179,14 +179,14 @@ export default function HomeClient() {
             Stop running your dental clinic on
             <br className="hidden sm:block" />{' '}
             <span className="line-through decoration-2 decoration-[#2a276e]/50 text-gray-400">
-              paper and WhatsApp
+              paper and Excel sheets
             </span>
             .
           </h1>
 
           <p className="mt-7 text-lg md:text-xl text-gray-600 leading-relaxed max-w-2xl mx-auto">
             Right now your bookings, records and payments are scattered across a register, a drawer,
-            and a dozen WhatsApp chats. MolarPlus pulls them into one place your whole team can use,
+            and a dozen Excel sheets. MolarPlus pulls them into one place your whole team can use,
             and quietly reminds patients before every visit so the chair stays full.
           </p>
 
