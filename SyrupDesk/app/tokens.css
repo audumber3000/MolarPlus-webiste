@@ -1,0 +1,143 @@
+/* =============================================================
+   SyrupDesk design tokens — THE single source of truth.
+   No component file may contain a hex value. See DESIGN.md.
+   ============================================================= */
+
+:root {
+  /* --- Green ramp ------------------------------------------------
+     #005500 is the brand anchor, NOT the CTA fill. At 17% lightness
+     it reads as authority; on every button it makes the page inert. */
+  --green-900: #003300; /* pressed / active */
+  --green-800: #004400; /* hover on dark brand surfaces */
+  --green-700: #005500; /* brand anchor: logo, dark bands, footer */
+  --green-600: #006b00; /* primary button hover */
+  --green-500: #008000; /* PRIMARY CTA FILL */
+  --green-400: #2e9e2e; /* links + icons on dark backgrounds */
+  --green-300: #66bf66; /* decorative, illustration accents */
+  --green-200: #a3d9a3; /* borders, dividers, disabled CTA */
+  --green-100: #d6efd6; /* hover on tinted surfaces */
+  --green-50: #f0f7f0; /* tinted section backgrounds */
+
+  /* --- Neutrals (cool-leaning, to sit correctly beside green) ----
+     Never warm cream — it goes muddy against green. */
+  --ink-900: #111611; /* headings */
+  --ink-700: #2f362f; /* body text */
+  --ink-500: #5c665c; /* secondary text */
+  --ink-400: #8a928a; /* muted / captions — non-essential text ONLY */
+  --ink-200: #dce1dc; /* borders, hairlines */
+  --ink-100: #eff2ef; /* subtle fills */
+  --surface: #ffffff;
+  --surface-alt: #f7f9f7;
+
+  /* --- Semantic ------------------------------------------------- */
+  --success: #0f7b4f;
+  --warning: #b26a00; /* expiry alerts — a real product concept */
+  --danger: #b3261e;
+  --info: #1b5e8a;
+
+  /* --- Radius — exactly three. More than this is drift. --------- */
+  --radius-sm: 8px; /* inputs, tags, small controls */
+  --radius-md: 16px; /* cards, panels, images */
+  --radius-full: 9999px; /* pills and avatars only */
+
+  /* --- Elevation — soft, low-opacity, directional ---------------
+     Prefer a 1px --ink-200 border for static cards. Shadow is for
+     things that genuinely float: dropdowns, sticky bars, modals. */
+  --shadow-sm: 0 1px 2px rgba(17, 22, 17, 0.06), 0 1px 3px rgba(17, 22, 17, 0.04);
+  --shadow-md: 0 4px 16px rgba(17, 22, 17, 0.06);
+  --shadow-lg: 0 12px 32px rgba(17, 22, 17, 0.1);
+
+  /* --- Motion — subtle only, 150–250ms ease-out ----------------- */
+  --ease-out: cubic-bezier(0.2, 0, 0, 1);
+  --duration-fast: 150ms;
+  --duration-base: 200ms;
+  --duration-slow: 250ms;
+
+  /* --- Layout --------------------------------------------------- */
+  --content-max: 1200px;
+  --measure: 65ch; /* body copy line-length cap */
+}
+
+/* -------------------------------------------------------------
+   Map tokens into Tailwind's theme so utilities are generated
+   from the SAME variables. `bg-green-500` and `var(--green-500)`
+   can never drift apart.
+   ------------------------------------------------------------- */
+@theme inline {
+  --color-green-900: var(--green-900);
+  --color-green-800: var(--green-800);
+  --color-green-700: var(--green-700);
+  --color-green-600: var(--green-600);
+  --color-green-500: var(--green-500);
+  --color-green-400: var(--green-400);
+  --color-green-300: var(--green-300);
+  --color-green-200: var(--green-200);
+  --color-green-100: var(--green-100);
+  --color-green-50: var(--green-50);
+
+  --color-ink-900: var(--ink-900);
+  --color-ink-700: var(--ink-700);
+  --color-ink-500: var(--ink-500);
+  --color-ink-400: var(--ink-400);
+  --color-ink-200: var(--ink-200);
+  --color-ink-100: var(--ink-100);
+  --color-surface: var(--surface);
+  --color-surface-alt: var(--surface-alt);
+
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-danger: var(--danger);
+  --color-info: var(--info);
+
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius-md);
+  --radius-full: var(--radius-full);
+
+  --shadow-sm: var(--shadow-sm);
+  --shadow-md: var(--shadow-md);
+  --shadow-lg: var(--shadow-lg);
+
+  --font-sans: var(--font-instrument-sans), ui-sans-serif, system-ui, sans-serif;
+
+  /* Type scale — desktop values. Mobile sizes are applied per
+     component with responsive utilities; see DESIGN.md §Type.
+     Base is 16px, never 14px: this buyer is 35–60 on a phone. */
+  --text-display: 3.5rem; /* 56px */
+  --text-display--line-height: 1.08;
+  --text-display--letter-spacing: -0.02em;
+  --text-display--font-weight: 700;
+
+  --text-h2: 2.5rem; /* 40px */
+  --text-h2--line-height: 1.15;
+  --text-h2--letter-spacing: -0.015em;
+  --text-h2--font-weight: 700;
+
+  --text-h3: 1.75rem; /* 28px */
+  --text-h3--line-height: 1.2;
+  --text-h3--letter-spacing: -0.01em;
+  --text-h3--font-weight: 600;
+
+  --text-h4: 1.25rem; /* 20px */
+  --text-h4--line-height: 1.3;
+  --text-h4--font-weight: 600;
+
+  --text-body-lg: 1.125rem; /* 18px */
+  --text-body-lg--line-height: 1.6;
+
+  --text-body: 1rem; /* 16px — the floor for body copy */
+  --text-body--line-height: 1.6;
+
+  --text-small: 0.875rem; /* 14px — captions, helper text */
+  --text-small--line-height: 1.5;
+
+  --text-micro: 0.75rem; /* 12px — legal, labels. Sparingly. */
+  --text-micro--line-height: 1.4;
+  --text-micro--font-weight: 500;
+
+  /* Four breakpoints, not two. Tablets are common at a pharmacy
+     counter and must not get a squashed desktop layout. */
+  --breakpoint-sm: 40rem; /* 640 */
+  --breakpoint-md: 48rem; /* 768 */
+  --breakpoint-lg: 64rem; /* 1024 */
+  --breakpoint-xl: 80rem; /* 1280 */
+}
