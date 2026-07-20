@@ -1,4 +1,6 @@
 import Link from "next/link";
+import Image from "next/image";
+import heroPharmacist from "@/app/assets/hero-pharmacist.webp";
 import { ButtonLink } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { Container, Section, SectionHeader } from "@/components/ui/Section";
@@ -40,9 +42,38 @@ export default function HomePage() {
       <JsonLd data={softwareApplicationSchema()} />
       <JsonLd data={faqSchema(FAQ)} />
 
-      {/* 1. Hero */}
-      <Section tone="tint" className="pt-12 pb-16 lg:pt-20 lg:pb-24">
-        <Container>
+      {/* 1. Hero
+             The photograph is a backdrop, not a figure: it sits behind a
+             scrim that is fully opaque where the copy lands and clears
+             only over the pharmacist. That keeps headline contrast at the
+             same ink-900-on-green-50 ratio it would have with no image at
+             all, rather than relying on a text-shadow to rescue it. */}
+      <Section
+        tone="tint"
+        className="relative overflow-hidden pt-12 pb-16 lg:flex lg:min-h-[36rem] lg:items-center lg:pt-20 lg:pb-24"
+      >
+        {/* Desktop: the photo owns the right half outright, bleeding off the
+            right edge of the viewport rather than stopping at the container.
+            A half-width, full-height box is roughly square, which is the
+            source's own aspect — so object-cover has almost nothing to crop
+            here, unlike a full-bleed band across the whole hero. */}
+        <div aria-hidden="true" className="absolute inset-y-0 right-0 hidden w-1/2 lg:block">
+          <Image
+            src={heroPharmacist}
+            alt=""
+            fill
+            priority
+            placeholder="blur"
+            sizes="50vw"
+            className="object-cover object-center"
+          />
+          {/* Blend on the inner edge only: opaque where it meets the copy
+              column, clear by 45% so the pharmacist and the phone sit at
+              full strength. */}
+          <div className="absolute inset-0 bg-gradient-to-r from-green-50 from-0% via-green-50/45 via-18% to-transparent to-45%" />
+        </div>
+
+        <Container className="relative w-full">
           <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
             <div>
               <p className="text-small font-semibold uppercase tracking-wider text-green-700">
@@ -76,8 +107,23 @@ export default function HomePage() {
               </p>
             </div>
 
-            <div className="lg:pl-4">
-              <BillingMockup />
+            {/* Mobile only. Above lg the photo is the absolutely-positioned
+                right half above, so this is hidden to avoid rendering it
+                twice. Here it runs full-bleed edge to edge at its own aspect
+                — nothing cropped — with the top fading into the copy. */}
+            <div className="relative -mx-4 lg:hidden">
+              <Image
+                src={heroPharmacist}
+                alt="A pharmacist behind the counter of an Indian medical store, holding a phone running SyrupDesk"
+                priority
+                placeholder="blur"
+                sizes="100vw"
+                className="h-auto w-full"
+              />
+              <div
+                aria-hidden="true"
+                className="pointer-events-none absolute inset-x-0 top-0 h-1/5 bg-gradient-to-b from-green-50 to-transparent"
+              />
             </div>
           </div>
         </Container>
@@ -124,6 +170,14 @@ export default function HomePage() {
             title="Everything a retail pharmacy runs on"
             intro="Billing, stock, purchase, customers and GST in one place — so the bill you print is the one your return is built from."
           />
+
+          {/* The billing screen itself. Moved down from the hero when the
+              photograph took that slot — this buyer still wants to see the
+              actual software before deciding, so it leads the features
+              rather than being dropped. */}
+          <div className="mx-auto mb-14 max-w-3xl lg:mb-16">
+            <BillingMockup />
+          </div>
         </Container>
         <FeatureBlocks />
       </Section>

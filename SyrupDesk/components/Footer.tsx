@@ -34,7 +34,7 @@ export function Footer() {
         <div className="grid gap-12 py-16 md:grid-cols-2 lg:grid-cols-4">
           <div>
             <div className="text-white">
-              <Logo byline />
+              <Logo byline tone="dark" />
             </div>
             <p className="measure mt-4 text-small text-green-200">
               Pharmacy management software for retail pharmacies in India — billing, inventory,
