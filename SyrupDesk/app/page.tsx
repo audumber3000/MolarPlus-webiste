@@ -10,6 +10,7 @@ import { Testimonial } from "@/components/ui/Testimonial";
 import { BillingMockup } from "@/components/mockups/BillingMockup";
 import { FeatureBlocks } from "@/components/sections/FeatureBlocks";
 import { CtaBand } from "@/components/sections/CtaBand";
+import { Awards } from "@/components/sections/Awards";
 import { PricingCards } from "@/components/PricingCards";
 import { JsonLd } from "@/components/JsonLd";
 import { FAQ } from "@/content/faq";
@@ -220,7 +221,10 @@ export default function HomePage() {
         </Section>
       )}
 
-      {/* 8. FAQ */}
+      {/* 8. Review-platform awards — self-hiding until we earn one. */}
+      <Awards />
+
+      {/* 9. FAQ */}
       <Section tone="alt">
         <Container>
           <div className="grid gap-10 lg:grid-cols-[1fr_1.4fr] lg:gap-16">
@@ -234,7 +238,7 @@ export default function HomePage() {
         </Container>
       </Section>
 
-      {/* 9. Final CTA */}
+      {/* 10. Final CTA */}
       <CtaBand placement="home_footer" />
     </>
   );

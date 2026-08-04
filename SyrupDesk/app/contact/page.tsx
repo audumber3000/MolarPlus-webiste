@@ -5,7 +5,7 @@ import { ContactForm } from "@/components/ContactForm";
 import { JsonLd } from "@/components/JsonLd";
 import { breadcrumbSchema, organizationSchema } from "@/lib/jsonld";
 import { buildMetadata } from "@/lib/seo";
-import { ADDRESS_LINE, SITE, whatsappLink } from "@/lib/site";
+import { ADDRESS_LINE, SITE, SOCIAL, whatsappLink } from "@/lib/site";
 
 export const metadata = buildMetadata({
   title: "Contact — talk to us about your pharmacy",
@@ -98,6 +98,35 @@ export default function ContactPage() {
                   {SITE.parent} — the team behind SyrupDesk.
                 </p>
                 <address className="mt-2 text-body not-italic text-ink-700">{ADDRESS_LINE}</address>
+              </Card>
+
+              <Card>
+                <h2 className="text-h4 text-ink-900">Find us online</h2>
+                <p className="mt-2 text-body text-ink-700">
+                  Product updates, GST changes and short how-to videos. Messages here reach the same
+                  team.
+                </p>
+                <ul className="mt-2">
+                  {SOCIAL.map((profile) => (
+                    <li key={profile.name}>
+                      <a
+                        href={profile.href}
+                        target="_blank"
+                        rel="me noopener noreferrer"
+                        className="inline-flex min-h-11 items-center text-body font-medium text-green-700 underline underline-offset-4"
+                      >
+                        {profile.name}
+                        {/* Only worth printing when it is not just the
+                            brand name again — Instagram, in practice. */}
+                        {profile.handle.toLowerCase() !== SITE.name.toLowerCase() && (
+                          <span className="ml-2 font-normal text-ink-700 no-underline">
+                            {profile.handle}
+                          </span>
+                        )}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
               </Card>
             </div>
 

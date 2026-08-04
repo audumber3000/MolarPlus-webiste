@@ -37,6 +37,49 @@ export const SITE = {
   appUrl: process.env.NEXT_PUBLIC_APP_URL ?? "https://app.syrupdesk.com",
 } as const;
 
+/**
+ * Public profile URLs. These have to be the *public* canonical form,
+ * not whatever the admin console shows: a studio.youtube.com link is
+ * the channel dashboard and is unreachable for everyone but us.
+ *
+ * They are listed once here because the same list feeds the footer,
+ * the contact page and — the reason exactness matters — the `sameAs`
+ * array in the Organization JSON-LD, which is how a search engine ties
+ * these accounts to the SyrupDesk entity rather than treating them as
+ * four unrelated pages. A wrong URL there is a broken claim.
+ *
+ * Order is B2B-first: LinkedIn is where a distributor or a chain owner
+ * checks whether we are a real company.
+ */
+export const SOCIAL = [
+  {
+    name: "LinkedIn",
+    handle: "SyrupDesk",
+    /** Vanity slug, not the numeric id it replaced: it carries the
+     *  brand name in the URL and is what LinkedIn itself now treats as
+     *  canonical. The old /company/135504007 still redirects here. */
+    href: "https://www.linkedin.com/company/syrupdesk",
+  },
+  {
+    name: "Instagram",
+    handle: "@syrupdesk_pharma",
+    href: "https://www.instagram.com/syrupdesk_pharma/",
+  },
+  {
+    name: "Facebook",
+    handle: "SyrupDesk",
+    href: "https://www.facebook.com/profile.php?id=61592813761746",
+  },
+  {
+    name: "YouTube",
+    handle: "syrupdesk",
+    /** Channel id, not an @handle: the id survives a handle rename. */
+    href: "https://www.youtube.com/channel/UCzoAFiYpiIfziNUm4_vjfHQ",
+  },
+] as const;
+
+export type SocialName = (typeof SOCIAL)[number]["name"];
+
 /** Single-line address for display. */
 export const ADDRESS_LINE = `${SITE.address.street}, ${SITE.address.city}, ${SITE.address.state} ${SITE.address.postalCode}`;
 

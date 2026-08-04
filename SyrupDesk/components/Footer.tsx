@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Logo } from "./Logo";
 import { Container } from "./ui/Section";
+import { SocialLinks } from "./SocialLinks";
 import { SITE, whatsappLink } from "@/lib/site";
 
 const COLUMNS = [
@@ -48,6 +49,11 @@ export function Footer() {
             >
               Talk to us on WhatsApp
             </a>
+            {/* Sitewide, so every page carries the outbound profile
+                links that back the Organization `sameAs`. */}
+            <nav aria-label="SyrupDesk on social media" className="mt-4">
+              <SocialLinks className="-ml-3" />
+            </nav>
           </div>
 
           {COLUMNS.map((column) => (

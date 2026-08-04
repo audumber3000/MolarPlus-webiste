@@ -1,4 +1,4 @@
-import { SITE } from "./site";
+import { SITE, SOCIAL } from "./site";
 
 /**
  * Structured data builders. Rendered via <JsonLd /> which escapes
@@ -13,6 +13,11 @@ export function organizationSchema() {
     url: SITE.url,
     description: SITE.description,
     parentOrganization: { "@type": "Organization", name: SITE.parent },
+    /** Official profiles. This is the machine-readable claim that all
+     *  five properties are the same organisation — it is what feeds a
+     *  knowledge panel and stops a scraped clone outranking us on our
+     *  own brand name. */
+    sameAs: SOCIAL.map((profile) => profile.href),
     areaServed: { "@type": "Country", name: "India" },
     address: {
       "@type": "PostalAddress",
