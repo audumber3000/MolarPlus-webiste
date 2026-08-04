@@ -1,3 +1,5 @@
+import { AWARDS } from '@/lib/social-proof';
+
 const trustedClinics = [
   { name: 'Dr Bharat Agravat', logo: '/images/dental_clinics_nobg/dr-bharat-agravat.png' },
   { name: 'Smile India Dental Clinic', logo: '/images/dental_clinics_nobg/smile-india.png' },
@@ -37,6 +39,39 @@ export default function ClinicLogoMarquee() {
           ))}
         </div>
       </div>
+
+      {/* Review-platform awards sit under the clinic logos rather than
+          in a section of their own: both answer the same question, and
+          two separate trust bands compete instead of compounding.
+          Renders nothing until AWARDS holds a real, earned badge. */}
+      {AWARDS.length > 0 && (
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <p className="text-center text-[13px] font-semibold text-gray-500 tracking-wide mt-14 mb-8">
+            Recognised on the software review platforms buyers check
+          </p>
+          <ul className="flex flex-wrap items-center justify-center gap-x-10 gap-y-8">
+            {AWARDS.map((award) => (
+              <li key={`${award.platform}-${award.award}-${award.year}`}>
+                <a
+                  href={award.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex transition-opacity hover:opacity-80"
+                >
+                  <img
+                    src={award.src}
+                    // Spelled out, not "award badge" — this is the only
+                    // text a screen reader or an image search gets.
+                    alt={`${award.platform} ${award.award} ${award.year} — MolarPlus`}
+                    className="h-24 w-auto"
+                    loading="lazy"
+                  />
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
     </section>
   );
 }

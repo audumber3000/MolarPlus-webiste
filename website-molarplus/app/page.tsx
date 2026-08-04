@@ -42,10 +42,15 @@ const jsonLd = {
   parentOrganization: { '@type': 'Organization', name: 'Clino Health' },
   description:
     'MolarPlus is a suite of dental software products by Clino Health, for dental clinics and dental laboratories.',
+  // Must stay identical to the sameAs on /clinic — a profile claimed on
+  // one page and dropped on another reads as two weaker claims instead
+  // of one strong one. Same five accounts as the footer.
   sameAs: [
     'https://www.instagram.com/molarplus_dental/',
-    'https://www.linkedin.com/company/molarplus/',
+    'https://www.facebook.com/profile.php?id=61575363063274',
     'https://x.com/Molarplus_',
+    'https://www.linkedin.com/company/molarplus/',
+    'https://www.youtube.com/@MolarPlus',
   ],
 };
 
