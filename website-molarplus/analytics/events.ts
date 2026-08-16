@@ -35,6 +35,17 @@ export const MKT_EVENTS = {
   videoPlayed: 'mkt_video_played',
   /** An FAQ item was expanded. props: { question } */
   faqExpanded: 'mkt_faq_expanded',
+  /** A blog post page was opened. props: { slug, title, category } */
+  blogPostViewed: 'mkt_blog_post_viewed',
+  /**
+   * A blog post was actually *read* (scrolled past READ_THRESHOLD), not just
+   * opened. Fires at most once per post view. props: { slug, category }
+   *
+   * This is the signal that separates "content brought a visitor" from
+   * "content brought a bounce" — without it, a post with 10k bounced
+   * pageviews looks identical to one that genuinely engaged 10k readers.
+   */
+  blogPostRead: 'mkt_blog_post_read',
 } as const;
 
 export type MktEvent = (typeof MKT_EVENTS)[keyof typeof MKT_EVENTS];
@@ -51,4 +62,36 @@ export type CtaLocation =
   | 'final_cta'
   | 'path_solo'
   | 'path_pro'
-  | 'path_enterprise';
+  | 'path_enterprise'
+  // Added for the acquisition funnel: every server-rendered page that hands
+  // off to the app now reports its own location.
+  | 'umbrella_final'
+  | 'pricing_page'
+  | 'features'
+  | 'platform'
+  | 'about'
+  | 'lab_hero'
+  | 'lab_final'
+  | 'blog_post';
+
+/** Which product a signup hand-off is for, so the funnel can be split. */
+export type Product = 'clinic' | 'lab';
+
+/**
+ * How a visitor first arrived, recorded ONCE per person as a set-once person
+ * property (see `captureFirstTouch`). Because person properties live server-side
+ * and survive the `identify()` merge at signup, these answer the question
+ * "did people who read the blog eventually sign up?" — the blog visit and the
+ * signup happen on different domains, days apart, so a super-property or
+ * sessionStorage would not survive the journey.
+ */
+export type FirstTouchType = 'blog' | 'clinic' | 'lab' | 'umbrella' | 'other';
+
+/** Classify a landing pathname into a `FirstTouchType`. */
+export function firstTouchTypeFor(pathname: string): FirstTouchType {
+  if (pathname.startsWith('/blog')) return 'blog';
+  if (pathname.startsWith('/clinic')) return 'clinic';
+  if (pathname.startsWith('/lab')) return 'lab';
+  if (pathname === '/') return 'umbrella';
+  return 'other';
+}

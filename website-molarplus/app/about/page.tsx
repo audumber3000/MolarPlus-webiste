@@ -9,6 +9,8 @@ import {
 } from 'lucide-react';
 import { SITE_URL, colors } from '@/lib/seo';
 import { APP_URL } from '@/lib/constants';
+import { COMPANY_STATS } from '@/lib/stats';
+import { SignupLink } from '@/components/TrackedCTA';
 
 export const metadata: Metadata = {
   title: 'About MolarPlus: Built for Dentists, Free for Small Clinics',
@@ -34,11 +36,6 @@ const aboutJsonLd = {
   publisher: { '@type': 'Organization', name: 'MolarPlus', url: SITE_URL },
 };
 
-const stats = [
-  { value: '180+', label: 'Clinics running on MolarPlus' },
-  { value: '35,000+', label: 'Patients managed' },
-  { value: '82+', label: 'Cities, from metros to small towns' },
-];
 
 const principles = [
   {
@@ -124,7 +121,7 @@ export default function AboutPage() {
                   <span className="font-bold text-[#1a1c4b]">One clinic?</span> Free, forever. Every
                   feature, no card. <span className="font-bold text-[#1a1c4b]">Multiple branches?</span>{' '}
                   That’s the only thing you pay for.{' '}
-                  <Link href="/clinic/pricing" className="font-semibold underline decoration-gray-300 hover:decoration-current" style={{ color: colors.primary }}>
+                  <Link href="/pricing" className="font-semibold underline decoration-gray-300 hover:decoration-current" style={{ color: colors.primary }}>
                     See pricing
                   </Link>
                   .
@@ -139,12 +136,16 @@ export default function AboutPage() {
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-gray-200 rounded-2xl overflow-hidden border border-gray-200">
-            {stats.map((stat) => (
+            {COMPANY_STATS.map((stat) => (
               <div key={stat.label} className="bg-white p-8 lg:p-10 text-center md:text-left">
                 <div className="text-4xl md:text-5xl font-extrabold text-[#1a1c4b] tracking-tight">
                   {stat.value}
                 </div>
-                <div className="mt-2 text-sm font-medium text-gray-500">{stat.label}</div>
+                {/* This layout has room, so it takes the fuller phrasing where
+                    one exists; the compact trust strip uses the short label. */}
+                <div className="mt-2 text-sm font-medium text-gray-500">
+                  {stat.longLabel ?? stat.label}
+                </div>
               </div>
             ))}
           </div>
@@ -224,13 +225,14 @@ export default function AboutPage() {
             multiple branches, and let us know what would make your day easier.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
+            <SignupLink
               href={`${APP_URL}/signup`}
+              location="about"
               className="inline-flex items-center justify-center gap-2 bg-white px-8 py-4 rounded-xl font-semibold hover:bg-gray-50 transition-colors"
               style={{ color: colors.primary }}
             >
               Start Free <ArrowRight className="w-5 h-5" />
-            </a>
+            </SignupLink>
             <Link
               href="/contact"
               className="inline-flex items-center justify-center gap-2 border-2 border-white/40 text-white px-8 py-4 rounded-xl font-semibold hover:bg-white/10 transition-colors"

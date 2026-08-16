@@ -1,4 +1,5 @@
 import { AWARDS } from '@/lib/social-proof';
+import { COMPANY_STATS } from '@/lib/stats';
 
 const trustedClinics = [
   { name: 'Dr Bharat Agravat', logo: '/images/dental_clinics_nobg/dr-bharat-agravat.png' },
@@ -19,6 +20,25 @@ export default function ClinicLogoMarquee() {
         <p className="text-center text-[13px] font-semibold text-gray-500 tracking-wide mb-10">
           Trusted by leading dental clinics
         </p>
+
+        {/*
+          The numbers sit with the logos rather than in a headline band of their
+          own: both answer the same question — "who else uses this?" — and they
+          land harder together than as two separate trust sections competing a
+          screen apart. Set at body size on purpose; oversized figures read as
+          decoration, and a reader scanning for reassurance takes a modest,
+          specific number more seriously than a huge one.
+        */}
+        <ul className="mb-12 flex flex-wrap items-baseline justify-center gap-x-10 gap-y-3 sm:gap-x-16">
+          {COMPANY_STATS.map((stat) => (
+            <li key={stat.label} className="flex items-baseline gap-2">
+              <span className="text-lg font-bold tracking-tight text-[#1a1c4b] tabular-nums">
+                {stat.value}
+              </span>
+              <span className="text-[13px] text-gray-500">{stat.label}</span>
+            </li>
+          ))}
+        </ul>
       </div>
       <div className="relative">
         <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 sm:w-28 bg-gradient-to-r from-white to-transparent" />

@@ -116,7 +116,7 @@ export default function PrivacyPolicyPage() {
               <p className="mt-2">
                 <strong>Email:</strong> support@molarplus.com
                 <br />
-                <strong>Phone:</strong> +91 8766742410
+                <strong>Phone:</strong> +91 9594078777
                 <br />
                 <strong>Address:</strong> Sky Loft, opposite Golf Course, Shastrinagar, Yerawada, Pune, Maharashtra 411006, India
               </p>

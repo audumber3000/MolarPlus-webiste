@@ -19,6 +19,7 @@ import { Suspense } from 'react';
 import posthog from 'posthog-js';
 import { PostHogProvider as PHProvider } from 'posthog-js/react';
 import { MARKETING_SOURCE } from './events';
+import { captureFirstTouch } from './track';
 
 const POSTHOG_KEY = process.env.NEXT_PUBLIC_POSTHOG_KEY;
 const POSTHOG_HOST =
@@ -58,6 +59,9 @@ function PostHogPageView() {
     const qs = searchParams?.toString();
     if (qs) url += `?${qs}`;
     posthog.capture('$pageview', { $current_url: url });
+    // First-touch attribution: no-ops after the first call, and set-once on the
+    // server, so only the visitor's very first landing page is ever recorded.
+    captureFirstTouch(pathname);
   }, [pathname, searchParams]);
 
   return null;

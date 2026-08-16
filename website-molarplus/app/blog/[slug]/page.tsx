@@ -10,9 +10,12 @@ import {
   imageUrl,
   readingTimeFromBlocks,
   extractHeadings,
+  splitBodyForCta,
 } from '@/lib/sanity';
 import { TOC } from '@/components/blog/TOC';
 import PortableContent from '@/components/blog/PortableContent';
+import BlogTracker from '@/components/BlogTracker';
+import BlogCTA from '@/components/blog/BlogCTA';
 
 export const revalidate = 60;
 
@@ -65,6 +68,7 @@ export default async function BlogPostPage({ params }: Props) {
 
   const headings = extractHeadings(post.body);
   const readingTime = readingTimeFromBlocks(post.body);
+  const ctaSplit = splitBodyForCta(post.body);
   const cover = imageUrl(post.coverImage, 1600, 900);
   const authorName = post.author?.name || 'MolarPlus Team';
 
@@ -103,6 +107,7 @@ export default async function BlogPostPage({ params }: Props) {
 
   return (
     <div className="min-h-screen bg-white">
+      <BlogTracker slug={slug} title={post.title} category={post.category} />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(blogPostingLd) }}
@@ -177,7 +182,16 @@ export default async function BlogPostPage({ params }: Props) {
             </div>
 
             <article className="prose prose-lg lg:prose-xl prose-blue max-w-none prose-headings:text-[#1a1c4b] prose-headings:font-extrabold prose-p:text-gray-600 prose-p:leading-relaxed prose-a:text-blue-600 prose-img:rounded-3xl prose-code:text-blue-600 prose-code:bg-blue-50 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded-md prose-code:before:content-none prose-code:after:content-none">
-              <PortableContent value={post.body} />
+              <PortableContent value={ctaSplit.before} />
+              {ctaSplit.placement === 'inline' && (
+                <>
+                  <BlogCTA />
+                  <PortableContent value={ctaSplit.after} />
+                </>
+              )}
+              {/* Unsplittable single-block posts still get a way into the
+                  product, just at the end. See splitBodyForCta. */}
+              {ctaSplit.placement === 'end' && <BlogCTA />}
             </article>
 
             {post.faqs && post.faqs.length > 0 && (

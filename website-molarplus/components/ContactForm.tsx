@@ -16,8 +16,10 @@ export default function ContactForm({ colors }: Props) {
     practice: '',
     message: '',
   });
+  const [company, setCompany] = useState(''); // honeypot — see the hidden field below
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -25,14 +27,41 @@ export default function ContactForm({ colors }: Props) {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // form_id only — never send raw email/phone as event properties.
-    trackContactSubmitted('homepage_contact');
     setIsSubmitting(true);
-    setTimeout(() => {
+    setErrorMessage('');
+    setSubmitStatus('');
+
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ...formData, company }),
+      });
+
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        // Say what went wrong and what to do instead. The visitor has already
+        // written the message; losing it without telling them is the failure
+        // mode this form used to have on every single submission.
+        setErrorMessage(
+          data?.error ||
+            'We could not send your message. Please email us at support@molarplus.com.',
+        );
+        return;
+      }
+
+      // Only counted once the message genuinely left. form_id only — never send
+      // raw email/phone as event properties.
+      trackContactSubmitted('homepage_contact');
       setSubmitStatus("Thank you for your message! We'll get back to you within 24 hours.");
       setFormData({ name: '', email: '', phone: '', practice: '', message: '' });
+    } catch {
+      setErrorMessage(
+        'We could not reach our server. Please check your connection, or email us at support@molarplus.com.',
+      );
+    } finally {
       setIsSubmitting(false);
-    }, 1000);
+    }
   };
 
   return (
@@ -99,8 +128,33 @@ export default function ContactForm({ colors }: Props) {
           placeholder="Tell us about your practice and how we can help..."
         />
       </div>
+      {/*
+        Honeypot. Hidden from people, visible to bots that fill every field.
+        Not `display:none` — some bots skip those — and tabindex/autocomplete
+        off so keyboard and password managers ignore it.
+      */}
+      <div className="absolute left-[-9999px]" aria-hidden="true">
+        <label htmlFor="company">Company</label>
+        <input
+          type="text"
+          id="company"
+          name="company"
+          tabIndex={-1}
+          autoComplete="off"
+          value={company}
+          onChange={(e) => setCompany(e.target.value)}
+        />
+      </div>
+
       {submitStatus && (
-        <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg text-green-700">{submitStatus}</div>
+        <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg text-green-700" role="status">
+          {submitStatus}
+        </div>
+      )}
+      {errorMessage && (
+        <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg text-red-700" role="alert">
+          {errorMessage}
+        </div>
       )}
       <button
         type="submit"

@@ -33,16 +33,29 @@ There are no automated tests. Verify changes with `npx tsc --noEmit` + `npm run 
 
 Next.js 15 App Router, TypeScript, Tailwind. Deployed on Vercel as a **server/ISR app** (the blog uses `revalidate`, OG images render on demand, and `next.config.js` defines `redirects()` — all incompatible with static export).
 
-### Umbrella product routing (path-based)
-MolarPlus is an umbrella brand (by Clino Health) with two products, routed by path on one domain:
-- `/` — umbrella product-chooser homepage (`app/page.tsx`)
-- `/clinic/*` — MolarPlus Clinic (the main product): `features`, `pricing`, `platform`, `find-dentist`. Homepage body is `components/HomeClient.tsx`.
-- `/lab` — MolarPlus Lab
-- Shared across products: `/about`, `/blog`, `/contact`, legal pages.
+### Routing: Clinic is the site, Lab is one page
+MolarPlus is by Clino Health. **MolarPlus Clinic is the primary product and owns the
+root**; MolarPlus Lab is a single secondary page.
 
-There are **no 301 redirects** from the old flat URLs (`/features`, etc.) to `/clinic/*` — this was a deliberate break-and-start-fresh. Don't add them.
+- `/` — the Clinic homepage (`app/page.tsx`, body in `components/HomeClient.tsx`). It also
+  renders `LabHandoff`, the Lab teaser, passed into `HomeClient` as the `labSection` slot.
+- `/pricing`, `/features`, `/platform`, `/find-dentist` — Clinic pages, at the **root**.
+- `/lab` — MolarPlus Lab, including its product screenshots.
+- Shared: `/about`, `/blog`, `/contact`, legal pages.
 
-`components/Nav.tsx` is **context-aware**: it calls `usePathname()`, detects `umbrella | clinic | lab`, and swaps the product chip, nav links, and CTA destinations accordingly.
+**This replaced two earlier structures**, so ignore any older description:
+1. `/` was once an umbrella product-chooser. It asked every visitor to pick Clinic or Lab
+   before seeing anything, which most could not answer. Clinic took over `/`.
+2. Those four pages once lived under `/clinic/*`. That namespace separated Clinic from Lab
+   back when `/` was a chooser; once Clinic became the whole site it separated nothing.
+
+`next.config.js` therefore **does** redirect `/clinic` → `/` and `/clinic/:path*` →
+`/:path*`, permanently. An older note in this file said never to redirect to the flat
+URLs — that described the first migration and is now obsolete. Several published blog posts
+link to `/features` and `/pricing`, and these redirects are what keep them resolving.
+
+`components/Nav.tsx` is **context-aware** but now has only two contexts: `clinic | lab`.
+Anything not under `/lab` is clinic. The old `umbrella` context is gone.
 
 ### Shared constants (never hardcode these)
 - `lib/constants.ts` — `APP_URL` (app.molarplus.com), `LAB_URL` (lab.molarplus.com). Login/signup CTAs point at `${APP_URL}/login`, `${LAB_URL}/login`, etc.

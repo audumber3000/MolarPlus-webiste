@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { Smartphone, Laptop, Tablet, Cloud, Shield, CheckCircle, ArrowRight } from 'lucide-react';
 import { SITE_URL, colors } from '@/lib/seo';
 import { APP_URL } from '@/lib/constants';
+import { SignupLink } from '@/components/TrackedCTA';
 
 export const metadata: Metadata = {
   title: 'Platform - Multi-Device Dental Clinic Management Software | MolarPlus',
@@ -148,12 +149,13 @@ export default function PlatformPage() {
           <h2 className="text-3xl font-bold text-white mb-4">Ready to Experience Multi-Platform Practice Management?</h2>
           <p className="text-xl text-blue-100 mb-8">Start free and access MolarPlus on all your devices</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
+            <SignupLink
               href={`${APP_URL}/signup`}
+              location="platform"
               className="inline-flex items-center justify-center gap-2 bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-50 transition-colors"
             >
               Start free <ArrowRight className="w-5 h-5" />
-            </a>
+            </SignupLink>
             <Link
               href="/contact"
               className="inline-flex items-center justify-center gap-2 border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition-colors"

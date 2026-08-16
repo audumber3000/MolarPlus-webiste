@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { CheckCircle, ArrowRight, Building2, GitBranch, BarChart3, Headphones } from 'lucide-react';
 import { SITE_URL, colors } from '@/lib/seo';
 import { APP_URL } from '@/lib/constants';
+import { SignupLink } from '@/components/TrackedCTA';
 import PricingPlans from '@/components/PricingPlans';
 
 export const metadata: Metadata = {
@@ -277,12 +278,13 @@ export default function PricingPage() {
             <Link href="/contact" className="text-blue-600 hover:underline font-medium">talk to us</Link> if you have questions.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
+            <SignupLink
               href={`${APP_URL}/signup`}
+              location="pricing_page"
               className="inline-flex items-center justify-center gap-2 bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors"
             >
               Start free <ArrowRight className="w-5 h-5" />
-            </a>
+            </SignupLink>
             <Link
               href="/contact"
               className="inline-flex items-center justify-center gap-2 border-2 border-gray-300 text-gray-800 px-8 py-3 rounded-lg font-semibold hover:bg-gray-50 transition-colors"

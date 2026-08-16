@@ -50,7 +50,7 @@ export default function Footer() {
               <h3 className="text-white font-bold text-lg mb-6">Products</h3>
               <ul className="space-y-4 text-blue-100/60 text-sm font-semibold">
                 <li>
-                  <Link href="/clinic" className="hover:text-white transition-colors">
+                  <Link href="/" className="hover:text-white transition-colors">
                     MolarPlus Clinic
                   </Link>
                 </li>
@@ -60,12 +60,12 @@ export default function Footer() {
                   </Link>
                 </li>
                 <li className="pt-4">
-                  <Link href="/clinic/features" className="hover:text-white transition-colors">
+                  <Link href="/features" className="hover:text-white transition-colors">
                     Clinic Features
                   </Link>
                 </li>
                 <li>
-                  <Link href="/clinic/pricing" className="hover:text-white transition-colors">
+                  <Link href="/pricing" className="hover:text-white transition-colors">
                     Clinic Pricing
                   </Link>
                 </li>
@@ -79,7 +79,7 @@ export default function Footer() {
                 <li><Link href="/about" className="hover:text-white transition-colors">About</Link></li>
                 <li><Link href="/blog" className="hover:text-white transition-colors">Blog</Link></li>
                 <li><Link href="/contact" className="hover:text-white transition-colors">Contact</Link></li>
-                <li><Link href="/clinic/find-dentist" className="hover:text-white transition-colors">Find a Dentist</Link></li>
+                <li><Link href="/find-dentist" className="hover:text-white transition-colors">Find a Dentist</Link></li>
                 <li className="pt-4">
                   <Link href="/privacy-policy" className="hover:text-white transition-colors text-xs">Privacy</Link>
                   <span className="text-white/20 mx-2 text-xs">·</span>

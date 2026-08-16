@@ -16,6 +16,9 @@ const config: Config = {
       },
       animation: {
         marquee: 'marquee 40s linear infinite',
+        // Reviews have to be readable as they pass, not just recognisable the
+        // way a logo is, so the review wall runs at roughly half speed.
+        'marquee-slow': 'marquee 75s linear infinite',
       },
     },
   },

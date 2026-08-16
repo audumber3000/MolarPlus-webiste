@@ -15,6 +15,7 @@ import {
 } from 'lucide-react';
 import { SITE_URL, colors } from '@/lib/seo';
 import { APP_URL } from '@/lib/constants';
+import { SignupLink } from '@/components/TrackedCTA';
 
 export const metadata: Metadata = {
   title: 'Features - Best Dental Clinic Management Software | MolarPlus',
@@ -211,13 +212,14 @@ export default function FeaturesPage() {
             <p className="text-xl text-gray-600 mb-8">
               Everything you need to run your dental practice efficiently, all in one comprehensive platform
             </p>
-            <a
+            <SignupLink
               href={`${APP_URL}/signup`}
+              location="features"
               className="inline-flex items-center gap-2 px-8 py-4 rounded-lg text-lg font-medium text-white transition-colors hover:opacity-90"
               style={{ backgroundColor: colors.primary }}
             >
               Start free <ArrowRight className="w-5 h-5" />
-            </a>
+            </SignupLink>
           </div>
         </div>
       </section>
@@ -299,16 +301,17 @@ export default function FeaturesPage() {
             Ready to Experience Better Dental Practice Management?
           </h2>
           <p className="text-xl text-white/90 mb-8">
-            Join 180+ dental practices using MolarPlus, the best dental software for clinics across India
+            Join 500+ dental practices using MolarPlus, the best dental software for clinics across India
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
+            <SignupLink
               href={`${APP_URL}/signup`}
+              location="features"
               className="inline-flex items-center justify-center gap-2 bg-white px-8 py-4 rounded-lg font-medium transition-colors hover:bg-gray-100"
               style={{ color: colors.primary }}
             >
               Start free <ArrowRight className="w-5 h-5" />
-            </a>
+            </SignupLink>
             <Link
               href="/contact"
               className="inline-flex items-center justify-center gap-2 border-2 border-white text-white px-8 py-4 rounded-lg font-medium hover:bg-white hover:text-gray-900 transition-colors"

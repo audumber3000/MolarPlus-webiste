@@ -48,22 +48,77 @@ once the app calls `identify(...)` at signup/login. **No `distinct_id` link-pass
 is needed**, and no app-side change is required. This site never calls `identify`
 for anonymous visitors — the app owns identify.
 
-This unlocks the full acquisition funnel in PostHog:
-`$pageview` (marketing) → `mkt_signup_started` → `signup_completed` (app) →
-`onboarding_completed` → first patient.
+## The acquisition funnel
+
+The live funnel definition, in order. Steps 3–6 fire in the **app** repo
+(`xpress-scan/frontend`), which registers `source: 'app'` as its counterpart
+super-property.
+
+| # | Step | Event | Fired by |
+|---|---|---|---|
+| 1 | Landed | `$pageview` | marketing |
+| 2 | Clicked to app | `mkt_signup_started` | marketing |
+| 3 | Reached signup | `$pageview` on `/signup` | app (`capture_pageview: true`) |
+| 4 | Account created | `signup_completed` | app — `Signup.jsx`, `googleRedirectAuth.js` |
+| 5 | Onboarded | `onboarding_completed` | app — `ClinicOnboarding.jsx` |
+| 6 | Activated | `patient_created` | app — 4 manual paths + import |
+
+Step 3 exists deliberately. `mkt_signup_started` is a *click*, and a browser can
+drop an in-flight request while navigating cross-domain, so treat step 2 as
+diagnostic ("which CTA earns clicks") and step 3 as the authoritative one. It also
+separates a broken/slow hand-off (2→3 drop) from an abandoned signup form (3→4).
+
+**Do not add `mkt_pricing_viewed` as a funnel step.** Every step in a PostHog
+funnel is mandatory, so that would count everyone who signed up without opening
+pricing as a drop-off. Use it as a *filter* on the funnel instead.
+
+## Content attribution (where visitors come from)
+
+`captureFirstTouch()` in `track.ts` runs on the first `$pageview` and records
+**set-once person properties**:
+
+- `first_touch_type` — `blog | clinic | lab | umbrella | other`
+- `first_touch_blog_slug` — which post, when the entry was a blog page
+
+Person properties are stored server-side and survive the app's `identify()` merge
+at signup, so `signup_completed` can be broken down by `first_touch_type` even
+though the property was set days earlier on a different domain. A super-property
+or `sessionStorage` value would not survive that journey. Set-once means the first
+landing page wins forever, which is what first-touch attribution means.
+
+PostHog already captures `$initial_pathname`, `$initial_referrer` and
+`$initial_utm_*` automatically — we add only the semantic bucket and the slug,
+which are far easier to break down by than raw URL strings.
 
 ## Event catalog (wired)
 
 | Event | Where |
 |---|---|
 | `$pageview` / autocapture | automatic, all pages |
-| `mkt_signup_started` `{ location, destination }` | Nav login/signup (clinic + lab), hero CTAs, pricing CTAs |
+| `mkt_signup_started` `{ location, destination, product }` | **every** app hand-off: Nav, hero, pricing, all server-rendered pages via `SignupLink`, and the in-article blog CTA (`location: 'blog_post'`) |
 | `mkt_cta_clicked` `{ location, label }` | Nav "Get Started" (umbrella) |
 | `mkt_demo_requested` `{ location }` | homepage "Book a demo" |
 | `mkt_contact_submitted` `{ form_id }` | homepage contact form (no raw PII) |
 | `mkt_pricing_viewed` | pricing plans mount |
+| `mkt_blog_post_viewed` `{ slug, title, category }` | blog post page mount |
+| `mkt_blog_post_read` `{ slug, category }` | blog post scrolled ≥50% after ≥10s (or 30s dwell on unscrollable posts) |
 | `mkt_app_store_clicked` / `mkt_play_store_clicked` `{ product }` | Apple / Google badges |
 | `mkt_desktop_download_clicked` `{ platform }` | Windows / Mac badges |
 | `mkt_faq_expanded` `{ question }` | homepage FAQ accordion (open only) |
 
 `mkt_video_played` is catalogued for future use.
+
+## Adding a tracked CTA to a Server Component
+
+Most pages here are Server Components and cannot pass `onClick`. Use
+`components/TrackedCTA.tsx`:
+
+```tsx
+<SignupLink href={`${APP_URL}/signup`} location="features" className="…">
+  Start free
+</SignupLink>
+```
+
+Add any new `location` value to the `CtaLocation` union in `events.ts` — it is a
+closed union, so `npx tsc --noEmit` will fail until you do. That is intentional:
+it stops untyped location strings from drifting into the funnel.

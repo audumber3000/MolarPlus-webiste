@@ -10,11 +10,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const staticRoutes = [
     { url: '', changeFrequency: 'daily', priority: 1.0 },
-    { url: '/clinic', changeFrequency: 'daily', priority: 0.95 },
-    { url: '/clinic/features', changeFrequency: 'weekly', priority: 0.9 },
-    { url: '/clinic/pricing', changeFrequency: 'weekly', priority: 0.9 },
-    { url: '/clinic/find-dentist', changeFrequency: 'daily', priority: 0.9 },
-    { url: '/clinic/platform', changeFrequency: 'monthly', priority: 0.7 },
+    { url: '/features', changeFrequency: 'weekly', priority: 0.9 },
+    { url: '/pricing', changeFrequency: 'weekly', priority: 0.9 },
+    { url: '/find-dentist', changeFrequency: 'daily', priority: 0.9 },
+    { url: '/platform', changeFrequency: 'monthly', priority: 0.7 },
     { url: '/lab', changeFrequency: 'monthly', priority: 0.85 },
     { url: '/blog', changeFrequency: 'daily', priority: 0.85 },
     { url: '/about', changeFrequency: 'monthly', priority: 0.7 },

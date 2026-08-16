@@ -6,11 +6,16 @@ import { Menu, X, ChevronDown, Stethoscope, FlaskConical, ArrowUpRight } from 'l
 import { useState } from 'react';
 import { colors } from '@/lib/seo';
 import { APP_URL, LAB_URL } from '@/lib/constants';
-import { trackSignupStarted, trackCtaClick } from '@/analytics/track';
+import { trackSignupStarted } from '@/analytics/track';
 
-type ProductContext = 'umbrella' | 'clinic' | 'lab';
+/**
+ * There is no longer an umbrella context: MolarPlus Clinic is the homepage and
+ * every shared page (about, blog, contact, legal) belongs to it. Only the Lab
+ * page switches the nav to the other product.
+ */
+type ProductContext = 'clinic' | 'lab';
 
-const productLabels: Record<Exclude<ProductContext, 'umbrella'>, string> = {
+const productLabels: Record<ProductContext, string> = {
   clinic: 'Clinic',
   lab: 'Lab',
 };
@@ -21,7 +26,7 @@ const productItems = [
     Icon: Stethoscope,
     name: 'MolarPlus Clinic',
     desc: 'For dental practices',
-    href: '/clinic',
+    href: '/',
     live: true,
     soon: false,
   },
@@ -37,10 +42,8 @@ const productItems = [
 ];
 
 function detectContext(pathname: string | null): ProductContext {
-  if (!pathname) return 'umbrella';
-  if (pathname.startsWith('/clinic')) return 'clinic';
-  if (pathname.startsWith('/lab')) return 'lab';
-  return 'umbrella';
+  if (pathname?.startsWith('/lab')) return 'lab';
+  return 'clinic';
 }
 
 function ProductsDropdown({ activeKey }: { activeKey: ProductContext }) {
@@ -126,13 +129,11 @@ export default function Nav() {
                 <span className="text-[#245501] ml-1">Health</span>
               </div>
             </Link>
-            {context !== 'umbrella' && (
-              <div className="hidden sm:flex items-center gap-2 pl-3 ml-1 border-l border-gray-200">
-                <span className="text-xs font-bold text-gray-500 uppercase tracking-[0.15em]">
-                  {productLabels[context]}
-                </span>
-              </div>
-            )}
+            <div className="hidden sm:flex items-center gap-2 pl-3 ml-1 border-l border-gray-200">
+              <span className="text-xs font-bold text-gray-500 uppercase tracking-[0.15em]">
+                {productLabels[context]}
+              </span>
+            </div>
           </div>
 
           {/* Desktop links */}
@@ -141,13 +142,13 @@ export default function Nav() {
 
             {context === 'clinic' && (
               <>
-                <Link href="/clinic/features" className={navLinkClass}>
+                <Link href="/features" className={navLinkClass}>
                   Features
                 </Link>
-                <Link href="/clinic/pricing" className={navLinkClass}>
+                <Link href="/pricing" className={navLinkClass}>
                   Pricing
                 </Link>
-                <Link href="/clinic/platform" className={navLinkClass}>
+                <Link href="/platform" className={navLinkClass}>
                   Platform
                 </Link>
               </>
@@ -169,7 +170,7 @@ export default function Nav() {
             {context === 'clinic' && (
               <>
                 <Link
-                  href="/clinic/find-dentist"
+                  href="/find-dentist"
                   className="text-[13px] font-semibold text-gray-700 hover:text-[#2a276e] transition-colors px-3"
                 >
                   Find a Dentist
@@ -184,20 +185,10 @@ export default function Nav() {
                 </a>
               </>
             )}
-            {context === 'umbrella' && (
-              <Link
-                href="/clinic"
-                onClick={() => trackCtaClick('nav', 'Get Started')}
-                className="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-lg font-semibold text-white text-sm transition-all hover:opacity-90"
-                style={{ backgroundColor: colors.primary }}
-              >
-                Get Started
-              </Link>
-            )}
             {context === 'lab' && (
               <a
                 href={`${LAB_URL}/login`}
-                onClick={() => trackSignupStarted('nav', `${LAB_URL}/login`)}
+                onClick={() => trackSignupStarted('nav', `${LAB_URL}/login`, 'lab')}
                 className="inline-flex items-center px-5 py-2.5 rounded-lg font-semibold text-white text-sm transition-all hover:opacity-90"
                 style={{ backgroundColor: colors.primary }}
               >
@@ -273,28 +264,28 @@ export default function Nav() {
             {context === 'clinic' && (
               <>
                 <Link
-                  href="/clinic/features"
+                  href="/features"
                   className="block py-3 text-gray-700 font-medium"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   Features
                 </Link>
                 <Link
-                  href="/clinic/pricing"
+                  href="/pricing"
                   className="block py-3 text-gray-700 font-medium"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   Pricing
                 </Link>
                 <Link
-                  href="/clinic/platform"
+                  href="/platform"
                   className="block py-3 text-gray-700 font-medium"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   Platform
                 </Link>
                 <Link
-                  href="/clinic/find-dentist"
+                  href="/find-dentist"
                   className="block py-3 text-gray-700 font-medium"
                   onClick={() => setIsMenuOpen(false)}
                 >
@@ -339,26 +330,13 @@ export default function Nav() {
                   Login / Signup
                 </a>
               )}
-              {context === 'umbrella' && (
-                <Link
-                  href="/clinic"
-                  className="block text-center px-6 py-3 rounded-lg font-semibold text-white"
-                  style={{ backgroundColor: colors.primary }}
-                  onClick={() => {
-                    trackCtaClick('nav', 'Get Started');
-                    setIsMenuOpen(false);
-                  }}
-                >
-                  Get Started
-                </Link>
-              )}
               {context === 'lab' && (
                 <a
                   href={`${LAB_URL}/login`}
                   className="block text-center px-6 py-3 rounded-lg font-semibold text-white"
                   style={{ backgroundColor: colors.primary }}
                   onClick={() => {
-                    trackSignupStarted('nav', `${LAB_URL}/login`);
+                    trackSignupStarted('nav', `${LAB_URL}/login`, 'lab');
                     setIsMenuOpen(false);
                   }}
                 >

@@ -4,9 +4,7 @@ import { useState, useEffect } from 'react';
 import {
   ShieldCheck,
   ArrowRight,
-  ArrowUpRight,
   Check,
-  Star,
   Plus,
   Minus,
   Lock,
@@ -16,7 +14,6 @@ import {
   Globe2,
 } from 'lucide-react';
 import { colors } from '@/lib/seo';
-import Link from 'next/link';
 import ContactForm from '@/components/ContactForm';
 import ProductShowcase from '@/components/ProductShowcase';
 import ConvergeOne from '@/components/ConvergeOne';
@@ -30,15 +27,20 @@ import {
   trackDesktopDownload,
   trackFaqExpanded,
 } from '@/analytics/track';
-import type { CtaLocation } from '@/analytics/events';
+import { APP_URL } from '@/lib/constants';
+import HeroMedia from '@/components/hero/HeroMedia';
+import WhatsAppCta from '@/components/WhatsAppCta';
+import DoctorReviews from '@/components/DoctorReviews';
+import TrustBar from '@/components/TrustBar';
+import FeaturedOn from '@/components/FeaturedOn';
 
-const SIGNUP_URL = 'https://app.molarplus.com/signup';
+// Derived from APP_URL, never hardcoded — a hardcoded production URL would keep
+// pointing at prod when NEXT_PUBLIC_APP_URL is aimed at staging, silently
+// splitting the funnel across two environments.
+const SIGNUP_URL = `${APP_URL}/signup`;
 
-const stats = [
-  { value: '180+', label: 'Clinics running on MolarPlus' },
-  { value: '35,000+', label: 'Patients managed' },
-  { value: '82+', label: 'Cities, from metros to small towns' },
-];
+/** Hero background. The photo's fade must use this exact value — see the hero. */
+const HERO_TINT = '#f2f5fc';
 
 const mobileBenefits = [
   'Check tomorrow’s schedule from your phone',
@@ -48,82 +50,25 @@ const mobileBenefits = [
 ];
 
 /* Compliance & data-security trust wall. */
+/*
+ * Ordered for the buyer who is actually reading this: an Indian dental practice.
+ * DPDP is the law they are accountable under, so it leads; HIPAA and GDPR matter
+ * only to international clinics and share the last slot.
+ *
+ * These are alignment statements about how the product is built, NOT audited
+ * certifications. Do not add ISO 27001 or SOC 2 here unless a real audit has
+ * been completed — an unaudited claim in healthcare software ends deals at
+ * procurement. Same standard lib/social-proof.ts applies to award badges.
+ */
 const compliance = [
-  { Icon: ShieldCheck, name: 'HIPAA', note: 'Aligned with US health-data privacy rules' },
+  { Icon: ShieldCheck, name: 'DPDP Act 2023', note: 'Built for India’s Digital Personal Data Protection Act' },
   { Icon: FileCheck2, name: 'ABDM', note: 'Built for India’s Ayushman Bharat Digital Mission' },
-  { Icon: Globe2, name: 'GDPR', note: 'Respects EU data-protection rights' },
   { Icon: KeyRound, name: 'Encryption', note: 'Encrypted in transit and at rest' },
   { Icon: DatabaseBackup, name: 'Daily backups', note: 'Automatic, redundant and recoverable' },
   { Icon: Lock, name: 'Role-based access', note: 'Every action is permission-controlled' },
+  { Icon: Globe2, name: 'HIPAA & GDPR', note: 'Aligned with US and EU rules for international clinics' },
 ];
 
-/* Two plans: the whole product is free for one clinic; you only pay to run more than one branch. */
-const paths = [
-  {
-    tag: 'Single clinic',
-    title: 'Your whole clinic, free',
-    desc: 'Run everything on the free plan: patients, charting, treatment plans, prescriptions, appointments, billing, staff, inventory and WhatsApp reminders, on every device. Every feature, free forever.',
-    price: '₹0',
-    priceIntl: '$0',
-    period: 'forever',
-    points: ['One clinic, every feature included', 'Web, mobile & desktop apps', 'Free forever, no trial or card'],
-    cta: 'Start free',
-    href: SIGNUP_URL,
-    source: 'path_solo' as CtaLocation,
-    highlight: false,
-  },
-  {
-    tag: 'Multiple branches',
-    title: 'Run every location from one account',
-    desc: 'The only paid plan. When you grow past one clinic, Multi-Branch adds the tools to run several locations together, and everything in the free plan stays included.',
-    price: '₹899',
-    priceIntl: '$10',
-    period: '/month',
-    points: ['Add unlimited branches', 'Switch branches in one login', 'Cross-branch reporting & priority support'],
-    cta: 'Get Multi-Branch',
-    href: SIGNUP_URL,
-    source: 'path_pro',
-    highlight: true,
-  },
-];
-
-/* photo: drop a headshot in /public/images/doctors/ and set its path here; empty falls back to initials. */
-const testimonials = [
-  {
-    name: 'Dr. Rajesh Patel',
-    clinic: 'Patel Smiles Clinic',
-    location: 'Ahmedabad',
-    rating: 5,
-    photo: '',
-    text: 'The automated appointment reminders alone cut our no-shows by more than half. I used to have 4–5 empty slots every week. Now patients actually show up.',
-  },
-  {
-    name: 'Dr. Priya Sharma',
-    clinic: 'Sharma Dental Care',
-    location: 'New Delhi',
-    rating: 5,
-    photo: '',
-    text: 'Earlier I was managing everything on paper and WhatsApp. Now appointments, records and billing are all in one place. My staff loves it too.',
-  },
-  {
-    name: 'Dr. Anita Menon',
-    clinic: 'Menon Dental Studio',
-    location: 'Bangalore',
-    rating: 5,
-    photo: '',
-    text: "I can pull up any patient's full history in seconds: treatment notes, X-rays, payment history. Record-keeping that used to take hours.",
-  },
-];
-
-function initials(name: string) {
-  return name
-    .replace(/^Dr\.?\s+/i, '')
-    .split(/\s+/)
-    .map((w) => w[0])
-    .slice(0, 2)
-    .join('')
-    .toUpperCase();
-}
 
 const faqs = [
   {
@@ -140,7 +85,7 @@ const faqs = [
   },
   {
     q: 'How secure is my patient data?',
-    a: 'Patient data is encrypted, access-controlled by role, backed up automatically, and never sold. MolarPlus is built in line with HIPAA (US) and ABDM (India) health-data standards.',
+    a: 'Patient data is encrypted, access-controlled by role, backed up automatically, and never sold. MolarPlus is built in line with India’s DPDP Act 2023 and ABDM health-data standards, and with HIPAA and GDPR for clinics outside India.',
   },
   {
     q: 'When would I ever need to pay?',
@@ -148,7 +93,17 @@ const faqs = [
   },
 ];
 
-export default function HomeClient() {
+export default function HomeClient({
+  /**
+   * The MolarPlus Lab hand-off, injected by the page rather than imported here.
+   * Keeping it a slot means this client component does not pull the Lab data and
+   * showcase into its own bundle, and the page owns where the secondary product
+   * sits in the story.
+   */
+  labSection,
+}: {
+  labSection?: React.ReactNode;
+} = {}) {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [isIndia, setIsIndia] = useState(true);
 
@@ -164,135 +119,167 @@ export default function HomeClient() {
   return (
     <div className="flex flex-col min-h-screen bg-white">
       {/* ── Hero ── */}
-      <section className="relative pt-36 pb-20 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-blue-50/50 via-white to-white" />
+      {/*
+        Full-bleed split hero: copy left, photograph running to the right edge.
+
+        The photo is absolutely positioned rather than sitting in a grid cell so
+        it can reach the top, bottom and right edges of the viewport. A gradient
+        in the SAME tint as the section background is laid over its left side, so
+        the image dissolves into the copy instead of ending on a hard vertical
+        seam. That gradient colour must stay identical to HERO_TINT — if the two
+        drift apart the seam reappears as a faint stripe.
+      */}
+      <section className="relative overflow-hidden" style={{ backgroundColor: HERO_TINT }}>
         <div
-          className="absolute inset-x-0 top-0 h-[700px] opacity-[0.04]"
+          className="absolute inset-0 opacity-[0.04]"
           style={{
             backgroundImage: 'radial-gradient(circle at 1px 1px, #2a276e 1px, transparent 0)',
             backgroundSize: '32px 32px',
           }}
         />
 
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative text-center">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[68px] font-extrabold text-[#1a1c4b] tracking-tight leading-[1.04]">
-            Stop running your dental clinic on
-            <br className="hidden sm:block" />{' '}
-            <span className="line-through decoration-2 decoration-[#2a276e]/50 text-gray-400">
-              paper and Excel sheets
-            </span>
-            .
-          </h1>
+        {/* Desktop: photograph bleeding off the right edge. */}
+        <div className="absolute inset-y-0 right-0 hidden w-[48%] lg:block">
+          <HeroMedia
+            src="/hero-clinic.webp"
+            alt="A dentist examining a patient in the chair at an Indian dental clinic"
+            priority
+            objectPosition="70% center"
+          />
+          <div
+            className="absolute inset-y-0 left-0 w-1/2"
+            style={{ backgroundImage: `linear-gradient(to right, ${HERO_TINT} 0%, ${HERO_TINT}00 100%)` }}
+          />
+        </div>
 
-          <p className="mt-7 text-lg md:text-xl text-gray-600 leading-relaxed max-w-2xl mx-auto">
-            Right now your bookings, records and payments are scattered across a register, a drawer,
-            and a dozen Excel sheets. MolarPlus pulls them into one place your whole team can use,
-            and quietly reminds patients before every visit so the chair stays full.
-          </p>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative pt-36 pb-20">
+          <div className="lg:w-[52%] lg:pr-10">
+            <div>
+              <div
+                className="text-xs font-bold uppercase tracking-[0.2em] mb-5"
+                style={{ color: colors.primary }}
+              >
+                Dental clinic management software
+              </div>
 
-          <div className="mt-9 flex flex-wrap items-center justify-center gap-4">
-            <a
-              href={SIGNUP_URL}
-              onClick={() => trackSignupStarted('hero', SIGNUP_URL)}
-              className="inline-flex items-center gap-2 px-7 py-4 rounded-xl font-semibold text-white shadow-lg shadow-[#2a276e]/20 hover:shadow-xl hover:-translate-y-0.5 transition-all"
-              style={{ backgroundColor: colors.primary }}
-            >
-              Start free
-              <ArrowRight className="w-4 h-4" />
-            </a>
-            <a
-              href="/chat"
-              onClick={() => trackDemoRequested('hero')}
-              className="inline-flex items-center gap-2 text-sm font-semibold text-gray-700 hover:text-[#2a276e] transition-colors"
-            >
-              <WhatsAppIcon className="w-5 h-5 text-[#25D366]" />
-              or book a 15-min demo
-            </a>
-          </div>
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-[#1a1c4b] tracking-tight leading-[1.05]">
+                Stop running your clinic on{' '}
+                <span className="line-through decoration-2 decoration-[#2a276e]/50 text-gray-400">
+                  paper and Excel
+                </span>
+              </h1>
 
-          {/* App downloads — all four platforms */}
-          <div className="mt-9">
-            <div className="mb-3 text-[11px] font-bold uppercase tracking-[0.2em] text-gray-400">
-              Download free, works on every device
+              <p className="mt-7 text-lg md:text-xl text-gray-600 leading-relaxed max-w-xl">
+                Your bookings, records and payments are scattered across a register, a drawer and a
+                dozen spreadsheets. MolarPlus pulls them into one place your whole team can use, and
+                reminds patients before every visit so the chair stays full.
+              </p>
+
+              <div className="mt-9 flex flex-wrap items-center gap-3.5">
+                <a
+                  href={SIGNUP_URL}
+                  onClick={() => trackSignupStarted('hero', SIGNUP_URL)}
+                  className="inline-flex items-center gap-2 px-7 py-4 rounded-xl font-semibold text-white shadow-lg shadow-[#2a276e]/20 hover:shadow-xl hover:-translate-y-0.5 transition-all"
+                  style={{ backgroundColor: colors.primary }}
+                >
+                  Start free
+                  <ArrowRight className="w-4 h-4" />
+                </a>
+                <WhatsAppCta location="hero" />
+              </div>
+
+              <p className="mt-5 text-sm text-gray-500">
+                Free forever for a single clinic
+                <span aria-hidden="true" className="mx-2 text-gray-300">·</span>
+                No credit card
+                <span aria-hidden="true" className="mx-2 text-gray-300">·</span>
+                Up and running in 10 minutes
+              </p>
+
+              {/* All four platforms, on one baseline. Badge artwork ships at
+                  different aspect ratios, so they are pinned to a shared height
+                  and wrap two-by-two in the narrower hero column. */}
+              <div className="mt-9 border-t border-gray-200/80 pt-6">
+                <div className="mb-3.5 text-[11px] font-bold uppercase tracking-[0.2em] text-gray-400">
+                  Download free, works on every device
+                </div>
+                <div className="flex flex-wrap items-center gap-2.5">
+                  <a
+                    href="https://play.google.com/store/apps/details?id=com.molarplus.app&pcampaignid=web_share"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => trackAppStoreClick('google')}
+                    className="inline-flex h-10 items-center transition-opacity hover:opacity-90"
+                  >
+                    <img
+                      src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg"
+                      alt="Get MolarPlus on Google Play"
+                      className="h-10 w-auto"
+                    />
+                  </a>
+                  <a
+                    href="https://apps.apple.com/app/molarplus/id6765472713"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => trackAppStoreClick('apple')}
+                    className="inline-flex h-10 items-center transition-opacity hover:opacity-90"
+                  >
+                    <img
+                      src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg"
+                      alt="Download MolarPlus on App Store"
+                      className="h-10 w-auto"
+                    />
+                  </a>
+                  <WindowsBadge
+                    comingSoon={false}
+                    href="https://apps.microsoft.com/detail/9n78rx7phv9k"
+                    onClick={() => trackDesktopDownload('windows')}
+                    className="!h-10"
+                  />
+                  <MacBadge
+                    comingSoon={false}
+                    href="https://pub-376f22e59eee415286747973b95ba075.r2.dev/MolarPlus-mac.dmg"
+                    onClick={() => trackDesktopDownload('mac')}
+                    className="!h-10"
+                  />
+                </div>
+              </div>
             </div>
-            <div className="flex flex-wrap items-center justify-center gap-3">
-            <a
-              href="https://play.google.com/store/apps/details?id=com.molarplus.app&pcampaignid=web_share"
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={() => trackAppStoreClick('google')}
-              className="h-11 inline-flex items-center transition-opacity hover:opacity-90"
-            >
-              <img
-                src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg"
-                alt="Get MolarPlus on Google Play"
-                className="h-11 w-auto"
-              />
-            </a>
-            <a
-              href="https://apps.apple.com/app/molarplus/id6765472713"
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={() => trackAppStoreClick('apple')}
-              className="h-11 inline-flex items-center transition-opacity hover:opacity-90"
-            >
-              <img
-                src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg"
-                alt="Download MolarPlus on App Store"
-                className="h-11 w-auto"
-              />
-            </a>
-            <WindowsBadge
-              comingSoon={false}
-              href="https://apps.microsoft.com/detail/9n78rx7phv9k"
-              onClick={() => trackDesktopDownload('windows')}
-            />
-            <MacBadge
-              comingSoon={false}
-              href="https://pub-376f22e59eee415286747973b95ba075.r2.dev/MolarPlus-mac.dmg"
-              onClick={() => trackDesktopDownload('mac')}
-            />
-            </div>
-          </div>
 
-          <p className="mt-6 text-sm text-gray-500">
-            <span
-              className="rounded-md px-2 py-0.5 font-semibold"
-              style={{ backgroundColor: `${colors.primary}12`, color: colors.primary }}
-            >
-              Free forever for single-chair clinics
-            </span>{' '}
-            · Up and running in 10 minutes
-          </p>
-
-          {/* Product showcase slider as the hero visual */}
-          <div className="mt-20">
-            <div className="text-xs font-bold uppercase tracking-[0.2em] text-gray-500 mb-3">
-              See it in action
-            </div>
-            <h2 className="text-2xl md:text-3xl font-bold text-[#1a1c4b] tracking-tight mb-10">
-              Your whole clinic, in one place.
-            </h2>
-            <ProductShowcase />
           </div>
+        </div>
+
+        {/* Below lg the copy needs the full width, so the photograph moves under
+            it and bleeds edge to edge there instead. */}
+        <div className="relative h-64 w-full sm:h-80 lg:hidden">
+          <HeroMedia
+            src="/hero-clinic.webp"
+            alt="A dentist examining a patient in the chair at an Indian dental clinic"
+            priority
+          />
         </div>
       </section>
 
-      {/* ── Trust strip: logos + stats ── */}
+
+      {/* ── Trusted by leading dental clinics ── */}
       <ClinicLogoMarquee />
 
-      <section className="py-16 bg-slate-50/60 border-y border-gray-100">
+      {/* ── Featured on the review platforms buyers check ── */}
+      <FeaturedOn />
+
+      {/* ── Reassurance strip ── */}
+      <TrustBar />
+
+      {/* ── Product showcase (moved out of the hero) ── */}
+      <section className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-gray-200 rounded-2xl overflow-hidden border border-gray-200">
-            {stats.map((stat) => (
-              <div key={stat.label} className="bg-white p-8 lg:p-10 text-center md:text-left">
-                <div className="text-4xl md:text-5xl font-extrabold text-[#1a1c4b] tracking-tight">
-                  {stat.value}
-                </div>
-                <div className="mt-2 text-sm font-medium text-gray-500">{stat.label}</div>
-              </div>
-            ))}
+          <div className="text-xs font-bold uppercase tracking-[0.2em] text-gray-500 mb-3">
+            See it in action
           </div>
+          <h2 className="text-3xl md:text-4xl font-extrabold text-[#1a1c4b] tracking-tight mb-10">
+            Your whole clinic, in one place.
+          </h2>
+          <ProductShowcase />
         </div>
       </section>
 
@@ -380,174 +367,8 @@ export default function HomeClient() {
         </div>
       </section>
 
-      {/* ── Pick your path (dual-audience) ── */}
-      <section className="py-28 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl mb-16">
-            <div className="text-xs font-bold uppercase tracking-[0.2em] text-gray-500 mb-4">
-              Pick your path
-            </div>
-            <h2 className="text-4xl md:text-5xl font-extrabold text-[#1a1c4b] tracking-tight leading-[1.1]">
-              Start where your practice is.
-            </h2>
-            <p className="mt-6 text-lg text-gray-600 leading-relaxed">
-              One clinic or twenty. Your whole clinic is free, and you only pay when you grow to multiple branches.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-6 max-w-4xl">
-            {paths.map((p) => (
-              <div
-                key={p.tag}
-                className={`relative rounded-2xl p-8 flex flex-col ${
-                  p.highlight
-                    ? 'bg-[#1a1548] text-white border-2 border-[#2a276e]'
-                    : 'bg-white border border-gray-200'
-                }`}
-              >
-                {p.highlight && (
-                  <span className="absolute top-6 right-6 inline-flex items-center rounded-md border border-white/20 bg-white/10 px-2.5 py-1 text-[10px] font-bold uppercase tracking-widest text-white">
-                    Only when you grow
-                  </span>
-                )}
-                <div
-                  className={`text-xs font-bold uppercase tracking-[0.16em] mb-4 ${
-                    p.highlight ? 'text-blue-300/80' : 'text-gray-500'
-                  }`}
-                >
-                  {p.tag}
-                </div>
-                <h3
-                  className={`text-xl font-bold tracking-tight ${
-                    p.highlight ? 'text-white' : 'text-[#1a1c4b]'
-                  }`}
-                >
-                  {p.title}
-                </h3>
-                <div className="flex items-baseline gap-1 mt-5 mb-4">
-                  <span
-                    className={`text-4xl font-extrabold tracking-tight ${
-                      p.highlight ? 'text-white' : 'text-[#1a1c4b]'
-                    }`}
-                  >
-                    {p.priceIntl && !isIndia ? p.priceIntl : p.price}
-                  </span>
-                  {p.period && (
-                    <span
-                      className={`text-sm font-medium ${
-                        p.highlight ? 'text-blue-200/70' : 'text-gray-400'
-                      }`}
-                    >
-                      {p.period}
-                    </span>
-                  )}
-                </div>
-                <p
-                  className={`text-sm leading-relaxed mb-6 ${
-                    p.highlight ? 'text-blue-100/80' : 'text-gray-600'
-                  }`}
-                >
-                  {p.desc}
-                </p>
-                <ul className="space-y-2.5 mb-8 flex-1">
-                  {p.points.map((pt) => (
-                    <li key={pt} className="flex items-start gap-2.5">
-                      <Check
-                        className="w-4 h-4 mt-0.5 flex-shrink-0"
-                        style={{ color: p.highlight ? '#fff' : colors.primary }}
-                      />
-                      <span
-                        className={`text-sm ${p.highlight ? 'text-blue-100/90' : 'text-gray-700'}`}
-                      >
-                        {pt}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-                <a
-                  href={p.href}
-                  onClick={() =>
-                    p.href === SIGNUP_URL &&
-                    trackSignupStarted(p.source as CtaLocation, SIGNUP_URL)
-                  }
-                  className={`inline-flex items-center justify-center gap-2 py-3 rounded-xl font-semibold text-sm transition-all ${
-                    p.highlight
-                      ? 'bg-white text-[#1a1548] hover:bg-gray-50'
-                      : 'bg-[#2a276e] text-white hover:opacity-90'
-                  }`}
-                >
-                  {p.cta}
-                  <ArrowRight className="w-4 h-4" />
-                </a>
-              </div>
-            ))}
-          </div>
-
-          <div className="mt-10">
-            <Link
-              href="/clinic/pricing"
-              className="inline-flex items-center gap-2 text-sm font-semibold transition-colors group"
-              style={{ color: colors.primary }}
-            >
-              See full pricing & feature comparison
-              <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* ── Testimonials ── */}
-      <section className="py-28 bg-slate-50/60 border-y border-gray-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl mb-16">
-            <div className="text-xs font-bold uppercase tracking-[0.2em] text-gray-500 mb-4">
-              From the chair
-            </div>
-            <h2 className="text-4xl md:text-5xl font-extrabold text-[#1a1c4b] tracking-tight leading-[1.1]">
-              Dentists who made the switch.
-            </h2>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-6">
-            {testimonials.map((t) => (
-              <article
-                key={t.name}
-                className="p-8 rounded-2xl bg-white border border-gray-200 flex flex-col"
-              >
-                <div className="flex gap-0.5 mb-5">
-                  {Array.from({ length: t.rating }).map((_, j) => (
-                    <Star key={j} className="w-4 h-4 text-amber-400 fill-amber-400" />
-                  ))}
-                </div>
-                <p className="text-[16px] text-gray-700 leading-relaxed flex-1">“{t.text}”</p>
-                <div className="mt-7 pt-5 border-t border-gray-100 flex items-center gap-3">
-                  {t.photo ? (
-                    <img
-                      src={t.photo}
-                      alt={t.name}
-                      className="h-11 w-11 rounded-full object-cover flex-shrink-0"
-                    />
-                  ) : (
-                    <div
-                      className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-full text-sm font-bold"
-                      style={{ backgroundColor: `${colors.primary}14`, color: colors.primary }}
-                      aria-hidden
-                    >
-                      {initials(t.name)}
-                    </div>
-                  )}
-                  <div>
-                    <div className="font-bold text-[#1a1c4b]">{t.name}</div>
-                    <div className="text-sm text-gray-500">
-                      {t.clinic} <span className="text-gray-300 mx-1">·</span> {t.location}
-                    </div>
-                  </div>
-                </div>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* ── Dentist reviews (shared scrolling wall) ── */}
+      <DoctorReviews />
 
       {/* ── Compliance & security ── */}
       <section className="py-28 bg-white">
@@ -647,6 +468,8 @@ export default function HomeClient() {
           </div>
         </div>
       </section>
+
+      {labSection}
 
       {/* ── Final CTA / Book a demo ── */}
       <section id="contact" className="py-28 bg-slate-50/60 border-y border-gray-100">

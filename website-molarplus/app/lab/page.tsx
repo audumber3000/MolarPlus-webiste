@@ -13,6 +13,8 @@ import {
 } from 'lucide-react';
 import { colors, SITE_URL, SITE_NAME } from '@/lib/seo';
 import { LAB_URL } from '@/lib/constants';
+import ProductShowcase from '@/components/ProductShowcase';
+import { SignupLink } from '@/components/TrackedCTA';
 
 export const metadata: Metadata = {
   title: 'MolarPlus Lab, Workflow software for dental laboratories',
@@ -28,6 +30,44 @@ export const metadata: Metadata = {
     type: 'website',
   },
 };
+
+const labSlides = [
+  {
+    img: '/product-lab/lab-dashboard.png',
+    alt: 'MolarPlus Dental Lab dashboard showing cases received, in production, due, overdue, revenue and active clients',
+    label: 'Dashboard',
+    title: 'Run your dental lab at a glance',
+    desc: 'Cases received, in production, due and overdue, plus monthly revenue and active clients, the moment you log in.',
+  },
+  {
+    img: '/product-lab/lab-cases.png',
+    alt: 'MolarPlus Dental Lab cases list with clinic, doctor, patient, status and delivery timeline',
+    label: 'Cases',
+    title: 'Every case, intake to delivery',
+    desc: 'Filter by due today, overdue, in production or delivered, with clinic, patient, status and timeline in one view.',
+  },
+  {
+    img: '/product-lab/lab-clients.png',
+    alt: 'MolarPlus Dental Lab clients list showing each partner clinic with open cases, unbilled work and outstanding balance',
+    label: 'Clients',
+    title: 'Every clinic you work with',
+    desc: 'Each partner dental clinic with their open cases, unbilled work and outstanding balance, at a glance.',
+  },
+  {
+    img: '/product-lab/lab-billing.png',
+    alt: 'MolarPlus Dental Lab billing with monthly statements, outstanding and collected totals',
+    label: 'Billing',
+    title: 'Statements and balances, sorted',
+    desc: 'Generate monthly statements, track outstanding and collected, and mark clinic payments as paid.',
+  },
+  {
+    img: '/product-lab/lab-analytics.png',
+    alt: 'MolarPlus Dental Lab analytics showing cases by status and top clients by revenue',
+    label: 'Insights',
+    title: 'Production and top clients',
+    desc: 'Cases by status and your highest-revenue clients, so you can see where the work and the money come from.',
+  },
+];
 
 const capabilities = [
   {
@@ -125,14 +165,16 @@ export default function LabPage() {
             </p>
 
             <div className="mt-10 flex flex-wrap items-center gap-4">
-              <a
+              <SignupLink
                 href={`${LAB_URL}/login`}
+                location="lab_hero"
+                product="lab"
                 className="inline-flex items-center gap-2 px-7 py-4 rounded-xl font-semibold text-white shadow-lg shadow-[#2a276e]/20 hover:shadow-xl hover:-translate-y-0.5 transition-all"
                 style={{ backgroundColor: colors.primary }}
               >
                 Login / Signup
                 <ArrowRight className="w-4 h-4" />
-              </a>
+              </SignupLink>
               <Link
                 href="/contact"
                 className="inline-flex items-center gap-2 px-7 py-4 rounded-xl font-semibold text-gray-900 bg-white border border-gray-200 hover:border-gray-300 hover:bg-gray-50 transition-all"
@@ -141,6 +183,19 @@ export default function LabPage() {
               </Link>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* ── Product screens ── */}
+      <section className="py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-xs font-bold uppercase tracking-[0.2em] text-gray-500 mb-3">
+            See it in action
+          </div>
+          <h2 className="text-3xl md:text-4xl font-extrabold text-[#1a1c4b] tracking-tight mb-10">
+            Every case, in one workspace.
+          </h2>
+          <ProductShowcase slides={labSlides} frameUrl="lab.molarplus.com" />
         </div>
       </section>
 
@@ -233,13 +288,15 @@ export default function LabPage() {
             your lab account today, or talk to our team to see it in action.
           </p>
           <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
-            <a
+            <SignupLink
               href={`${LAB_URL}/login`}
+              location="lab_final"
+              product="lab"
               className="inline-flex items-center gap-2 px-7 py-4 rounded-xl font-semibold text-[#1a1548] bg-white hover:bg-gray-50 shadow-lg hover:-translate-y-0.5 transition-all"
             >
               Login / Signup
               <ArrowRight className="w-4 h-4" />
-            </a>
+            </SignupLink>
             <Link
               href="/contact"
               className="inline-flex items-center gap-2 px-7 py-4 rounded-xl font-semibold text-white bg-white/10 border border-white/20 hover:bg-white/15 transition-all"

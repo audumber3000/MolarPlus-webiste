@@ -6,7 +6,13 @@
  * analytics can never break the page.
  */
 import posthog from 'posthog-js';
-import { MKT_EVENTS, type MktEvent, type CtaLocation } from './events';
+import {
+  MKT_EVENTS,
+  firstTouchTypeFor,
+  type MktEvent,
+  type CtaLocation,
+  type Product,
+} from './events';
 
 type Props = Record<string, unknown>;
 
@@ -25,12 +31,19 @@ export function trackCtaClick(location: CtaLocation, label: string): void {
   track(MKT_EVENTS.ctaClicked, { location, label });
 }
 
-/** Fire on any "Sign up / Get started / Login" link that hands off to the app. */
+/**
+ * Fire on any "Sign up / Get started / Login" link that hands off to the app.
+ *
+ * NOTE: this is a *click*, and the browser may abandon the request as it
+ * navigates cross-domain. Treat it as diagnostic ("which CTA earns clicks") and
+ * treat the app's own `/signup` pageview as the authoritative funnel step.
+ */
 export function trackSignupStarted(
   location: CtaLocation,
   destination: string,
+  product: Product = 'clinic',
 ): void {
-  track(MKT_EVENTS.signupStarted, { location, destination });
+  track(MKT_EVENTS.signupStarted, { location, destination, product });
 }
 
 export function trackPricingViewed(): void {
@@ -62,4 +75,59 @@ export function trackDesktopDownload(platform: 'windows' | 'mac'): void {
 
 export function trackFaqExpanded(question: string): void {
   track(MKT_EVENTS.faqExpanded, { question });
+}
+
+/** A blog post page was opened. */
+export function trackBlogPostViewed(
+  slug: string,
+  title: string,
+  category: string,
+): void {
+  track(MKT_EVENTS.blogPostViewed, { slug, title, category });
+}
+
+/** A blog post was scrolled far enough to count as read. */
+export function trackBlogPostRead(slug: string, category: string): void {
+  track(MKT_EVENTS.blogPostRead, { slug, category });
+}
+
+/**
+ * Records how this visitor FIRST arrived, as set-once person properties.
+ *
+ * Why person properties rather than an event or a super-property: the journey we
+ * care about ("read a blog post → browsed the product → signed up days later on
+ * app.molarplus.com") crosses both a time gap and a domain boundary. Person
+ * properties live server-side on the person record and survive the `identify()`
+ * merge the app performs at signup, so `signup_completed` can be broken down by
+ * `first_touch_type` even though that property was set on a different site.
+ *
+ * Set-once semantics mean the FIRST landing page wins forever — later visits
+ * never overwrite it, which is exactly what first-touch attribution means.
+ *
+ * PostHog already captures `$initial_pathname`, `$initial_referrer` and
+ * `$initial_utm_*` automatically; we add only the semantic bucket and the blog
+ * slug, which are far easier to break down by than a raw URL string.
+ */
+let firstTouchSent = false;
+
+export function captureFirstTouch(pathname: string): void {
+  if (typeof window === 'undefined' || firstTouchSent) return;
+  try {
+    if (!posthog.__loaded) return;
+    firstTouchSent = true;
+
+    const type = firstTouchTypeFor(pathname);
+    const props: Props = { first_touch_type: type };
+
+    // /blog/<slug> → capture which post did the acquiring.
+    if (type === 'blog') {
+      const slug = pathname.split('/')[2];
+      if (slug) props.first_touch_blog_slug = slug;
+    }
+
+    // (undefined, setOnceProps) — first value wins, never overwritten.
+    posthog.setPersonProperties(undefined, props);
+  } catch {
+    /* never let analytics throw into the UI */
+  }
 }
