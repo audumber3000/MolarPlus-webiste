@@ -14,15 +14,15 @@ import { colors } from '@/lib/seo';
  * badges; this component defers to it rather than working around it.
  *
  * What it shows instead is four things that are true today and verifiable on
- * the site: the free tier, the pricing, the platform coverage, and migration
- * help. When AWARDS is finally non-empty, the real badges render below these
- * automatically and nothing here needs rewriting.
+ * the site: the entry price, migration help, the platform coverage, and the
+ * data-protection posture. When AWARDS is finally non-empty, the real badges
+ * render below these automatically and nothing here needs rewriting.
  */
 const SIGNALS = [
   {
     Icon: IndianRupee,
-    title: 'Free forever for one clinic',
-    note: 'Every feature. No trial, no card.',
+    title: 'From ₹399/month',
+    note: '7-day free trial. No card to start.',
   },
   {
     Icon: LifeBuoy,

@@ -72,14 +72,15 @@ export const REVIEWS: ReadonlyArray<Review> = [
     photo: '',
     text: 'There is a suggest-a-feature option inside the app and they actually build them. I asked for a change to how follow-ups are listed and it turned up in an update a few weeks later. I have never had software listen like that.',
   },
-  {
-    name: 'Dr. Karthik Reddy',
-    clinic: 'Reddy Dental Care',
-    location: 'Hyderabad',
-    rating: 5,
-    photo: '',
-    text: 'I run a single chair and every other system wanted a per-month fee before I had even tried it. Here the whole thing is free for one clinic, with nothing locked off. For a solo practice starting out, that is the difference between using software and not.',
-  },
+  // Dr. Karthik Reddy's quote was pulled when pricing moved to Plus/Pro. It
+  // praised the free single-clinic plan ("every other system wanted a per-month
+  // fee before I had even tried it"), which is no longer how MolarPlus is sold,
+  // so leaving it up would advertise a plan that does not exist.
+  //
+  // It is commented out rather than reworded on purpose: it is attributed to a
+  // named, identifiable dentist, and editing someone's words to fit new pricing
+  // turns a real review into a fabricated one. Ask him for a fresh quote about
+  // what he values now and paste that here — do not paraphrase the old one.
   {
     name: 'Dr. Sneha Kulkarni',
     clinic: 'Kulkarni Dental Clinic',

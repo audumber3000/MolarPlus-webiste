@@ -12,6 +12,8 @@ import {
   type MktEvent,
   type CtaLocation,
   type Product,
+  type PlanTier,
+  type BillingCycle,
 } from './events';
 
 type Props = Record<string, unknown>;
@@ -48,6 +50,15 @@ export function trackSignupStarted(
 
 export function trackPricingViewed(): void {
   track(MKT_EVENTS.pricingViewed);
+}
+
+/** Fire when a visitor clicks the CTA on a specific pricing card. */
+export function trackPlanSelected(
+  plan: PlanTier,
+  billingCycle: BillingCycle,
+  country: string,
+): void {
+  track(MKT_EVENTS.planSelected, { plan, billing_cycle: billingCycle, country });
 }
 
 export function trackDemoRequested(location: CtaLocation): void {

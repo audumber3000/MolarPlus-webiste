@@ -4,33 +4,61 @@ import { useState, useEffect } from 'react';
 import { CheckCircle } from 'lucide-react';
 import { APP_URL } from '@/lib/constants';
 import { colors } from '@/lib/seo';
-import { trackPricingViewed, trackSignupStarted } from '@/analytics/track';
+import { trackPricingViewed, trackSignupStarted, trackPlanSelected } from '@/analytics/track';
 
 export type CountryCode = 'IN' | 'OTHER';
 
-// Free plan: the whole product, for one clinic.
-const FREE_HIGHLIGHTS = [
-  'One clinic — every feature included',
-  'Patients, charting, treatment plans & prescriptions',
-  'Appointments, online booking & billing',
-  'Staff, roles, inventory & WhatsApp reminders',
-  'Web, iOS, Android & desktop apps',
-  '₹0 forever — no trial, no credit card',
+// Plus: one clinic, run properly. Deliberately not a crippled tier — a solo
+// practice gets the clinical, billing and WhatsApp work it does every day.
+const PLUS_FEATURES = [
+  'One clinic — unlimited patients & appointments',
+  'Dental charting, treatment plans & prescriptions',
+  'Billing, invoices, payments, expenses & inventory',
+  'WhatsApp reminders from your own number',
+  'Digital consent forms with e-signature',
+  'Online booking page + your clinic website',
+  'All 12 practice reports, 12 months of history',
+  'Up to 5 staff logins, roles & attendance',
+  'Web, iOS, Android & Windows desktop (X-ray capture)',
 ];
 
-// Multi-Branch is the only paid plan, and the only thing it adds.
-const MULTI_BRANCH_ADDS = [
-  'Everything in Single Clinic, plus:',
-  'Add unlimited clinic branches',
-  'Switch between branches in one login',
-  'Cross-branch reporting',
-  'Priority support',
+// Pro: scale and control. Everything here is either multi-location, or the
+// kind of oversight a group with several dentists actually needs.
+const PRO_FEATURES = [
+  'Unlimited clinic branches, switched in one login',
+  'Cross-branch reporting & consolidated dashboard',
+  'Unlimited staff logins',
+  'Granular per-person permissions across 13 modules',
+  'Unified inbox — email + WhatsApp conversations',
+  'Google Reviews management & competitor tracking',
+  'Audit log, device & master-password controls',
+  'Unlimited report history + bulk data export',
+  'Priority support & assisted onboarding',
 ];
+
+// Annual is exactly 20% off the monthly rate on every plan and currency.
+const ANNUAL_DISCOUNT_PCT = 20;
+const GST_RATE = 0.18;
 
 const PRICE = {
-  IN: { monthly: 899, annualMonthly: 675, annualTotal: 8100, currency: '₹' },
-  OTHER: { monthly: 10, annualMonthly: 8, annualTotal: 96, currency: '$' },
-};
+  IN: {
+    currency: '₹',
+    // India prices are quoted excluding GST, which is how Indian SaaS is sold.
+    // The GST-inclusive figure is what Cashfree actually charges, so it is
+    // shown too rather than sprung on people at checkout.
+    exclusiveOfGst: true,
+    plus: { monthly: 399, annualMonthly: 319, annualTotal: 3830 },
+    pro: { monthly: 999, annualMonthly: 799, annualTotal: 9590 },
+  },
+  OTHER: {
+    currency: '$',
+    exclusiveOfGst: false,
+    plus: { monthly: 5, annualMonthly: 4, annualTotal: 48 },
+    pro: { monthly: 10, annualMonthly: 8, annualTotal: 96 },
+  },
+} as const;
+
+type PlanKey = 'plus' | 'pro';
 
 async function detectCountry(): Promise<CountryCode> {
   try {
@@ -45,10 +73,13 @@ async function detectCountry(): Promise<CountryCode> {
   }
 }
 
+const inr = (n: number) => n.toLocaleString('en-IN');
+const withGst = (n: number) => Math.round(n * (1 + GST_RATE));
+
 export default function PricingPlans() {
   const [country, setCountry] = useState<CountryCode | null>(null);
   const [overrideCountry, setOverrideCountry] = useState<CountryCode | null>(null);
-  const [billingCycle, setBillingCycle] = useState<'monthly' | 'annual'>('monthly');
+  const [billingCycle, setBillingCycle] = useState<'monthly' | 'annual'>('annual');
   const [showCountrySelect, setShowCountrySelect] = useState(false);
 
   const effectiveCountry = overrideCountry ?? country ?? 'OTHER';
@@ -64,8 +95,33 @@ export default function PricingPlans() {
 
   const p = isIndia ? PRICE.IN : PRICE.OTHER;
   const isAnnual = billingCycle === 'annual';
-  const displayPrice = isAnnual ? p.annualMonthly : p.monthly;
-  const savePct = Math.round((1 - p.annualTotal / (p.monthly * 12)) * 100);
+
+  const plans: {
+    key: PlanKey;
+    name: string;
+    tagline: string;
+    features: readonly string[];
+    featured: boolean;
+    badge?: string;
+    inherits?: string;
+  }[] = [
+    {
+      key: 'plus',
+      name: 'Plus',
+      tagline: 'Everything one clinic needs to run its day',
+      features: PLUS_FEATURES,
+      featured: false,
+    },
+    {
+      key: 'pro',
+      name: 'Pro',
+      tagline: 'For multi-location practices and bigger teams',
+      features: PRO_FEATURES,
+      featured: true,
+      badge: 'Most popular',
+      inherits: 'Everything in Plus, plus:',
+    },
+  ];
 
   return (
     <div className="mb-12">
@@ -77,7 +133,7 @@ export default function PricingPlans() {
             onClick={() => setShowCountrySelect((s) => !s)}
             className="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-gray-300 bg-white text-gray-700 text-sm font-medium hover:bg-gray-50"
           >
-            {isIndia ? '🇮🇳 India (INR)' : '🌐 Other countries (USD)'}
+            {isIndia ? 'India (INR)' : 'Other countries (USD)'}
             <span className="text-gray-400">▼</span>
           </button>
           {showCountrySelect && (
@@ -92,7 +148,7 @@ export default function PricingPlans() {
                   }}
                   className={`w-full text-left px-4 py-2 text-sm ${effectiveCountry === 'IN' ? 'bg-blue-50 font-medium' : ''}`}
                 >
-                  🇮🇳 India (INR)
+                  India (INR)
                 </button>
                 <button
                   type="button"
@@ -102,7 +158,7 @@ export default function PricingPlans() {
                   }}
                   className={`w-full text-left px-4 py-2 text-sm ${effectiveCountry === 'OTHER' ? 'bg-blue-50 font-medium' : ''}`}
                 >
-                  🌐 Other countries (USD)
+                  Other countries (USD)
                 </button>
               </div>
             </>
@@ -111,7 +167,7 @@ export default function PricingPlans() {
         <span className="text-gray-500 text-sm">Prices shown in {isIndia ? 'INR' : 'USD'}</span>
       </div>
 
-      {/* Billing toggle (Multi-Branch only) */}
+      {/* Billing toggle */}
       <div className="flex items-center justify-center gap-4 mb-10">
         <span className={`text-lg ${!isAnnual ? 'font-semibold text-gray-900' : 'text-gray-500'}`}>
           Monthly
@@ -119,6 +175,7 @@ export default function PricingPlans() {
         <button
           type="button"
           onClick={() => setBillingCycle(isAnnual ? 'monthly' : 'annual')}
+          aria-label={`Switch to ${isAnnual ? 'monthly' : 'annual'} billing`}
           className="relative inline-flex h-8 w-14 items-center rounded-full transition-colors"
           style={{ backgroundColor: isAnnual ? colors.primary : '#d1d5db' }}
         >
@@ -129,82 +186,101 @@ export default function PricingPlans() {
           />
         </button>
         <span className={`text-lg ${isAnnual ? 'font-semibold text-gray-900' : 'text-gray-500'}`}>
-          Annual <span className="text-green-600 text-sm">(Save {savePct}%)</span>
+          Annual <span className="text-green-600 text-sm">(Save {ANNUAL_DISCOUNT_PCT}%)</span>
         </span>
       </div>
 
       <div className="grid md:grid-cols-2 gap-8 items-stretch max-w-4xl mx-auto">
-        {/* Single Clinic — Free */}
-        <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-200 flex flex-col">
-          <h2 className="text-2xl font-bold text-gray-900 mb-2">Single Clinic</h2>
-          <p className="text-gray-600 mb-6">The whole of MolarPlus, for one clinic</p>
-          <div className="mb-6">
-            <span className="text-4xl font-bold text-gray-900">Free</span>
-            <span className="text-gray-500 ml-2">forever</span>
-          </div>
-          <ul className="space-y-3 mb-6 flex-1">
-            {FREE_HIGHLIGHTS.map((f, i) => (
-              <li key={i} className="flex items-start gap-2">
-                <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
-                <span className="text-gray-700 text-sm">{f}</span>
-              </li>
-            ))}
-          </ul>
-          <a
-            href={`${APP_URL}/signup`}
-            onClick={() => trackSignupStarted('pricing', `${APP_URL}/signup`)}
-            className="w-full py-3 rounded-lg font-semibold text-center block border-2 border-gray-300 text-gray-800 hover:bg-gray-50 transition-colors"
-          >
-            Start free
-          </a>
-        </div>
+        {plans.map((plan) => {
+          const tier = p[plan.key];
+          const displayPrice = isAnnual ? tier.annualMonthly : tier.monthly;
+          const gstMonthly = withGst(tier.monthly);
+          const gstAnnualTotal = withGst(tier.annualTotal);
 
-        {/* Multi-Branch — Paid */}
-        <div className="bg-white rounded-2xl p-8 shadow-xl border-2 border-blue-500 flex flex-col relative z-10">
-          <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-blue-600 text-white text-xs font-semibold px-3 py-1 rounded-full">
-            For growing groups
-          </div>
-          <h2 className="text-2xl font-bold text-gray-900 mb-2">Multi-Branch</h2>
-          <p className="text-gray-600 mb-6">Run multiple locations from one account</p>
-          <div className="mb-1">
-            <span className="text-4xl font-bold" style={{ color: colors.primary }}>
-              {p.currency}{displayPrice}
-            </span>
-            <span className="text-gray-500 ml-1">/month</span>
-          </div>
-          <p className="text-sm text-gray-500 mb-6 h-5">
-            {isAnnual
-              ? `billed annually — ${p.currency}${p.annualTotal}/year`
-              : `or ${p.currency}${p.annualMonthly}/mo billed annually`}
-          </p>
-          <ul className="space-y-3 mb-6 flex-1">
-            {MULTI_BRANCH_ADDS.map((f, i) => (
-              <li key={i} className="flex items-start gap-2">
-                {i === 0 ? (
-                  <span className="text-sm font-semibold text-gray-900">{f}</span>
-                ) : (
-                  <>
+          return (
+            <div
+              key={plan.key}
+              className={`bg-white rounded-2xl p-8 flex flex-col ${
+                plan.featured
+                  ? 'shadow-xl border-2 relative z-10'
+                  : 'shadow-lg border border-gray-200'
+              }`}
+              style={plan.featured ? { borderColor: colors.primary } : undefined}
+            >
+              {plan.badge && (
+                <div
+                  className="absolute -top-3 left-1/2 -translate-x-1/2 text-white text-xs font-semibold px-3 py-1 rounded-full"
+                  style={{ backgroundColor: colors.primary }}
+                >
+                  {plan.badge}
+                </div>
+              )}
+
+              <h2 className="text-2xl font-bold text-gray-900 mb-2">{plan.name}</h2>
+              <p className="text-gray-600 mb-6">{plan.tagline}</p>
+
+              <div className="mb-1">
+                <span
+                  className="text-4xl font-bold"
+                  style={{ color: plan.featured ? colors.primary : '#111827' }}
+                >
+                  {p.currency}
+                  {inr(displayPrice)}
+                </span>
+                <span className="text-gray-500 ml-1">/month</span>
+                {isIndia && <span className="text-gray-500 text-sm ml-1">+ GST</span>}
+              </div>
+
+              <p className="text-sm text-gray-500 mb-2 min-h-[2.5rem]">
+                {isAnnual
+                  ? `billed annually — ${p.currency}${inr(tier.annualTotal)}/year`
+                  : `or ${p.currency}${inr(tier.annualMonthly)}/mo billed annually`}
+              </p>
+
+              {p.exclusiveOfGst && (
+                <p className="text-xs text-gray-400 mb-5">
+                  {isAnnual
+                    ? `${p.currency}${inr(gstAnnualTotal)}/year including 18% GST`
+                    : `${p.currency}${inr(gstMonthly)}/month including 18% GST`}
+                </p>
+              )}
+              {!p.exclusiveOfGst && <div className="mb-5" />}
+
+              <ul className="space-y-3 mb-6 flex-1">
+                {plan.inherits && (
+                  <li className="text-sm font-semibold text-gray-900">{plan.inherits}</li>
+                )}
+                {plan.features.map((f) => (
+                  <li key={f} className="flex items-start gap-2">
                     <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
                     <span className="text-gray-700 text-sm">{f}</span>
-                  </>
-                )}
-              </li>
-            ))}
-          </ul>
-          <a
-            href={`${APP_URL}/signup`}
-            onClick={() => trackSignupStarted('pricing', `${APP_URL}/signup`)}
-            className="w-full py-3 rounded-lg font-semibold text-center block text-white transition-colors hover:opacity-90"
-            style={{ backgroundColor: colors.primary }}
-          >
-            Get Multi-Branch
-          </a>
-        </div>
+                  </li>
+                ))}
+              </ul>
+
+              <a
+                href={`${APP_URL}/signup?plan=${plan.key}&cycle=${billingCycle}`}
+                onClick={() => {
+                  trackPlanSelected(plan.key, billingCycle, effectiveCountry);
+                  trackSignupStarted('pricing', `${APP_URL}/signup`);
+                }}
+                className={`w-full py-3 rounded-lg font-semibold text-center block transition-colors ${
+                  plan.featured
+                    ? 'text-white hover:opacity-90'
+                    : 'border-2 border-gray-300 text-gray-800 hover:bg-gray-50'
+                }`}
+                style={plan.featured ? { backgroundColor: colors.primary } : undefined}
+              >
+                Start 7-day free trial
+              </a>
+            </div>
+          );
+        })}
       </div>
 
       <p className="text-center text-sm text-gray-500 mt-8">
-        Solo or single-location clinics get the entire product for free — no trial, no credit card.
-        The only reason to pay is running more than one branch.
+        Every plan starts with a 7-day free trial of Pro — no credit card to begin.
+        Cancel or switch to Plus any time before it ends.
       </p>
     </div>
   );

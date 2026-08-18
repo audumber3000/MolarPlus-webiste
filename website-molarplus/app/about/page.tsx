@@ -13,16 +13,16 @@ import { COMPANY_STATS } from '@/lib/stats';
 import { SignupLink } from '@/components/TrackedCTA';
 
 export const metadata: Metadata = {
-  title: 'About MolarPlus: Built for Dentists, Free for Small Clinics',
+  title: 'About MolarPlus: Built for Dentists, Priced for Small Clinics',
   description:
-    'MolarPlus is dental clinic software that is free for a single clinic. You only pay when you grow to multiple branches. A lean team that listens to dentists and ships fast.',
+    'MolarPlus is dental clinic software that gives a single clinic the same tools as a twenty-branch group, from ₹399 a month. A lean team that listens to dentists and ships fast.',
   keywords:
-    'about MolarPlus, dental software company, free dental clinic software, dental practice management, made for dentists',
+    'about MolarPlus, dental software company, affordable dental clinic software, dental practice management, made for dentists',
   alternates: { canonical: `${SITE_URL}/about` },
   openGraph: {
-    title: 'About MolarPlus: Built for Dentists, Free for Small Clinics',
+    title: 'About MolarPlus: Built for Dentists, Priced for Small Clinics',
     description:
-      'Free for a single clinic, you only pay when you grow. A lean team that listens to dentists and builds what they actually ask for.',
+      'The same software whatever your size, from ₹399 a month. A lean team that listens to dentists and builds what they actually ask for.',
     url: `${SITE_URL}/about`,
   },
 };
@@ -32,7 +32,7 @@ const aboutJsonLd = {
   '@type': 'AboutPage',
   name: 'About MolarPlus',
   description:
-    'MolarPlus is dental clinic software that is free for a single clinic and only charges when a practice grows into multiple branches. Built by a lean team that listens to dentists.',
+    'MolarPlus is dental clinic software that gives a single clinic the same product as a multi-branch group, starting at ₹399 a month. Built by a lean team that listens to dentists.',
   publisher: { '@type': 'Organization', name: 'MolarPlus', url: SITE_URL },
 };
 
@@ -40,8 +40,8 @@ const aboutJsonLd = {
 const principles = [
   {
     Icon: HeartHandshake,
-    title: 'If you’re small, it’s on us',
-    desc: 'A single clinic gets the whole product, free, forever. You only pay once you grow into multiple branches, never before.',
+    title: 'The small plan is not the small product',
+    desc: 'A single clinic pays ₹399 and gets everything — charting, X-rays, WhatsApp, the lot. We price by how much you run, never by how much we hold back.',
   },
   {
     Icon: Ear,
@@ -77,8 +77,8 @@ export default function AboutPage() {
           </h1>
           <p className="mt-7 text-lg md:text-xl text-gray-600 leading-relaxed max-w-2xl mx-auto">
             We started MolarPlus with one belief: the dentist running a single chair deserves the same
-            tools as a twenty-branch group, without the price tag standing in the way. So for a single
-            clinic, the tools are on us.
+            tools as a twenty-branch group, without the price tag standing in the way. So we made the
+            small plan the whole product, and priced it at less than one filling a month.
           </p>
         </div>
       </section>
@@ -92,25 +92,27 @@ export default function AboutPage() {
                 Our mission
               </div>
               <h2 className="text-4xl md:text-5xl font-extrabold text-[#1a1c4b] tracking-tight leading-[1.1]">
-                If you’re small, it’s on us.
+                The cheap plan isn’t the crippled one.
               </h2>
             </div>
 
             <div className="space-y-6 text-lg text-gray-600 leading-relaxed">
               <p>
-                A single clinic gets the <strong className="text-[#1a1c4b]">entire</strong> product, free,
-                forever. Not a trial that expires, not a stripped-down tier. You get everything: patients,
-                charting, treatment plans, billing, reminders, the mobile and desktop apps, all of it.
+                Most software keeps its entry plan deliberately painful — charting locked, exports locked,
+                a patient cap that arrives right when you get busy — so the upgrade sells itself. We think
+                that is a tax on being small, and we refused to build it.
               </p>
               <p>
-                We only ask you to pay when MolarPlus is genuinely doing more for you: when you grow into{' '}
-                <strong className="text-[#1a1c4b]">multiple branches</strong> and need to run them as one
-                account. That’s the Multi-Branch plan. Until then, the software is on us.
+                So <strong className="text-[#1a1c4b]">Plus</strong>, at ₹399 a month, is the{' '}
+                <strong className="text-[#1a1c4b]">entire</strong> clinical product: patients, charting,
+                treatment plans, prescriptions, billing, consent forms, X-ray capture, WhatsApp from your
+                own number, and the web, mobile and desktop apps. Nothing clinical is held back.
               </p>
               <p>
-                We’d rather earn as you grow than tax you while you’re finding your feet. If MolarPlus
-                helps your practice grow into a second and third location, we’ve earned it. If it doesn’t,
-                you’ve lost nothing.
+                You move to <strong className="text-[#1a1c4b]">Pro</strong> when MolarPlus is genuinely
+                doing more for you — a second and third location to run as one account, a team past five
+                people, permissions to set person by person. We would rather earn as you grow than charge
+                you for the privilege of starting.
               </p>
 
               <div
@@ -118,9 +120,9 @@ export default function AboutPage() {
                 style={{ borderColor: `${colors.primary}25`, backgroundColor: `${colors.primary}08` }}
               >
                 <p className="text-base text-gray-700 leading-relaxed">
-                  <span className="font-bold text-[#1a1c4b]">One clinic?</span> Free, forever. Every
-                  feature, no card. <span className="font-bold text-[#1a1c4b]">Multiple branches?</span>{' '}
-                  That’s the only thing you pay for.{' '}
+                  <span className="font-bold text-[#1a1c4b]">One clinic?</span> Plus, ₹399 + GST a
+                  month. <span className="font-bold text-[#1a1c4b]">Multiple branches?</span>{' '}
+                  Pro, ₹999 + GST. Both start with a 7-day free trial.{' '}
                   <Link href="/pricing" className="font-semibold underline decoration-gray-300 hover:decoration-current" style={{ color: colors.primary }}>
                     See pricing
                   </Link>
@@ -218,11 +220,11 @@ export default function AboutPage() {
       <section className="py-24" style={{ background: `linear-gradient(135deg, ${colors.primary} 0%, ${colors.dark} 100%)` }}>
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-4xl md:text-5xl font-extrabold text-white tracking-tight leading-[1.1] mb-6">
-            Start free, and tell us what to build next.
+            Try it free, and tell us what to build next.
           </h2>
           <p className="text-xl text-white/80 mb-10 leading-relaxed">
-            Get your whole clinic running on MolarPlus in minutes. Pay nothing until you grow into
-            multiple branches, and let us know what would make your day easier.
+            Get your whole clinic running on MolarPlus in minutes, with 7 days of Pro on us and no card
+            to start. Then tell us what would make your day easier.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <SignupLink
@@ -231,7 +233,7 @@ export default function AboutPage() {
               className="inline-flex items-center justify-center gap-2 bg-white px-8 py-4 rounded-xl font-semibold hover:bg-gray-50 transition-colors"
               style={{ color: colors.primary }}
             >
-              Start Free <ArrowRight className="w-5 h-5" />
+              Start free trial <ArrowRight className="w-5 h-5" />
             </SignupLink>
             <Link
               href="/contact"

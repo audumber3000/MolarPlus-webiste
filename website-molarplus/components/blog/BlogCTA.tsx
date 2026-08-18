@@ -27,7 +27,7 @@ export default function BlogCTA() {
       <p className="mt-2 text-gray-600 leading-relaxed">
         MolarPlus keeps patient records, appointments, and billing in one place,
         so the front desk stops rebuilding the same information every morning.
-        Free for a single clinic.
+        From ₹399 a month, with 7 days free.
       </p>
       <SignupLink
         href={`${APP_URL}/signup`}
@@ -35,7 +35,7 @@ export default function BlogCTA() {
         className="mt-4 inline-flex items-center gap-1.5 font-bold hover:gap-2.5 transition-all"
         style={{ color: colors.primary }}
       >
-        Start free
+        Start free trial
         <ArrowRight className="w-4 h-4" />
       </SignupLink>
     </aside>

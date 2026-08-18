@@ -218,7 +218,7 @@ export default function FeaturesPage() {
               className="inline-flex items-center gap-2 px-8 py-4 rounded-lg text-lg font-medium text-white transition-colors hover:opacity-90"
               style={{ backgroundColor: colors.primary }}
             >
-              Start free <ArrowRight className="w-5 h-5" />
+              Start free trial <ArrowRight className="w-5 h-5" />
             </SignupLink>
           </div>
         </div>
@@ -310,7 +310,7 @@ export default function FeaturesPage() {
               className="inline-flex items-center justify-center gap-2 bg-white px-8 py-4 rounded-lg font-medium transition-colors hover:bg-gray-100"
               style={{ color: colors.primary }}
             >
-              Start free <ArrowRight className="w-5 h-5" />
+              Start free trial <ArrowRight className="w-5 h-5" />
             </SignupLink>
             <Link
               href="/contact"

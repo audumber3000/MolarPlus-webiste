@@ -2,6 +2,10 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { SITE_URL } from '@/lib/seo';
 
+// The date legacy free single-clinic accounts move onto a paid plan.
+// Also quoted in the /pricing FAQ — keep the two in step.
+const LEGACY_FREE_END = '31 October 2026';
+
 export const metadata: Metadata = {
   title: 'Terms of Use - MolarPlus Dental Clinic Management Software',
   description:
@@ -70,11 +74,24 @@ export default function TermsOfUsePage() {
               <h2 className="text-2xl font-bold text-gray-900 mb-4">4. Subscription Plans and Payment</h2>
               <p>MolarPlus offers the following subscription plans:</p>
               <ul className="list-disc pl-6 space-y-2 mt-4">
-                <li><strong>Single Clinic (Free):</strong> Available at no charge for a single clinic, forever. Includes every feature of the Service — there is no trial period and no credit card required.</li>
-                <li><strong>Multi-Branch:</strong> Paid monthly or annually. Priced at ₹899/month or ₹675/month billed annually (India), and $10/month or $8/month billed annually (international). Adds the ability to run multiple clinic branches from one account, switch between branches in a single login, cross-branch reporting, and priority support. Everything in the free plan remains included.</li>
+                <li><strong>Free trial:</strong> Every new account receives 7 days of the Pro plan at no charge. No credit card is required to begin the trial, and no charge is made automatically at the end of it. Access is limited until a paid plan is selected.</li>
+                <li><strong>Plus:</strong> Paid monthly or annually. Priced at ₹399/month plus applicable GST, or ₹3,830/year plus GST (India), and $5/month or $48/year (international, no GST). Covers a single clinic location and up to 5 staff logins, and includes patient records, dental charting, treatment planning, prescriptions, appointments and online booking, billing, consent forms, inventory, own-number WhatsApp messaging, the report library with 12 months of history, and the web, mobile and desktop applications.</li>
+                <li><strong>Pro:</strong> Paid monthly or annually. Priced at ₹999/month plus applicable GST, or ₹9,590/year plus GST (India), and $10/month or $96/year (international, no GST). Includes everything in Plus and adds unlimited clinic branches under one account, branch switching in a single login, cross-branch reporting, unlimited staff logins, granular per-user permissions, the unified email and WhatsApp inbox, Google review and competitor tracking, audit logging, unlimited report history with bulk data export, and priority support.</li>
               </ul>
               <p className="mt-4">
-                Subscription fees are billed in advance. We reserve the right to change pricing with 30 days&apos; notice.
+                Indian prices are stated exclusive of Goods and Services Tax. GST is applied at the prevailing rate
+                (currently 18%) at checkout, and a GST invoice is issued for each payment. Prices for customers outside
+                India are stated in US dollars and are not subject to Indian GST.
+              </p>
+              <p className="mt-4">
+                <strong>Legacy free accounts.</strong> Clinics that registered while the Service offered a free
+                single-clinic plan retain full access at no charge until <strong>{LEGACY_FREE_END}</strong>. We will
+                give notice by email before that date. After it, continued use requires a Plus or Pro subscription.
+                Account data remains available for export throughout, and is retained in accordance with Section 8.
+              </p>
+              <p className="mt-4">
+                Subscription fees are billed in advance. Upgrades take effect immediately; downgrades take effect at the
+                next renewal date. We reserve the right to change pricing with 30 days&apos; notice.
                 Continued use after a pricing change constitutes acceptance of the new pricing.
               </p>
             </section>

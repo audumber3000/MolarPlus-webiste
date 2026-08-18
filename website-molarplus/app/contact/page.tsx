@@ -110,7 +110,7 @@ const teamFacts = [
 const faqs = [
   {
     q: 'How quickly can I get started with MolarPlus?',
-    a: 'Immediately. A single clinic is free with no trial to sign up for, so you can create an account and use it today. Full setup, including moving your existing records and training your staff, typically takes 24–48 hours.',
+    a: 'Immediately. You can create an account and start the 7-day free trial today, with no card required. Full setup, including moving your existing records and training your staff, typically takes 24–48 hours.',
   },
   {
     q: 'How is my patient data protected?',
@@ -121,8 +121,8 @@ const faqs = [
     a: 'Yes, and we do it for you at no cost. We migrate patient records, appointments and pending balances from paper, spreadsheets or other dental software, including Practo Ray.',
   },
   {
-    q: 'What kind of support do you get on the free plan?',
-    a: 'The same channels as everyone else: WhatsApp, phone and email, at no charge for a single clinic. The Multi-Branch plan adds priority support with faster response times.',
+    q: 'What kind of support is included?',
+    a: 'Every plan gets the same channels at no extra cost: WhatsApp, phone and email. Pro adds priority support with faster response times, plus hands-on help migrating your existing records.',
   },
 ];
 
@@ -321,7 +321,7 @@ export default function ContactPage() {
             Or just start using it.
           </h2>
           <p className="mx-auto mt-5 max-w-xl text-lg text-blue-100/80">
-            A single clinic is free, forever, with every feature included. No trial timer, no card.
+            Seven days of Pro, free, with no card to start. Then ₹399 + GST a month for a single clinic.
           </p>
           <div className="mt-9 flex flex-col justify-center gap-4 sm:flex-row">
             <SignupLink
@@ -329,7 +329,7 @@ export default function ContactPage() {
               location="contact"
               className="inline-flex items-center justify-center rounded-xl bg-white px-8 py-3.5 font-semibold text-[#1a1548] transition-colors hover:bg-gray-50"
             >
-              Start free
+              Start free trial
             </SignupLink>
             <Link
               href="/pricing"

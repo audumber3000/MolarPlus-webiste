@@ -73,7 +73,7 @@ const compliance = [
 const faqs = [
   {
     q: 'Is MolarPlus really free?',
-    a: 'Yes. A single clinic gets the entire product: patients, charting, treatment plans, prescriptions, appointments, billing, staff, inventory and WhatsApp reminders, on web, mobile and desktop. Free forever, with no trial and no credit card. The only paid plan is Multi-Branch, for running more than one location.',
+    a: 'You can try it free for 7 days on the Pro plan, with no credit card to start. After that a single clinic runs on Plus at ₹399 + GST a month, which includes the entire clinical product: patients, charting, treatment plans, prescriptions, appointments, billing, consent forms, staff, inventory and WhatsApp from your own number, on web, mobile and desktop. Nothing clinical is held back for a higher tier.',
   },
   {
     q: 'I already use another software / paper. Can I switch?',
@@ -89,7 +89,7 @@ const faqs = [
   },
   {
     q: 'When would I ever need to pay?',
-    a: 'Only when you run more than one branch. The Multi-Branch plan (₹899/month in India, $10/month internationally; less billed annually) lets you add unlimited clinic branches, switch between them in one login, run cross-branch reporting and get priority support. A single clinic never needs it.',
+    a: 'Two plans. Plus is ₹399 + GST a month (₹5 equivalent, $5 internationally) and covers one clinic with up to 5 staff logins. Pro is ₹999 + GST a month ($10) and adds unlimited branches switched from one login, cross-branch reporting, unlimited staff, per-person permissions, the unified email and WhatsApp inbox, and priority support. Billing annually takes 20% off either plan.',
   },
 ];
 
@@ -182,16 +182,16 @@ export default function HomeClient({
                   className="inline-flex items-center gap-2 px-7 py-4 rounded-xl font-semibold text-white shadow-lg shadow-[#2a276e]/20 hover:shadow-xl hover:-translate-y-0.5 transition-all"
                   style={{ backgroundColor: colors.primary }}
                 >
-                  Start free
+                  Start free trial
                   <ArrowRight className="w-4 h-4" />
                 </a>
                 <WhatsAppCta location="hero" />
               </div>
 
               <p className="mt-5 text-sm text-gray-500">
-                Free forever for a single clinic
+                7 days free, then from ₹399/month
                 <span aria-hidden="true" className="mx-2 text-gray-300">·</span>
-                No credit card
+                No credit card to start
                 <span aria-hidden="true" className="mx-2 text-gray-300">·</span>
                 Up and running in 10 minutes
               </p>
@@ -483,8 +483,8 @@ export default function HomeClient({
                 See your clinic running on MolarPlus.
               </h2>
               <p className="mt-6 text-lg text-gray-600 leading-relaxed">
-                Start free in two minutes, or book a 15-minute demo and we&apos;ll set it up around how
-                your clinic actually works, with no commitment and no sales pressure.
+                Start your free trial in two minutes, or book a 15-minute demo and we&apos;ll set it up
+                around how your clinic actually works, with no commitment and no sales pressure.
               </p>
 
               <div className="mt-9 flex flex-wrap items-center gap-4">
@@ -494,7 +494,7 @@ export default function HomeClient({
                   className="inline-flex items-center gap-2 px-7 py-4 rounded-xl font-semibold text-white shadow-lg shadow-[#2a276e]/20 hover:shadow-xl hover:-translate-y-0.5 transition-all"
                   style={{ backgroundColor: colors.primary }}
                 >
-                  Start free
+                  Start free trial
                   <ArrowRight className="w-4 h-4" />
                 </a>
                 <a

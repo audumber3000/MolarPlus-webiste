@@ -18,7 +18,7 @@ import { SITE_URL, SITE_NAME, DEFAULT_DESCRIPTION, colors } from '@/lib/seo';
  */
 
 export const metadata: Metadata = {
-  title: 'MolarPlus: Dental Clinic Management Software, Free for One Clinic',
+  title: 'MolarPlus: Dental Clinic Management Software from ₹399/month',
   description: DEFAULT_DESCRIPTION,
   alternates: { canonical: SITE_URL },
   openGraph: {
@@ -85,8 +85,8 @@ const softwareJsonLd = {
   description: DEFAULT_DESCRIPTION,
   url: SITE_URL,
   offers: [
-    { '@type': 'Offer', name: 'Single Clinic', price: '0', priceCurrency: 'INR', description: 'Free forever for one clinic — every feature included.' },
-    { '@type': 'Offer', name: 'Multi-Branch', price: '899', priceCurrency: 'INR', priceValidUntil: '2026-12-31', description: 'India ₹899/mo or $10/mo internationally. Adds unlimited branches, single-login switching, cross-branch reporting and priority support.' },
+    { '@type': 'Offer', name: 'Plus', price: '399', priceCurrency: 'INR', priceValidUntil: '2027-12-31', description: 'India ₹399 + GST/mo or $5/mo internationally, 20% off billed annually. The complete product for one clinic, up to 5 staff logins.' },
+    { '@type': 'Offer', name: 'Pro', price: '999', priceCurrency: 'INR', priceValidUntil: '2027-12-31', description: 'India ₹999 + GST/mo or $10/mo internationally, 20% off billed annually. Adds unlimited branches, cross-branch reporting, unlimited staff, granular permissions, unified inbox and priority support.' },
   ],
   // NO aggregateRating here, deliberately.
   //
@@ -106,10 +106,10 @@ const faqJsonLd = {
   mainEntity: [
     {
       '@type': 'Question',
-      name: 'Is MolarPlus free to use?',
+      name: 'Is there a free trial of MolarPlus?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Yes. A single clinic gets the entire product for free, forever — appointments, patient records, charting, treatment plans, prescriptions, billing, staff management, inventory, WhatsApp reminders and the web, mobile and desktop apps. No trial, no credit card. Nothing is feature-locked.',
+        text: 'Yes. Every new account gets 7 days of the Pro plan free, with no credit card required to start. After the trial you choose Plus at Rs 399 + GST/month for a single clinic, or Pro at Rs 999 + GST/month for multiple branches and larger teams. Nothing is charged automatically if you do not pick a plan.',
       },
     },
     {
@@ -138,10 +138,10 @@ const faqJsonLd = {
     },
     {
       '@type': 'Question',
-      name: 'When do I need to pay for MolarPlus?',
+      name: 'How much does MolarPlus cost?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Only when you run more than one branch. The Multi-Branch plan (₹899/month in India, $10/month internationally, less when billed annually) lets you add unlimited clinic branches, switch between them in a single login, run cross-branch reporting and get priority support. A single clinic never needs to pay.',
+        text: 'There are two plans. Plus is Rs 399 + GST per month (5 US dollars internationally) and covers one clinic in full: charting, treatment plans, prescriptions, appointments, online booking, billing, consent forms, inventory, WhatsApp from your own number and up to 5 staff logins. Pro is Rs 999 + GST per month (10 US dollars) and adds unlimited branches with single-login switching, cross-branch reporting, unlimited staff, granular per-person permissions, the unified email and WhatsApp inbox, and priority support. Billing annually saves 20% on either plan.',
       },
     },
   ],

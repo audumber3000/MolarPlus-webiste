@@ -1,27 +1,43 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { CheckCircle, ArrowRight, Building2, GitBranch, BarChart3, Headphones } from 'lucide-react';
+import {
+  CheckCircle,
+  ArrowRight,
+  Building2,
+  BarChart3,
+  Headphones,
+  Users,
+  ShieldCheck,
+  Inbox,
+  Star,
+  Download,
+} from 'lucide-react';
 import { SITE_URL, colors } from '@/lib/seo';
 import { APP_URL } from '@/lib/constants';
 import { SignupLink } from '@/components/TrackedCTA';
 import PricingPlans from '@/components/PricingPlans';
 
+// The date the legacy free single-clinic accounts move onto a paid plan.
+// Referenced in the FAQ here and in /terms-of-use — keep the two in step.
+const LEGACY_FREE_END = '31 October 2026';
+
 export const metadata: Metadata = {
-  title: 'Pricing - Free for a Single Clinic | MolarPlus Dental Software',
+  title: 'Pricing - Plus ₹399 & Pro ₹999/mo | MolarPlus Dental Software',
   description:
-    'MolarPlus is free forever for a single clinic — every feature included, no trial, no credit card. Pay only to run multiple branches: Multi-Branch from ₹899/mo (India) or $10/mo. Country-based pricing.',
+    'MolarPlus pricing: Plus at ₹399 + GST/month ($5) for a single clinic, Pro at ₹999 + GST/month ($10) for multi-branch practices. Save 20% billed annually. 7-day free trial, no credit card.',
   keywords:
-    'free dental software, dental clinic management free, dental practice software pricing India, multi-branch dental software, clinic software pricing INR USD',
+    'dental software pricing India, dental clinic management software cost, multi-branch dental software, dental practice management pricing INR USD, MolarPlus plans',
   alternates: { canonical: `${SITE_URL}/pricing` },
   openGraph: {
-    title: 'Pricing - Free for a Single Clinic | MolarPlus',
+    title: 'Pricing - Plus ₹399 & Pro ₹999/mo | MolarPlus',
     description:
-      'Your whole clinic, free. Every feature included for a single clinic. Pay only when you grow to multiple branches — from ₹899/mo (India) or $10/mo.',
+      'Plus at ₹399 + GST/mo for one clinic. Pro at ₹999 + GST/mo for multi-branch practices. 20% off annually. Start with a 7-day free trial.',
     url: `${SITE_URL}/pricing`,
   },
 };
 
-// The full product — all of this is FREE for a single clinic.
+// Included on BOTH plans. Anything Pro-only lives in `proAdds` instead — if a
+// capability appears here it must genuinely work on Plus.
 const featureGroups: { group: string; items: string[] }[] = [
   {
     group: 'Patients & Clinical',
@@ -33,7 +49,7 @@ const featureGroups: { group: string; items: string[] }[] = [
       'Prescriptions — medication catalogue, PDF generation, WhatsApp share',
       'Media uploads — X-rays, DICOM viewer, file thumbnails',
       'Lab order management',
-      'Digital consent forms',
+      'Digital consent forms with e-signature',
     ],
   },
   {
@@ -46,14 +62,17 @@ const featureGroups: { group: string; items: string[] }[] = [
   },
   {
     group: 'Billing & Finance',
-    items: ['Billing & invoicing (GST / tax-aware)', 'Payment tracking'],
+    items: [
+      'Billing & invoicing (GST / tax-aware)',
+      'Payment tracking',
+      'Expense tracking',
+    ],
   },
   {
     group: 'Team & Admin',
     items: [
-      'Staff & roles (multi-user access)',
+      'Staff roles — Owner, Doctor, Receptionist',
       'Staff attendance tracking',
-      'Permissions / role-based access control',
       'Inventory & vendor management',
       'Referring-doctor management',
       'Customisable message & document templates (invoice / prescription / consent)',
@@ -64,7 +83,7 @@ const featureGroups: { group: string; items: string[] }[] = [
     items: [
       'WhatsApp + email reminders & notifications',
       'Own-number WhatsApp (WA Reach — send from your own number, no per-message charge)',
-      'Google review management',
+      'Your own clinic website',
       'AI report generation',
       'AI handwritten-register scanner (digitise paper patient registers)',
     ],
@@ -72,40 +91,89 @@ const featureGroups: { group: string; items: string[] }[] = [
   {
     group: 'Platform',
     items: [
-      'Works on web, iOS / Android mobile app, and desktop app',
+      'Works on web, iOS / Android mobile app, and Windows desktop app',
+      'X-ray sensor capture through the desktop app',
       'Cloud storage, backup & sync',
-      'Dashboard analytics & reports',
+      'Dashboard analytics & the full report library',
     ],
   },
 ];
 
-const multiBranchAdds = [
-  { icon: Building2, title: 'Add unlimited clinic branches', desc: 'Spin up new locations under one account as you grow.' },
-  { icon: GitBranch, title: 'Switch between branches in one login', desc: 'Move between locations without logging out or juggling accounts.' },
-  { icon: BarChart3, title: 'Cross-branch reporting', desc: 'See patients, revenue and performance across every location in one view.' },
-  { icon: Headphones, title: 'Priority support', desc: 'Faster response times for multi-location groups.' },
+const proAdds = [
+  {
+    icon: Building2,
+    title: 'Unlimited clinic branches',
+    desc: 'Add locations under one account and switch between them without logging out.',
+  },
+  {
+    icon: BarChart3,
+    title: 'Cross-branch reporting',
+    desc: 'Revenue, patients and performance across every location in a single consolidated view.',
+  },
+  {
+    icon: Users,
+    title: 'Unlimited staff logins',
+    desc: 'Plus covers up to 5 people. Pro removes the ceiling for larger teams.',
+  },
+  {
+    icon: ShieldCheck,
+    title: 'Granular permissions',
+    desc: 'Set read, write, edit and delete per person across all 13 modules, instead of the three fixed roles.',
+  },
+  {
+    icon: Inbox,
+    title: 'Unified inbox',
+    desc: 'Email and WhatsApp conversations in one thread view on the desktop app. Plus sends messages; Pro holds the conversation.',
+  },
+  {
+    icon: Star,
+    title: 'Reviews & competitor tracking',
+    desc: 'Manage Google reviews and see how your clinic ranks against others nearby.',
+  },
+  {
+    icon: Download,
+    title: 'Full history & data export',
+    desc: 'Unlimited report history and bulk export of your practice data. Plus keeps 12 months.',
+  },
+  {
+    icon: Headphones,
+    title: 'Priority support & migration',
+    desc: 'Faster response times, plus hands-on help moving your existing records across.',
+  },
 ];
 
 const faqs = [
   {
-    q: 'Is MolarPlus really free for a single clinic?',
-    a: 'Yes. A single clinic gets the entire product — every clinical, scheduling, billing, team and communication feature — for ₹0 / $0, forever. There is no trial that expires and no credit card required. It is free because it is one clinic, not a limited version of the software.',
+    q: 'What is the difference between Plus and Pro?',
+    a: 'Plus is the complete product for a single clinic — charting, treatment plans, prescriptions, appointments, online booking, billing, consent forms, inventory, WhatsApp from your own number, the full report library and all four apps. Pro is for practices that outgrow one location or one small team: it adds unlimited branches with single-login switching, cross-branch reporting, unlimited staff logins, per-person permissions, the unified email + WhatsApp inbox, Google review and competitor tracking, audit logs, unlimited report history with data export, and priority support.',
   },
   {
-    q: 'What do I get on the free plan?',
-    a: 'Everything: patient records and charting, treatment planning, prescriptions, lab orders, consent forms, appointments and online booking, billing, staff and roles, inventory, WhatsApp and email reminders, Google reviews, AI reports, and the web, mobile and desktop apps. Nothing is feature-locked behind a paid tier.',
+    q: 'How much does each plan cost?',
+    a: 'In India, Plus is ₹399 + GST per month and Pro is ₹999 + GST per month. Billed annually you save 20%: Plus works out to ₹319/month (₹3,830/year) and Pro to ₹799/month (₹9,590/year). For other countries, Plus is $5/month ($48/year) and Pro is $10/month ($96/year), with no GST.',
   },
   {
-    q: 'So what does the paid plan add?',
-    a: 'Only multi-branch capability. The Multi-Branch plan lets you add unlimited clinic branches, switch between them in a single login, run cross-branch reporting, and get priority support. If you operate one location, you never need it.',
-  },
-  {
-    q: 'How much is Multi-Branch?',
-    a: 'In India it is ₹899/month, or ₹675/month billed annually (₹8,100/year, ~25% off). For other countries it is $10/month, or $8/month billed annually ($96/year).',
+    q: 'Is GST included in the price?',
+    a: 'No — Indian prices are quoted excluding GST, as is standard for software here. GST of 18% is added at checkout, so Plus is ₹471/month and Pro is ₹1,179/month all-in. International pricing in USD has no GST applied. A GST invoice is issued for every payment, so registered clinics can claim input credit.',
   },
   {
     q: 'Is there a free trial?',
-    a: 'There is no trial — because a single clinic is simply free, with no time limit. You only pay if and when you add a second branch.',
+    a: 'Yes. Every new account gets 7 days of Pro free, with no credit card required to start. At the end of the trial you choose Plus or Pro. Nothing is charged automatically if you do not pick a plan.',
+  },
+  {
+    q: 'I already use MolarPlus for free. What happens to my account?',
+    a: `Nothing changes immediately. Every clinic that signed up while MolarPlus was free for a single location keeps full access at no charge until ${LEGACY_FREE_END}, and we will email you well before that date. When the transition ends you can move to Plus at ₹299/month — locked for your first 12 months, below the ₹399 list price, as thanks for being early. Your data, settings and history carry across untouched either way.`,
+  },
+  {
+    q: 'Why is MolarPlus not free any more?',
+    a: 'Because the honest version of a free plan is a limited one, and we did not want to build that. Running WhatsApp delivery, cloud storage, backups, X-ray capture and support properly costs money on every single clinic. Charging ₹399 lets us keep every clinical feature in the entry plan rather than holding parts back to create an upgrade path.',
+  },
+  {
+    q: 'Can I switch between plans?',
+    a: 'Yes, in either direction, from Subscription in the app. Upgrades to Pro take effect immediately. Downgrades to Plus take effect at your next renewal date, so you keep what you have paid for. If you downgrade while running multiple branches, you will need to pick which single branch stays active.',
+  },
+  {
+    q: 'Do I pay per branch on Pro?',
+    a: 'No. Pro is one flat price regardless of how many locations you run. Adding a fourth or a fourteenth branch costs nothing extra.',
   },
 ];
 
@@ -114,32 +182,42 @@ const pricingJsonLd = {
   '@type': 'Product',
   name: 'MolarPlus Dental Clinic Management Software',
   description:
-    'Free forever for a single clinic with every feature included. Multi-Branch plan (₹899/mo in India or $10/mo) adds unlimited branches, single-login switching, cross-branch reporting and priority support.',
+    'Dental practice management software. Plus (₹399 + GST/mo, $5/mo) covers a single clinic in full. Pro (₹999 + GST/mo, $10/mo) adds unlimited branches, cross-branch reporting, unlimited staff, granular permissions, unified inbox and priority support. 20% off billed annually.',
   brand: { '@type': 'Brand', name: 'MolarPlus' },
   offers: [
     {
       '@type': 'Offer',
-      name: 'Single Clinic',
-      price: '0',
+      name: 'Plus',
+      price: '399',
       priceCurrency: 'INR',
-      description: 'Free forever for one clinic. Every feature included — no trial, no credit card.',
-    },
-    {
-      '@type': 'Offer',
-      name: 'Multi-Branch',
-      price: '899',
-      priceCurrency: 'INR',
-      priceValidUntil: '2026-12-31',
+      priceValidUntil: '2027-12-31',
       description:
-        'India: ₹899/month (₹675/mo billed annually). Adds unlimited branches, single-login switching, cross-branch reporting and priority support.',
+        'India: ₹399 + GST/month, or ₹319/month billed annually (₹3,830/year). The complete product for one clinic, up to 5 staff logins.',
     },
     {
       '@type': 'Offer',
-      name: 'Multi-Branch USD',
+      name: 'Pro',
+      price: '999',
+      priceCurrency: 'INR',
+      priceValidUntil: '2027-12-31',
+      description:
+        'India: ₹999 + GST/month, or ₹799/month billed annually (₹9,590/year). Adds unlimited branches, cross-branch reporting, unlimited staff, granular permissions, unified inbox and priority support.',
+    },
+    {
+      '@type': 'Offer',
+      name: 'Plus (international)',
+      price: '5',
+      priceCurrency: 'USD',
+      priceValidUntil: '2027-12-31',
+      description: 'Other countries: $5/month, or $4/month billed annually ($48/year).',
+    },
+    {
+      '@type': 'Offer',
+      name: 'Pro (international)',
       price: '10',
       priceCurrency: 'USD',
-      priceValidUntil: '2026-12-31',
-      description: 'Other countries: $10/month ($8/mo billed annually).',
+      priceValidUntil: '2027-12-31',
+      description: 'Other countries: $10/month, or $8/month billed annually ($96/year).',
     },
   ],
 };
@@ -165,21 +243,23 @@ export default function PricingPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-              Your whole clinic, free.
+              ₹399 for one clinic. ₹999 for all of them.
             </h1>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-6">
-              Every feature in MolarPlus is free, forever, for a single clinic — no trial, no credit
-              card. The only reason to pay is running more than one branch from one account.
+              Both plans are the real product — charting, treatment plans, billing, consent forms
+              and WhatsApp from your own number. Pro is for practices running more than one location
+              and more than a handful of people.
             </p>
             <p className="text-sm text-gray-500">
-              Pricing in <strong>India (INR)</strong> and <strong>other countries (USD)</strong>. Use the selector below to switch.
+              Pricing in <strong>India (INR, excluding GST)</strong> and{' '}
+              <strong>other countries (USD)</strong>. Use the selector below to switch.
             </p>
           </div>
           <PricingPlans />
         </div>
       </section>
 
-      {/* Full feature set — all free for a single clinic */}
+      {/* Everything both plans share */}
       <section className="py-16 bg-white" aria-labelledby="everything-heading">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-4">
@@ -187,14 +267,15 @@ export default function PricingPage() {
               className="inline-block rounded-full px-3 py-1 text-sm font-semibold"
               style={{ backgroundColor: `${colors.primary}12`, color: colors.primary }}
             >
-              Free for a single clinic
+              Included on Plus and Pro
             </span>
           </div>
           <h2 id="everything-heading" className="text-2xl md:text-3xl font-bold text-gray-900 mb-2 text-center">
-            Everything below is included at ₹0 / $0
+            The entry plan is not the stripped-down one
           </h2>
           <p className="text-gray-600 text-center max-w-2xl mx-auto mb-12">
-            This is the full product, not a stripped-down free tier. A solo clinic gets all of it.
+            Everything below works on Plus at ₹399. We would rather charge a fair price for the whole
+            product than hold back charting or X-rays to manufacture an upgrade.
           </p>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -215,20 +296,20 @@ export default function PricingPage() {
         </div>
       </section>
 
-      {/* The only paid bit: Multi-Branch */}
-      <section className="py-16 bg-gray-50" aria-labelledby="multibranch-heading">
+      {/* What Pro adds */}
+      <section className="py-16 bg-gray-50" aria-labelledby="pro-heading">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 id="multibranch-heading" className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">
-              The only paid plan: Multi-Branch
+            <h2 id="pro-heading" className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">
+              What Pro adds
             </h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
-              Pay only when you grow to multiple locations. Multi-Branch keeps everything above and
-              adds the tools to run several clinics from one account.
+              Pro keeps everything above and adds what a growing group needs: more locations, more
+              people, and tighter control over who can do what.
             </p>
           </div>
           <div className="grid sm:grid-cols-2 gap-6">
-            {multiBranchAdds.map(({ icon: Icon, title, desc }) => (
+            {proAdds.map(({ icon: Icon, title, desc }) => (
               <div key={title} className="bg-white rounded-xl p-6 border border-gray-200 flex gap-4">
                 <div
                   className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-lg"
@@ -244,8 +325,8 @@ export default function PricingPage() {
             ))}
           </div>
           <p className="text-center text-gray-700 mt-10">
-            <strong>India:</strong> ₹899/month, or ₹675/month billed annually (₹8,100/year).{' '}
-            <strong>Other countries:</strong> $10/month, or $8/month billed annually ($96/year).
+            <strong>India:</strong> Plus ₹399 + GST/month, Pro ₹999 + GST/month — 20% off billed
+            annually. <strong>Other countries:</strong> Plus $5/month, Pro $10/month.
           </p>
         </div>
       </section>
@@ -271,10 +352,11 @@ export default function PricingPage() {
       <section className="py-16 bg-gray-50">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-2xl font-bold text-gray-900 mb-4">
-            Start free — pay only when you grow.
+            Try Pro free for 7 days.
           </h2>
           <p className="text-gray-600 mb-8">
-            Get your whole clinic running on MolarPlus in minutes. Add branches whenever you&apos;re ready;{' '}
+            No credit card to start. Get your clinic running on MolarPlus in minutes, then pick the
+            plan that fits;{' '}
             <Link href="/contact" className="text-blue-600 hover:underline font-medium">talk to us</Link> if you have questions.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -283,7 +365,7 @@ export default function PricingPage() {
               location="pricing_page"
               className="inline-flex items-center justify-center gap-2 bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors"
             >
-              Start free <ArrowRight className="w-5 h-5" />
+              Start free trial <ArrowRight className="w-5 h-5" />
             </SignupLink>
             <Link
               href="/contact"

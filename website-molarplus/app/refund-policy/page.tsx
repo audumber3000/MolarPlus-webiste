@@ -5,7 +5,7 @@ import { SITE_URL } from '@/lib/seo';
 export const metadata: Metadata = {
   title: 'Refund Policy - MolarPlus Dental Clinic Management Software',
   description:
-    'MolarPlus Refund Policy. Learn about our refund and cancellation terms for the Multi-Branch dental clinic management software subscription. The single-clinic plan is free.',
+    'MolarPlus Refund Policy. Our refund and cancellation terms for the Plus and Pro dental clinic management software subscriptions, including the 7-day free trial.',
   keywords: 'MolarPlus refund policy, dental software refund, subscription cancellation, clinic software money back',
   alternates: { canonical: `${SITE_URL}/refund-policy` },
   openGraph: {
@@ -35,24 +35,25 @@ export default function RefundPolicyPage() {
                 subscriptions.
               </p>
               <p className="mt-4">
-                Our <strong>Single Clinic</strong> plan is free, forever, and is therefore not subject to this
-                policy. This policy applies only to the paid <strong>Multi-Branch</strong> subscription.
+                This policy applies to both paid subscriptions, <strong>Plus</strong> and <strong>Pro</strong>,
+                on monthly and annual billing. The 7-day free trial is not charged and is therefore not subject to
+                this policy: if you do not select a plan when it ends, nothing is billed and no refund is required.
               </p>
             </section>
 
             <section>
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">2. Multi-Branch Plan, Refund Eligibility</h2>
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">2. Refund Eligibility</h2>
 
               <h3 className="text-xl font-semibold text-gray-900 mt-6 mb-3">2.1 Monthly Subscriptions</h3>
               <p>
-                If you subscribed to the Multi-Branch plan on a monthly basis and are not satisfied with the Service,
+                If you subscribed to Plus or Pro on a monthly basis and are not satisfied with the Service,
                 you may request a full refund within <strong>7 days</strong> of your initial payment or renewal date.
                 Refund requests received after 7 days will not be eligible.
               </p>
 
               <h3 className="text-xl font-semibold text-gray-900 mt-6 mb-3">2.2 Annual Subscriptions</h3>
               <p>
-                If you subscribed to the Multi-Branch plan on an annual basis, you may request a full refund within{' '}
+                If you subscribed to Plus or Pro on an annual basis, you may request a full refund within{' '}
                 <strong>14 days</strong> of your initial annual payment. After 14 days, refunds for annual
                 subscriptions are issued on a pro-rata basis for the remaining unused months, subject to a processing
                 review.
@@ -71,7 +72,8 @@ export default function RefundPolicyPage() {
                 <li>Partial months of usage in a monthly subscription cycle</li>
                 <li>Add-on services, onboarding support, or custom development work already delivered</li>
                 <li>Charges arising from WhatsApp or SMS notification usage beyond the included quota</li>
-                <li>Downgrades from Multi-Branch to the free Single Clinic plan mid-cycle (downgrade takes effect at the next renewal)</li>
+                <li>Downgrades from Pro to Plus mid-cycle (the downgrade takes effect at the next renewal, and the difference is not refunded)</li>
+                <li>Goods and Services Tax already remitted to the tax authority, where a refund is issued outside the applicable window</li>
               </ul>
             </section>
 

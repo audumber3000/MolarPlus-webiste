@@ -19,6 +19,15 @@ export const MKT_EVENTS = {
   ctaClicked: 'mkt_cta_clicked',
   /** The pricing UI became visible. */
   pricingViewed: 'mkt_pricing_viewed',
+  /**
+   * A specific plan's CTA was clicked on the pricing UI.
+   * props: { plan, billing_cycle, country }
+   *
+   * `pricingViewed` says people looked; this says which tier and which billing
+   * cycle they actually reached for, which is the only way to tell whether the
+   * Plus/Pro split and the annual discount are landing.
+   */
+  planSelected: 'mkt_pricing_plan_selected',
   /** A "book a demo" CTA was clicked. */
   demoRequested: 'mkt_demo_requested',
   /** The contact / demo form was submitted. props: { form_id } — NO raw PII. */
@@ -76,6 +85,12 @@ export type CtaLocation =
 
 /** Which product a signup hand-off is for, so the funnel can be split. */
 export type Product = 'clinic' | 'lab';
+
+/** The paid tiers, as used in `mkt_pricing_plan_selected`. */
+export type PlanTier = 'plus' | 'pro';
+
+/** Billing cadence chosen on the pricing toggle. */
+export type BillingCycle = 'monthly' | 'annual';
 
 /**
  * How a visitor first arrived, recorded ONCE per person as a set-once person
