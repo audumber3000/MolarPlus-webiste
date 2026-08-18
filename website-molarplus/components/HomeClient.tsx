@@ -89,7 +89,7 @@ const faqs = [
   },
   {
     q: 'When would I ever need to pay?',
-    a: 'Two plans. Plus is ₹399 + GST a month (₹5 equivalent, $5 internationally) and covers one clinic with up to 5 staff logins. Pro is ₹999 + GST a month ($10) and adds unlimited branches switched from one login, cross-branch reporting, unlimited staff, per-person permissions, the unified email and WhatsApp inbox, and priority support. Billing annually takes 20% off either plan.',
+    a: 'Two plans. Plus is ₹399 + GST a month ($5 internationally) and covers one clinic with up to 5 staff logins. Pro is ₹999 + GST a month ($10) and adds unlimited branches switched from one login, cross-branch reporting, unlimited staff, per-person permissions, the unified email and WhatsApp inbox, and priority support. Billing annually takes 20% off either plan.',
   },
 ];
 
