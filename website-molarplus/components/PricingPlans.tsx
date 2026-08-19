@@ -8,39 +8,41 @@ import { trackPricingViewed, trackSignupStarted, trackPlanSelected } from '@/ana
 
 export type CountryCode = 'IN' | 'OTHER';
 
-// Plus: one clinic, run properly. Deliberately not a crippled tier — a solo
-// practice gets the clinical, billing and WhatsApp work it does every day.
+// Plus: one clinic, run properly. Notifications go out from MolarPlus's own
+// verified sender, which is what keeps this tier cheap — a clinic's own
+// WhatsApp number is a per-account setup, and it starts at Pro.
 const PLUS_FEATURES = [
   'One clinic — 300 patients & 300 appointments a month',
   'Dental charting, treatment plans & prescriptions',
   'Billing, invoices, payments, expenses & inventory',
-  'WhatsApp reminders from your own number',
+  'WhatsApp & email reminders from a verified MolarPlus sender',
   'Digital consent forms with e-signature',
-  'Online booking page + your clinic website',
+  'Public online booking page',
+  'Google Reviews management',
   'All 12 practice reports, 12 months of history',
-  'Up to 5 staff logins, roles & attendance',
-  'Web, iOS, Android & Windows desktop apps',
+  'Up to 5 staff logins, attendance & audit log',
+  '100 GB document & X-ray storage',
 ];
 
-// Pro: still one clinic, but a bigger team in it. Everything here is about
-// oversight — who can do what, what was changed, and how far back you can look.
+// Pro: more of everything, and the first tier with more than one address.
 const PRO_FEATURES = [
-  'Unlimited staff logins',
+  'Up to 5 clinic branches',
+  'Up to 10 staff logins',
+  '1,000 patients & 1,000 appointments a month',
+  '150 GB document & X-ray storage',
+  'WhatsApp sent from your own number',
   'Granular per-person permissions across 13 modules',
   'Unified inbox — email + WhatsApp conversations',
-  'Audit log, device & master-password controls',
+  'Local competitor tracking & your own clinic website',
   'Unlimited report history + bulk data export',
   'Priority support',
 ];
 
-// Growth: the tier you reach when the practice outgrows a single address.
-// Multi-branch is the heaviest capability in the product and it lives at the
-// top on purpose — a group running three locations for ₹1,500 is still paying
-// ₹500 a clinic.
+// Growth: the ceilings come off. Everything Pro meters, this stops metering.
 const GROWTH_FEATURES = [
   'Unlimited clinic branches, switched in one login',
+  'Unlimited staff, patients, appointments & storage',
   'Cross-branch reporting & consolidated dashboard',
-  'Google Reviews management & local competitor tracking',
   'Assisted onboarding & data migration',
   'Priority support with a named contact',
 ];
@@ -120,7 +122,7 @@ export default function PricingPlans() {
     {
       key: 'pro',
       name: 'Pro',
-      tagline: 'One clinic, a bigger team and tighter control',
+      tagline: 'A bigger team, and up to five locations',
       features: PRO_FEATURES,
       featured: false,
       inherits: 'Everything in Plus, plus:',
@@ -138,7 +140,7 @@ export default function PricingPlans() {
     {
       key: 'growth',
       name: 'Growth',
-      tagline: 'For practices running more than one location',
+      tagline: 'For groups past five locations, with no ceilings',
       features: GROWTH_FEATURES,
       featured: false,
       inherits: 'Everything in Pro, plus:',

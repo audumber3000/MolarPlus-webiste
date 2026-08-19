@@ -132,22 +132,22 @@ function CountryTable({ caption, rows }: { caption: string; rows: Country[] }) {
     <div className="mb-14">
       <h2 className="text-xl font-bold text-gray-900 mb-4">{caption}</h2>
       <div className="overflow-x-auto rounded-xl border border-gray-200 bg-white">
-        <table className="w-full min-w-[52rem] text-left border-collapse">
+        <table className="w-full min-w-[46rem] text-left border-collapse">
           <thead>
             <tr className="bg-gray-50 border-b border-gray-200">
-              <th scope="col" className="px-5 py-3.5 text-xs font-bold uppercase tracking-wider text-gray-600">
+              <th scope="col" className="px-3 sm:px-5 py-3.5 text-xs font-bold uppercase tracking-wider text-gray-600">
                 Country
               </th>
-              <th scope="col" className="px-5 py-3.5 text-xs font-bold uppercase tracking-wider text-gray-600 text-right whitespace-nowrap">
+              <th scope="col" className="px-3 sm:px-5 py-3.5 text-xs font-bold uppercase tracking-wider text-gray-600 text-right whitespace-nowrap">
                 Plus / month
               </th>
-              <th scope="col" className="px-5 py-3.5 text-xs font-bold uppercase tracking-wider text-gray-600 text-right whitespace-nowrap">
+              <th scope="col" className="px-3 sm:px-5 py-3.5 text-xs font-bold uppercase tracking-wider text-gray-600 text-right whitespace-nowrap">
                 Pro / month
               </th>
-              <th scope="col" className="px-5 py-3.5 text-xs font-bold uppercase tracking-wider text-gray-600 text-right whitespace-nowrap">
+              <th scope="col" className="px-3 sm:px-5 py-3.5 text-xs font-bold uppercase tracking-wider text-gray-600 text-right whitespace-nowrap">
                 Growth / month
               </th>
-              <th scope="col" className="px-5 py-3.5 text-xs font-bold uppercase tracking-wider text-gray-600">
+              <th scope="col" className="px-3 sm:px-5 py-3.5 text-xs font-bold uppercase tracking-wider text-gray-600">
                 Consumption tax
               </th>
             </tr>
@@ -167,7 +167,7 @@ function CountryTable({ caption, rows }: { caption: string; rows: Country[] }) {
 
               return (
                 <tr key={c.iso} className="border-b border-gray-100 last:border-0 hover:bg-gray-50/60">
-                  <th scope="row" className="px-5 py-4 font-medium text-gray-900 whitespace-nowrap">
+                  <th scope="row" className="px-3 sm:px-5 py-4 font-medium text-gray-900 whitespace-nowrap">
                     <span aria-hidden="true" className="mr-2.5 text-lg align-[-0.1em]">
                       {flagOf(c.iso)}
                     </span>
@@ -181,10 +181,10 @@ function CountryTable({ caption, rows }: { caption: string; rows: Country[] }) {
                       </span>
                     )}
                   </th>
-                  <td className="px-5 py-4 text-right tabular-nums text-gray-900 whitespace-nowrap">{plus}</td>
-                  <td className="px-5 py-4 text-right tabular-nums text-gray-900 whitespace-nowrap">{pro}</td>
-                  <td className="px-5 py-4 text-right tabular-nums text-gray-900 whitespace-nowrap">{growth}</td>
-                  <td className="px-5 py-4 text-sm text-gray-700">
+                  <td className="px-3 sm:px-5 py-4 text-right tabular-nums text-gray-900 whitespace-nowrap">{plus}</td>
+                  <td className="px-3 sm:px-5 py-4 text-right tabular-nums text-gray-900 whitespace-nowrap">{pro}</td>
+                  <td className="px-3 sm:px-5 py-4 text-right tabular-nums text-gray-900 whitespace-nowrap">{growth}</td>
+                  <td className="px-3 sm:px-5 py-4 text-sm text-gray-700">
                     {c.taxRate === null ? (
                       <span className="text-gray-500">{c.taxName}</span>
                     ) : (
@@ -235,6 +235,7 @@ Outside India MolarPlus is <strong>Plus at $5</strong>, <strong>Pro at $10</stro
             <span className="font-semibold text-gray-900">Last updated:</span> {LAST_UPDATED}
           </p>
 
+          <p className="mb-3 text-xs text-gray-500 sm:hidden">Swipe the table sideways to see every plan.</p>
           <CountryTable caption="South Asia" rows={SOUTH_ASIA} />
           <CountryTable caption="Middle East" rows={MIDDLE_EAST} />
 

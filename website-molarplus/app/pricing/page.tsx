@@ -44,24 +44,24 @@ export const metadata: Metadata = {
 
 const proAdds = [
   {
-    icon: Users,
-    title: 'Unlimited staff logins',
-    desc: 'Plus covers up to 5 people. Pro removes the ceiling for larger teams.',
+    icon: Building2,
+    title: 'Up to 5 clinic branches',
+    desc: 'Run as many as five locations under one account, switched without logging out.',
   },
   {
-    icon: ShieldCheck,
-    title: 'Granular permissions',
-    desc: 'Set read, write, edit and delete per person across all 13 modules, instead of the three fixed roles.',
+    icon: Users,
+    title: '10 staff logins, permissions per person',
+    desc: 'Double the seats, and read, write, edit and delete set individually across all 13 modules.',
   },
   {
     icon: Inbox,
-    title: 'Unified inbox',
-    desc: 'Email and WhatsApp conversations in one thread view on the desktop app. Plus sends messages; Pro holds the conversation.',
+    title: 'Your own WhatsApp number & unified inbox',
+    desc: 'Messages go out from your clinic\u2019s number, and email and WhatsApp replies land in one thread view.',
   },
   {
     icon: Download,
-    title: 'Full history & data export',
-    desc: 'Audit logging, unlimited report history and bulk export of your practice data. Plus keeps 12 months.',
+    title: 'Unlimited history & data export',
+    desc: 'Unlimited report history and bulk export of your practice data. Plus keeps 12 months.',
   },
 ];
 
@@ -69,7 +69,7 @@ const growthAdds = [
   {
     icon: Building2,
     title: 'Unlimited clinic branches',
-    desc: 'Add locations under one account and switch between them without logging out. One flat price, however many you run.',
+    desc: 'Past the five Pro allows, with one flat price however many you run.',
   },
   {
     icon: BarChart3,
@@ -77,9 +77,9 @@ const growthAdds = [
     desc: 'Revenue, patients and performance across every location in a single consolidated view.',
   },
   {
-    icon: Star,
-    title: 'Reviews & competitor tracking',
-    desc: 'Manage Google reviews and see how each clinic ranks against others nearby.',
+    icon: ShieldCheck,
+    title: 'No ceilings',
+    desc: 'Unlimited staff, patients, appointments and storage \u2014 the meters Pro runs simply stop.',
   },
   {
     icon: Headphones,
@@ -91,7 +91,7 @@ const growthAdds = [
 const faqs = [
   {
     q: 'What is the difference between Plus, Pro and Growth?',
-    a: 'They map to how big the practice is, not to how much of the product you get. Plus is the complete product for a single clinic with up to 5 staff, 300 new patients and 300 appointments a month — charting, treatment plans, prescriptions, appointments, online booking, billing, consent forms, inventory, WhatsApp from your own number, the full report library and all four apps. Pro is the same clinic with a bigger team in it: unlimited staff logins, per-person permissions across all 13 modules, the unified email and WhatsApp inbox, audit logging, unlimited report history with bulk export, and priority support. Growth is for practices at more than one address: unlimited branches switched from a single login, cross-branch reporting, Google review and competitor tracking, and assisted migration with a named contact.',
+    a: 'They map to how big the practice is, not to how much of the product you get — every clinical feature is in all three. Plus covers one clinic with up to 5 staff logins, 300 new patients and 300 appointments a month and 100 GB of storage, and sends WhatsApp and email reminders from a verified MolarPlus sender. Pro raises that to 5 branches, 10 staff logins, 1,000 patients and 1,000 appointments a month and 150 GB, and adds messaging from your own WhatsApp number, per-person permissions across all 13 modules, the unified email and WhatsApp inbox, local competitor tracking, your own clinic website, unlimited report history with bulk export and priority support. Growth removes the ceilings entirely — unlimited branches, staff, patients, appointments and storage — and adds cross-branch consolidated reporting plus assisted migration with a named contact.',
   },
   {
     q: 'How much does each plan cost?',
@@ -114,12 +114,20 @@ const faqs = [
     a: 'Because the honest version of a free plan is a limited one, and we did not want to build that. Running WhatsApp delivery, cloud storage, backups, X-ray capture and support properly costs money on every single clinic. Charging ₹399 lets us keep every clinical feature in the entry plan rather than holding parts back to create an upgrade path.',
   },
   {
+    q: 'Whose WhatsApp number do reminders come from?',
+    a: 'On Plus they are sent from a verified MolarPlus number, and email notifications from a verified MolarPlus address — patients see the message, you send nothing yourself, and there is nothing to set up. Pro and Growth connect your clinic\u2019s own WhatsApp number instead, so reminders, invoices and prescriptions arrive from the number your patients already have saved. Connecting your own number is a one-time setup inside the app.',
+  },
+  {
+    q: 'What happens if I go over the patient or appointment limit?',
+    a: 'Nothing breaks and nothing is deleted. We will tell you inside the app as you approach the limit, and again when you reach it, so you can move up a plan before it interrupts anyone. Limits count new records created in a calendar month, not your total patient list, so an existing patient returning for a second visit does not count again.',
+  },
+  {
     q: 'Can I switch between plans?',
     a: 'Yes, in either direction, from Subscription in the app. Upgrades take effect immediately. Downgrades take effect at your next renewal date, so you keep what you have paid for. If you downgrade from Growth while running multiple branches, you will need to pick which single branch stays active.',
   },
   {
-    q: 'Do I pay per branch on Growth?',
-    a: 'No. Growth is one flat price regardless of how many locations you run. Adding a fourth or a fourteenth branch costs nothing extra — a three-branch group on Growth is paying ₹500 per clinic, and a ten-branch group ₹150.',
+    q: 'Do I pay per branch?',
+    a: 'No, on either plan. Pro is one flat price for up to 5 locations and Growth is one flat price for any number. A five-branch practice on Pro pays ₹200 per clinic; a ten-branch group on Growth pays ₹150. The price is per account, never per location.',
   },
 ];
 
@@ -128,7 +136,7 @@ const pricingJsonLd = {
   '@type': 'Product',
   name: 'MolarPlus Dental Clinic Management Software',
   description:
-    'Dental practice management software. Plus (₹399 + GST/mo, $5/mo) covers a single clinic in full. Pro (₹999 + GST/mo, $10/mo) adds unlimited staff, granular permissions, unified inbox, audit logging and priority support. Growth (₹1,500 + GST/mo, $15/mo) adds unlimited branches, cross-branch reporting and review management. 20% off billed annually.',
+    'Dental practice management software. Plus (₹399 + GST/mo, $5/mo) covers one clinic with 5 staff, 300 patients a month and 100 GB storage. Pro (₹999 + GST/mo, $10/mo) raises it to 5 branches, 10 staff, 1,000 patients a month and 150 GB, and adds your own WhatsApp number, granular permissions and the unified inbox. Growth (₹1,500 + GST/mo, $15/mo) removes every ceiling and adds cross-branch reporting. 20% off billed annually.',
   brand: { '@type': 'Brand', name: 'MolarPlus' },
   offers: [
     {
@@ -138,7 +146,7 @@ const pricingJsonLd = {
       priceCurrency: 'INR',
       priceValidUntil: '2027-12-31',
       description:
-        'India: ₹399 + GST/month, or ₹319/month billed annually (₹3,830/year). The complete product for one clinic, up to 5 staff logins.',
+        'India: ₹399 + GST/month, or ₹319/month billed annually (₹3,830/year). The complete product for one clinic: 5 staff logins, 300 patients and 300 appointments a month, 100 GB storage.',
     },
     {
       '@type': 'Offer',
@@ -147,7 +155,7 @@ const pricingJsonLd = {
       priceCurrency: 'INR',
       priceValidUntil: '2027-12-31',
       description:
-        'India: ₹999 + GST/month, or ₹799/month billed annually (₹9,590/year). Adds unlimited branches, cross-branch reporting, unlimited staff, granular permissions, unified inbox and priority support.',
+        'India: ₹999 + GST/month, or ₹799/month billed annually (₹9,590/year). Adds up to 5 branches, 10 staff logins, 1,000 patients and appointments a month, 150 GB storage, your own WhatsApp number, granular permissions, unified inbox and priority support.',
     },
     {
       '@type': 'Offer',
@@ -156,7 +164,7 @@ const pricingJsonLd = {
       priceCurrency: 'INR',
       priceValidUntil: '2027-12-31',
       description:
-        'India: ₹1,500 + GST/month, or ₹1,200/month billed annually (₹14,400/year). Adds unlimited clinic branches, cross-branch reporting, Google review and competitor tracking, and assisted migration.',
+        'India: ₹1,500 + GST/month, or ₹1,200/month billed annually (₹14,400/year). Removes every ceiling — unlimited branches, staff, patients, appointments and storage — and adds cross-branch consolidated reporting and assisted migration.',
     },
     {
       '@type': 'Offer',
@@ -209,10 +217,10 @@ export default function PricingPage() {
                 one scroll below and can carry the prices themselves; the job up
                 here is to make someone want to read them. CLINIC_COUNT comes
                 from lib/stats.ts so this cannot drift from the homepage. */}
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4">
               {CLINIC_COUNT} dental clinics already run on MolarPlus
             </h1>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-6">
+            <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto mb-6">
               Choose by the size of your practice, not by the features you are willing to give up.
               Charting, treatment plans, prescriptions, billing, consent forms and WhatsApp from your
               own number are in every plan. What changes is how many people use it, and how many
@@ -232,7 +240,7 @@ export default function PricingPage() {
           <div className="max-w-6xl mx-auto">
             <Link
               href="/pricing/international"
-              className="group flex flex-col gap-4 rounded-2xl border-2 p-5 transition-all hover:shadow-md sm:flex-row sm:items-center sm:p-6"
+              className="group flex flex-col gap-4 rounded-2xl border-2 p-5 text-left transition-all hover:shadow-md sm:flex-row sm:items-center sm:p-6"
               style={{ borderColor: `${colors.primary}33`, backgroundColor: `${colors.primary}0D` }}
             >
               <div
@@ -286,8 +294,8 @@ export default function PricingPage() {
               What Pro adds
             </h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
-              Still one clinic, but a bigger team inside it — and tighter control over who can do
-              what, and what you can look back at.
+              A bigger team, a second and third address, and messages that go out from your own
+              WhatsApp number rather than ours.
             </p>
           </div>
           <div className="grid sm:grid-cols-2 gap-6">
@@ -310,8 +318,8 @@ export default function PricingPage() {
           <div className="mt-16 text-center mb-12">
             <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">What Growth adds</h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
-              The step you take when the practice outgrows a single address. Everything in Pro, for
-              every location you run.
+              The step you take when five locations stop being enough, and when counting patients
+              and appointments each month stops being worth anyone&apos;s time.
             </p>
           </div>
           <div className="grid sm:grid-cols-2 gap-6">

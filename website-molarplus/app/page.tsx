@@ -86,8 +86,8 @@ const softwareJsonLd = {
   url: SITE_URL,
   offers: [
     { '@type': 'Offer', name: 'Plus', price: '399', priceCurrency: 'INR', priceValidUntil: '2027-12-31', description: 'India ₹399 + GST/mo or $5/mo internationally, 20% off billed annually. The complete product for one clinic, up to 5 staff logins.' },
-    { '@type': 'Offer', name: 'Pro', price: '999', priceCurrency: 'INR', priceValidUntil: '2027-12-31', description: 'India ₹999 + GST/mo or $10/mo internationally, 20% off billed annually. Adds unlimited staff logins, granular permissions, the unified inbox, audit logging and priority support.' },
-    { '@type': 'Offer', name: 'Growth', price: '1500', priceCurrency: 'INR', priceValidUntil: '2027-12-31', description: 'India ₹1,500 + GST/mo or $15/mo internationally, 20% off billed annually. Adds unlimited clinic branches, cross-branch reporting, review and competitor tracking, and assisted migration.' },
+    { '@type': 'Offer', name: 'Pro', price: '999', priceCurrency: 'INR', priceValidUntil: '2027-12-31', description: 'India ₹999 + GST/mo or $10/mo internationally, 20% off billed annually. Up to 5 branches, 10 staff logins, 1,000 patients and appointments a month, 150 GB storage, own-number WhatsApp, granular permissions and the unified inbox.' },
+    { '@type': 'Offer', name: 'Growth', price: '1500', priceCurrency: 'INR', priceValidUntil: '2027-12-31', description: 'India ₹1,500 + GST/mo or $15/mo internationally, 20% off billed annually. Unlimited branches, staff, patients, appointments and storage, plus cross-branch consolidated reporting and assisted migration.' },
   ],
   // NO aggregateRating here, deliberately.
   //
@@ -142,7 +142,7 @@ const faqJsonLd = {
       name: 'How much does MolarPlus cost?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'There are three plans, and they map to the size of the practice rather than to how much of the product you get. Plus is Rs 399 + GST per month (5 US dollars internationally) and covers one clinic in full: charting, treatment plans, prescriptions, appointments, online booking, billing, consent forms, inventory, WhatsApp from your own number and up to 5 staff logins. Pro is Rs 999 + GST (10 US dollars) for the same clinic with a bigger team: unlimited staff logins, per-person permissions, the unified email and WhatsApp inbox, audit logging and priority support. Growth is Rs 1,500 + GST (15 US dollars) for practices at more than one address, adding unlimited branches switched from one login, cross-branch reporting and review management. Billing annually saves 20% on all three paid plans.',
+        text: 'There are three plans, sized to the practice rather than to how much of the product you get. Plus is Rs 399 + GST per month (5 US dollars internationally): one clinic, 5 staff logins, 300 new patients and 300 appointments a month, 100 GB storage, with reminders sent from a verified MolarPlus number. Pro is Rs 999 + GST (10 US dollars): up to 5 branches, 10 staff logins, 1,000 patients and appointments a month, 150 GB, plus your own WhatsApp number, per-person permissions, the unified inbox and competitor tracking. Growth is Rs 1,500 + GST (15 US dollars) and removes every ceiling, adding cross-branch consolidated reporting and assisted migration. Billing annually saves 20% on all three.',
       },
     },
   ],

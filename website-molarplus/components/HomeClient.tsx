@@ -73,7 +73,7 @@ const compliance = [
 const faqs = [
   {
     q: 'Is MolarPlus really free?',
-    a: 'Every new account gets 7 days of Pro free, with no card to start, so you see the whole product before deciding. After that a single clinic runs on Plus at ₹399 + GST a month, which includes the entire clinical product: charting, treatment plans, prescriptions, appointments, billing, consent forms, staff, inventory and WhatsApp from your own number. Nothing clinical is held back for a higher tier.',
+    a: 'Every new account gets 7 days of Pro free, with no card to start, so you see the whole product before deciding. After that a single clinic runs on Plus at ₹399 + GST a month, which includes the entire clinical product: charting, treatment plans, prescriptions, appointments, billing, consent forms, staff, inventory and WhatsApp reminders. Nothing clinical is held back for a higher tier — the plans differ on how many people, patients and locations, not on which features you get.',
   },
   {
     q: 'I already use another software / paper. Can I switch?',
@@ -89,7 +89,7 @@ const faqs = [
   },
   {
     q: 'When would I ever need to pay?',
-    a: 'Three plans, sized to the practice rather than to how much of the product you get. Plus is ₹399 + GST a month ($5 internationally) and covers one clinic in full, with up to 5 staff logins. Pro is ₹999 + GST ($10) for the same clinic with a bigger team: unlimited staff, per-person permissions, the unified email and WhatsApp inbox and audit logging. Growth is ₹1,500 + GST ($15) for practices at more than one address, adding unlimited branches from one login and cross-branch reporting. Annual billing takes 20% off all three paid plans.',
+    a: 'Three plans, sized to the practice rather than to how much of the product you get — every clinical feature is in all three. Plus is ₹399 + GST a month ($5 internationally): one clinic, 5 staff logins, 300 patients and 300 appointments a month. Pro is ₹999 + GST ($10): up to 5 branches, 10 staff, 1,000 patients and appointments a month, plus your own WhatsApp number, per-person permissions and the unified inbox. Growth is ₹1,500 + GST ($15) and removes the ceilings entirely, adding cross-branch reporting. Annual billing takes 20% off all three.',
   },
 ];
 

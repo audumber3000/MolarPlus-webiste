@@ -1,4 +1,4 @@
-import { Check } from 'lucide-react';
+import { Check, ChevronDown } from 'lucide-react';
 import { colors } from '@/lib/seo';
 
 /**
@@ -52,19 +52,22 @@ const GROUPS: Group[] = [
   {
     title: 'Users & capacity',
     rows: [
-      { label: 'Clinic locations', cells: ['1', '1', 'Unlimited'] },
-      { label: 'Staff logins', cells: ['5', 'Unlimited', 'Unlimited'] },
-      { label: 'New patients / month', cells: ['300', 'Unlimited', 'Unlimited'] },
-      { label: 'Appointments / month', cells: ['300', 'Unlimited', 'Unlimited'] },
-      { label: 'Patient documents & X-ray storage', cells: ['Unlimited', 'Unlimited', 'Unlimited'] },
+      { label: 'Clinic locations', cells: ['1', '5', 'Unlimited'] },
+      { label: 'Staff logins', cells: ['5', '10', 'Unlimited'] },
+      { label: 'New patients / month', cells: ['300', '1,000', 'Unlimited'] },
+      { label: 'Appointments / month', cells: ['300', '1,000', 'Unlimited'] },
+      { label: 'Patient documents & X-ray storage', cells: ['100 GB', '150 GB', 'Unlimited'] },
     ],
   },
   {
     title: 'WhatsApp & communication',
     rows: [
-      { label: 'WhatsApp appointment reminders', cells: [true, true, true] },
-      { label: 'Send from your own WhatsApp number', cells: [true, true, true] },
-      { label: 'Email notifications', cells: [true, true, true] },
+      { label: 'WhatsApp reminders & notifications', cells: [true, true, true] },
+      {
+        label: 'WhatsApp sender number',
+        cells: ['MolarPlus verified number', 'Your own number', 'Your own number'],
+      },
+      { label: 'Email notifications from a verified MolarPlus address', cells: [true, true, true] },
       { label: 'Message & document templates', cells: [true, true, true] },
       { label: 'Unified inbox — email + WhatsApp threads', cells: [false, true, true] },
     ],
@@ -75,7 +78,7 @@ const GROUPS: Group[] = [
       { label: 'Staff roles', cells: ['3 presets', 'Per person', 'Per person'] },
       { label: 'Permissions across 13 modules', cells: [false, true, true] },
       { label: 'Staff attendance tracking', cells: [true, true, true] },
-      { label: 'Audit log, devices & master password', cells: [false, true, true] },
+      { label: 'Audit log, devices & master password', cells: [true, true, true] },
     ],
   },
   {
@@ -91,9 +94,9 @@ const GROUPS: Group[] = [
   {
     title: 'Growth & marketing',
     rows: [
-      { label: 'Your own clinic website', cells: [true, true, true] },
-      { label: 'Google Reviews management', cells: [false, false, true] },
-      { label: 'Local competitor tracking', cells: [false, false, true] },
+      { label: 'Google Reviews management', cells: [true, true, true] },
+      { label: 'Local competitor tracking', cells: [false, true, true] },
+      { label: 'Your own clinic website', cells: [false, true, true] },
     ],
   },
   {
@@ -105,12 +108,15 @@ const GROUPS: Group[] = [
     ],
   },
   {
+    // Nothing in this group renders as a dash. Support is never actually
+    // absent — every plan can reach a human on the same channels — so "Limited"
+    // describes the difference honestly where "—" would have implied none.
     title: 'Support',
     rows: [
       { label: 'WhatsApp, phone & email support', cells: [true, true, true] },
-      { label: 'Priority response times', cells: [false, true, true] },
-      { label: 'Assisted onboarding & data migration', cells: [false, false, true] },
-      { label: 'Named support contact', cells: [false, false, true] },
+      { label: 'Priority response times', cells: ['Limited', true, true] },
+      { label: 'Onboarding & data migration', cells: ['Limited', 'Limited', true] },
+      { label: 'Named support contact', cells: ['Limited', 'Limited', true] },
     ],
   },
 ];
@@ -119,7 +125,7 @@ function CellContent({ value }: { value: Cell }) {
   if (value === true) {
     return (
       <>
-        <Check className="mx-auto h-5 w-5 text-green-600" aria-hidden="true" />
+        <Check className="ml-auto h-5 w-5 text-green-600" aria-hidden="true" />
         <span className="sr-only">Included</span>
       </>
     );
@@ -137,7 +143,9 @@ function CellContent({ value }: { value: Cell }) {
 
 export default function PlanComparison() {
   return (
-    <div className="overflow-x-auto rounded-xl border border-gray-200 bg-white">
+    <>
+      {/* Desktop: the grid, where comparing across columns is the point. */}
+      <div className="hidden md:block overflow-x-auto rounded-xl border border-gray-200 bg-white">
       <table className="w-full min-w-[46rem] border-collapse text-left">
         <caption className="sr-only">
           Feature comparison of the MolarPlus Plus, Pro and Growth plans
@@ -204,6 +212,70 @@ export default function PlanComparison() {
           </tbody>
         ))}
       </table>
-    </div>
+      </div>
+
+      {/*
+        Mobile: one collapsible section per plan.
+
+        A 39-row grid inside a horizontal scroller is unusable on a phone —
+        you lose your place in the columns the moment you scroll, and the
+        comparison the table exists for stops happening. Nobody on a phone is
+        reading three columns at once anyway; they are checking one plan. So
+        each plan becomes a list of its own values, and <details> keeps them
+        collapsed without shipping a byte of JavaScript. Plus opens by default,
+        matching its badge on the cards above.
+      */}
+      <div className="space-y-3 md:hidden">
+        {PLANS.map((plan, planIndex) => (
+          <details
+            key={plan}
+            open={planIndex === FEATURED_INDEX}
+            className="group overflow-hidden rounded-xl border border-gray-200 bg-white"
+            style={
+              planIndex === FEATURED_INDEX
+                ? { borderColor: `${colors.primary}59` }
+                : undefined
+            }
+          >
+            <summary className="flex cursor-pointer list-none items-center justify-between px-5 py-4 font-bold">
+              <span style={{ color: planIndex === FEATURED_INDEX ? colors.primary : '#111827' }}>
+                {plan}
+                {planIndex === FEATURED_INDEX && <span className="ml-1.5 text-xs">★</span>}
+              </span>
+              <ChevronDown
+                className="h-5 w-5 text-gray-400 transition-transform group-open:rotate-180"
+                aria-hidden="true"
+              />
+            </summary>
+
+            <div className="border-t border-gray-100">
+              {GROUPS.map((group) => (
+                <div key={group.title}>
+                  <h4
+                    className="px-5 py-2 text-xs font-bold uppercase tracking-wider"
+                    style={{ backgroundColor: `${colors.primary}12`, color: colors.primary }}
+                  >
+                    {group.title}
+                  </h4>
+                  <dl>
+                    {group.rows.map((row) => (
+                      <div
+                        key={row.label}
+                        className="flex items-start justify-between gap-4 border-b border-gray-100 px-5 py-2.5 last:border-0"
+                      >
+                        <dt className="text-sm text-gray-700">{row.label}</dt>
+                        <dd className="shrink-0 text-right text-sm">
+                          <CellContent value={row.cells[planIndex]} />
+                        </dd>
+                      </div>
+                    ))}
+                  </dl>
+                </div>
+              ))}
+            </div>
+          </details>
+        ))}
+      </div>
+    </>
   );
 }
