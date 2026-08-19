@@ -256,6 +256,11 @@ export default function InternationalPricingPage() {
             <h2 className="text-lg font-bold text-gray-900 mb-4">Notes on this table</h2>
             <ol className="space-y-3 text-sm text-gray-700 leading-relaxed list-decimal pl-5">
               <li>
+                <strong>The Free plan costs nothing anywhere.</strong> It holds patient records for
+                one clinic with up to 20 new patients a month, in every country, with no card and no
+                expiry. The table below covers the two paid plans.
+              </li>
+              <li>
                 <strong>Local amounts are indicative.</strong> Except in India, MolarPlus charges in
                 US dollars. Your bank or card issuer performs the conversion at its own rate on the
                 day, and may add a foreign-transaction fee, so the amount debited will differ slightly

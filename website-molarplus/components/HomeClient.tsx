@@ -73,7 +73,7 @@ const compliance = [
 const faqs = [
   {
     q: 'Is MolarPlus really free?',
-    a: 'You can try it free for 7 days on the Pro plan, with no credit card to start. After that a single clinic runs on Plus at ₹399 + GST a month, which includes the entire clinical product: patients, charting, treatment plans, prescriptions, appointments, billing, consent forms, staff, inventory and WhatsApp from your own number, on web, mobile and desktop. Nothing clinical is held back for a higher tier.',
+    a: 'There is a free plan, and it is genuinely free — patient records for one clinic, up to 20 new patients a month, no card and no expiry. It will not run a practice on its own, and it is not meant to: it is there so your patient list is never held hostage. Every new account also gets 7 days of Pro to see the whole product. A single clinic then runs on Plus at ₹399 + GST a month, which includes the entire clinical product: charting, treatment plans, prescriptions, appointments, billing, consent forms, staff, inventory and WhatsApp from your own number.',
   },
   {
     q: 'I already use another software / paper. Can I switch?',
@@ -89,7 +89,7 @@ const faqs = [
   },
   {
     q: 'When would I ever need to pay?',
-    a: 'Two plans. Plus is ₹399 + GST a month ($5 internationally) and covers one clinic with up to 5 staff logins. Pro is ₹999 + GST a month ($10) and adds unlimited branches switched from one login, cross-branch reporting, unlimited staff, per-person permissions, the unified email and WhatsApp inbox, and priority support. Billing annually takes 20% off either plan.',
+    a: 'Three plans. Free is ₹0 forever and holds patient records only, up to 20 new patients a month. Plus is ₹399 + GST a month ($5 internationally) and covers one clinic in full, with up to 5 staff logins. Pro is ₹999 + GST a month ($10) and adds unlimited branches switched from one login, cross-branch reporting, unlimited staff, per-person permissions, the unified email and WhatsApp inbox, and priority support. Billing annually takes 20% off either paid plan.',
   },
 ];
 

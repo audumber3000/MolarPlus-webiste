@@ -5,7 +5,7 @@ import { usePathname } from 'next/navigation';
 import { Menu, X, ChevronDown, Stethoscope, FlaskConical, ArrowUpRight } from 'lucide-react';
 import { useState } from 'react';
 import { colors } from '@/lib/seo';
-import { APP_URL, LAB_URL } from '@/lib/constants';
+import { APP_URL, CLINO_URL, LAB_URL } from '@/lib/constants';
 import { trackSignupStarted } from '@/analytics/track';
 
 /**
@@ -117,18 +117,31 @@ export default function Nav() {
         <div className="flex justify-between items-center h-20">
           {/* Logo + product chip */}
           <div className="flex items-center gap-3">
-            <Link href="/" className="flex flex-col items-end group">
-              <img
-                src="/molarplus-logo-transparent.svg"
-                alt="MolarPlus"
-                className="h-10 w-auto"
-              />
-              <div className="text-[9px] font-bold mt-0.5 tracking-tight leading-none pr-2">
+            {/* The byline is a sibling of the home link, not a child of
+                it: it points at a different site, and an anchor nested
+                inside an anchor is invalid markup that browsers resolve
+                unpredictably. `items-end` on the column preserves the
+                original right-aligned stack. */}
+            <div className="flex flex-col items-end">
+              <Link href="/" className="group">
+                <img
+                  src="/molarplus-logo-transparent.svg"
+                  alt="MolarPlus"
+                  className="h-10 w-auto"
+                />
+              </Link>
+              <a
+                href={CLINO_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Clino Health, the company behind MolarPlus"
+                className="text-[9px] font-bold mt-0.5 tracking-tight leading-none pr-2 transition-opacity hover:opacity-70"
+              >
                 <span className="text-gray-400 font-medium mr-0.5">by</span>
                 <span className="text-[#73a942]">Clino</span>
                 <span className="text-[#245501] ml-1">Health</span>
-              </div>
-            </Link>
+              </a>
+            </div>
             <div className="hidden sm:flex items-center gap-2 pl-3 ml-1 border-l border-gray-200">
               <span className="text-xs font-bold text-gray-500 uppercase tracking-[0.15em]">
                 {productLabels[context]}

@@ -86,8 +86,8 @@ export type CtaLocation =
 /** Which product a signup hand-off is for, so the funnel can be split. */
 export type Product = 'clinic' | 'lab';
 
-/** The paid tiers, as used in `mkt_pricing_plan_selected`. */
-export type PlanTier = 'plus' | 'pro';
+/** The plans, as used in `mkt_pricing_plan_selected`. */
+export type PlanTier = 'free' | 'plus' | 'pro';
 
 /** Billing cadence chosen on the pricing toggle. */
 export type BillingCycle = 'monthly' | 'annual';

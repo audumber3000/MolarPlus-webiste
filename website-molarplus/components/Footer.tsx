@@ -1,3 +1,4 @@
+import { CLINO_URL } from '@/lib/constants';
 import { SITE_NAME } from '@/lib/seo';
 import Link from 'next/link';
 import { WindowsBadge, MacBadge } from '@/components/DesktopBadges';
@@ -18,11 +19,17 @@ export default function Footer() {
                   className="h-14 w-auto brightness-0 invert"
                 />
               </Link>
-              <div className="text-[11px] font-bold tracking-tight leading-none mb-6">
+              <a
+                href={CLINO_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Clino Health, the company behind MolarPlus"
+                className="inline-block text-[11px] font-bold tracking-tight leading-none mb-6 transition-opacity hover:opacity-70"
+              >
                 <span className="text-white/40 font-medium mr-0.5">by</span>
                 <span className="text-[#a3d977]">Clino</span>
                 <span className="text-[#7eb049] ml-1">Health</span>
-              </div>
+              </a>
               <p className="text-blue-100/70 text-sm leading-relaxed mb-8 font-medium">
                 Software for everyone in dentistry. Built for clinics and laboratories.
               </p>

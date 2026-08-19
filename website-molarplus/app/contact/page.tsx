@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Mail, Phone, MapPin, Clock, MessageSquare, Wrench, Users } from 'lucide-react';
 import { SITE_URL, colors } from '@/lib/seo';
-import { APP_URL } from '@/lib/constants';
+import { APP_URL, CLINO_URL } from '@/lib/constants';
 import { SignupLink } from '@/components/TrackedCTA';
 import WhatsAppCta from '@/components/WhatsAppCta';
 import ContactForm from '@/components/ContactForm';
@@ -93,7 +93,25 @@ const teamFacts = [
   {
     Icon: Users,
     title: 'A small team in Pune',
-    desc: 'MolarPlus is built by Clino Health, working out of Yerawada. Small enough that the person replying knows the product, rather than reading from a script.',
+    // `desc` is a ReactNode rather than a string so the parent company can
+    // be a link. "Who am I actually dealing with?" is the question this
+    // section answers, and the answer should be one click from proof.
+    desc: (
+      <>
+        MolarPlus is built by{' '}
+        <a
+          href={CLINO_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="font-semibold underline underline-offset-2 hover:no-underline"
+          style={{ color: colors.primary }}
+        >
+          Clino Health
+        </a>
+        , working out of Yerawada. Small enough that the person replying knows the product,
+        rather than reading from a script.
+      </>
+    ),
   },
   {
     Icon: Wrench,

@@ -85,6 +85,7 @@ const softwareJsonLd = {
   description: DEFAULT_DESCRIPTION,
   url: SITE_URL,
   offers: [
+    { '@type': 'Offer', name: 'Free', price: '0', priceCurrency: 'INR', description: 'Patient records for one clinic and one login, up to 20 new patients a month. No time limit, no credit card.' },
     { '@type': 'Offer', name: 'Plus', price: '399', priceCurrency: 'INR', priceValidUntil: '2027-12-31', description: 'India ₹399 + GST/mo or $5/mo internationally, 20% off billed annually. The complete product for one clinic, up to 5 staff logins.' },
     { '@type': 'Offer', name: 'Pro', price: '999', priceCurrency: 'INR', priceValidUntil: '2027-12-31', description: 'India ₹999 + GST/mo or $10/mo internationally, 20% off billed annually. Adds unlimited branches, cross-branch reporting, unlimited staff, granular permissions, unified inbox and priority support.' },
   ],
@@ -109,7 +110,7 @@ const faqJsonLd = {
       name: 'Is there a free trial of MolarPlus?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Yes. Every new account gets 7 days of the Pro plan free, with no credit card required to start. After the trial you choose Plus at Rs 399 + GST/month for a single clinic, or Pro at Rs 999 + GST/month for multiple branches and larger teams. Nothing is charged automatically if you do not pick a plan.',
+        text: 'Yes. Every new account gets 7 days of the Pro plan free, with no credit card required to start. After the trial you choose Plus at Rs 399 + GST/month for a single clinic, or Pro at Rs 999 + GST/month for multiple branches and larger teams. If you pick neither, the account settles onto the Free plan, which keeps your patient records for one clinic with up to 20 new patients a month. Nothing is charged automatically.',
       },
     },
     {
@@ -141,7 +142,7 @@ const faqJsonLd = {
       name: 'How much does MolarPlus cost?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'There are two plans. Plus is Rs 399 + GST per month (5 US dollars internationally) and covers one clinic in full: charting, treatment plans, prescriptions, appointments, online booking, billing, consent forms, inventory, WhatsApp from your own number and up to 5 staff logins. Pro is Rs 999 + GST per month (10 US dollars) and adds unlimited branches with single-login switching, cross-branch reporting, unlimited staff, granular per-person permissions, the unified email and WhatsApp inbox, and priority support. Billing annually saves 20% on either plan.',
+        text: 'There are three plans. Free costs nothing and holds patient records for one clinic, up to 20 new patients a month. Plus is Rs 399 + GST per month (5 US dollars internationally) and covers one clinic in full: charting, treatment plans, prescriptions, appointments, online booking, billing, consent forms, inventory, WhatsApp from your own number and up to 5 staff logins. Pro is Rs 999 + GST per month (10 US dollars) and adds unlimited branches with single-login switching, cross-branch reporting, unlimited staff, granular per-person permissions, the unified email and WhatsApp inbox, and priority support. Billing annually saves 20% on either paid plan.',
       },
     },
   ],

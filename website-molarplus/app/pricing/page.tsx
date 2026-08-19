@@ -23,16 +23,16 @@ import PricingPlans from '@/components/PricingPlans';
 const LEGACY_FREE_END = '31 October 2026';
 
 export const metadata: Metadata = {
-  title: 'Pricing - Plus ₹399 & Pro ₹999/mo | MolarPlus Dental Software',
+  title: 'Pricing - Free, Plus ₹399 & Pro ₹999/mo | MolarPlus Dental Software',
   description:
-    'MolarPlus pricing: Plus at ₹399 + GST/month ($5) for a single clinic, Pro at ₹999 + GST/month ($10) for multi-branch practices. Save 20% billed annually. 7-day free trial, no credit card.',
+    'MolarPlus pricing: a free plan for patient records, Plus at ₹399 + GST/month ($5) for a single clinic, Pro at ₹999 + GST/month ($10) for multi-branch practices. Save 20% billed annually. 7-day free trial.',
   keywords:
     'dental software pricing India, dental clinic management software cost, multi-branch dental software, dental practice management pricing INR USD, MolarPlus plans',
   alternates: { canonical: `${SITE_URL}/pricing` },
   openGraph: {
-    title: 'Pricing - Plus ₹399 & Pro ₹999/mo | MolarPlus',
+    title: 'Pricing - Free, Plus ₹399 & Pro ₹999/mo | MolarPlus',
     description:
-      'Plus at ₹399 + GST/mo for one clinic. Pro at ₹999 + GST/mo for multi-branch practices. 20% off annually. Start with a 7-day free trial.',
+      'A free plan for patient records. Plus at ₹399 + GST/mo for one clinic. Pro at ₹999 + GST/mo for multi-branch practices. 20% off annually.',
     url: `${SITE_URL}/pricing`,
   },
 };
@@ -145,24 +145,28 @@ const proAdds = [
 
 const faqs = [
   {
+    q: 'What does the Free plan include?',
+    a: 'Patient records, and only patient records: names, history, contact details and documents, for one clinic and one login, on the web and mobile apps. You can add up to 20 new patients a month. There is no appointment book, billing, charting or WhatsApp on Free — those start at Plus. Free exists so your patient list is never held hostage, not as a way to run a practice.',
+  },
+  {
     q: 'What is the difference between Plus and Pro?',
     a: 'Plus is the complete product for a single clinic — charting, treatment plans, prescriptions, appointments, online booking, billing, consent forms, inventory, WhatsApp from your own number, the full report library and all four apps. Pro is for practices that outgrow one location or one small team: it adds unlimited branches with single-login switching, cross-branch reporting, unlimited staff logins, per-person permissions, the unified email + WhatsApp inbox, Google review and competitor tracking, audit logs, unlimited report history with data export, and priority support.',
   },
   {
     q: 'How much does each plan cost?',
-    a: 'In India, Plus is ₹399 + GST per month and Pro is ₹999 + GST per month. Billed annually you save 20%: Plus works out to ₹319/month (₹3,830/year) and Pro to ₹799/month (₹9,590/year). For other countries, Plus is $5/month ($48/year) and Pro is $10/month ($96/year), with no GST.',
+    a: 'Free is ₹0 with no time limit. In India, Plus is ₹399 + GST per month and Pro is ₹999 + GST per month. Billed annually you save 20%: Plus works out to ₹319/month (₹3,830/year) and Pro to ₹799/month (₹9,590/year). For other countries, Plus is $5/month ($48/year) and Pro is $10/month ($96/year), with no GST.',
   },
   {
     q: 'Is GST included in the price?',
     a: 'No — Indian prices are quoted excluding GST, as is standard for software here. GST of 18% is added at checkout, so Plus is ₹471/month and Pro is ₹1,179/month all-in. International pricing in USD has no GST applied. A GST invoice is issued for every payment, so registered clinics can claim input credit.',
   },
   {
-    q: 'Is there a free trial?',
-    a: 'Yes. Every new account gets 7 days of Pro free, with no credit card required to start. At the end of the trial you choose Plus or Pro. Nothing is charged automatically if you do not pick a plan.',
+    q: 'How do the free trial and the Free plan fit together?',
+    a: 'They do different jobs. Every new account starts with 7 days of Pro, so you see the whole product with no credit card. When those 7 days end you choose Plus or Pro — or you do nothing, and the account settles onto the Free plan, where your patient records stay accessible for as long as you like. The trial is how you try MolarPlus; Free is the floor you never fall through. Nothing is ever charged automatically.',
   },
   {
     q: 'I already use MolarPlus for free. What happens to my account?',
-    a: `Nothing changes immediately. Every clinic that signed up while MolarPlus was free for a single location keeps full access at no charge until ${LEGACY_FREE_END}, and we will email you well before that date. When the transition ends you can move to Plus at ₹299/month — locked for your first 12 months, below the ₹399 list price, as thanks for being early. Your data, settings and history carry across untouched either way.`,
+    a: `Nothing changes immediately. Every clinic that signed up while MolarPlus was free for a single location keeps full access at no charge until ${LEGACY_FREE_END}, and we will email you well before that date. After it you can move to Plus at ₹299/month — locked for your first 12 months, below the ₹399 list price, as thanks for being early — or stay on the Free plan and keep your patient records. Either way your data, settings and history carry across untouched, and nobody is locked out of their own records.`,
   },
   {
     q: 'Why is MolarPlus not free any more?',
@@ -170,7 +174,7 @@ const faqs = [
   },
   {
     q: 'Can I switch between plans?',
-    a: 'Yes, in either direction, from Subscription in the app. Upgrades to Pro take effect immediately. Downgrades to Plus take effect at your next renewal date, so you keep what you have paid for. If you downgrade while running multiple branches, you will need to pick which single branch stays active.',
+    a: 'Yes, in either direction, from Subscription in the app. Upgrades take effect immediately. Downgrades take effect at your next renewal date, so you keep what you have paid for. If you downgrade from Pro while running multiple branches, you will need to pick which single branch stays active. Dropping to Free keeps your patient records readable; the appointment, billing and clinical data stays stored and comes back the moment you upgrade again.',
   },
   {
     q: 'Do I pay per branch on Pro?',
@@ -183,9 +187,17 @@ const pricingJsonLd = {
   '@type': 'Product',
   name: 'MolarPlus Dental Clinic Management Software',
   description:
-    'Dental practice management software. Plus (₹399 + GST/mo, $5/mo) covers a single clinic in full. Pro (₹999 + GST/mo, $10/mo) adds unlimited branches, cross-branch reporting, unlimited staff, granular permissions, unified inbox and priority support. 20% off billed annually.',
+    'Dental practice management software. A free plan holds patient records for one clinic, up to 20 new patients a month. Plus (₹399 + GST/mo, $5/mo) covers a single clinic in full. Pro (₹999 + GST/mo, $10/mo) adds unlimited branches, cross-branch reporting, unlimited staff, granular permissions, unified inbox and priority support. 20% off billed annually.',
   brand: { '@type': 'Brand', name: 'MolarPlus' },
   offers: [
+    {
+      '@type': 'Offer',
+      name: 'Free',
+      price: '0',
+      priceCurrency: 'INR',
+      description:
+        'Patient records for one clinic and one login, up to 20 new patients a month. No time limit and no credit card.',
+    },
     {
       '@type': 'Offer',
       name: 'Plus',
@@ -244,12 +256,12 @@ export default function PricingPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-              ₹399 for one clinic. ₹999 for all of them.
+              Free to start. ₹399 to run a clinic.
             </h1>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-6">
-              Both plans are the real product — charting, treatment plans, billing, consent forms
-              and WhatsApp from your own number. Pro is for practices running more than one location
-              and more than a handful of people.
+              Plus is the real product — charting, treatment plans, billing, consent forms and
+              WhatsApp from your own number. Pro adds the branches and the controls a group needs.
+              Free keeps your patient list safe while you decide.
             </p>
             <p className="text-sm text-gray-500">
               Pricing in <strong>India (INR, excluding GST)</strong> and{' '}
@@ -262,7 +274,7 @@ export default function PricingPage() {
               third white block would read as a continuation of them rather
               than as the different kind of thing it is. The whole banner is
               the link so the tap target matches its visual weight. */}
-          <div className="max-w-4xl mx-auto">
+          <div className="max-w-6xl mx-auto">
             <Link
               href="/pricing/international"
               className="group flex flex-col gap-4 rounded-2xl border-2 p-5 transition-all hover:shadow-md sm:flex-row sm:items-center sm:p-6"
@@ -364,7 +376,8 @@ export default function PricingPage() {
           </div>
           <p className="text-center text-gray-700 mt-10">
             <strong>India:</strong> Plus ₹399 + GST/month, Pro ₹999 + GST/month — 20% off billed
-            annually. <strong>Other countries:</strong> Plus $5/month, Pro $10/month.
+            annually. <strong>Other countries:</strong> Plus $5/month, Pro $10/month. The Free plan
+            is ₹0 / $0 in every country.
           </p>
         </div>
       </section>
