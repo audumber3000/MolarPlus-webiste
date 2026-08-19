@@ -65,6 +65,11 @@ export default function Footer() {
                   </Link>
                 </li>
                 <li>
+                  <Link href="/pricing/international" className="hover:text-white transition-colors">
+                    Pricing by Country
+                  </Link>
+                </li>
+                <li>
                   <Link href="/pricing" className="hover:text-white transition-colors">
                     Clinic Pricing
                   </Link>

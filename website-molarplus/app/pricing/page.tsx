@@ -256,6 +256,18 @@ export default function PricingPage() {
             </p>
           </div>
           <PricingPlans />
+
+          <p className="text-center text-sm text-gray-600">
+            Outside India?{' '}
+            <Link
+              href="/pricing/international"
+              className="font-semibold underline decoration-gray-300 hover:decoration-current"
+              style={{ color: colors.primary }}
+            >
+              See pricing in your local currency
+            </Link>{' '}
+            for South Asia and the Middle East, with local tax rates.
+          </p>
         </div>
       </section>
 
