@@ -9,14 +9,14 @@ import WhatsAppCta from '@/components/WhatsAppCta';
 export const metadata: Metadata = {
   title: 'International Pricing by Country | MolarPlus Dental Software',
   description:
-    'MolarPlus Plus and Pro pricing converted into local currency for South Asia and the Middle East, with each country’s headline consumption tax rate.',
+    'MolarPlus Plus, Pro and Growth pricing in local currency for 20 countries across South Asia and the Middle East, with each country’s consumption tax rate.',
   keywords:
     'dental software pricing UAE, dental software pricing Saudi Arabia, dental clinic software price Pakistan, dental software Bangladesh Sri Lanka Nepal, MolarPlus international pricing',
   alternates: { canonical: `${SITE_URL}/pricing/international` },
   openGraph: {
     title: 'International Pricing by Country | MolarPlus',
     description:
-      'Plus and Pro pricing in local currency across South Asia and the Middle East, with each country’s consumption tax rate.',
+      'Plus, Pro and Growth pricing in local currency across South Asia and the Middle East, with each country’s consumption tax rate.',
     url: `${SITE_URL}/pricing/international`,
   },
 };
@@ -202,9 +202,27 @@ function CountryTable({ caption, rows }: { caption: string; rows: Country[] }) {
   );
 }
 
+const breadcrumbJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Pricing', item: `${SITE_URL}/pricing` },
+    {
+      '@type': 'ListItem',
+      position: 2,
+      name: 'International pricing by country',
+      item: `${SITE_URL}/pricing/international`,
+    },
+  ],
+};
+
 export default function InternationalPricingPage() {
   return (
     <div className="min-h-screen bg-gray-50 pt-20">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
       <section className="py-14 md:py-16">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <Link

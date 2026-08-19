@@ -15,7 +15,7 @@ import { SignupLink } from '@/components/TrackedCTA';
 export const metadata: Metadata = {
   title: 'About MolarPlus: Built for Dentists, Priced for Small Clinics',
   description:
-    'MolarPlus is dental clinic software that gives a single clinic the same tools as a twenty-branch group, from ₹399 a month. A lean team that listens to dentists and ships fast.',
+    'MolarPlus gives a single dental clinic the same tools as a twenty-branch group, from ₹399 a month. A lean team that listens to dentists and ships fast.',
   keywords:
     'about MolarPlus, dental software company, affordable dental clinic software, dental practice management, made for dentists',
   alternates: { canonical: `${SITE_URL}/about` },

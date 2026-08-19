@@ -30,7 +30,7 @@ const CLINIC_COUNT = COMPANY_STATS[0].value;
 export const metadata: Metadata = {
   title: 'Pricing - Plus ₹399, Pro ₹999 & Growth ₹1500/mo | MolarPlus',
   description:
-    'MolarPlus pricing: Plus at ₹399 + GST/month ($5) for one clinic, Pro at ₹999 ($10) for bigger teams, Growth at ₹1,500 ($15) for multi-branch practices. Save 20% billed annually. 7-day free trial.',
+    'Dental clinic software pricing: Plus ₹399, Pro ₹999 and Growth ₹1,500 + GST a month ($5/$10/$15). Save 20% annually. 7-day free trial, no card.',
   keywords:
     'dental software pricing India, dental clinic management software cost, multi-branch dental software, dental practice management pricing INR USD, MolarPlus plans',
   alternates: { canonical: `${SITE_URL}/pricing` },
@@ -217,6 +217,12 @@ export default function PricingPage() {
                 one scroll below and can carry the prices themselves; the job up
                 here is to make someone want to read them. CLINIC_COUNT comes
                 from lib/stats.ts so this cannot drift from the homepage. */}
+            <div
+              className="text-xs font-bold uppercase tracking-[0.2em] mb-4"
+              style={{ color: colors.primary }}
+            >
+              Pricing
+            </div>
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4">
               {CLINIC_COUNT} dental clinics already run on MolarPlus
             </h1>
