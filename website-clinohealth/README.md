@@ -5,7 +5,7 @@ underneath it. Next.js 15 App Router, TypeScript, Tailwind, fully static.
 
 Rebuilt in August 2026 from the previous hand-written static site in `../website/`, which had
 nav and footer markup copy-pasted across six pages and still advertised three brands that no
-longer exist.
+longer exist..
 
 ## Commands
 
