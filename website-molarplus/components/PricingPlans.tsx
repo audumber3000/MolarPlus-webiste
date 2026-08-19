@@ -118,21 +118,21 @@ export default function PricingPlans() {
     cta: string;
   }[] = [
     {
-      key: 'plus',
-      name: 'Plus',
-      tagline: 'Everything one clinic needs to run its day',
-      features: PLUS_FEATURES,
-      featured: true,
-      badge: 'Most popular',
-      cta: 'Start free trial',
-    },
-    {
       key: 'pro',
       name: 'Pro',
       tagline: 'One clinic, a bigger team and tighter control',
       features: PRO_FEATURES,
       featured: false,
       inherits: 'Everything in Plus, plus:',
+      cta: 'Start free trial',
+    },
+    {
+      key: 'plus',
+      name: 'Plus',
+      tagline: 'Everything one clinic needs to run its day',
+      features: PLUS_FEATURES,
+      featured: true,
+      badge: 'Most popular',
       cta: 'Start free trial',
     },
     {
