@@ -11,4 +11,7 @@ export const colors = {
   dark: '#1a1548',
   light: '#f8f9fa',
   accent: '#6366f1',
+  // Marker yellow, for highlighting a word inside a heading. Warm rather than
+  // neon so it reads as a highlighter pen next to the indigo, not as a warning.
+  highlight: '#fde68a',
 } as const;

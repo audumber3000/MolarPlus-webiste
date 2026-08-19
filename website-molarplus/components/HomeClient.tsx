@@ -163,16 +163,17 @@ export default function HomeClient({
               </div>
 
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-[#1a1c4b] tracking-tight leading-[1.05]">
-                The{' '}
-                <span className="relative inline-block whitespace-nowrap">
-                  <span className="relative z-10">backbone</span>
-                  <span
-                    aria-hidden="true"
-                    className="absolute inset-x-0 bottom-[0.08em] h-[0.28em] rounded-full"
-                    style={{ backgroundColor: `${colors.primary}26` }}
-                  />
-                </span>{' '}
-                of modern dental practices
+                The backbone of modern{' '}
+                {/* Padded inline background rather than an absolutely
+                    positioned bar: box-decoration-break keeps the marker intact
+                    if the phrase wraps to its own line on a narrow phone, which
+                    a positioned bar cannot survive. */}
+                <span
+                  className="rounded-[0.15em] px-[0.1em] [-webkit-box-decoration-break:clone] [box-decoration-break:clone]"
+                  style={{ backgroundColor: colors.highlight }}
+                >
+                  dental practices
+                </span>
               </h1>
 
               <p className="mt-7 text-lg md:text-xl text-gray-600 leading-relaxed max-w-xl">
