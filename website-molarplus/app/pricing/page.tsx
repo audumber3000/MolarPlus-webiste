@@ -11,6 +11,7 @@ import {
   Inbox,
   Star,
   Download,
+  Globe,
 } from 'lucide-react';
 import { SITE_URL, colors } from '@/lib/seo';
 import { APP_URL } from '@/lib/constants';
@@ -257,17 +258,42 @@ export default function PricingPage() {
           </div>
           <PricingPlans />
 
-          <p className="text-center text-sm text-gray-600">
-            Outside India?{' '}
+          {/* Tinted, not white: two white plan cards sit directly above, and a
+              third white block would read as a continuation of them rather
+              than as the different kind of thing it is. The whole banner is
+              the link so the tap target matches its visual weight. */}
+          <div className="max-w-4xl mx-auto">
             <Link
               href="/pricing/international"
-              className="font-semibold underline decoration-gray-300 hover:decoration-current"
-              style={{ color: colors.primary }}
+              className="group flex flex-col gap-4 rounded-2xl border-2 p-5 transition-all hover:shadow-md sm:flex-row sm:items-center sm:p-6"
+              style={{ borderColor: `${colors.primary}33`, backgroundColor: `${colors.primary}0D` }}
             >
-              See pricing in your local currency
-            </Link>{' '}
-            for South Asia and the Middle East, with local tax rates.
-          </p>
+              <div
+                className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl"
+                style={{ backgroundColor: `${colors.primary}1A` }}
+              >
+                <Globe className="h-6 w-6" style={{ color: colors.primary }} />
+              </div>
+
+              <div className="flex-1">
+                <p className="font-bold text-gray-900">
+                  Outside India? See the price in your own currency.
+                </p>
+                <p className="mt-1 text-sm text-gray-600 leading-relaxed">
+                  Plus and Pro converted for 20 countries across South Asia and the Middle East,
+                  each with its local tax rate.
+                </p>
+              </div>
+
+              <span
+                className="inline-flex items-center gap-1.5 font-semibold whitespace-nowrap"
+                style={{ color: colors.primary }}
+              >
+                View the table
+                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+              </span>
+            </Link>
+          </div>
         </div>
       </section>
 
