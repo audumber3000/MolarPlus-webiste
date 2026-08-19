@@ -14,6 +14,7 @@ import {
   Globe,
 } from 'lucide-react';
 import { SITE_URL, colors } from '@/lib/seo';
+import { COMPANY_STATS } from '@/lib/stats';
 import { APP_URL } from '@/lib/constants';
 import { SignupLink } from '@/components/TrackedCTA';
 import PricingPlans from '@/components/PricingPlans';
@@ -22,6 +23,9 @@ import PlanComparison from '@/components/PlanComparison';
 // The date the legacy free single-clinic accounts move onto a paid plan.
 // Referenced in the FAQ here and in /terms-of-use — keep the two in step.
 const LEGACY_FREE_END = '31 October 2026';
+
+// The clinic count, single-sourced so /pricing and the homepage cannot disagree.
+const CLINIC_COUNT = COMPANY_STATS[0].value;
 
 export const metadata: Metadata = {
   title: 'Pricing - Plus ₹399, Pro ₹999 & Growth ₹1500/mo | MolarPlus',
@@ -201,13 +205,18 @@ export default function PricingPage() {
       <section className="bg-gradient-to-br from-blue-50 to-white py-16 md:py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
+            {/* Lead on the clinics, not the number on the tag. The cards are
+                one scroll below and can carry the prices themselves; the job up
+                here is to make someone want to read them. CLINIC_COUNT comes
+                from lib/stats.ts so this cannot drift from the homepage. */}
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-₹399 to run a clinic. ₹1,500 to run five.
+              {CLINIC_COUNT} dental clinics already run on MolarPlus
             </h1>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-6">
-              Every plan is the real product — charting, treatment plans, billing, consent forms and
-              WhatsApp from your own number. Plus runs one clinic, Pro adds the controls a bigger
-              team needs, and Growth adds the branches.
+              Choose by the size of your practice, not by the features you are willing to give up.
+              Charting, treatment plans, prescriptions, billing, consent forms and WhatsApp from your
+              own number are in every plan. What changes is how many people use it, and how many
+              places you use it in.
             </p>
             <p className="text-sm text-gray-500">
               Pricing in <strong>India (INR, excluding GST)</strong> and{' '}
