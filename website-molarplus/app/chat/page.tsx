@@ -2,16 +2,14 @@
 
 import { useEffect, useState } from "react";
 import { MessageCircle } from "lucide-react";
+import { whatsappLink } from "@/lib/constants";
 
-const WHATSAPP_NUMBER = "919594078777";
 const PREFILLED_MESSAGE =
   "Hi Team, I need help with your product MolarPlus Dental software";
 const REDIRECT_DELAY_SECONDS = 3;
 
 export default function ChatRedirectPage() {
-  const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
-    PREFILLED_MESSAGE
-  )}`;
+  const whatsappUrl = whatsappLink(PREFILLED_MESSAGE);
 
   const [secondsLeft, setSecondsLeft] = useState(REDIRECT_DELAY_SECONDS);
 

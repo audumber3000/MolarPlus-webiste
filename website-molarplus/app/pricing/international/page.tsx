@@ -4,6 +4,7 @@ import { ArrowLeft, ArrowRight } from 'lucide-react';
 import { SITE_URL, colors } from '@/lib/seo';
 import { APP_URL } from '@/lib/constants';
 import { SignupLink } from '@/components/TrackedCTA';
+import WhatsAppCta from '@/components/WhatsAppCta';
 
 export const metadata: Metadata = {
   title: 'International Pricing by Country | MolarPlus Dental Software',
@@ -228,6 +229,28 @@ export default function InternationalPricingPage() {
           <CountryTable caption="South Asia" rows={SOUTH_ASIA} />
           <CountryTable caption="Middle East" rows={MIDDLE_EAST} />
 
+          {/* For everyone who scanned both tables and did not find themselves. */}
+          <div
+            className="mb-14 rounded-2xl border p-6 md:p-8 text-center"
+            style={{ borderColor: `${colors.primary}25`, backgroundColor: `${colors.primary}08` }}
+          >
+            <h2 className="text-xl md:text-2xl font-bold text-gray-900">
+              Don&apos;t see your flag?
+            </h2>
+            <p className="mx-auto mt-3 max-w-xl text-gray-600 leading-relaxed">
+              MolarPlus works anywhere. This table just covers where most of our clinics happen to
+              be. Message us and we&apos;ll send back Plus and Pro in your currency — usually the
+              same day, always from a person.
+            </p>
+            <div className="mt-6 flex justify-center">
+              <WhatsAppCta
+                location="pricing_page"
+                label="Ask us on WhatsApp"
+                message="Hi MolarPlus, my country isn't in your pricing table. What do Plus and Pro cost for me?"
+              />
+            </div>
+          </div>
+
           {/* Notes */}
           <div className="rounded-xl border border-gray-200 bg-white p-6 md:p-8">
             <h2 className="text-lg font-bold text-gray-900 mb-4">Notes on this table</h2>
@@ -254,12 +277,6 @@ export default function InternationalPricingPage() {
                 <strong>Rates change.</strong> Exchange rates and tax rates are both set by hand on
                 this page and reviewed periodically. Treat the date above as the age of every figure
                 in the table, and verify before relying on any of it for filing.
-              </li>
-              <li>
-                <strong>Not listed?</strong> MolarPlus is available worldwide at the same $5 and $10
-                pricing. This table covers South Asia and the Middle East because that is where most
-                of our clinics are — <Link href="/contact" className="font-medium underline decoration-gray-300 hover:decoration-current" style={{ color: colors.primary }}>ask us</Link>{' '}
-                about anywhere else.
               </li>
             </ol>
           </div>

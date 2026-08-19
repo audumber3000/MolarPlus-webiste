@@ -14,6 +14,7 @@
  * survives.
  */
 import WhatsAppIcon from '@/components/WhatsAppIcon';
+import { whatsappLink } from '@/lib/constants';
 import { trackDemoRequested } from '@/analytics/track';
 import type { CtaLocation } from '@/analytics/events';
 
@@ -23,15 +24,25 @@ const WA_GREEN_DARK = '#128C7E';
 export default function WhatsAppCta({
   location,
   label = 'Talk to us on WhatsApp',
+  message,
   className = '',
 }: {
   location: CtaLocation;
   label?: string;
+  /**
+   * Prefilled first message. When given, the button opens the WhatsApp thread
+   * directly instead of routing through /chat — that interstitial exists to
+   * explain where a vague "talk to us" is about to send you, which is dead
+   * weight once the question is already written for them.
+   */
+  message?: string;
   className?: string;
 }) {
+  const direct = Boolean(message);
   return (
     <a
-      href="/chat"
+      href={message ? whatsappLink(message) : '/chat'}
+      {...(direct ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
       onClick={() => trackDemoRequested(location)}
       className={`group inline-flex items-center gap-2.5 rounded-xl border-2 bg-white px-6 py-[13px] font-semibold transition-all hover:-translate-y-0.5 hover:shadow-lg ${className}`}
       style={{ borderColor: WA_GREEN, color: WA_GREEN_DARK }}
