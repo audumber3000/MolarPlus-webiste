@@ -1,10 +1,17 @@
-# Next.js
-website-molarplus/.next/
-website-molarplus/node_modules/
-website-molarplus/.env*.local
-website-molarplus/out/
-website-molarplus/*.tsbuildinfo
-website-molarplus/next-env.d.ts
+# Build output and dependencies, for every project in the repo.
+# These were previously scoped to website-molarplus/ only, which meant a
+# new project folder would have dropped its whole node_modules into a
+# commit the first time anyone staged it.
+node_modules/
+.next/
+out/
+dist/
+*.tsbuildinfo
+next-env.d.ts
+
+# Env
+.env
+.env*.local
 
 # General
 .DS_Store
