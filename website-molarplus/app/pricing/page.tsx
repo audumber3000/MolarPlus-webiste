@@ -87,7 +87,7 @@ const growthAdds = [
 const faqs = [
   {
     q: 'What is the difference between Plus, Pro and Growth?',
-    a: 'They map to how big the practice is, not to how much of the product you get. Plus is the complete product for a single clinic with up to 5 staff — charting, treatment plans, prescriptions, appointments, online booking, billing, consent forms, inventory, WhatsApp from your own number, the full report library and all four apps. Pro is the same clinic with a bigger team in it: unlimited staff logins, per-person permissions across all 13 modules, the unified email and WhatsApp inbox, audit logging, unlimited report history with bulk export, and priority support. Growth is for practices at more than one address: unlimited branches switched from a single login, cross-branch reporting, Google review and competitor tracking, and assisted migration with a named contact.',
+    a: 'They map to how big the practice is, not to how much of the product you get. Plus is the complete product for a single clinic with up to 5 staff, 300 new patients and 300 appointments a month — charting, treatment plans, prescriptions, appointments, online booking, billing, consent forms, inventory, WhatsApp from your own number, the full report library and all four apps. Pro is the same clinic with a bigger team in it: unlimited staff logins, per-person permissions across all 13 modules, the unified email and WhatsApp inbox, audit logging, unlimited report history with bulk export, and priority support. Growth is for practices at more than one address: unlimited branches switched from a single login, cross-branch reporting, Google review and competitor tracking, and assisted migration with a named contact.',
   },
   {
     q: 'How much does each plan cost?',

@@ -11,7 +11,7 @@ export type CountryCode = 'IN' | 'OTHER';
 // Plus: one clinic, run properly. Deliberately not a crippled tier — a solo
 // practice gets the clinical, billing and WhatsApp work it does every day.
 const PLUS_FEATURES = [
-  'One clinic — unlimited patients & appointments',
+  'One clinic — 300 patients & 300 appointments a month',
   'Dental charting, treatment plans & prescriptions',
   'Billing, invoices, payments, expenses & inventory',
   'WhatsApp reminders from your own number',

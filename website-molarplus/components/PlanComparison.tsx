@@ -54,8 +54,8 @@ const GROUPS: Group[] = [
     rows: [
       { label: 'Clinic locations', cells: ['1', '1', 'Unlimited'] },
       { label: 'Staff logins', cells: ['5', 'Unlimited', 'Unlimited'] },
-      { label: 'New patients / month', cells: ['Unlimited', 'Unlimited', 'Unlimited'] },
-      { label: 'Appointments / month', cells: ['Unlimited', 'Unlimited', 'Unlimited'] },
+      { label: 'New patients / month', cells: ['300', 'Unlimited', 'Unlimited'] },
+      { label: 'Appointments / month', cells: ['300', 'Unlimited', 'Unlimited'] },
       { label: 'Patient documents & X-ray storage', cells: ['Unlimited', 'Unlimited', 'Unlimited'] },
     ],
   },
