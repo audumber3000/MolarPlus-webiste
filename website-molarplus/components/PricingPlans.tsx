@@ -19,7 +19,7 @@ const PLUS_FEATURES = [
   'Online booking page + your clinic website',
   'All 12 practice reports, 12 months of history',
   'Up to 5 staff logins, roles & attendance',
-  'Web, iOS, Android & Windows desktop (X-ray capture)',
+  'Web, iOS, Android & Windows desktop apps',
 ];
 
 // Pro: still one clinic, but a bigger team in it. Everything here is about

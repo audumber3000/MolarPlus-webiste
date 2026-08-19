@@ -102,8 +102,6 @@ const GROUPS: Group[] = [
       { label: 'Web app', cells: [true, true, true] },
       { label: 'iOS & Android apps', cells: [true, true, true] },
       { label: 'Windows desktop app', cells: [true, true, true] },
-      { label: 'X-ray sensor capture', cells: [true, true, true] },
-      { label: 'Cloud backup & sync', cells: [true, true, true] },
     ],
   },
   {
