@@ -23,6 +23,7 @@ export const metadata: Metadata = {
 
 const PLUS_USD = 5;
 const PRO_USD = 10;
+const GROWTH_USD = 15;
 
 /**
  * When the figures below were last set by hand.
@@ -57,7 +58,7 @@ type Country = {
    * Set where the country has its own list price rather than a USD conversion.
    * India is billed in INR through Cashfree, so it is not an FX estimate.
    */
-  localList?: { plus: number; pro: number };
+  localList?: { plus: number; pro: number; growth: number };
 };
 
 const SOUTH_ASIA: Country[] = [
@@ -67,7 +68,7 @@ const SOUTH_ASIA: Country[] = [
     currency: 'INR',
     taxName: 'GST',
     taxRate: 18,
-    localList: { plus: 399, pro: 999 },
+    localList: { plus: 399, pro: 999, growth: 1500 },
   },
   { iso: 'PK', name: 'Pakistan', currency: 'PKR', taxName: 'Sales tax on services', taxRate: 15, taxNote: '15–16%, set by province' },
   { iso: 'BD', name: 'Bangladesh', currency: 'BDT', taxName: 'VAT', taxRate: 15 },
@@ -131,7 +132,7 @@ function CountryTable({ caption, rows }: { caption: string; rows: Country[] }) {
     <div className="mb-14">
       <h2 className="text-xl font-bold text-gray-900 mb-4">{caption}</h2>
       <div className="overflow-x-auto rounded-xl border border-gray-200 bg-white">
-        <table className="w-full min-w-[42rem] text-left border-collapse">
+        <table className="w-full min-w-[52rem] text-left border-collapse">
           <thead>
             <tr className="bg-gray-50 border-b border-gray-200">
               <th scope="col" className="px-5 py-3.5 text-xs font-bold uppercase tracking-wider text-gray-600">
@@ -142,6 +143,9 @@ function CountryTable({ caption, rows }: { caption: string; rows: Country[] }) {
               </th>
               <th scope="col" className="px-5 py-3.5 text-xs font-bold uppercase tracking-wider text-gray-600 text-right whitespace-nowrap">
                 Pro / month
+              </th>
+              <th scope="col" className="px-5 py-3.5 text-xs font-bold uppercase tracking-wider text-gray-600 text-right whitespace-nowrap">
+                Growth / month
               </th>
               <th scope="col" className="px-5 py-3.5 text-xs font-bold uppercase tracking-wider text-gray-600">
                 Consumption tax
@@ -157,6 +161,9 @@ function CountryTable({ caption, rows }: { caption: string; rows: Country[] }) {
               const pro = c.localList
                 ? formatList(c.localList.pro, c.currency)
                 : formatLocal(PRO_USD, c.currency, rate);
+              const growth = c.localList
+                ? formatList(c.localList.growth, c.currency)
+                : formatLocal(GROWTH_USD, c.currency, rate);
 
               return (
                 <tr key={c.iso} className="border-b border-gray-100 last:border-0 hover:bg-gray-50/60">
@@ -176,6 +183,7 @@ function CountryTable({ caption, rows }: { caption: string; rows: Country[] }) {
                   </th>
                   <td className="px-5 py-4 text-right tabular-nums text-gray-900 whitespace-nowrap">{plus}</td>
                   <td className="px-5 py-4 text-right tabular-nums text-gray-900 whitespace-nowrap">{pro}</td>
+                  <td className="px-5 py-4 text-right tabular-nums text-gray-900 whitespace-nowrap">{growth}</td>
                   <td className="px-5 py-4 text-sm text-gray-700">
                     {c.taxRate === null ? (
                       <span className="text-gray-500">{c.taxName}</span>
@@ -210,9 +218,10 @@ export default function InternationalPricingPage() {
             International pricing by country
           </h1>
           <p className="text-lg text-gray-600 max-w-3xl mb-3 leading-relaxed">
-            MolarPlus is <strong>Plus at $5 per month</strong> and <strong>Pro at $10 per month</strong>{' '}
-            outside India, billed in US dollars. The figures below convert those into each local
-            currency, alongside the headline consumption tax rate in each country.
+Outside India MolarPlus is <strong>Plus at $5</strong>, <strong>Pro at $10</strong> and{' '}
+            <strong>Growth at $15</strong> per month, billed in US dollars. The figures below convert
+            those into each local currency, alongside the headline consumption tax rate in each
+            country.
           </p>
           <p className="text-sm text-gray-500 max-w-3xl mb-8 leading-relaxed">
             Annual billing takes 20% off either plan. See the{' '}
@@ -268,8 +277,8 @@ export default function InternationalPricingPage() {
               </li>
               <li>
                 <strong>India is billed locally.</strong> Indian clinics are charged in rupees at a
-                list price of INR 399 and INR 999 per month plus 18% GST, not at a converted dollar
-                rate. A GST invoice is issued for every payment.
+                list price of INR 399, INR 999 and INR 1,500 per month plus 18% GST, not at a
+                converted dollar rate. A GST invoice is issued for every payment.
               </li>
               <li>
                 <strong>The tax column is informational.</strong> It shows each country&apos;s headline

@@ -89,7 +89,7 @@ const faqs = [
   },
   {
     q: 'When would I ever need to pay?',
-    a: 'Three plans. Free is ₹0 forever and holds patient records only, up to 20 new patients a month. Plus is ₹399 + GST a month ($5 internationally) and covers one clinic in full, with up to 5 staff logins. Pro is ₹999 + GST a month ($10) and adds unlimited branches switched from one login, cross-branch reporting, unlimited staff, per-person permissions, the unified email and WhatsApp inbox, and priority support. Billing annually takes 20% off either paid plan.',
+    a: 'Four plans, sized to the practice rather than to how much of the product you get. Free is ₹0 forever and holds patient records only, up to 20 new patients a month. Plus is ₹399 + GST a month ($5 internationally) and covers one clinic in full, with up to 5 staff logins. Pro is ₹999 + GST ($10) for the same clinic with a bigger team: unlimited staff, per-person permissions, the unified email and WhatsApp inbox and audit logging. Growth is ₹1,500 + GST ($15) for practices at more than one address, adding unlimited branches from one login and cross-branch reporting. Annual billing takes 20% off all three paid plans.',
   },
 ];
 

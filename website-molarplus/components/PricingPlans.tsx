@@ -34,18 +34,27 @@ const PLUS_FEATURES = [
   'Web, iOS, Android & Windows desktop (X-ray capture)',
 ];
 
-// Pro: scale and control. Everything here is either multi-location, or the
-// kind of oversight a group with several dentists actually needs.
+// Pro: still one clinic, but a bigger team in it. Everything here is about
+// oversight — who can do what, what was changed, and how far back you can look.
 const PRO_FEATURES = [
-  'Unlimited clinic branches, switched in one login',
-  'Cross-branch reporting & consolidated dashboard',
   'Unlimited staff logins',
   'Granular per-person permissions across 13 modules',
   'Unified inbox — email + WhatsApp conversations',
-  'Google Reviews management & competitor tracking',
   'Audit log, device & master-password controls',
   'Unlimited report history + bulk data export',
-  'Priority support & assisted onboarding',
+  'Priority support',
+];
+
+// Growth: the tier you reach when the practice outgrows a single address.
+// Multi-branch is the heaviest capability in the product and it lives at the
+// top on purpose — a group running three locations for ₹1,500 is still paying
+// ₹500 a clinic.
+const GROWTH_FEATURES = [
+  'Unlimited clinic branches, switched in one login',
+  'Cross-branch reporting & consolidated dashboard',
+  'Google Reviews management & local competitor tracking',
+  'Assisted onboarding & data migration',
+  'Priority support with a named contact',
 ];
 
 // Annual is exactly 20% off the monthly rate on every plan and currency.
@@ -61,16 +70,19 @@ const PRICE = {
     exclusiveOfGst: true,
     plus: { monthly: 399, annualMonthly: 319, annualTotal: 3830 },
     pro: { monthly: 999, annualMonthly: 799, annualTotal: 9590 },
+    growth: { monthly: 1500, annualMonthly: 1200, annualTotal: 14400 },
   },
   OTHER: {
     currency: '$',
     exclusiveOfGst: false,
     plus: { monthly: 5, annualMonthly: 4, annualTotal: 48 },
     pro: { monthly: 10, annualMonthly: 8, annualTotal: 96 },
+    growth: { monthly: 15, annualMonthly: 12, annualTotal: 144 },
   },
 } as const;
 
-type PlanKey = 'free' | 'plus' | 'pro';
+type PlanKey = 'free' | 'plus' | 'pro' | 'growth';
+type PaidKey = 'plus' | 'pro' | 'growth';
 
 async function detectCountry(): Promise<CountryCode> {
   try {
@@ -141,10 +153,19 @@ export default function PricingPlans() {
     {
       key: 'pro',
       name: 'Pro',
-      tagline: 'For multi-location practices and bigger teams',
+      tagline: 'One clinic, a bigger team and tighter control',
       features: PRO_FEATURES,
       featured: false,
       inherits: 'Everything in Plus, plus:',
+      cta: 'Start free trial',
+    },
+    {
+      key: 'growth',
+      name: 'Growth',
+      tagline: 'For practices running more than one location',
+      features: GROWTH_FEATURES,
+      featured: false,
+      inherits: 'Everything in Pro, plus:',
       cta: 'Start free trial',
     },
   ];
@@ -216,9 +237,9 @@ export default function PricingPlans() {
         </span>
       </div>
 
-      <div className="grid gap-8 items-stretch max-w-6xl mx-auto md:grid-cols-3">
+      <div className="grid gap-6 items-stretch max-w-7xl mx-auto sm:grid-cols-2 lg:grid-cols-4">
         {plans.map((plan) => {
-          const tier = plan.isFree ? null : p[plan.key as 'plus' | 'pro'];
+          const tier = plan.isFree ? null : p[plan.key as PaidKey];
           const displayPrice = tier ? (isAnnual ? tier.annualMonthly : tier.monthly) : 0;
           const gstMonthly = tier ? withGst(tier.monthly) : 0;
           const gstAnnualTotal = tier ? withGst(tier.annualTotal) : 0;
@@ -226,7 +247,7 @@ export default function PricingPlans() {
           return (
             <div
               key={plan.key}
-              className={`bg-white rounded-2xl p-8 flex flex-col ${
+              className={`bg-white rounded-2xl p-6 flex flex-col ${
                 plan.featured
                   ? 'shadow-xl border-2 relative z-10'
                   : 'shadow-lg border border-gray-200'

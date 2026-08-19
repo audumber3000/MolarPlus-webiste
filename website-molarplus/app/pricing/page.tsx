@@ -23,16 +23,16 @@ import PricingPlans from '@/components/PricingPlans';
 const LEGACY_FREE_END = '31 October 2026';
 
 export const metadata: Metadata = {
-  title: 'Pricing - Free, Plus ₹399 & Pro ₹999/mo | MolarPlus Dental Software',
+  title: 'Pricing - Free, Plus ₹399, Pro ₹999, Growth ₹1500 | MolarPlus',
   description:
-    'MolarPlus pricing: a free plan for patient records, Plus at ₹399 + GST/month ($5) for a single clinic, Pro at ₹999 + GST/month ($10) for multi-branch practices. Save 20% billed annually. 7-day free trial.',
+    'MolarPlus pricing: a free plan for patient records, Plus at ₹399 + GST/month ($5) for one clinic, Pro at ₹999 ($10) for bigger teams, Growth at ₹1,500 ($15) for multi-branch practices. Save 20% billed annually.',
   keywords:
     'dental software pricing India, dental clinic management software cost, multi-branch dental software, dental practice management pricing INR USD, MolarPlus plans',
   alternates: { canonical: `${SITE_URL}/pricing` },
   openGraph: {
-    title: 'Pricing - Free, Plus ₹399 & Pro ₹999/mo | MolarPlus',
+    title: 'Pricing - Free, Plus ₹399, Pro ₹999, Growth ₹1500 | MolarPlus',
     description:
-      'A free plan for patient records. Plus at ₹399 + GST/mo for one clinic. Pro at ₹999 + GST/mo for multi-branch practices. 20% off annually.',
+      'A free plan for patient records. Plus ₹399 for one clinic, Pro ₹999 for bigger teams, Growth ₹1,500 for multiple branches. 20% off annually.',
     url: `${SITE_URL}/pricing`,
   },
 };
@@ -102,16 +102,6 @@ const featureGroups: { group: string; items: string[] }[] = [
 
 const proAdds = [
   {
-    icon: Building2,
-    title: 'Unlimited clinic branches',
-    desc: 'Add locations under one account and switch between them without logging out.',
-  },
-  {
-    icon: BarChart3,
-    title: 'Cross-branch reporting',
-    desc: 'Revenue, patients and performance across every location in a single consolidated view.',
-  },
-  {
     icon: Users,
     title: 'Unlimited staff logins',
     desc: 'Plus covers up to 5 people. Pro removes the ceiling for larger teams.',
@@ -127,19 +117,32 @@ const proAdds = [
     desc: 'Email and WhatsApp conversations in one thread view on the desktop app. Plus sends messages; Pro holds the conversation.',
   },
   {
-    icon: Star,
-    title: 'Reviews & competitor tracking',
-    desc: 'Manage Google reviews and see how your clinic ranks against others nearby.',
-  },
-  {
     icon: Download,
     title: 'Full history & data export',
-    desc: 'Unlimited report history and bulk export of your practice data. Plus keeps 12 months.',
+    desc: 'Audit logging, unlimited report history and bulk export of your practice data. Plus keeps 12 months.',
+  },
+];
+
+const growthAdds = [
+  {
+    icon: Building2,
+    title: 'Unlimited clinic branches',
+    desc: 'Add locations under one account and switch between them without logging out. One flat price, however many you run.',
+  },
+  {
+    icon: BarChart3,
+    title: 'Cross-branch reporting',
+    desc: 'Revenue, patients and performance across every location in a single consolidated view.',
+  },
+  {
+    icon: Star,
+    title: 'Reviews & competitor tracking',
+    desc: 'Manage Google reviews and see how each clinic ranks against others nearby.',
   },
   {
     icon: Headphones,
-    title: 'Priority support & migration',
-    desc: 'Faster response times, plus hands-on help moving your existing records across.',
+    title: 'Assisted migration & a named contact',
+    desc: 'Hands-on help moving existing records across, and a person who knows your account.',
   },
 ];
 
@@ -149,16 +152,16 @@ const faqs = [
     a: 'Patient records, and only patient records: names, history, contact details and documents, for one clinic and one login, on the web and mobile apps. You can add up to 20 new patients a month. There is no appointment book, billing, charting or WhatsApp on Free — those start at Plus. Free exists so your patient list is never held hostage, not as a way to run a practice.',
   },
   {
-    q: 'What is the difference between Plus and Pro?',
-    a: 'Plus is the complete product for a single clinic — charting, treatment plans, prescriptions, appointments, online booking, billing, consent forms, inventory, WhatsApp from your own number, the full report library and all four apps. Pro is for practices that outgrow one location or one small team: it adds unlimited branches with single-login switching, cross-branch reporting, unlimited staff logins, per-person permissions, the unified email + WhatsApp inbox, Google review and competitor tracking, audit logs, unlimited report history with data export, and priority support.',
+    q: 'What is the difference between Plus, Pro and Growth?',
+    a: 'They map to how big the practice is, not to how much of the product you get. Plus is the complete product for a single clinic with up to 5 staff — charting, treatment plans, prescriptions, appointments, online booking, billing, consent forms, inventory, WhatsApp from your own number, the full report library and all four apps. Pro is the same clinic with a bigger team in it: unlimited staff logins, per-person permissions across all 13 modules, the unified email and WhatsApp inbox, audit logging, unlimited report history with bulk export, and priority support. Growth is for practices at more than one address: unlimited branches switched from a single login, cross-branch reporting, Google review and competitor tracking, and assisted migration with a named contact.',
   },
   {
     q: 'How much does each plan cost?',
-    a: 'Free is ₹0 with no time limit. In India, Plus is ₹399 + GST per month and Pro is ₹999 + GST per month. Billed annually you save 20%: Plus works out to ₹319/month (₹3,830/year) and Pro to ₹799/month (₹9,590/year). For other countries, Plus is $5/month ($48/year) and Pro is $10/month ($96/year), with no GST.',
+    a: 'Free is ₹0 with no time limit. In India, Plus is ₹399 + GST per month, Pro is ₹999 + GST and Growth is ₹1,500 + GST. Billed annually you save 20% on all three: Plus works out to ₹319/month (₹3,830/year), Pro to ₹799/month (₹9,590/year) and Growth to ₹1,200/month (₹14,400/year). For other countries there is no GST and the plans are $5, $10 and $15 per month, or $48, $96 and $144 per year.',
   },
   {
     q: 'Is GST included in the price?',
-    a: 'No — Indian prices are quoted excluding GST, as is standard for software here. GST of 18% is added at checkout, so Plus is ₹471/month and Pro is ₹1,179/month all-in. International pricing in USD has no GST applied. A GST invoice is issued for every payment, so registered clinics can claim input credit.',
+    a: 'No — Indian prices are quoted excluding GST, as is standard for software here. GST of 18% is added at checkout, so Plus is ₹471/month, Pro is ₹1,179/month and Growth is ₹1,770/month all-in. International pricing in USD has no GST applied. A GST invoice is issued for every payment, so registered clinics can claim input credit.',
   },
   {
     q: 'How do the free trial and the Free plan fit together?',
@@ -174,11 +177,11 @@ const faqs = [
   },
   {
     q: 'Can I switch between plans?',
-    a: 'Yes, in either direction, from Subscription in the app. Upgrades take effect immediately. Downgrades take effect at your next renewal date, so you keep what you have paid for. If you downgrade from Pro while running multiple branches, you will need to pick which single branch stays active. Dropping to Free keeps your patient records readable; the appointment, billing and clinical data stays stored and comes back the moment you upgrade again.',
+    a: 'Yes, in either direction, from Subscription in the app. Upgrades take effect immediately. Downgrades take effect at your next renewal date, so you keep what you have paid for. If you downgrade from Growth while running multiple branches, you will need to pick which single branch stays active. Dropping to Free keeps your patient records readable; the appointment, billing and clinical data stays stored and comes back the moment you upgrade again.',
   },
   {
-    q: 'Do I pay per branch on Pro?',
-    a: 'No. Pro is one flat price regardless of how many locations you run. Adding a fourth or a fourteenth branch costs nothing extra.',
+    q: 'Do I pay per branch on Growth?',
+    a: 'No. Growth is one flat price regardless of how many locations you run. Adding a fourth or a fourteenth branch costs nothing extra — a three-branch group on Growth is paying ₹500 per clinic, and a ten-branch group ₹150.',
   },
 ];
 
@@ -187,7 +190,7 @@ const pricingJsonLd = {
   '@type': 'Product',
   name: 'MolarPlus Dental Clinic Management Software',
   description:
-    'Dental practice management software. A free plan holds patient records for one clinic, up to 20 new patients a month. Plus (₹399 + GST/mo, $5/mo) covers a single clinic in full. Pro (₹999 + GST/mo, $10/mo) adds unlimited branches, cross-branch reporting, unlimited staff, granular permissions, unified inbox and priority support. 20% off billed annually.',
+    'Dental practice management software. A free plan holds patient records for one clinic, up to 20 new patients a month. Plus (₹399 + GST/mo, $5/mo) covers a single clinic in full. Pro (₹999 + GST/mo, $10/mo) adds unlimited staff, granular permissions, unified inbox, audit logging and priority support. Growth (₹1,500 + GST/mo, $15/mo) adds unlimited branches, cross-branch reporting and review management. 20% off billed annually.',
   brand: { '@type': 'Brand', name: 'MolarPlus' },
   offers: [
     {
@@ -218,6 +221,15 @@ const pricingJsonLd = {
     },
     {
       '@type': 'Offer',
+      name: 'Growth',
+      price: '1500',
+      priceCurrency: 'INR',
+      priceValidUntil: '2027-12-31',
+      description:
+        'India: ₹1,500 + GST/month, or ₹1,200/month billed annually (₹14,400/year). Adds unlimited clinic branches, cross-branch reporting, Google review and competitor tracking, and assisted migration.',
+    },
+    {
+      '@type': 'Offer',
       name: 'Plus (international)',
       price: '5',
       priceCurrency: 'USD',
@@ -231,6 +243,14 @@ const pricingJsonLd = {
       priceCurrency: 'USD',
       priceValidUntil: '2027-12-31',
       description: 'Other countries: $10/month, or $8/month billed annually ($96/year).',
+    },
+    {
+      '@type': 'Offer',
+      name: 'Growth (international)',
+      price: '15',
+      priceCurrency: 'USD',
+      priceValidUntil: '2027-12-31',
+      description: 'Other countries: $15/month, or $12/month billed annually ($144/year).',
     },
   ],
 };
@@ -256,12 +276,12 @@ export default function PricingPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-              Free to start. ₹399 to run a clinic.
+              Free to start. ₹399 to run a clinic. ₹1,500 to run five.
             </h1>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-6">
               Plus is the real product — charting, treatment plans, billing, consent forms and
-              WhatsApp from your own number. Pro adds the branches and the controls a group needs.
-              Free keeps your patient list safe while you decide.
+              WhatsApp from your own number. Pro adds the controls a bigger team needs, Growth adds
+              the branches. Free keeps your patient list safe while you decide.
             </p>
             <p className="text-sm text-gray-500">
               Pricing in <strong>India (INR, excluding GST)</strong> and{' '}
@@ -317,15 +337,16 @@ export default function PricingPage() {
               className="inline-block rounded-full px-3 py-1 text-sm font-semibold"
               style={{ backgroundColor: `${colors.primary}12`, color: colors.primary }}
             >
-              Included on Plus and Pro
+              Included on every paid plan
             </span>
           </div>
           <h2 id="everything-heading" className="text-2xl md:text-3xl font-bold text-gray-900 mb-2 text-center">
             The entry plan is not the stripped-down one
           </h2>
           <p className="text-gray-600 text-center max-w-2xl mx-auto mb-12">
-            Everything below works on Plus at ₹399. We would rather charge a fair price for the whole
-            product than hold back charting or X-rays to manufacture an upgrade.
+            Everything below works on Plus at ₹399, and carries up through Pro and Growth unchanged.
+            We would rather charge a fair price for the whole product than hold back charting or
+            X-rays to manufacture an upgrade.
           </p>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -354,8 +375,8 @@ export default function PricingPage() {
               What Pro adds
             </h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
-              Pro keeps everything above and adds what a growing group needs: more locations, more
-              people, and tighter control over who can do what.
+              Still one clinic, but a bigger team inside it — and tighter control over who can do
+              what, and what you can look back at.
             </p>
           </div>
           <div className="grid sm:grid-cols-2 gap-6">
@@ -374,9 +395,34 @@ export default function PricingPage() {
               </div>
             ))}
           </div>
+          {/* Growth */}
+          <div className="mt-16 text-center mb-12">
+            <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">What Growth adds</h2>
+            <p className="text-gray-600 max-w-2xl mx-auto">
+              The step you take when the practice outgrows a single address. Everything in Pro, for
+              every location you run.
+            </p>
+          </div>
+          <div className="grid sm:grid-cols-2 gap-6">
+            {growthAdds.map(({ icon: Icon, title, desc }) => (
+              <div key={title} className="bg-white rounded-xl p-6 border border-gray-200 flex gap-4">
+                <div
+                  className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-lg"
+                  style={{ backgroundColor: `${colors.primary}10` }}
+                >
+                  <Icon className="h-5 w-5" style={{ color: colors.primary }} />
+                </div>
+                <div>
+                  <h3 className="font-semibold text-gray-900">{title}</h3>
+                  <p className="text-sm text-gray-600 mt-1">{desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+
           <p className="text-center text-gray-700 mt-10">
-            <strong>India:</strong> Plus ₹399 + GST/month, Pro ₹999 + GST/month — 20% off billed
-            annually. <strong>Other countries:</strong> Plus $5/month, Pro $10/month. The Free plan
+            <strong>India:</strong> Plus ₹399, Pro ₹999, Growth ₹1,500 — all + GST, all 20% off
+            billed annually. <strong>Other countries:</strong> $5, $10 and $15/month. The Free plan
             is ₹0 / $0 in every country.
           </p>
         </div>
