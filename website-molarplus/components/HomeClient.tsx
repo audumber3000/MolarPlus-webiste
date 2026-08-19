@@ -163,16 +163,23 @@ export default function HomeClient({
               </div>
 
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-[#1a1c4b] tracking-tight leading-[1.05]">
-                Stop running your clinic on{' '}
-                <span className="line-through decoration-2 decoration-[#2a276e]/50 text-gray-400">
-                  paper and Excel
-                </span>
+                The{' '}
+                <span className="relative inline-block whitespace-nowrap">
+                  <span className="relative z-10">backbone</span>
+                  <span
+                    aria-hidden="true"
+                    className="absolute inset-x-0 bottom-[0.08em] h-[0.28em] rounded-full"
+                    style={{ backgroundColor: `${colors.primary}26` }}
+                  />
+                </span>{' '}
+                of modern dental practices
               </h1>
 
               <p className="mt-7 text-lg md:text-xl text-gray-600 leading-relaxed max-w-xl">
-                Your bookings, records and payments are scattered across a register, a drawer and a
-                dozen spreadsheets. MolarPlus pulls them into one place your whole team can use, and
-                reminds patients before every visit so the chair stays full.
+                One system carries the whole visit: the appointment, the chart, the X-ray, the
+                prescription, the invoice, and the WhatsApp that follows it. Your front desk stops
+                keeping a parallel register, and nothing about a patient lives only in somebody&apos;s
+                memory.
               </p>
 
               <div className="mt-9 flex flex-wrap items-center gap-3.5">
@@ -189,7 +196,7 @@ export default function HomeClient({
               </div>
 
               <p className="mt-5 text-sm text-gray-500">
-                7 days free, then from ₹399/month
+                7 days free
                 <span aria-hidden="true" className="mx-2 text-gray-300">·</span>
                 No credit card to start
                 <span aria-hidden="true" className="mx-2 text-gray-300">·</span>
