@@ -4,10 +4,37 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Which directory is live
 
-This repo contains **two** website folders. Almost all work happens in one:
+This repo contains **four** site folders. Most work happens in the first:
 
-- **`website-molarplus/`** — the live MolarPlus marketing site (Next.js 15 App Router). **This is the project.** All commands below run from inside it.
-- **`website/`** — a legacy static HTML multi-brand site (Clintal, Flexio, Sonolin, etc.). No build system, effectively dead. Do not touch unless explicitly asked.
+- **`website-molarplus/`** — the live MolarPlus marketing site (Next.js 15 App Router). **This is the main project.** All commands in the sections below run from inside it.
+- **`website-clinohealth/`** — the Clino Health umbrella/corporate site (clinohealth.com), Next.js 15. Rebuilt from `website/` in August 2026. See "Clino Health umbrella site" below.
+- **`SyrupDesk/`** — the SyrupDesk pharmacy-software marketing site (Next.js). Has its own `CLAUDE.md` and `BRIEF.md`.
+- **`website/`** — the **superseded** static HTML Clino Health site. Replaced by `website-clinohealth/`; kept only until that is deployed. Do not add to it.
+
+## Clino Health umbrella site (`website-clinohealth/`)
+
+Next.js 15 App Router, TypeScript, Tailwind. Runs on port **3002** (`npm run dev`) so it can
+run alongside MolarPlus and SyrupDesk. Fully static — every route prerenders.
+
+**`lib/brands.ts` is the single source of truth for the portfolio.** The mega-menu, the
+`/products` index, every `/brands/[slug]` page, the footer and the sitemap all read from it.
+Adding or renaming a brand or an app is one edit there, never a change across pages. A brand's
+`status` is load-bearing: `'development'` brands render as plain markup rather than links,
+because they have no site to link at. Do not promote one to `'live'` until its `url` resolves.
+
+Design is the green Clino palette ported from the old static site — `clino.dark` `#143601`,
+`clino.medium` `#245501`, `clino.light` `#73a942`, plus `clino.wash`/`clino.edge` tints, all
+defined as Tailwind tokens in `tailwind.config.ts`. **Never inline a hex.** This palette is
+deliberately *not* the MolarPlus blue (`#2a276e`) — the two sites are different brands.
+
+The `Brands` nav item is a **link to `/products`, not a toggle button**. The mega-menu opens on
+hover/focus; a toggle fought the hover (pointer-enter opened the panel, so the click that
+followed closed it again), and the link also gives touch users a real destination.
+
+The legal pages (`/privacy`, `/terms`, `/security`) were **rewritten, not ported**. The old
+static pages claimed local-only storage, HIPAA compliance and ISO 27001 — none of which is true
+of a hosted multi-tenant product. Read the file-header comments before editing them; they record
+what was dropped and why, and which facts still block a lawyer review.
 
 > The `website-molarplus/README.md` is **stale**: it claims Next 14 + `output: 'export'` static export with routes at `/features`, `/pricing`. None of that is true anymore — see Architecture below. Trust the code, not that README.
 

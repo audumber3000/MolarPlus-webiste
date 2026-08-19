@@ -9,6 +9,12 @@ export const SITE = {
    *  house as MolarPlus — carried in metadata, JSON-LD and the
    *  nav/footer lockup. */
   parent: "Clino Health",
+  /** The parent company's site. Every "by Clino Health" lockup links
+   *  here — a distributor or chain owner checking whether this is a real
+   *  company should be one click from the answer. */
+  parentUrl: "https://clinohealth.com",
+  /** Sister product, referenced on the about page. */
+  siblingUrl: "https://www.molarplus.com",
   /** TODO: confirm production domain before launch. */
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://syrupdesk.com",
   tagline: "Pharmacy management software for Indian medical stores",

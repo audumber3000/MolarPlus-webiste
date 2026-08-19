@@ -67,10 +67,20 @@ export function Logo({
   className,
   byline = false,
   tone = "light",
+  linkByline = false,
 }: {
   className?: string;
   byline?: boolean;
   tone?: Tone;
+  /**
+   * Render the byline as a link to the parent company.
+   *
+   * Off by default, and that default is load-bearing: in the navbar this
+   * component sits inside a `<Link href="/">`, and an anchor nested in an
+   * anchor is invalid markup browsers resolve however they like. Turn it
+   * on only where the lockup is NOT already inside a link — the footer.
+   */
+  linkByline?: boolean;
 }) {
   const mark = MARK[tone];
 
@@ -87,19 +97,39 @@ export function Logo({
         className="h-9 w-auto shrink-0"
       />
 
-      <span aria-hidden="true" className="inline-flex flex-col leading-none">
-        <span className="flex items-baseline text-h4 font-bold tracking-tight">
+      {/* aria-hidden sits on the WORDMARK only, not on the column.
+          It has to: the wordmark is three pieces (text + glyph + text)
+          that a screen reader announces as "Syrupesk", which is why the
+          real name is exposed once via sr-only above. But the byline
+          below is a genuine link to another site — left inside an
+          aria-hidden subtree it would be focusable and invisible to
+          assistive tech at the same time, which is worse than either. */}
+      <span className="inline-flex flex-col leading-none">
+        <span aria-hidden="true" className="flex items-baseline text-h4 font-bold tracking-tight">
           Syrup
           <DeskD tone={tone} />
           <span className={cn("-ml-[0.04em]", tone === "dark" ? "text-green-300" : "text-green-500")}>
             esk
           </span>
         </span>
-        {byline && (
-          <span className="mt-0.5 text-micro font-medium tracking-tight opacity-70">
-            by {SITE.parent}
-          </span>
-        )}
+        {byline &&
+          (linkByline ? (
+            <a
+              href={SITE.parentUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-0.5 text-micro font-medium tracking-tight opacity-70 underline-offset-2 transition-opacity duration-200 ease-out hover:opacity-100 hover:underline"
+            >
+              by {SITE.parent}
+            </a>
+          ) : (
+            <span
+              aria-hidden="true"
+              className="mt-0.5 text-micro font-medium tracking-tight opacity-70"
+            >
+              by {SITE.parent}
+            </span>
+          ))}
       </span>
     </span>
   );

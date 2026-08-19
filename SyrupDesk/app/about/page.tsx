@@ -1,4 +1,5 @@
 import { Container, Section, SectionHeader } from "@/components/ui/Section";
+import { SITE } from '@/lib/site';
 import { Card } from "@/components/ui/Card";
 import { CtaBand } from "@/components/sections/CtaBand";
 import { JsonLd } from "@/components/JsonLd";
@@ -71,10 +72,32 @@ export default function AboutPage() {
               can sign up for on a phone, start billing on within the hour, and understand the price
               of without a phone call.
             </p>
+            {/* Both names link out. This paragraph exists to answer "is
+                this a real company or one person?", and a claim about a
+                sister product is only reassuring if the reader can go and
+                look at it. */}
             <p>
-              We are Clino Health. We also build MolarPlus, software for dental clinics and dental
-              laboratories, so running a small healthcare business on software that has to work on
-              the first day is the problem we already spend our time on.
+              We are{' '}
+              <a
+                href={SITE.parentUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-medium text-green-700 underline underline-offset-4 transition-colors duration-200 ease-out hover:text-green-500"
+              >
+                Clino Health
+              </a>
+              . We also build{' '}
+              <a
+                href={SITE.siblingUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-medium text-green-700 underline underline-offset-4 transition-colors duration-200 ease-out hover:text-green-500"
+              >
+                MolarPlus
+              </a>
+              , software for dental clinics and dental laboratories, so running a small
+              healthcare business on software that has to work on the first day is the problem
+              we already spend our time on.
             </p>
           </div>
         </Container>
