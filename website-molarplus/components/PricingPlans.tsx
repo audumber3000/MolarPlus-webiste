@@ -8,18 +8,6 @@ import { trackPricingViewed, trackSignupStarted, trackPlanSelected } from '@/ana
 
 export type CountryCode = 'IN' | 'OTHER';
 
-// Free: the floor, not the front door. It exists so nobody is ever locked out
-// of their own patient list — the 7-day Pro trial is what actually shows the
-// product off. Records only, deliberately: enough to keep your data, not
-// enough to run a practice on.
-const FREE_FEATURES = [
-  'Patient records, history & documents',
-  'Up to 20 new patients a month',
-  'One clinic, one login',
-  'Web, iOS & Android apps',
-  'No card, no expiry',
-];
-
 // Plus: one clinic, run properly. Deliberately not a crippled tier — a solo
 // practice gets the clinical, billing and WhatsApp work it does every day.
 const PLUS_FEATURES = [
@@ -81,8 +69,7 @@ const PRICE = {
   },
 } as const;
 
-type PlanKey = 'free' | 'plus' | 'pro' | 'growth';
-type PaidKey = 'plus' | 'pro' | 'growth';
+type PlanKey = 'plus' | 'pro' | 'growth';
 
 async function detectCountry(): Promise<CountryCode> {
   try {
@@ -128,19 +115,8 @@ export default function PricingPlans() {
     featured: boolean;
     badge?: string;
     inherits?: string;
-    /** Free has no price tier and no billing cycle to show. */
-    isFree?: boolean;
     cta: string;
   }[] = [
-    {
-      key: 'free',
-      name: 'Free',
-      tagline: 'Keep your patient list, at no cost',
-      features: FREE_FEATURES,
-      featured: false,
-      isFree: true,
-      cta: 'Start free',
-    },
     {
       key: 'plus',
       name: 'Plus',
@@ -237,17 +213,17 @@ export default function PricingPlans() {
         </span>
       </div>
 
-      <div className="grid gap-6 items-stretch max-w-7xl mx-auto sm:grid-cols-2 lg:grid-cols-4">
+      <div className="grid gap-6 items-stretch max-w-6xl mx-auto md:grid-cols-3">
         {plans.map((plan) => {
-          const tier = plan.isFree ? null : p[plan.key as PaidKey];
-          const displayPrice = tier ? (isAnnual ? tier.annualMonthly : tier.monthly) : 0;
-          const gstMonthly = tier ? withGst(tier.monthly) : 0;
-          const gstAnnualTotal = tier ? withGst(tier.annualTotal) : 0;
+          const tier = p[plan.key];
+          const displayPrice = isAnnual ? tier.annualMonthly : tier.monthly;
+          const gstMonthly = withGst(tier.monthly);
+          const gstAnnualTotal = withGst(tier.annualTotal);
 
           return (
             <div
               key={plan.key}
-              className={`bg-white rounded-2xl p-6 flex flex-col ${
+              className={`bg-white rounded-2xl p-7 flex flex-col ${
                 plan.featured
                   ? 'shadow-xl border-2 relative z-10'
                   : 'shadow-lg border border-gray-200'
@@ -271,21 +247,19 @@ export default function PricingPlans() {
                   className="text-4xl font-bold"
                   style={{ color: plan.featured ? colors.primary : '#111827' }}
                 >
-                  {plan.isFree ? `${p.currency}0` : `${p.currency}${inr(displayPrice)}`}
+                  {p.currency}{inr(displayPrice)}
                 </span>
                 <span className="text-gray-500 ml-1">/month</span>
-                {isIndia && !plan.isFree && <span className="text-gray-500 text-sm ml-1">+ GST</span>}
+                {isIndia && <span className="text-gray-500 text-sm ml-1">+ GST</span>}
               </div>
 
               <p className="text-sm text-gray-500 mb-2 min-h-[2.5rem]">
-                {plan.isFree
-                  ? 'for as long as you want it'
-                  : isAnnual
-                    ? `billed annually — ${p.currency}${inr(tier!.annualTotal)}/year`
-                    : `or ${p.currency}${inr(tier!.annualMonthly)}/mo billed annually`}
+                {isAnnual
+                  ? `billed annually — ${p.currency}${inr(tier.annualTotal)}/year`
+                  : `or ${p.currency}${inr(tier.annualMonthly)}/mo billed annually`}
               </p>
 
-              {p.exclusiveOfGst && !plan.isFree ? (
+              {p.exclusiveOfGst ? (
                 <p className="text-xs text-gray-400 mb-5">
                   {isAnnual
                     ? `${p.currency}${inr(gstAnnualTotal)}/year including 18% GST`
@@ -329,8 +303,7 @@ export default function PricingPlans() {
 
       <p className="text-center text-sm text-gray-500 mt-8 max-w-2xl mx-auto">
         Every new account begins with <strong className="font-semibold text-gray-700">7 days of Pro</strong>,
-        no credit card required. When it ends, choose Plus or Pro — or stay on Free and keep your
-        patient records.
+        no credit card required. Nothing is charged until you choose a plan.
       </p>
     </div>
   );

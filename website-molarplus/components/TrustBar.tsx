@@ -21,8 +21,8 @@ import { colors } from '@/lib/seo';
 const SIGNALS = [
   {
     Icon: IndianRupee,
-    title: 'Free plan, no expiry',
-    note: 'Full clinic from ₹399/month.',
+    title: 'From ₹399/month',
+    note: '7 days free. No card to start.',
   },
   {
     Icon: LifeBuoy,

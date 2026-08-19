@@ -73,7 +73,7 @@ const compliance = [
 const faqs = [
   {
     q: 'Is MolarPlus really free?',
-    a: 'There is a free plan, and it is genuinely free — patient records for one clinic, up to 20 new patients a month, no card and no expiry. It will not run a practice on its own, and it is not meant to: it is there so your patient list is never held hostage. Every new account also gets 7 days of Pro to see the whole product. A single clinic then runs on Plus at ₹399 + GST a month, which includes the entire clinical product: charting, treatment plans, prescriptions, appointments, billing, consent forms, staff, inventory and WhatsApp from your own number.',
+    a: 'Every new account gets 7 days of Pro free, with no card to start, so you see the whole product before deciding. After that a single clinic runs on Plus at ₹399 + GST a month, which includes the entire clinical product: charting, treatment plans, prescriptions, appointments, billing, consent forms, staff, inventory and WhatsApp from your own number. Nothing clinical is held back for a higher tier.',
   },
   {
     q: 'I already use another software / paper. Can I switch?',
@@ -89,7 +89,7 @@ const faqs = [
   },
   {
     q: 'When would I ever need to pay?',
-    a: 'Four plans, sized to the practice rather than to how much of the product you get. Free is ₹0 forever and holds patient records only, up to 20 new patients a month. Plus is ₹399 + GST a month ($5 internationally) and covers one clinic in full, with up to 5 staff logins. Pro is ₹999 + GST ($10) for the same clinic with a bigger team: unlimited staff, per-person permissions, the unified email and WhatsApp inbox and audit logging. Growth is ₹1,500 + GST ($15) for practices at more than one address, adding unlimited branches from one login and cross-branch reporting. Annual billing takes 20% off all three paid plans.',
+    a: 'Three plans, sized to the practice rather than to how much of the product you get. Plus is ₹399 + GST a month ($5 internationally) and covers one clinic in full, with up to 5 staff logins. Pro is ₹999 + GST ($10) for the same clinic with a bigger team: unlimited staff, per-person permissions, the unified email and WhatsApp inbox and audit logging. Growth is ₹1,500 + GST ($15) for practices at more than one address, adding unlimited branches from one login and cross-branch reporting. Annual billing takes 20% off all three paid plans.',
   },
 ];
 

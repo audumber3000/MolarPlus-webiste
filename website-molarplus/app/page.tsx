@@ -85,7 +85,6 @@ const softwareJsonLd = {
   description: DEFAULT_DESCRIPTION,
   url: SITE_URL,
   offers: [
-    { '@type': 'Offer', name: 'Free', price: '0', priceCurrency: 'INR', description: 'Patient records for one clinic and one login, up to 20 new patients a month. No time limit, no credit card.' },
     { '@type': 'Offer', name: 'Plus', price: '399', priceCurrency: 'INR', priceValidUntil: '2027-12-31', description: 'India ₹399 + GST/mo or $5/mo internationally, 20% off billed annually. The complete product for one clinic, up to 5 staff logins.' },
     { '@type': 'Offer', name: 'Pro', price: '999', priceCurrency: 'INR', priceValidUntil: '2027-12-31', description: 'India ₹999 + GST/mo or $10/mo internationally, 20% off billed annually. Adds unlimited staff logins, granular permissions, the unified inbox, audit logging and priority support.' },
     { '@type': 'Offer', name: 'Growth', price: '1500', priceCurrency: 'INR', priceValidUntil: '2027-12-31', description: 'India ₹1,500 + GST/mo or $15/mo internationally, 20% off billed annually. Adds unlimited clinic branches, cross-branch reporting, review and competitor tracking, and assisted migration.' },
@@ -111,7 +110,7 @@ const faqJsonLd = {
       name: 'Is there a free trial of MolarPlus?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Yes. Every new account gets 7 days of the Pro plan free, with no credit card required to start. After the trial you choose Plus at Rs 399 + GST/month for a single clinic, or Pro at Rs 999 + GST/month for multiple branches and larger teams. If you pick neither, the account settles onto the Free plan, which keeps your patient records for one clinic with up to 20 new patients a month. Nothing is charged automatically.',
+        text: 'Yes. Every new account gets 7 days of the Pro plan free, with no credit card required to start. After the trial you choose Plus at Rs 399 + GST/month for a single clinic, Pro at Rs 999 for a bigger team, or Growth at Rs 1,500 for multiple branches. Nothing is charged automatically if you do not pick a plan.',
       },
     },
     {
@@ -143,7 +142,7 @@ const faqJsonLd = {
       name: 'How much does MolarPlus cost?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'There are four plans, and they map to the size of the practice rather than to how much of the product you get. Free costs nothing and holds patient records for one clinic, up to 20 new patients a month. Plus is Rs 399 + GST per month (5 US dollars internationally) and covers one clinic in full: charting, treatment plans, prescriptions, appointments, online booking, billing, consent forms, inventory, WhatsApp from your own number and up to 5 staff logins. Pro is Rs 999 + GST (10 US dollars) for the same clinic with a bigger team: unlimited staff logins, per-person permissions, the unified email and WhatsApp inbox, audit logging and priority support. Growth is Rs 1,500 + GST (15 US dollars) for practices at more than one address, adding unlimited branches switched from one login, cross-branch reporting and review management. Billing annually saves 20% on all three paid plans.',
+        text: 'There are three plans, and they map to the size of the practice rather than to how much of the product you get. Plus is Rs 399 + GST per month (5 US dollars internationally) and covers one clinic in full: charting, treatment plans, prescriptions, appointments, online booking, billing, consent forms, inventory, WhatsApp from your own number and up to 5 staff logins. Pro is Rs 999 + GST (10 US dollars) for the same clinic with a bigger team: unlimited staff logins, per-person permissions, the unified email and WhatsApp inbox, audit logging and priority support. Growth is Rs 1,500 + GST (15 US dollars) for practices at more than one address, adding unlimited branches switched from one login, cross-branch reporting and review management. Billing annually saves 20% on all three paid plans.',
       },
     },
   ],

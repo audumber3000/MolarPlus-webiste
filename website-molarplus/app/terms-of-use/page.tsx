@@ -74,8 +74,7 @@ export default function TermsOfUsePage() {
               <h2 className="text-2xl font-bold text-gray-900 mb-4">4. Subscription Plans and Payment</h2>
               <p>MolarPlus offers the following subscription plans:</p>
               <ul className="list-disc pl-6 space-y-2 mt-4">
-                <li><strong>Free:</strong> Available at no charge with no time limit. Provides patient records only — names, history, contact details and documents — for one clinic location and one user login, on the web and mobile applications, subject to a limit of 20 new patient records created per calendar month. Appointments, billing, clinical charting, messaging and reporting are not included.</li>
-                <li><strong>Free trial:</strong> Every new account receives 7 days of the Pro plan at no charge. No credit card is required to begin the trial, and no charge is made automatically at the end of it. If no paid plan is selected when the trial ends, the account reverts to the Free plan described above.</li>
+                <li><strong>Free trial:</strong> Every new account receives 7 days of the Pro plan at no charge. No credit card is required to begin the trial, and no charge is made automatically at the end of it. If no paid plan is selected when the trial ends, access to the Service is suspended until one is, and account data remains available for export in accordance with Section 8.</li>
                 <li><strong>Plus:</strong> Paid monthly or annually. Priced at ₹399/month plus applicable GST, or ₹3,830/year plus GST (India), and $5/month or $48/year (international, no GST). Covers a single clinic location and up to 5 staff logins, and includes patient records, dental charting, treatment planning, prescriptions, appointments and online booking, billing, consent forms, inventory, own-number WhatsApp messaging, the report library with 12 months of history, and the web, mobile and desktop applications.</li>
                 <li><strong>Pro:</strong> Paid monthly or annually. Priced at ₹999/month plus applicable GST, or ₹9,590/year plus GST (India), and $10/month or $96/year (international, no GST). Covers a single clinic location and includes everything in Plus, adding unlimited staff logins, granular per-user permissions, the unified email and WhatsApp inbox, audit logging, unlimited report history with bulk data export, and priority support.</li>
                 <li><strong>Growth:</strong> Paid monthly or annually. Priced at ₹1,500/month plus applicable GST, or ₹14,400/year plus GST (India), and $15/month or $144/year (international, no GST). Includes everything in Pro and adds unlimited clinic branches under one account, branch switching in a single login, cross-branch reporting, Google review and local competitor tracking, and assisted onboarding and data migration with a named support contact.</li>
@@ -88,8 +87,9 @@ export default function TermsOfUsePage() {
               <p className="mt-4">
                 <strong>Legacy free accounts.</strong> Clinics that registered while the Service offered a free
                 single-clinic plan retain full access at no charge until <strong>{LEGACY_FREE_END}</strong>. We will
-                give notice by email before that date. After it, such accounts revert to the Free plan unless a paid
-                subscription is taken out.
+                give notice by email before that date. After it, such accounts require a paid subscription to
+                continue. Account data remains available for export throughout, and is retained in accordance with
+                Section 8.
                 Account data remains available for export throughout, and is retained in accordance with Section 8.
               </p>
               <p className="mt-4">

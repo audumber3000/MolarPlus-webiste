@@ -87,7 +87,7 @@ export type CtaLocation =
 export type Product = 'clinic' | 'lab';
 
 /** The plans, as used in `mkt_pricing_plan_selected`. */
-export type PlanTier = 'free' | 'plus' | 'pro' | 'growth';
+export type PlanTier = 'plus' | 'pro' | 'growth';
 
 /** Billing cadence chosen on the pricing toggle. */
 export type BillingCycle = 'monthly' | 'annual';
