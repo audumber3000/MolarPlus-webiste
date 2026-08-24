@@ -5,6 +5,22 @@ export const DEFAULT_DESCRIPTION =
 export const DEFAULT_KEYWORDS =
   'dental clinic management software, best dental software, dental practice management, clinic management software, dental EHR, appointment scheduling dental';
 
+/**
+ * The card rendered by app/opengraph-image.tsx, as an explicit metadata entry.
+ *
+ * Next only auto-applies that file to a route when the route does not declare
+ * its own `openGraph` object. Most pages here do declare one — so they were
+ * silently shipping no og:image at all, and shares of /pricing and /features
+ * rendered as a bare link. Any page that sets `openGraph` must therefore name
+ * an image; this is the default to reach for.
+ */
+export const DEFAULT_OG_IMAGE = {
+  url: `${SITE_URL}/opengraph-image`,
+  width: 1200,
+  height: 630,
+  alt: 'MolarPlus, Software for everyone in dentistry. By Clino Health.',
+};
+
 export const colors = {
   primary: '#2a276e',
   secondary: '#4a4694',

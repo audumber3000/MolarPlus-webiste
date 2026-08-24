@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { SITE_URL } from '@/lib/seo';
+import { SITE_URL, DEFAULT_OG_IMAGE } from '@/lib/seo';
 
 // The date legacy free single-clinic accounts move onto a paid plan.
 // Also quoted in the /pricing FAQ — keep the two in step.
@@ -16,6 +16,7 @@ export const metadata: Metadata = {
     title: 'Terms of Use - MolarPlus',
     description: 'Terms governing your use of the MolarPlus dental clinic management platform.',
     url: `${SITE_URL}/terms-of-use`,
+    images: [DEFAULT_OG_IMAGE],
   },
   robots: { index: true, follow: true },
 };

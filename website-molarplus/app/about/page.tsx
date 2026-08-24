@@ -7,7 +7,7 @@ import {
   Zap,
   ShieldCheck,
 } from 'lucide-react';
-import { SITE_URL, colors } from '@/lib/seo';
+import { SITE_URL, colors, DEFAULT_OG_IMAGE } from '@/lib/seo';
 import { APP_URL } from '@/lib/constants';
 import { COMPANY_STATS } from '@/lib/stats';
 import { SignupLink } from '@/components/TrackedCTA';
@@ -24,6 +24,7 @@ export const metadata: Metadata = {
     description:
       'The same software whatever your size, from ₹399 a month. A lean team that listens to dentists and builds what they actually ask for.',
     url: `${SITE_URL}/about`,
+    images: [DEFAULT_OG_IMAGE],
   },
 };
 

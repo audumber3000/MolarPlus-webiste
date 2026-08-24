@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { SITE_URL } from '@/lib/seo';
+import { SITE_URL, DEFAULT_OG_IMAGE } from '@/lib/seo';
 
 export const metadata: Metadata = {
   title: 'Refund Policy - MolarPlus Dental Clinic Management Software',
@@ -12,6 +12,7 @@ export const metadata: Metadata = {
     title: 'Refund Policy - MolarPlus',
     description: 'Our refund and cancellation terms for MolarPlus dental clinic management software subscriptions.',
     url: `${SITE_URL}/refund-policy`,
+    images: [DEFAULT_OG_IMAGE],
   },
   robots: { index: true, follow: true },
 };

@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { ArrowRight, ChevronDown, Globe } from 'lucide-react';
-import { SITE_URL, colors } from '@/lib/seo';
+import { SITE_URL, colors, DEFAULT_OG_IMAGE } from '@/lib/seo';
 import { COMPANY_STATS } from '@/lib/stats';
 import { APP_URL } from '@/lib/constants';
 import { SignupLink } from '@/components/TrackedCTA';
@@ -16,7 +16,7 @@ const LEGACY_FREE_END = '31 October 2026';
 const CLINIC_COUNT = COMPANY_STATS[0].value;
 
 export const metadata: Metadata = {
-  title: 'Pricing - Plus ₹399, Pro ₹999 & Growth ₹1500/mo | MolarPlus',
+  title: 'Pricing - Plus ₹399, Pro ₹999 & Growth ₹1500/mo',
   description:
     'Dental clinic software pricing: Plus ₹399, Pro ₹999 and Growth ₹1,500 + GST a month ($5/$10/$15). Save 20% annually. 7-day free trial, no card.',
   keywords:
@@ -27,6 +27,7 @@ export const metadata: Metadata = {
     description:
       'Plus ₹399 for one clinic, Pro ₹999 for bigger teams, Growth ₹1,500 for multiple branches. 20% off annually. Start with a 7-day free trial.',
     url: `${SITE_URL}/pricing`,
+    images: [DEFAULT_OG_IMAGE],
   },
 };
 

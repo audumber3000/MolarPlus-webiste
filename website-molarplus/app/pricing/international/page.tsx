@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
-import { SITE_URL, colors } from '@/lib/seo';
+import { SITE_URL, colors, DEFAULT_OG_IMAGE } from '@/lib/seo';
 import { APP_URL } from '@/lib/constants';
 import { SignupLink } from '@/components/TrackedCTA';
 import WhatsAppCta from '@/components/WhatsAppCta';
@@ -18,6 +18,7 @@ export const metadata: Metadata = {
     description:
       'Plus, Pro and Growth pricing in local currency across South Asia and the Middle East, with each country’s consumption tax rate.',
     url: `${SITE_URL}/pricing/international`,
+    images: [DEFAULT_OG_IMAGE],
   },
 };
 

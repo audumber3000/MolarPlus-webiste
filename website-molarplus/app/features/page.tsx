@@ -13,13 +13,13 @@ import {
   CheckCircle,
   ArrowRight,
 } from 'lucide-react';
-import { SITE_URL, colors } from '@/lib/seo';
+import { SITE_URL, colors, DEFAULT_OG_IMAGE } from '@/lib/seo';
 import { APP_URL } from '@/lib/constants';
 import { SignupLink } from '@/components/TrackedCTA';
 import BrowserFrame from '@/components/BrowserFrame';
 
 export const metadata: Metadata = {
-  title: 'Features - Best Dental Clinic Management Software | MolarPlus',
+  title: 'Features - Best Dental Clinic Management Software',
   description:
     'Explore MolarPlus dental software features: patient management, appointment scheduling, mobile apps, billing, analytics & more. Best dental clinic management software for dentists.',
   keywords:
@@ -29,6 +29,7 @@ export const metadata: Metadata = {
     title: 'Features - Best Dental Clinic Management Software | MolarPlus',
     description: 'Patient management, appointments, billing, analytics. Complete dental practice management software.',
     url: `${SITE_URL}/features`,
+    images: [DEFAULT_OG_IMAGE],
   },
 };
 

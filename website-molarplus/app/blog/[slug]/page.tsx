@@ -24,8 +24,24 @@ interface Props {
 }
 
 export async function generateStaticParams() {
-  const slugs = await getAllSlugs();
-  return slugs.map((slug) => ({ slug }));
+  const posts = await getAllSlugs();
+  return posts.map(({ slug }) => ({ slug }));
+}
+
+/**
+ * Strip any trailing "| MolarPlus" — however many times it appears.
+ *
+ * The root layout's title.template already appends the brand, and editors
+ * naturally type it into Sanity's seoTitle as well. Combined with the `| MolarPlus`
+ * this file used to add, live posts were shipping titles ending in the brand
+ * three times over, which ate roughly 24 characters of every search result.
+ */
+function stripBrand(title: string): string {
+  let out = title.trim();
+  while (/\|\s*MolarPlus\s*$/i.test(out)) {
+    out = out.replace(/\|\s*MolarPlus\s*$/i, '').trim();
+  }
+  return out;
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -33,13 +49,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const post = await getBlogPostBySlug(slug);
   if (!post) return { title: 'Blog Post | MolarPlus' };
 
-  const title = post.seoTitle || post.title;
+  const title = stripBrand(post.seoTitle || post.title);
   const description = post.seoDescription || post.description;
   const canonical = post.canonicalUrl || `${SITE_URL}/blog/${slug}`;
   const ogImage = imageUrl(post.coverImage, 1200, 630);
 
   return {
-    title: `${title} | MolarPlus`,
+    title,
     description,
     alternates: { canonical },
     robots: post.noIndex ? { index: false, follow: false } : undefined,
@@ -80,12 +96,17 @@ export default async function BlogPostPage({ params }: Props) {
     description: post.seoDescription || post.description,
     image: imageUrl(post.coverImage, 1200, 630),
     datePublished: post.publishedAt,
-    dateModified: post.publishedAt,
+    dateModified: post._updatedAt || post.publishedAt,
     author: { '@type': 'Person', name: authorName },
     publisher: {
       '@type': 'Organization',
       name: 'MolarPlus',
-      logo: { '@type': 'ImageObject', url: `${SITE_URL}/logo.png` },
+      logo: {
+        '@type': 'ImageObject',
+        url: `${SITE_URL}/icon-512x512.png`,
+        width: 512,
+        height: 512,
+      },
     },
     mainEntityOfPage: { '@type': 'WebPage', '@id': `${SITE_URL}/blog/${slug}` },
     articleSection: post.category,

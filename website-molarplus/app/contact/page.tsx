@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Mail, Phone, MapPin, Clock, MessageSquare, Wrench, Users } from 'lucide-react';
-import { SITE_URL, colors } from '@/lib/seo';
+import { SITE_URL, colors, DEFAULT_OG_IMAGE } from '@/lib/seo';
 import { APP_URL, CLINO_URL } from '@/lib/constants';
 import { SignupLink } from '@/components/TrackedCTA';
 import WhatsAppCta from '@/components/WhatsAppCta';
@@ -18,6 +18,7 @@ export const metadata: Metadata = {
     title: 'Contact MolarPlus: Talk to the Team Behind the Software',
     description: 'WhatsApp, phone or email. You reach the team that builds MolarPlus, not a call centre.',
     url: `${SITE_URL}/contact`,
+    images: [DEFAULT_OG_IMAGE],
   },
 };
 

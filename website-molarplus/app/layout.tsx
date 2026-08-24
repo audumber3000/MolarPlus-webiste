@@ -25,20 +25,15 @@ export const metadata = {
     title: `${SITE_NAME} | Best Dental Clinic Management Software`,
     description: DEFAULT_DESCRIPTION,
     url: SITE_URL,
-    images: [
-      {
-        url: `${SITE_URL}/hero-molarplus.png`,
-        width: 1200,
-        height: 630,
-        alt: 'MolarPlus, Best Dental Clinic Management Software',
-      },
-    ],
+    // No `images` here on purpose — app/opengraph-image.tsx generates the card
+    // and every route inherits it, /lab overriding with its own. Pinning a
+    // static file here shadowed that everywhere and, on any page declaring its
+    // own openGraph block, left no image at all.
   },
   twitter: {
     card: 'summary_large_image',
     title: `${SITE_NAME} | Best Dental Clinic Management Software`,
     description: DEFAULT_DESCRIPTION,
-    images: [`${SITE_URL}/hero-molarplus.png`],
   },
   robots: {
     index: true,

@@ -2,6 +2,7 @@ import { groq } from 'next-sanity';
 
 export const postFieldsQuery = groq`
   _id,
+  _updatedAt,
   title,
   "slug": slug.current,
   description,
@@ -33,7 +34,12 @@ export const postBySlugQuery = groq`
 `;
 
 export const allSlugsQuery = groq`
-  *[_type == "post" && defined(slug.current) && noIndex != true][].slug.current
+  *[_type == "post" && !(_id in path("drafts.**")) && defined(slug.current) && noIndex != true]
+  | order(publishedAt desc) {
+    "slug": slug.current,
+    _updatedAt,
+    publishedAt
+  }
 `;
 
 export const allCategoriesQuery = groq`

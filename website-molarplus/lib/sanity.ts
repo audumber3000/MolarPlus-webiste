@@ -22,6 +22,7 @@ export interface SanityAuthor {
 
 export interface BlogPostListItem {
   _id: string;
+  _updatedAt: string;
   title: string;
   slug: string;
   description: string;
@@ -50,7 +51,14 @@ export async function getBlogPostBySlug(slug: string): Promise<BlogPostFull | nu
   return client.fetch(postBySlugQuery, { slug }, { next: { revalidate: 60 } });
 }
 
-export async function getAllSlugs(): Promise<string[]> {
+/** A post's address plus the dates the sitemap needs to describe it. */
+export interface BlogPostSitemapEntry {
+  slug: string;
+  _updatedAt: string;
+  publishedAt: string;
+}
+
+export async function getAllSlugs(): Promise<BlogPostSitemapEntry[]> {
   return client.fetch(allSlugsQuery, {}, { next: { revalidate: 60 } });
 }
 

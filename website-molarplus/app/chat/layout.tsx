@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Connect with Support | MolarPlus",
+  title: "Connect with Support",
   description: "Redirecting you to MolarPlus support on WhatsApp.",
   robots: { index: false, follow: false },
 };

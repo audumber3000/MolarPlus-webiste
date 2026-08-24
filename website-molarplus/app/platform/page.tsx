@@ -1,12 +1,12 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Smartphone, Laptop, Tablet, Cloud, Shield, CheckCircle, ArrowRight } from 'lucide-react';
-import { SITE_URL, colors } from '@/lib/seo';
+import { SITE_URL, colors, DEFAULT_OG_IMAGE } from '@/lib/seo';
 import { APP_URL } from '@/lib/constants';
 import { SignupLink } from '@/components/TrackedCTA';
 
 export const metadata: Metadata = {
-  title: 'Platform - Multi-Device Dental Clinic Management Software | MolarPlus',
+  title: 'Platform - Multi-Device Dental Clinic Management Software',
   description:
     'MolarPlus works on web, mobile, and tablet. Manage your dental practice from anywhere with secure, HIPAA-compliant dental clinic management software.',
   keywords:
@@ -16,6 +16,7 @@ export const metadata: Metadata = {
     title: 'Platform - Multi-Device Dental Clinic Management | MolarPlus',
     description: 'Web, mobile, and tablet. Manage your dental practice from anywhere.',
     url: `${SITE_URL}/platform`,
+    images: [DEFAULT_OG_IMAGE],
   },
 };
 
