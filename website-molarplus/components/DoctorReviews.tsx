@@ -28,11 +28,18 @@ function ReviewCard({ r }: { r: (typeof REVIEWS)[number] }) {
 
       <div className="mt-6 flex items-center gap-3 border-t border-gray-100 pt-5">
         {r.photo ? (
+          // Decorative: the doctor's name is the next thing in the DOM, so an
+          // alt repeating it would only make a screen reader say it twice —
+          // and today these are drawn placeholders, not a likeness to describe.
           // eslint-disable-next-line @next/next/no-img-element
           <img
             src={r.photo}
-            alt={r.name}
-            className="h-11 w-11 shrink-0 rounded-full object-cover"
+            alt=""
+            aria-hidden="true"
+            width={44}
+            height={44}
+            loading="lazy"
+            className="h-11 w-11 shrink-0 rounded-full object-cover ring-1 ring-gray-200"
           />
         ) : (
           <div

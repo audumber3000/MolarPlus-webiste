@@ -89,7 +89,7 @@ const faqs = [
   },
   {
     q: 'When would I ever need to pay?',
-    a: 'Three plans, sized to the practice rather than to how much of the product you get — every clinical feature is in all three. Plus is ₹399 + GST a month ($5 internationally): one clinic, 5 staff logins, 300 patients and 300 appointments a month. Pro is ₹999 + GST ($10): up to 5 branches, 10 staff, 1,000 patients and appointments a month, plus your own WhatsApp number, per-person permissions and the unified inbox. Growth is ₹1,500 + GST ($15) and removes the ceilings entirely, adding cross-branch reporting. Annual billing takes 20% off all three.',
+    a: 'Three plans, sized to the practice rather than to how much of the product you get — every clinical feature is in all three. Plus is ₹399 + GST a month ($5 internationally): one clinic, 5 staff logins, 500 patients and 500 appointments a month. Pro is ₹999 + GST ($10): up to 5 branches, 10 staff, 1,000 patients and appointments a month, plus your own WhatsApp number, per-person permissions and the unified inbox. Growth is ₹1,500 + GST ($15) and removes the ceilings entirely, adding cross-branch reporting. Annual billing takes 20% off all three.',
   },
 ];
 

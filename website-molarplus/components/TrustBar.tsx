@@ -21,8 +21,12 @@ import { colors } from '@/lib/seo';
 const SIGNALS = [
   {
     Icon: IndianRupee,
-    title: 'From ₹399/month',
-    note: '7 days free. No card to start.',
+    // ₹319 is the annual rate (₹3,830/year); the monthly list price is ₹399.
+    // A "from" price has to name the condition that gets you it, or it reads
+    // as the month-to-month price and the plan cards contradict it one scroll
+    // down. lib/../components/PricingPlans.tsx holds the real numbers.
+    title: 'From ₹319/month',
+    note: 'Billed annually. 7 days free, no card to start.',
   },
   {
     Icon: LifeBuoy,

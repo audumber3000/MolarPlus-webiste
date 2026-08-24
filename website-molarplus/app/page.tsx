@@ -142,7 +142,7 @@ const faqJsonLd = {
       name: 'How much does MolarPlus cost?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'There are three plans, sized to the practice rather than to how much of the product you get. Plus is Rs 399 + GST per month (5 US dollars internationally): one clinic, 5 staff logins, 300 new patients and 300 appointments a month, 100 GB storage, with reminders sent from a verified MolarPlus number. Pro is Rs 999 + GST (10 US dollars): up to 5 branches, 10 staff logins, 1,000 patients and appointments a month, 150 GB, plus your own WhatsApp number, per-person permissions, the unified inbox and competitor tracking. Growth is Rs 1,500 + GST (15 US dollars) and removes every ceiling, adding cross-branch consolidated reporting and assisted migration. Billing annually saves 20% on all three.',
+        text: 'There are three plans, sized to the practice rather than to how much of the product you get. Plus is Rs 399 + GST per month (5 US dollars internationally): one clinic, 5 staff logins, 500 new patients and 500 appointments a month, 100 GB storage, with reminders sent from a verified MolarPlus number. Pro is Rs 999 + GST (10 US dollars): up to 5 branches, 10 staff logins, 1,000 patients and appointments a month, 150 GB, plus your own WhatsApp number, per-person permissions, the unified inbox and competitor tracking. Growth is Rs 1,500 + GST (15 US dollars) and removes every ceiling, adding cross-branch consolidated reporting and assisted migration. Billing annually saves 20% on all three.',
       },
     },
   ],

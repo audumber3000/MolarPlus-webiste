@@ -12,7 +12,7 @@ export type CountryCode = 'IN' | 'OTHER';
 // verified sender, which is what keeps this tier cheap — a clinic's own
 // WhatsApp number is a per-account setup, and it starts at Pro.
 const PLUS_FEATURES = [
-  'One clinic — 300 patients & 300 appointments a month',
+  'One clinic — 500 patients & 500 appointments a month',
   'Dental charting, treatment plans & prescriptions',
   'Billing, invoices, payments, expenses & inventory',
   'WhatsApp & email reminders from a verified MolarPlus sender',

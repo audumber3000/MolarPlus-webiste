@@ -20,9 +20,19 @@
  * duplicates the list, so even three fill the screen.
  * ──────────────────────────────────────────────────────────────────────────
  *
- * photo: drop a headshot in /public/images/doctors/ and set the path here.
- * An empty string falls back to initials, which is why every card still works
- * before the photography arrives.
+ * photo: the path to an image in /public/images/doctors/. An empty string
+ * falls back to initials, so every card still renders with no image at all.
+ *
+ * What is in there today is NOT photography. Each doctor has a drawn avatar —
+ * the same illustrated style the app itself gives a staff member who has not
+ * uploaded a picture — held locally as an SVG so the cards do not look bare
+ * and do not depend on a third-party service at runtime.
+ *
+ * A cartoon reads as a placeholder; a face does not. That distinction is the
+ * whole reason these are illustrations: a stock or AI-generated *photograph*
+ * under a named, identifiable dentist is a fabricated endorsement. When a real
+ * headshot arrives, overwrite the file or point `photo` at the new one — see
+ * public/images/doctors/README.md.
  */
 export type Review = {
   name: string;
@@ -53,7 +63,7 @@ export const REVIEWS: ReadonlyArray<Review> = [
     clinic: 'Patel Smiles Clinic',
     location: 'Ahmedabad',
     rating: 5,
-    photo: '',
+    photo: '/images/doctors/rajesh-patel.svg',
     text: 'We moved across from Practo Ray and I was expecting to lose weeks. Their team pulled our patient list, treatment notes and pending balances across, and we were seeing patients on it the same week. Nothing was left behind.',
   },
   {
@@ -61,7 +71,7 @@ export const REVIEWS: ReadonlyArray<Review> = [
     clinic: 'Sharma Dental Care',
     location: 'New Delhi',
     rating: 5,
-    photo: '',
+    photo: '/images/doctors/priya-sharma.svg',
     text: 'The support is the part I tell other dentists about. I message on WhatsApp and get a real person, not a ticket number. Twice they fixed something for me during clinic hours while I carried on with patients.',
   },
   {
@@ -69,7 +79,7 @@ export const REVIEWS: ReadonlyArray<Review> = [
     clinic: 'Menon Dental Studio',
     location: 'Bangalore',
     rating: 5,
-    photo: '',
+    photo: '/images/doctors/anita-menon.svg',
     text: 'There is a suggest-a-feature option inside the app and they actually build them. I asked for a change to how follow-ups are listed and it turned up in an update a few weeks later. I have never had software listen like that.',
   },
   // Dr. Karthik Reddy's quote was pulled when pricing moved to Plus/Pro. It
@@ -86,7 +96,7 @@ export const REVIEWS: ReadonlyArray<Review> = [
     clinic: 'Kulkarni Dental Clinic',
     location: 'Pune',
     rating: 5,
-    photo: '',
+    photo: '/images/doctors/sneha-kulkarni.svg',
     text: "Any patient's full history comes up in seconds: treatment notes, X-rays, what they have paid. My front desk stopped keeping a parallel register within a fortnight, which tells you how well it works.",
   },
 ];

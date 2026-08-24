@@ -16,6 +16,7 @@ import {
 import { SITE_URL, colors } from '@/lib/seo';
 import { APP_URL } from '@/lib/constants';
 import { SignupLink } from '@/components/TrackedCTA';
+import BrowserFrame from '@/components/BrowserFrame';
 
 export const metadata: Metadata = {
   title: 'Features - Best Dental Clinic Management Software | MolarPlus',
@@ -31,31 +32,6 @@ export const metadata: Metadata = {
   },
 };
 
-function BrowserFrame({ src, alt }: { src: string; alt: string }) {
-  return (
-    <div className="rounded-2xl overflow-hidden shadow-2xl border border-gray-200/80 bg-white">
-      {/* Browser chrome */}
-      <div className="bg-gray-100 px-4 py-2.5 flex items-center gap-3 border-b border-gray-200">
-        <div className="flex gap-1.5 flex-shrink-0">
-          <div className="w-3 h-3 rounded-full bg-red-400" />
-          <div className="w-3 h-3 rounded-full bg-yellow-400" />
-          <div className="w-3 h-3 rounded-full bg-green-400" />
-        </div>
-        <div className="flex-1 bg-white rounded-md px-3 py-1 text-xs text-gray-400 truncate border border-gray-200">
-          app.molarplus.com
-        </div>
-      </div>
-      {/* Screenshot */}
-      <img
-        src={src}
-        alt={alt}
-        className="w-full h-auto block"
-        loading="lazy"
-      />
-    </div>
-  );
-}
-
 const features = [
   {
     icon: Users,
@@ -69,7 +45,7 @@ const features = [
       'Patient demographics and contact info',
       'Treatment history and notes',
     ],
-    screenshot: '/desktop_screen/patient-files.png',
+    screenshot: '/product/patients.png',
   },
   {
     icon: Calendar,
@@ -83,7 +59,7 @@ const features = [
       'Waitlist management',
       'Recurring appointment support',
     ],
-    screenshot: '/desktop_screen/appointment.png',
+    screenshot: '/product/appointments.png',
   },
   {
     icon: MessageSquare,
@@ -96,7 +72,7 @@ const features = [
       'Two-way communication',
       'Consent forms management',
     ],
-    screenshot: '/desktop_screen/Consent-forms.png',
+    screenshot: '/product/notifications.png',
   },
   {
     icon: DollarSign,
@@ -109,7 +85,7 @@ const features = [
       'Insurance claims processing',
       'Treatment cost estimates',
     ],
-    screenshot: '/desktop_screen/transcation-managment.png',
+    screenshot: '/product/payments.png',
   },
   {
     icon: BarChart3,
@@ -122,7 +98,7 @@ const features = [
       'Custom report generation',
       'Performance metrics tracking',
     ],
-    screenshot: '/desktop_screen/clinic-report.png',
+    screenshot: '/product/analytics.png',
   },
   {
     icon: FileText,
@@ -148,7 +124,7 @@ const features = [
       'Audit logs and tracking',
       'Regular security updates',
     ],
-    screenshot: '/desktop_screen/dashboard.png',
+    screenshot: '/product/security.png',
   },
   {
     icon: Clock,
@@ -161,7 +137,7 @@ const features = [
       'Task assignment',
       'Access control',
     ],
-    screenshot: '/desktop_screen/manage-staff.png',
+    screenshot: '/product/staff.png',
   },
   {
     icon: Zap,
@@ -174,7 +150,7 @@ const features = [
       'Data migration assistance',
       'Dedicated account manager',
     ],
-    screenshot: '/desktop_screen/prcedure-setting.png',
+    screenshot: '/product/treatments.png',
   },
 ];
 
@@ -261,6 +237,8 @@ export default function FeaturesPage() {
                     <BrowserFrame
                       src={feature.screenshot}
                       alt={`MolarPlus ${feature.title} screenshot`}
+                      priority={index === 0}
+                      sizes="(min-width: 1024px) 36rem, 100vw"
                     />
                   </div>
                 </div>

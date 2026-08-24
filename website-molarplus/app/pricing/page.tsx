@@ -1,18 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import {
-  CheckCircle,
-  ArrowRight,
-  Building2,
-  BarChart3,
-  Headphones,
-  Users,
-  ShieldCheck,
-  Inbox,
-  Star,
-  Download,
-  Globe,
-} from 'lucide-react';
+import { ArrowRight, ChevronDown, Globe } from 'lucide-react';
 import { SITE_URL, colors } from '@/lib/seo';
 import { COMPANY_STATS } from '@/lib/stats';
 import { APP_URL } from '@/lib/constants';
@@ -42,56 +30,10 @@ export const metadata: Metadata = {
   },
 };
 
-const proAdds = [
-  {
-    icon: Building2,
-    title: 'Up to 5 clinic branches',
-    desc: 'Run as many as five locations under one account, switched without logging out.',
-  },
-  {
-    icon: Users,
-    title: '10 staff logins, permissions per person',
-    desc: 'Double the seats, and read, write, edit and delete set individually across all 13 modules.',
-  },
-  {
-    icon: Inbox,
-    title: 'Your own WhatsApp number & unified inbox',
-    desc: 'Messages go out from your clinic\u2019s number, and email and WhatsApp replies land in one thread view.',
-  },
-  {
-    icon: Download,
-    title: 'Unlimited history & data export',
-    desc: 'Unlimited report history and bulk export of your practice data. Plus keeps 12 months.',
-  },
-];
-
-const growthAdds = [
-  {
-    icon: Building2,
-    title: 'Unlimited clinic branches',
-    desc: 'Past the five Pro allows, with one flat price however many you run.',
-  },
-  {
-    icon: BarChart3,
-    title: 'Cross-branch reporting',
-    desc: 'Revenue, patients and performance across every location in a single consolidated view.',
-  },
-  {
-    icon: ShieldCheck,
-    title: 'No ceilings',
-    desc: 'Unlimited staff, patients, appointments and storage \u2014 the meters Pro runs simply stop.',
-  },
-  {
-    icon: Headphones,
-    title: 'Assisted migration & a named contact',
-    desc: 'Hands-on help moving existing records across, and a person who knows your account.',
-  },
-];
-
 const faqs = [
   {
     q: 'What is the difference between Plus, Pro and Growth?',
-    a: 'They map to how big the practice is, not to how much of the product you get — every clinical feature is in all three. Plus covers one clinic with up to 5 staff logins, 300 new patients and 300 appointments a month and 100 GB of storage, and sends WhatsApp and email reminders from a verified MolarPlus sender. Pro raises that to 5 branches, 10 staff logins, 1,000 patients and 1,000 appointments a month and 150 GB, and adds messaging from your own WhatsApp number, per-person permissions across all 13 modules, the unified email and WhatsApp inbox, local competitor tracking, your own clinic website, unlimited report history with bulk export and priority support. Growth removes the ceilings entirely — unlimited branches, staff, patients, appointments and storage — and adds cross-branch consolidated reporting plus assisted migration with a named contact.',
+    a: 'They map to how big the practice is, not to how much of the product you get — every clinical feature is in all three. Plus covers one clinic with up to 5 staff logins, 500 new patients and 500 appointments a month and 100 GB of storage, and sends WhatsApp and email reminders from a verified MolarPlus sender. Pro raises that to 5 branches, 10 staff logins, 1,000 patients and 1,000 appointments a month and 150 GB, and adds messaging from your own WhatsApp number, per-person permissions across all 13 modules, the unified email and WhatsApp inbox, local competitor tracking, your own clinic website, unlimited report history with bulk export and priority support. Growth removes the ceilings entirely — unlimited branches, staff, patients, appointments and storage — and adds cross-branch consolidated reporting plus assisted migration with a named contact.',
   },
   {
     q: 'How much does each plan cost?',
@@ -107,7 +49,7 @@ const faqs = [
   },
   {
     q: 'I already use MolarPlus for free. What happens to my account?',
-    a: `Nothing changes immediately. Every clinic that signed up while MolarPlus was free for a single location keeps full access at no charge until ${LEGACY_FREE_END}, and we will email you well before that date. After it you can move to Plus at ₹299/month — locked for your first 12 months, below the ₹399 list price, as thanks for being early. Your data, settings and history carry across untouched, and your records stay exportable whatever you decide.`,
+    a: `Nothing changes immediately. Every clinic that signed up while MolarPlus was free for a single location keeps full access at no charge until ${LEGACY_FREE_END}, and we will email you well before that date. After it, your account moves onto Plus — ₹399 + GST a month, or ₹319 a month billed annually. Your data, settings and history carry across untouched, and your records stay exportable whatever you decide.`,
   },
   {
     q: 'Why is MolarPlus not free any more?',
@@ -136,7 +78,7 @@ const pricingJsonLd = {
   '@type': 'Product',
   name: 'MolarPlus Dental Clinic Management Software',
   description:
-    'Dental practice management software. Plus (₹399 + GST/mo, $5/mo) covers one clinic with 5 staff, 300 patients a month and 100 GB storage. Pro (₹999 + GST/mo, $10/mo) raises it to 5 branches, 10 staff, 1,000 patients a month and 150 GB, and adds your own WhatsApp number, granular permissions and the unified inbox. Growth (₹1,500 + GST/mo, $15/mo) removes every ceiling and adds cross-branch reporting. 20% off billed annually.',
+    'Dental practice management software. Plus (₹399 + GST/mo, $5/mo) covers one clinic with 5 staff, 500 patients a month and 100 GB storage. Pro (₹999 + GST/mo, $10/mo) raises it to 5 branches, 10 staff, 1,000 patients a month and 150 GB, and adds your own WhatsApp number, granular permissions and the unified inbox. Growth (₹1,500 + GST/mo, $15/mo) removes every ceiling and adds cross-branch reporting. 20% off billed annually.',
   brand: { '@type': 'Brand', name: 'MolarPlus' },
   offers: [
     {
@@ -146,7 +88,7 @@ const pricingJsonLd = {
       priceCurrency: 'INR',
       priceValidUntil: '2027-12-31',
       description:
-        'India: ₹399 + GST/month, or ₹319/month billed annually (₹3,830/year). The complete product for one clinic: 5 staff logins, 300 patients and 300 appointments a month, 100 GB storage.',
+        'India: ₹399 + GST/month, or ₹319/month billed annually (₹3,830/year). The complete product for one clinic: 5 staff logins, 500 patients and 500 appointments a month, 100 GB storage.',
     },
     {
       '@type': 'Offer',
@@ -226,12 +168,6 @@ export default function PricingPage() {
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4">
               {CLINIC_COUNT} dental clinics already run on MolarPlus
             </h1>
-            <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto mb-6">
-              Choose by the size of your practice, not by the features you are willing to give up.
-              Charting, treatment plans, prescriptions, billing, consent forms and WhatsApp from your
-              own number are in every plan. What changes is how many people use it, and how many
-              places you use it in.
-            </p>
             <p className="text-sm text-gray-500">
               Pricing in <strong>India (INR, excluding GST)</strong> and{' '}
               <strong>other countries (USD)</strong>. Use the selector below to switch.
@@ -239,7 +175,7 @@ export default function PricingPage() {
           </div>
           <PricingPlans />
 
-          {/* Tinted, not white: two white plan cards sit directly above, and a
+          {/* Tinted, not white: three white plan cards sit directly above, and a
               third white block would read as a continuation of them rather
               than as the different kind of thing it is. The whole banner is
               the link so the tap target matches its visual weight. */}
@@ -261,8 +197,8 @@ export default function PricingPage() {
                   Outside India? See the price in your own currency.
                 </p>
                 <p className="mt-1 text-sm text-gray-600 leading-relaxed">
-                  Plus and Pro converted for 20 countries across South Asia and the Middle East,
-                  each with its local tax rate.
+                  Plus, Pro and Growth converted for 20 countries across South Asia and the Middle
+                  East, each with its local tax rate.
                 </p>
               </div>
 
@@ -292,78 +228,30 @@ export default function PricingPage() {
         </div>
       </section>
 
-      {/* What Pro adds */}
-      <section className="py-16 bg-gray-50" aria-labelledby="pro-heading">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 id="pro-heading" className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">
-              What Pro adds
-            </h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">
-              A bigger team, a second and third address, and messages that go out from your own
-              WhatsApp number rather than ours.
-            </p>
-          </div>
-          <div className="grid sm:grid-cols-2 gap-6">
-            {proAdds.map(({ icon: Icon, title, desc }) => (
-              <div key={title} className="bg-white rounded-xl p-6 border border-gray-200 flex gap-4">
-                <div
-                  className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-lg"
-                  style={{ backgroundColor: `${colors.primary}10` }}
-                >
-                  <Icon className="h-5 w-5" style={{ color: colors.primary }} />
-                </div>
-                <div>
-                  <h3 className="font-semibold text-gray-900">{title}</h3>
-                  <p className="text-sm text-gray-600 mt-1">{desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-          {/* Growth */}
-          <div className="mt-16 text-center mb-12">
-            <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">What Growth adds</h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">
-              The step you take when five locations stop being enough, and when counting patients
-              and appointments each month stops being worth anyone&apos;s time.
-            </p>
-          </div>
-          <div className="grid sm:grid-cols-2 gap-6">
-            {growthAdds.map(({ icon: Icon, title, desc }) => (
-              <div key={title} className="bg-white rounded-xl p-6 border border-gray-200 flex gap-4">
-                <div
-                  className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-lg"
-                  style={{ backgroundColor: `${colors.primary}10` }}
-                >
-                  <Icon className="h-5 w-5" style={{ color: colors.primary }} />
-                </div>
-                <div>
-                  <h3 className="font-semibold text-gray-900">{title}</h3>
-                  <p className="text-sm text-gray-600 mt-1">{desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <p className="text-center text-gray-700 mt-10">
-            <strong>India:</strong> Plus ₹399, Pro ₹999, Growth ₹1,500 — all + GST, all 20% off
-            billed annually. <strong>Other countries:</strong> $5, $10 and $15/month.
-          </p>
-        </div>
-      </section>
-
       {/* FAQ */}
       <section className="py-16 bg-white" aria-labelledby="faq-heading">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 id="faq-heading" className="text-2xl md:text-3xl font-bold text-gray-900 mb-10 text-center">
             Pricing questions
           </h2>
-          <div className="space-y-8">
+          {/*
+            <details> rather than a JS accordion. The rest of this page is
+            static, and an unopened answer still sits in the DOM, so the FAQ
+            schema above, in-page find and search crawlers all see the full
+            text whether or not anyone clicks.
+          */}
+          <div className="divide-y divide-gray-200 border-y border-gray-200">
             {faqs.map((f) => (
-              <div key={f.q}>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">{f.q}</h3>
-                <p className="text-gray-600 leading-relaxed">{f.a}</p>
-              </div>
+              <details key={f.q} className="group">
+                <summary className="flex cursor-pointer list-none items-center justify-between gap-4 py-5 text-left font-semibold text-gray-900 hover:text-gray-600">
+                  {f.q}
+                  <ChevronDown
+                    className="h-5 w-5 shrink-0 text-gray-400 transition-transform group-open:rotate-180"
+                    aria-hidden="true"
+                  />
+                </summary>
+                <p className="pb-5 pr-9 leading-relaxed text-gray-600">{f.a}</p>
+              </details>
             ))}
           </div>
         </div>
