@@ -83,6 +83,27 @@
   }
 }
 
+/* Logo wall. The list is rendered twice, so -50% lands exactly where
+   the second copy starts and the loop has no visible seam. */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+/* Hero promises: each word rises into place once, in turn. `both` keeps
+   it hidden during its delay so the words do not flash before they move. */
+@keyframes rise {
+  from { opacity: 0; transform: translateY(0.35em); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@layer utilities {
+  .animate-rise {
+    animation: rise 250ms cubic-bezier(0.2, 0, 0, 1) both;
+  }
+  .animate-marquee {
+    animation: marquee 40s linear infinite;
+  }
+}
+
 /* -------------------------------------------------------------
    Motion — respect the user's system setting.
    ------------------------------------------------------------- */

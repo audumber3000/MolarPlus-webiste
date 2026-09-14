@@ -25,13 +25,17 @@ export function FeatureBlocks() {
       <div className="space-y-20 lg:space-y-32">
         {FEATURES.map((feature, i) => {
           const flipped = i % 2 === 1;
+          const hasVisual = feature.visual !== undefined;
           return (
             <article
               key={feature.id}
               id={feature.id}
-              className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16"
+              className={cn(
+                "grid items-center gap-10 lg:gap-16",
+                hasVisual ? "lg:grid-cols-2" : "max-w-3xl",
+              )}
             >
-              <div className={cn(flipped && "lg:order-2")}>
+              <div className={cn("min-w-0", hasVisual && flipped && "lg:order-2")}>
                 <h3 className="text-[1.375rem] leading-snug font-semibold tracking-tight text-ink-900 sm:text-h3">
                   {feature.title}
                 </h3>
@@ -47,7 +51,9 @@ export function FeatureBlocks() {
                   ))}
                 </ul>
               </div>
-              <div className={cn(flipped && "lg:order-1")}>{feature.visual}</div>
+              {hasVisual && (
+                <div className={cn("min-w-0", flipped && "lg:order-1")}>{feature.visual}</div>
+              )}
             </article>
           );
         })}

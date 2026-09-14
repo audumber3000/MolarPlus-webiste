@@ -16,7 +16,7 @@ import { LAST_UPDATED, LEGAL } from "@/content/legal";
 export const metadata = buildMetadata({
   title: "Terms of service",
   description:
-    "The terms for using SyrupDesk pharmacy management software — plans and payment, what you and we are each responsible for, data export, and what happens if you stop paying.",
+    "The terms for using SyrupDesk pharmacy management software: plans and payment, what you and we are each responsible for, data export, and what happens if you stop paying.",
   path: "/terms",
 });
 
@@ -52,7 +52,7 @@ export default function TermsPage() {
 
             <h2>The service</h2>
             <p>
-              {SITE.name} is software for running a retail pharmacy — billing, inventory and
+              {SITE.name} is software for running a retail pharmacy: billing, inventory and
               expiry, purchases, customers and GST reporting. We provide it as a hosted service
               over the internet. We may add, change or remove features; where a change materially
               reduces what you are paying for, we will tell you in advance.
@@ -65,7 +65,7 @@ export default function TermsPage() {
               you think someone has gained access they should not have.
             </p>
             <p>
-              The details you give us — including your GSTIN and drug licence number — must be
+              The details you give us, including your GSTIN and drug licence number, must be
               accurate, because your invoices and returns are generated from them.
             </p>
 
@@ -129,7 +129,7 @@ export default function TermsPage() {
             <h2>Suspension, closure and what happens to your records</h2>
             <p>
               You can close your account whenever you like. We may suspend an account for
-              non-payment, or for a serious breach of these terms — for instance an attempt to
+              non-payment, or for a serious breach of these terms, for instance an attempt to
               compromise the service or unlawful use.
             </p>
             <p>

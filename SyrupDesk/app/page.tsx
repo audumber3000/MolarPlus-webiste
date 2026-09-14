@@ -2,40 +2,24 @@ import Link from "next/link";
 import Image from "next/image";
 import heroPharmacist from "@/app/assets/hero-pharmacist.webp";
 import { ButtonLink } from "@/components/ui/Button";
-import { Card } from "@/components/ui/Card";
 import { Container, Section, SectionHeader } from "@/components/ui/Section";
 import { Accordion } from "@/components/ui/Accordion";
-import { Stat } from "@/components/ui/Stat";
-import { Testimonial } from "@/components/ui/Testimonial";
-import { BillingMockup } from "@/components/mockups/BillingMockup";
-import { FeatureBlocks } from "@/components/sections/FeatureBlocks";
+import { MobileAppShowcase } from "@/components/mockups/MobileApp";
+import { ExpirySavings } from "@/components/sections/ExpirySavings";
+import { Testimonials } from "@/components/sections/Testimonials";
+import { TrustBar } from "@/components/sections/TrustBar";
+import { FeaturedOn } from "@/components/sections/FeaturedOn";
+import { TrustedByPharmacies } from "@/components/sections/TrustedByPharmacies";
+import { StoreBadges } from "@/components/StoreBadges";
+import { ProductShowcase } from "@/components/ProductShowcase";
 import { CtaBand } from "@/components/sections/CtaBand";
 import { Awards } from "@/components/sections/Awards";
 import { PricingCards } from "@/components/PricingCards";
 import { JsonLd } from "@/components/JsonLd";
 import { FAQ } from "@/content/faq";
-import { TESTIMONIALS, TRUST_STATS } from "@/content/social-proof";
 import { faqSchema, softwareApplicationSchema } from "@/lib/jsonld";
 import { SIGNUP_URL, whatsappLink } from "@/lib/site";
-
-const PAINS = [
-  {
-    title: "Stock expires quietly, in the back",
-    body: "Nobody notices a batch until the strip is already dead. It gets written off, and the loss never shows up anywhere you can see it.",
-  },
-  {
-    title: "GST filing turns into a weekend",
-    body: "The bills are in a drawer. The figures get rebuilt from paper every month, and a rate typed wrong in March is found in September.",
-  },
-  {
-    title: "Regulars stop coming and nobody knows",
-    body: "A customer on monthly BP tablets misses two months. You find out when they mention the new shop near the bus stand.",
-  },
-  {
-    title: "The counter waits on the software",
-    body: "Four people in the queue and the billing screen is still loading, or the medicine is not in the list, so it goes on paper again.",
-  },
-];
+import { WhatsAppIcon } from "@/components/WhatsAppIcon";
 
 export default function HomePage() {
   return (
@@ -80,11 +64,33 @@ export default function HomePage() {
               <p className="text-small font-semibold uppercase tracking-wider text-green-700">
                 Pharmacy management software
               </p>
-              <h1 className="mt-3 text-[2.25rem] leading-[1.1] font-bold tracking-tight text-ink-900 sm:text-[2.75rem] lg:text-display">
-                Run your whole pharmacy from one screen
+              {/* Two beats: who it is for, then the three promises. Each promise
+                  sits on a highlighter stroke and rises in turn on load, with
+                  the last one in brand green so the line lands on it. The
+                  motion is a single 250ms rise per word, and globals.css
+                  stops it entirely for reduced motion. */}
+              <h1 className="mt-3 font-bold tracking-tight text-ink-900">
+                <span className="block text-[2.25rem] leading-[1.1] sm:text-[2.75rem] lg:text-display">
+                  Your Medical Store.
+                </span>
+                <span className="mt-2 flex flex-wrap gap-x-3 gap-y-1 text-[2.25rem] leading-[1.15] sm:gap-x-4 sm:text-[2.75rem] lg:text-display">
+                  {["Smarter.", "Faster.", "Simpler."].map((word, i) => (
+                    <span
+                      key={word}
+                      className="animate-rise relative inline-block"
+                      style={{ animationDelay: `${120 + i * 140}ms` }}
+                    >
+                      <span
+                        aria-hidden="true"
+                        className="absolute inset-x-[-0.08em] bottom-[0.12em] h-[0.34em] -skew-x-12 rounded-xs bg-green-100"
+                      />
+                      <span className={i === 2 ? "relative text-green-700" : "relative"}>{word}</span>
+                    </span>
+                  ))}
+                </span>
               </h1>
               <p className="measure mt-5 text-body-lg text-ink-700">
-                Billing, stock, purchases, customers and GST in one system — so you bill in seconds,
+                Billing, stock, purchases, customers and GST in one system, so you bill in seconds,
                 catch expiry while you can still return it, and file without a scramble.
               </p>
 
@@ -99,6 +105,7 @@ export default function HomePage() {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
+                  <WhatsAppIcon />
                   Talk to us on WhatsApp
                 </ButtonLink>
               </div>
@@ -106,6 +113,17 @@ export default function HomePage() {
               <p className="mt-4 text-small text-ink-500">
                 Free plan for a single counter · No card needed
               </p>
+
+              {/* All four platforms on one baseline, as on the MolarPlus
+                  hero. Badge artwork ships at different aspect ratios, so
+                  they share a height and wrap two-by-two when narrow. */}
+              <div className="mt-8 border-t border-ink-200 pt-6">
+                <p className="mb-3.5 text-micro font-bold uppercase tracking-[0.2em] text-ink-500">
+                  Download free, works on every device
+                </p>
+                {/* Capped so the four wrap two-by-two rather than 3 + 1. */}
+                <StoreBadges className="max-w-[22rem]" />
+              </div>
             </div>
 
             {/* Mobile only. Above lg the photo is the absolutely-positioned
@@ -130,66 +148,65 @@ export default function HomePage() {
         </Container>
       </Section>
 
-      {/* 2. Trust bar — renders only when TRUST_STATS holds real
-             numbers, so nothing invented can ship here by accident. */}
-      {TRUST_STATS.length > 0 && (
-        <Section className="py-10 lg:py-12">
-          <Container>
-            <div className="grid grid-cols-2 gap-8 lg:grid-cols-4">
-              {TRUST_STATS.map((stat) => (
-                <Stat key={stat.label} value={stat.value} label={stat.label} />
-              ))}
-            </div>
-          </Container>
-        </Section>
-      )}
+      {/* 2. Reassurance strip. A compact band, not a section: after a
+             tall hero another 96px block reads as a second hero. The
+             stats bar it replaces stayed hidden because we have no real
+             numbers — these four are checkable today. */}
+      {/* 2b. Featured on — same platforms and placement as MolarPlus. */}
+      <FeaturedOn />
 
-      {/* 3. Problem framing */}
+      <TrustBar />
+
+      {/* Trusted by: the pharmacy count, sliding names and the photo grid,
+          straight after the four-fact strip. */}
+      <TrustedByPharmacies />
+
+      {/* 2c. Review-platform badges — self-hiding until one is earned. */}
+      <Awards />
+
+      {/* 4. The product, every screen in one frame, as on MolarPlus. */}
+      <Section>
+        <Container>
+          <p className="mb-3 text-small font-semibold uppercase tracking-wider text-green-700">
+            See it in action
+          </p>
+          <h2 className="mb-10 text-[1.75rem] leading-tight font-bold tracking-tight text-ink-900 sm:text-h2">
+            Your whole medical store, in one place.
+          </h2>
+          <ProductShowcase />
+        </Container>
+      </Section>
+
+      {/* 5. What expiry is costing this shop. Sits after the features
+             and before pricing on purpose: pain, then what you get,
+             then what it is worth, then what it costs. */}
+      <ExpirySavings />
+
+      {/* 5b. The phone app. */}
       <Section>
         <Container>
           <SectionHeader
-            eyebrow="What we hear"
-            title="The four things that actually cost you money"
-            intro="None of these is a software problem. They are all a record-keeping problem, which is why they never get fixed on paper."
+            eyebrow="On your phone"
+            title="Check the shop without being in the shop"
+            intro="The counter work stays on the desktop, where there is a keyboard. The phone app answers the questions you have when you are somewhere else: how is today going, and what is about to go off."
           />
-          <div className="grid gap-6 md:grid-cols-2">
-            {PAINS.map((pain) => (
-              <Card key={pain.title}>
-                <h3 className="text-h4 text-ink-900">{pain.title}</h3>
-                <p className="mt-2 text-body text-ink-700">{pain.body}</p>
-              </Card>
-            ))}
+          <MobileAppShowcase />
+          <div className="mt-12 flex flex-col items-center gap-3">
+            <p className="text-micro font-bold uppercase tracking-[0.2em] text-ink-500">
+              Get the app
+            </p>
+            <StoreBadges className="justify-center" />
           </div>
         </Container>
       </Section>
 
-      {/* 4. Core features */}
-      <Section tone="alt">
-        <Container>
-          <SectionHeader
-            eyebrow="What you get"
-            title="Everything a retail pharmacy runs on"
-            intro="Billing, stock, purchase, customers and GST in one place — so the bill you print is the one your return is built from."
-          />
-
-          {/* The billing screen itself. Moved down from the hero when the
-              photograph took that slot — this buyer still wants to see the
-              actual software before deciding, so it leads the features
-              rather than being dropped. */}
-          <div className="mx-auto mb-14 max-w-3xl lg:mb-16">
-            <BillingMockup />
-          </div>
-        </Container>
-        <FeatureBlocks />
-      </Section>
-
-      {/* 5. Differentiator
+      {/* 6. Differentiator
              TODO: replace with the one capability we can genuinely
              defend against LocalWell, given a full-width tone="dark"
              band. No claim has been agreed yet, so this section stays
              out of the page rather than shipping an invented one. */}
 
-      {/* 6. Pricing preview */}
+      {/* 6b. Pricing preview */}
       <Section>
         <Container>
           <SectionHeader
@@ -207,31 +224,17 @@ export default function HomePage() {
         </Container>
       </Section>
 
-      {/* 7. Testimonials — same guard as the trust bar. */}
-      {TESTIMONIALS.length > 0 && (
-        <Section tone="alt">
-          <Container>
-            <SectionHeader eyebrow="Customers" title="From pharmacies already running on it" />
-            <div className="grid gap-6 lg:grid-cols-3">
-              {TESTIMONIALS.map((testimonial) => (
-                <Testimonial key={testimonial.name} data={testimonial} />
-              ))}
-            </div>
-          </Container>
-        </Section>
-      )}
-
-      {/* 8. Review-platform awards — self-hiding until we earn one. */}
-      <Awards />
+      {/* 7. Testimonials — renders nothing until there are real ones. */}
+      <Testimonials />
 
       {/* 9. FAQ */}
-      <Section tone="alt">
+      <Section>
         <Container>
           <div className="grid gap-10 lg:grid-cols-[1fr_1.4fr] lg:gap-16">
             <SectionHeader
               eyebrow="Questions"
               title="The things owners ask us first"
-              intro="If yours is not here, message us on WhatsApp — you will get a person, not a form."
+              intro="If yours is not here, message us on WhatsApp. You will get a person, not a form."
             />
             <Accordion items={FAQ} />
           </div>

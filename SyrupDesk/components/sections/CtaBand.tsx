@@ -1,6 +1,7 @@
 import { ButtonLink } from "@/components/ui/Button";
 import { Container, Section } from "@/components/ui/Section";
 import { SIGNUP_URL, whatsappLink } from "@/lib/site";
+import { WhatsAppIcon } from "@/components/WhatsAppIcon";
 
 export function CtaBand({
   title = "Print your first bill today",
@@ -20,21 +21,17 @@ export function CtaBand({
           </h2>
           <p className="measure mx-auto mt-4 text-body-lg text-green-100">{body}</p>
           <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
-            <ButtonLink
-              href={SIGNUP_URL}
-              size="lg"
-              className="border-white bg-white text-green-700 hover:border-green-100 hover:bg-green-100"
-            >
+            <ButtonLink href={SIGNUP_URL} size="lg" variant="inverse">
               Start free
             </ButtonLink>
             <ButtonLink
               href={whatsappLink()}
-              variant="secondary"
+              variant="inverse-outline"
               size="lg"
               target="_blank"
               rel="noopener noreferrer"
-              className="border-green-200 text-white hover:bg-green-800"
             >
+              <WhatsAppIcon tone="current" />
               Talk to us on WhatsApp
             </ButtonLink>
           </div>

@@ -43,7 +43,7 @@ export function ContactForm() {
   if (status === "sent") {
     return (
       <div className="rounded-md border border-green-200 bg-green-50 p-6">
-        <h3 className="text-h4 text-ink-900">Got it — we will call you back</h3>
+        <h3 className="text-h4 text-ink-900">Got it. We will call you back</h3>
         <p className="mt-2 text-body text-ink-700">
           Someone from our team will reach you on the number you gave, usually the same working day.
         </p>
@@ -87,7 +87,7 @@ export function ContactForm() {
           required
           rows={4}
           className={`${FIELD} py-3`}
-          placeholder="Tell us about your shop — how many counters, what software you use now."
+          placeholder="Tell us about your shop: how many counters, what software you use now."
         />
       </div>
 
@@ -95,7 +95,7 @@ export function ContactForm() {
         <div role="alert" className="rounded-sm border border-ink-200 bg-surface-alt p-4">
           <p className="text-body text-ink-900">This form is not connected yet.</p>
           <p className="mt-1 text-body text-ink-700">
-            Message us on WhatsApp instead — it reaches us straight away.
+            Message us on WhatsApp instead. It reaches us straight away.
           </p>
           <ButtonLink
             href={whatsappLink()}

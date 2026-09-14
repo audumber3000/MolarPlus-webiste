@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Container, Section } from "@/components/ui/Section";
+import Image from "next/image";
 import { Prose } from "@/components/blog/Prose";
 import { CtaBand } from "@/components/sections/CtaBand";
 import { JsonLd } from "@/components/JsonLd";
@@ -77,6 +78,18 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
       <Section className="py-12 lg:py-16">
         <Container>
+          {post.coverImage && (
+            <div className="relative mb-12 aspect-[16/10] max-w-4xl overflow-hidden rounded-md border border-ink-200">
+              <Image
+                src={post.coverImage}
+                alt={post.coverAlt ?? ""}
+                fill
+                priority
+                sizes="(min-width: 1024px) 56rem, 100vw"
+                className="object-cover"
+              />
+            </div>
+          )}
           <article>
             <Prose>
               <Body />

@@ -13,13 +13,15 @@ export const meta = {
   published: "2026-06-25",
   tag: "Operations",
   readingMinutes: 6,
+  coverImage: "/blog/expiry-losses-retail-pharmacy.webp",
+  coverAlt: "Blister strips of tablets and capsules in several colours",
 };
 
 export function Body() {
   return (
     <>
       <p>
-        Expired stock is the quietest way a pharmacy loses money. Nothing dramatic happens — a strip
+        Expired stock is the quietest way a pharmacy loses money. Nothing dramatic happens. A strip
         sits at the back of a shelf, the date passes, and at some point you throw it away. There is
         no moment where it feels like a loss, which is exactly why it keeps happening.
       </p>
@@ -58,16 +60,16 @@ export function Body() {
       </ul>
       <p>
         Return windows differ by distributor and by product, so ask each of your suppliers what
-        theirs is and write it down. That number is what your alerts should be set against —
-        everything in this routine works backwards from it.
+        theirs is and write it down. That number is what your alerts should be set against,
+        because everything in this routine works backwards from it.
       </p>
 
       <h2>The monthly routine</h2>
 
       <h3>1. Run a near-expiry list on the same day each month</h3>
       <p>
-        Pick a date — the first Monday, the first of the month, whatever you will actually remember
-        — and pull a list of every batch expiring inside your longest return window. Doing it on a
+        Pick a date, such as the first Monday or the first of the month, whatever you will actually
+        remember, and pull a list of every batch expiring inside your longest return window. Doing it on a
         fixed day matters more than which day you pick.
       </p>
 
@@ -80,7 +82,7 @@ export function Body() {
       <h3>3. Raise the returns that week</h3>
       <p>
         Returnable batches go back to the distributor while they still qualify. This is the step
-        that recovers real money, and it is the one most often postponed — a return raised three
+        that recovers real money, and it is the one most often postponed. A return raised three
         weeks late is usually a return refused.
       </p>
 
@@ -103,7 +105,7 @@ export function Body() {
         </li>
         <li>
           <strong>Dispense oldest batch first.</strong> Obvious, universally agreed on, and
-          inconsistently done when it is busy — which is why it is worth having the software tell
+          inconsistently done when it is busy, which is why it is worth having the software tell
           you rather than relying on whoever is at the counter.
         </li>
         <li>
@@ -120,7 +122,7 @@ export function Body() {
       <h2>Dispose of what is left properly</h2>
       <p>
         Expired medicines should not go into general waste. Requirements vary by state and by
-        product category, so check what applies where you are — your drug inspector or your
+        product category, so check what applies where you are. Your drug inspector or your
         distributor can usually tell you the accepted route, and some manufacturers have their own
         take-back arrangements.
       </p>
@@ -128,7 +130,7 @@ export function Body() {
         <p>
           <strong>TODO before publishing:</strong> confirm the current disposal guidance we want to
           point readers at. This section should name the applicable rule or link an official source
-          rather than leaving it vague — but only once someone has checked what is current.
+          rather than leaving it vague, but only once someone has checked what is current.
         </p>
       </blockquote>
 
@@ -136,8 +138,8 @@ export function Body() {
       <p>
         Batch and expiry are captured when you enter a purchase, near-expiry batches are flagged at
         the counter during billing, and the expiry screen shows what is coming up with the value
-        attached so you can see what is worth chasing. The routine above is still yours to run —
-        the software just makes sure the list is accurate and waiting for you.
+        attached so you can see what is worth chasing. The routine above is still yours to run.
+        The software just makes sure the list is accurate and waiting for you.
       </p>
     </>
   );

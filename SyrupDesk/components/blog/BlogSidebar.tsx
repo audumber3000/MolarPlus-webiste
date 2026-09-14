@@ -1,6 +1,7 @@
 import { ButtonLink } from "@/components/ui/Button";
 import { SITE, whatsappLink } from "@/lib/site";
 import { cn } from "@/lib/cn";
+import { WhatsAppIcon } from "@/components/WhatsAppIcon";
 
 /**
  * Blog sidebar. Deliberately carries a tag filter, a short "what this
@@ -61,7 +62,7 @@ export function BlogSidebar({
       <div className="rounded-md border border-ink-200 p-6">
         <h2 className="text-h4 font-semibold text-ink-900">What is {SITE.name}?</h2>
         <p className="mt-3 text-body text-ink-700">
-          Cloud software for Indian retail pharmacies — GST billing, stock with expiry
+          Cloud software for Indian retail pharmacies: GST billing, stock with expiry
           alerts, purchase entry and returns, on one record.
         </p>
         <ButtonLink href="/features" variant="secondary" size="sm" className="mt-5 w-full">
@@ -72,15 +73,17 @@ export function BlogSidebar({
       <div className="rounded-md bg-green-700 p-6 on-dark">
         <h2 className="text-h4 font-semibold text-white">Questions about your shop?</h2>
         <p className="mt-3 text-body text-green-100">
-          Message us and we will answer plainly — no callback queue, no demo booking.
+          Message us and we will answer plainly. No callback queue, no demo booking.
         </p>
         <ButtonLink
           href={whatsappLink()}
           size="sm"
+          variant="inverse"
           target="_blank"
           rel="noopener noreferrer"
-          className="mt-5 w-full border-white bg-white text-green-700 hover:border-green-100 hover:bg-green-100"
+          className="mt-5 w-full"
         >
+          <WhatsAppIcon />
           Talk to us on WhatsApp
         </ButtonLink>
       </div>

@@ -15,10 +15,12 @@ export const meta = {
   slug: "best-pharmacy-software-india-2026",
   title: "How to choose pharmacy software in 2026: a buyer's guide for Indian medical stores",
   description:
-    "There is no single best pharmacy software — there is the one that fits your shop. Nine things to check before you pay for any of them.",
+    "There is no single best pharmacy software, only the one that fits your shop. Nine things to check before you pay for any of them.",
   published: "2026-06-18",
   tag: "Buying guide",
   readingMinutes: 8,
+  coverImage: "/blog/best-pharmacy-software-india-2026.webp",
+  coverAlt: "The SyrupDesk billing screen with a bill in progress",
 };
 
 export function Body() {
@@ -26,7 +28,7 @@ export function Body() {
     <>
       <p>
         Search for the best pharmacy software in India and you will get a dozen listicles, most of
-        them written by the companies being ranked. None of them know what your shop looks like —
+        them written by the companies being ranked. None of them know what your shop looks like:
         whether you fill 40 bills a day or 400, whether you carry chronic medicines, whether you
         have one counter or four branches.
       </p>
@@ -40,7 +42,7 @@ export function Body() {
       <p>
         Not a demo. Ask for a trial, put your own top ten medicines into it, and print an actual
         bill on the printer you already own. If that takes a training session, a setup call, or a
-        week of data entry, you have learned something important — this is software built for a
+        week of data entry, you have learned something important: this is software built for a
         chain with staff to spare, being sold down to you.
       </p>
       <p>
@@ -52,8 +54,8 @@ export function Body() {
       <h2>2. Check the medicine database, not the medicine count</h2>
       <p>
         Every vendor advertises a large medicine database. The number is not the useful part. What
-        matters is whether each entry carries the composition, the HSN code and the correct GST rate
-        — because those three are what make your bill compliant and your return fill itself.
+        matters is whether each entry carries the composition, the HSN code and the correct GST rate,
+        because those three are what make your bill compliant and your return fill itself.
       </p>
       <p>
         Search for five medicines you sell often, including one local brand. If you have to type in
@@ -72,7 +74,7 @@ export function Body() {
         </li>
         <li>
           <strong>The software is installed on your computer</strong> and does not need the
-          internet at all — but then your data lives on one machine, and you should ask about
+          internet at all, but then your data lives on one machine, and you should ask about
           backups.
         </li>
         <li>
@@ -85,7 +87,7 @@ export function Body() {
       <p>
         Every product will tell you it tracks expiry. The question is when it tells <em>you</em>. A
         report you have to remember to run is not much use. What changes the money is being warned
-        while the batch can still go back to the distributor — which for most distributor return
+        while the batch can still go back to the distributor, which for most distributor return
         windows means months of notice, not days.
       </p>
       <p>
@@ -103,7 +105,7 @@ export function Body() {
 
       <h2>6. Make them show you the GST return</h2>
       <p>
-        Not a sales slide — the actual GSTR-1 summary generated from bills you entered during the
+        Not a sales slide, but the actual GSTR-1 summary generated from bills you entered during the
         trial. The whole promise of billing software is that the return builds itself from what you
         already sold. If there is a manual step in the middle where figures get re-entered, the
         promise is not being kept.
@@ -128,7 +130,7 @@ export function Body() {
       <h2>8. Ask how you get your data out</h2>
       <p>
         Ask before you sign up, not after. You want to know that you can export your stock,
-        customers and sales history in a format you can open — and what happens to those records if
+        customers and sales history in a format you can open, and what happens to those records if
         you stop paying. &ldquo;The account goes read-only&rdquo; is a reasonable answer. &ldquo;The data is deleted&rdquo;
         or a shrug is not.
       </p>

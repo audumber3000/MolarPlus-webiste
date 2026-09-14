@@ -8,7 +8,7 @@ import { breadcrumbSchema, faqSchema, softwareApplicationSchema } from "@/lib/js
 import { buildMetadata } from "@/lib/seo";
 
 export const metadata = buildMetadata({
-  title: "Pricing — free plan, then ₹599 a month",
+  title: "Pricing: free plan, then ₹599 a month",
   description:
     "SyrupDesk pricing for Indian pharmacies. A free plan for a single counter, ₹599 a month for a full shop with inventory and GST reports, and ₹1,299 for multiple branches. No setup fee, no annual lock-in.",
   path: "/pricing",
@@ -104,7 +104,7 @@ export default function PricingPage() {
             <SectionHeader
               eyebrow="Questions"
               title="What owners ask about the price"
-              intro="If something here is unclear, ask us before you sign up — not after."
+              intro="If something here is unclear, ask us before you sign up, not after."
             />
             <Accordion items={PRICING_FAQ} />
           </div>

@@ -18,6 +18,8 @@ export type BlogPost = {
    *  fall back to a tinted panel when a post has no art, so a missing
    *  image reads as deliberate rather than broken. */
   coverImage?: string;
+  /** Describes the cover for screen readers on the post page. */
+  coverAlt?: string;
   body: ComponentType;
 };
 

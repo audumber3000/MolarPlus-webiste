@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 import { SITE } from "@/lib/site";
 
-export const alt = `${SITE.name} — pharmacy management software for Indian medical stores. By ${SITE.parent}.`;
+export const alt = `${SITE.name}: pharmacy management software for Indian medical stores. By ${SITE.parent}.`;
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -50,7 +50,7 @@ export default function OpengraphImage() {
               maxWidth: 900,
             }}
           >
-            Run your whole pharmacy from one screen
+            Your Medical Store. Smarter, Faster, Simpler.
           </div>
           <div style={{ color: GREEN_100, fontSize: 30, marginTop: 24, maxWidth: 860 }}>
             Billing, stock, purchases and GST for Indian medical stores.

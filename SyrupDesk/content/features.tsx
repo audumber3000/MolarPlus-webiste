@@ -1,7 +1,10 @@
 import type { ReactNode } from "react";
-import { BillingMockup } from "@/components/mockups/BillingMockup";
-import { ExpiryMockup } from "@/components/mockups/ExpiryMockup";
-import { PanelMockup } from "@/components/mockups/PanelMockup";
+import { ProductShot } from "@/components/mockups/ProductShot";
+import billListShot from "@/app/assets/app-billlist.webp";
+import expiryShot from "@/app/assets/app-expiry.webp";
+import purchasesShot from "@/app/assets/app-purchases.webp";
+import customersShot from "@/app/assets/app-customers.webp";
+import gstShot from "@/app/assets/app-gst.webp";
 
 export type Feature = {
   id: string;
@@ -10,21 +13,28 @@ export type Feature = {
   title: string;
   body: string;
   points: ReadonlyArray<string>;
-  visual: ReactNode;
+  /** Optional: a block without one renders its copy on its own. */
+  visual?: ReactNode;
 };
 
 export const FEATURES: ReadonlyArray<Feature> = [
   {
     id: "billing",
     title: "Bill a customer in a few seconds",
-    body: "Type the first three letters of a medicine and it comes up with its batch, MRP and GST rate already filled in. Print on your existing thermal or A4 printer. The bill is GST-compliant the moment it prints — no separate entry later.",
+    body: "Type the first three letters of a medicine and it comes up with its batch, MRP and GST rate already filled in. Print on your existing thermal or A4 printer. The bill is GST-compliant the moment it prints, with no separate entry later.",
     points: [
       "Keyboard-first, so a busy counter never waits on a mouse",
       "Batch and expiry picked automatically, oldest stock first",
       "Part-strip and loose-tablet sales handled properly",
       "Reprint or edit a bill without breaking the GST trail",
     ],
-    visual: <BillingMockup />,
+    visual: (
+      <ProductShot
+        src={billListShot}
+        alt="The SyrupDesk bill register: every bill raised, with its bill number, date, patient, net value and status, searchable by number, name, phone or date range."
+        caption="Every bill you have raised, searchable by number, name or phone."
+      />
+    ),
   },
   {
     id: "expiry",
@@ -36,7 +46,13 @@ export const FEATURES: ReadonlyArray<Feature> = [
       "Return list you can hand to your distributor",
       "Near-expiry batches flagged at the counter during billing",
     ],
-    visual: <ExpiryMockup />,
+    visual: (
+      <ProductShot
+        src={expiryShot}
+        alt="The SyrupDesk expiry screen filtered to stock expiring within 90 days: ₹95,242 across 105 units, listed batch by batch with a countdown on each (17 days, 48 days) and a Create return button."
+        caption="Expiry, filtered to the 90 days you can still act on."
+      />
+    ),
   },
   {
     id: "database",
@@ -48,21 +64,6 @@ export const FEATURES: ReadonlyArray<Feature> = [
       "Substitute suggestions when a brand is out of stock",
       "Add your own items for anything we are missing",
     ],
-    visual: (
-      <PanelMockup
-        title="Medicine database"
-        label="The SyrupDesk medicine database showing a search for paracetamol with matching brands, each listing composition, HSN code and GST rate."
-        headline="Matches for “paracetamol”"
-        headlineValue="18"
-        rows={[
-          { primary: "Dolo 650 Tablet", secondary: "Paracetamol 650mg · HSN 3004", value: "12%" },
-          { primary: "Calpol 500 Tablet", secondary: "Paracetamol 500mg · HSN 3004", value: "12%" },
-          { primary: "Crocin Advance", secondary: "Paracetamol 500mg · HSN 3004", value: "12%" },
-          { primary: "Sumo Cold Tablet", secondary: "Paracetamol + Cetirizine · HSN 3004", value: "12%" },
-        ]}
-        footnote="Composition, HSN and GST rate come pre-filled on every item."
-      />
-    ),
   },
   {
     id: "purchase",
@@ -75,18 +76,10 @@ export const FEATURES: ReadonlyArray<Feature> = [
       "Updates your selling price if the MRP has moved",
     ],
     visual: (
-      <PanelMockup
-        title="Purchase bill import"
-        label="The SyrupDesk purchase import screen showing a distributor bill of ₹48,210 read in with 62 items matched automatically and 2 items flagged for a rate change."
-        headline="Bill from distributor"
-        headlineValue="₹48,210"
-        rows={[
-          { primary: "62 items matched", secondary: "Batch and expiry read from the bill", value: "OK" },
-          { primary: "2 rate changes", secondary: "Purchase rate higher than last time", value: "Check", flag: true },
-          { primary: "1 short supply", secondary: "Billed 10, received 8", value: "Check", flag: true },
-          { primary: "4 new items", secondary: "Not in your stock list yet", value: "Add" },
-        ]}
-        footnote="Nothing is added to your stock until you approve it."
+      <ProductShot
+        src={purchasesShot}
+        alt="The SyrupDesk purchase register listing distributor invoices with their invoice number, distributor, date, goods-receipt number and net value."
+        caption="Every distributor invoice, with its goods-receipt note against it."
       />
     ),
   },
@@ -101,18 +94,10 @@ export const FEATURES: ReadonlyArray<Feature> = [
       "Customer purchase history at the counter",
     ],
     visual: (
-      <PanelMockup
-        title="Refills due"
-        label="The SyrupDesk refill screen listing four regular customers whose chronic medicines are due for a refill this week, with the reminder status for each."
-        headline="Refills due this week"
-        headlineValue="34"
-        rows={[
-          { primary: "Telmisartan 40mg", secondary: "9 customers · monthly", value: "Sent" },
-          { primary: "Metformin 500mg", secondary: "12 customers · monthly", value: "Sent" },
-          { primary: "Atorvastatin 10mg", secondary: "7 customers · monthly", value: "Due" },
-          { primary: "Thyronorm 50mcg", secondary: "6 customers · monthly", value: "Due" },
-        ]}
-        footnote="Reminders go out on WhatsApp the day before the strip runs out."
+      <ProductShot
+        src={customersShot}
+        alt="The SyrupDesk customer list showing each customer's locality, whether they buy on account or cash only, their credit limit, what they currently owe, and the date they were last in."
+        caption="Customers, with what each one owes and when they were last in."
       />
     ),
   },
@@ -127,18 +112,10 @@ export const FEATURES: ReadonlyArray<Feature> = [
       "Export for your accountant in one click",
     ],
     visual: (
-      <PanelMockup
-        title="GST summary"
-        label="The SyrupDesk GST summary for a month showing total taxable sales of ₹6,42,180 broken down by GST rate, with GSTR-1 and GSTR-3B ready to download."
-        headline="Taxable sales this month"
-        headlineValue="₹6,42,180"
-        rows={[
-          { primary: "GST 5%", secondary: "412 bills", value: "₹18,240" },
-          { primary: "GST 12%", secondary: "1,904 bills", value: "₹52,110" },
-          { primary: "GST 18%", secondary: "266 bills", value: "₹14,880" },
-          { primary: "Exempt", secondary: "38 bills", value: "₹0" },
-        ]}
-        footnote="GSTR-1 and GSTR-3B download in the portal's format."
+      <ProductShot
+        src={gstShot}
+        alt="The SyrupDesk tax summary report: output tax on sales for a period, grouped by GST rate, showing taxable value, tax and invoice count for each rate with a total, and an Export CSV button."
+        caption="Tax collected and tax paid, grouped by rate, for any period."
       />
     ),
   },

@@ -2,67 +2,72 @@ import Image from "next/image";
 import { cn } from "@/lib/cn";
 import { SITE } from "@/lib/site";
 
-/** Nav sits on white; the footer sits on green-700. The mark, the
- *  "Desk" colour and the ledger rules all have to flip together. */
+/**
+ * The SyrupDesk lockup — the real artwork, the same files the product
+ * itself ships.
+ *
+ * What was here before was a hand-built approximation: a bottle-and-pills
+ * PNG beside the word "SyrupDesk" set in the body font, with the D of
+ * "Desk" drawn as an inline SVG. It was close enough to look deliberate
+ * and wrong enough that the site and the app were visibly different
+ * brands — the actual mark is a capsule **S**, not a bottle. The app's
+ * own `shared/ui/Brand.tsx` says the same thing about the same files.
+ *
+ * **Two files per asset rather than one recoloured in CSS.** A mask or
+ * an SVG `fill` would let one file serve both surfaces, but a mask that
+ * fails to load is an *invisible* logo in the first slot of the page.
+ * Two images fail visibly instead. It also keeps the no-raw-hex rule
+ * satisfied, because no colour is named here at all.
+ */
 type Tone = "light" | "dark";
 
-/**
- * Full icon artwork, bottle plus the loose pills.
- *
- * Note the pills occupy the right ~40% of the image but sit entirely
- * below its midline, so at cap height that strip is empty and reads as
- * extra space between the mark and the wordmark. That gap is in the
- * artwork, not in the flex `gap` below.
- */
-const MARK = {
-  light: { src: "/logo-mark.png", width: 112, height: 160 },
-  dark: { src: "/logo-mark-white.png", width: 115, height: 160 },
-} as const;
+/** Square file with a portrait glyph inside, so a square box keeps the
+ *  mark optically centred without per-caller nudging. */
+const MARK: Record<Tone, string> = {
+  light: "/brand-mark-green.png",
+  dark: "/brand-mark-white.png",
+};
+
+/** The wordmark's own proportions — set a height, get no layout shift. */
+const WORDMARK: Record<Tone, string> = {
+  light: "/brand-wordmark.png",
+  dark: "/brand-wordmark-white.png",
+};
+const WORDMARK_W = 503;
+const WORDMARK_H = 96;
 
 /**
- * The "D" of Desk, drawn as a ledger inside the bowl rather than set in
- * the body font.
- *
- * The bowl is a real counter — an evenodd hole — not a solid shape with
- * white bars painted over it. That matters twice: without a counter the
- * glyph reads as an "E" rather than a "D", and because the hole lets
- * the background through, the same markup works on white and on the
- * footer's green-700 with no background-matched fill to keep in sync.
+ * "by Clino Health", coloured the way the MolarPlus site sets it:
+ * a quiet "by", then the two parent-brand greens.
  */
-function DeskD({ tone }: { tone: Tone }) {
-  return (
-    <svg
-      viewBox="16 6 83 78"
-      aria-hidden="true"
-      focusable="false"
-      className={cn(
-        "h-[0.78em] w-auto fill-current",
-        tone === "dark" ? "text-green-300" : "text-green-500",
-      )}
+function Byline({ tone, link }: { tone: Tone; link: boolean }) {
+  const dark = tone === "dark";
+  const words = (
+    <>
+      <span className={cn("mr-0.5 font-medium", dark ? "text-white/50" : "text-ink-400")}>by</span>
+      <span className={dark ? "text-clino-light-on-dark" : "text-clino-light"}>Clino</span>
+      <span className={cn("ml-1", dark ? "text-clino-medium-on-dark" : "text-clino-medium")}>Health</span>
+    </>
+  );
+  const cls = "mt-1 text-micro font-bold leading-none tracking-tight";
+
+  return link ? (
+    <a
+      href={SITE.parentUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label={`${SITE.parent}, the company behind ${SITE.name}`}
+      className={cn(cls, "transition-opacity duration-200 ease-out hover:opacity-70")}
     >
-      <path
-        fillRule="evenodd"
-        d="M20 10 h40 c20 0 35 15 35 35 s-15 35-35 35 h-40 z
-           M38 26 v38 h22 c11 0 19-8 19-19 s-8-19-19-19 z"
-      />
-      {/* ledger rules, sitting inside the counter */}
-      <rect x="44" y="33" width="26" height="4" />
-      <rect x="44" y="43" width="26" height="4" />
-      <rect x="44" y="53" width="18" height="4" />
-    </svg>
+      {words}
+    </a>
+  ) : (
+    <span aria-hidden="true" className={cls}>
+      {words}
+    </span>
   );
 }
 
-/**
- * `byline` sets the "by Clino Health" parent-brand lockup under the
- * wordmark — on in the nav and footer, off wherever the logo appears
- * inline. Micro type is reserved for labels like this (see tokens).
- *
- * The wordmark is assembled from three pieces (text + SVG glyph +
- * text), so it is hidden from assistive tech and the real name is
- * exposed once via sr-only. Without that a screen reader announces
- * "Syrupesk".
- */
 export function Logo({
   className,
   byline = false,
@@ -82,54 +87,34 @@ export function Logo({
    */
   linkByline?: boolean;
 }) {
-  const mark = MARK[tone];
-
   return (
     <span className={cn("inline-flex items-center gap-2.5", className)}>
+      {/* The name, once, for assistive tech. Both images below are
+          decorative: two elements each announcing "SyrupDesk" is a
+          screen reader saying the product name twice. */}
       <span className="sr-only">{SITE.name}</span>
 
       <Image
-        src={mark.src}
+        src={MARK[tone]}
         alt=""
-        width={mark.width}
-        height={mark.height}
+        aria-hidden="true"
+        width={132}
+        height={132}
         priority
-        className="h-9 w-auto shrink-0"
+        className="h-8 w-8 shrink-0"
       />
 
-      {/* aria-hidden sits on the WORDMARK only, not on the column.
-          It has to: the wordmark is three pieces (text + glyph + text)
-          that a screen reader announces as "Syrupesk", which is why the
-          real name is exposed once via sr-only above. But the byline
-          below is a genuine link to another site — left inside an
-          aria-hidden subtree it would be focusable and invisible to
-          assistive tech at the same time, which is worse than either. */}
       <span className="inline-flex flex-col leading-none">
-        <span aria-hidden="true" className="flex items-baseline text-h4 font-bold tracking-tight">
-          Syrup
-          <DeskD tone={tone} />
-          <span className={cn("-ml-[0.04em]", tone === "dark" ? "text-green-300" : "text-green-500")}>
-            esk
-          </span>
-        </span>
-        {byline &&
-          (linkByline ? (
-            <a
-              href={SITE.parentUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-0.5 text-micro font-medium tracking-tight opacity-70 underline-offset-2 transition-opacity duration-200 ease-out hover:opacity-100 hover:underline"
-            >
-              by {SITE.parent}
-            </a>
-          ) : (
-            <span
-              aria-hidden="true"
-              className="mt-0.5 text-micro font-medium tracking-tight opacity-70"
-            >
-              by {SITE.parent}
-            </span>
-          ))}
+        <Image
+          src={WORDMARK[tone]}
+          alt=""
+          aria-hidden="true"
+          width={WORDMARK_W}
+          height={WORDMARK_H}
+          priority
+          className="h-[1.15rem] w-auto"
+        />
+        {byline && <Byline tone={tone} link={linkByline} />}
       </span>
     </span>
   );

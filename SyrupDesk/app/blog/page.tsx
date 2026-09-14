@@ -7,7 +7,7 @@ import { buildMetadata } from "@/lib/seo";
 import { getAllPostSummaries, getTags } from "@/lib/blog";
 
 export const metadata = buildMetadata({
-  title: "Blog — running a retail pharmacy in India",
+  title: "Blog: running a retail pharmacy in India",
   description:
     "Practical writing on pharmacy operations for Indian medical stores: expiry control, GST filing, purchase entry and choosing software. No jargon, no invented statistics.",
   path: "/blog",
@@ -33,7 +33,7 @@ export default function BlogIndexPage() {
             as="h1"
             eyebrow="Blog"
             title="Running a pharmacy, written plainly"
-            intro="Notes on the jobs that actually take up your day — expiry, GST, purchase entry, stock. Written for owners, not for software buyers."
+            intro="Notes on the jobs that actually take up your day: expiry, GST, purchase entry and stock. Written for owners, not for software buyers."
           />
         </Container>
       </Section>

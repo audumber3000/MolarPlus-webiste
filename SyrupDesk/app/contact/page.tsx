@@ -6,9 +6,10 @@ import { JsonLd } from "@/components/JsonLd";
 import { breadcrumbSchema, organizationSchema } from "@/lib/jsonld";
 import { buildMetadata } from "@/lib/seo";
 import { ADDRESS_LINE, SITE, SOCIAL, whatsappLink } from "@/lib/site";
+import { WhatsAppIcon } from "@/components/WhatsAppIcon";
 
 export const metadata = buildMetadata({
-  title: "Contact — talk to us about your pharmacy",
+  title: "Contact us about your pharmacy",
   description:
     "Message SyrupDesk on WhatsApp or request a call back. We will set up your stock list, answer GST questions and show you the billing screen on your own data.",
   path: "/contact",
@@ -43,7 +44,7 @@ export default function ContactPage() {
               <Card>
                 <h2 className="text-h4 text-ink-900">WhatsApp</h2>
                 <p className="mt-2 text-body text-ink-700">
-                  Ask anything — pricing, GST, whether it will work with your printer. You will get a
+                  Ask anything: pricing, GST, whether it will work with your printer. You will get a
                   reply from someone who knows the product.
                 </p>
                 <ButtonLink
@@ -53,6 +54,7 @@ export default function ContactPage() {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
+                  <WhatsAppIcon tone="current" />
                   Message us on WhatsApp
                 </ButtonLink>
               </Card>
@@ -73,7 +75,7 @@ export default function ContactPage() {
               <Card>
                 <h2 className="text-h4 text-ink-900">Email</h2>
                 <p className="mt-2 text-body text-ink-700">
-                  Better for anything with attachments — a stock list, a distributor bill, a GST
+                  Better for anything with attachments, such as a stock list, a distributor bill or a GST
                   query with figures.
                 </p>
                 <a
@@ -87,7 +89,7 @@ export default function ContactPage() {
               <Card>
                 <h2 className="text-h4 text-ink-900">Moving from other software?</h2>
                 <p className="mt-2 text-body text-ink-700">
-                  Send us your existing stock list in whatever form you have it — Excel, a backup
+                  Send us your existing stock list in whatever form you have it: Excel, a backup
                   file, or a printout. We import it for you before you start, at no charge.
                 </p>
               </Card>
@@ -95,7 +97,7 @@ export default function ContactPage() {
               <Card>
                 <h2 className="text-h4 text-ink-900">Office</h2>
                 <p className="mt-2 text-body text-ink-700">
-                  {SITE.parent} — the team behind SyrupDesk.
+                  {SITE.parent}, the team behind SyrupDesk.
                 </p>
                 <address className="mt-2 text-body not-italic text-ink-700">{ADDRESS_LINE}</address>
               </Card>
@@ -134,7 +136,7 @@ export default function ContactPage() {
               <h2 className="text-h3 text-ink-900">Request a call back</h2>
               <p className="measure mt-3 mb-8 text-body text-ink-700">
                 Leave your number and we will call you, usually the same working day. No sales
-                script — we will just answer what you ask.
+                script. We will just answer what you ask.
               </p>
               <ContactForm />
             </div>

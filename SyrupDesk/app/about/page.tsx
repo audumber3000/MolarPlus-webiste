@@ -7,7 +7,7 @@ import { breadcrumbSchema, organizationSchema } from "@/lib/jsonld";
 import { buildMetadata } from "@/lib/seo";
 
 export const metadata = buildMetadata({
-  title: "About — why we built SyrupDesk",
+  title: "About SyrupDesk: why we built it",
   description:
     "SyrupDesk is pharmacy management software by Clino Health, built for independent pharmacies in India: software a shop owner can run on the counter computer they already have, without training or a lock-in contract.",
   path: "/about",
@@ -20,7 +20,7 @@ const PRINCIPLES = [
   },
   {
     title: "Your data is yours",
-    body: "You can export everything, any time, in a format you can actually open. If you stop paying, the account goes read-only — we do not delete your records or hold them to force a renewal.",
+    body: "You can export everything, any time, in a format you can actually open. If you stop paying, the account goes read only and we do not delete your records or hold them to force a renewal.",
   },
   {
     title: "It has to work on what you own",
@@ -49,7 +49,7 @@ export default function AboutPage() {
             as="h1"
             eyebrow="About"
             title="Built for the shop, not the boardroom"
-            intro="Most pharmacy software in India was written for chains and then sold down to independent shops. It shows — in the price, in the training it needs, and in how much of it goes unused."
+            intro="Most pharmacy software in India was written for chains and then sold down to independent shops. It shows in the price, in the training it needs, and in how much of it goes unused."
           />
         </Container>
       </Section>
@@ -60,7 +60,7 @@ export default function AboutPage() {
             <p>
               An independent pharmacy is a small business with a compliance problem attached. The
               owner is buying, selling, filing GST, chasing distributor returns and standing at the
-              counter — often all in the same afternoon.
+              counter, often all in the same afternoon.
             </p>
             <p>
               The software that is supposed to help usually asks for a week of setup, a training

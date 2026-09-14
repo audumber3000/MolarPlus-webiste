@@ -16,7 +16,7 @@ import { LAST_UPDATED, LEGAL } from "@/content/legal";
 export const metadata = buildMetadata({
   title: "Privacy policy",
   description:
-    "How SyrupDesk collects, uses and protects data for pharmacies in India — what we hold, who can see it, how long we keep it, and the rights you have under the DPDP Act 2023.",
+    "How SyrupDesk collects, uses and protects data for pharmacies in India: what we hold, who can see it, how long we keep it, and the rights you have under the DPDP Act 2023.",
   path: "/privacy",
 });
 
@@ -80,13 +80,13 @@ export default function PrivacyPage() {
             <h2>What we collect</h2>
             <p>From you, when you sign up and use the product:</p>
             <ul>
-              <li>Account details — name, pharmacy name, address, phone number, email.</li>
+              <li>Account details: name, pharmacy name, address, phone number, email.</li>
               <li>
                 Licence and tax identifiers you choose to store, such as your GSTIN and drug
                 licence number, because invoices and GST returns require them.
               </li>
               <li>
-                Operational records you create — stock, batches and expiry dates, purchase bills,
+                Operational records you create: stock, batches and expiry dates, purchase bills,
                 sales invoices, returns, suppliers.
               </li>
               <li>
@@ -94,7 +94,7 @@ export default function PrivacyPage() {
                 payment provider; we do not store full card numbers.
               </li>
               <li>
-                Technical logs — IP address, device and browser type, timestamps and error traces.
+                Technical logs: IP address, device and browser type, timestamps and error traces.
                 These exist so we can keep the service running and investigate faults.
               </li>
             </ul>
@@ -116,14 +116,14 @@ export default function PrivacyPage() {
 
             <h2>Why we process it</h2>
             <ul>
-              <li>To provide the service — billing, inventory, reporting, backups.</li>
+              <li>To provide the service: billing, inventory, reporting, backups.</li>
               <li>To support you when you ask for help.</li>
               <li>To take payment and issue our own invoices to you.</li>
               <li>
                 To keep the service secure and reliable, including investigating abuse and faults.
               </li>
               <li>
-                To meet our own legal obligations — for example retaining our accounting records
+                To meet our own legal obligations, for example retaining our accounting records
                 for the period Indian tax law requires.
               </li>
             </ul>
@@ -134,7 +134,7 @@ export default function PrivacyPage() {
 
             <h2>Who else can see it</h2>
             <p>
-              We share data with service providers who help us run {SITE.name} — hosting, backups,
+              We share data with service providers who help us run {SITE.name}: hosting, backups,
               payment processing, email delivery and error monitoring. They are bound to use it
               only to provide that service to us.
             </p>
@@ -143,8 +143,8 @@ export default function PrivacyPage() {
                   hosting region. Until this list is published the paragraph
                   above is accurate but unhelpfully vague, and a pharmacy
                   cannot make an informed decision from it. */}
-              We will also disclose data where we are legally required to — a valid order from a
-              court or a regulator, for example. If that happens and we are permitted to tell you,
+              We will also disclose data where we are legally required to, such as a valid order from a
+              court or a regulator. If that happens and we are permitted to tell you,
               we will.
             </p>
             <p>
@@ -156,7 +156,7 @@ export default function PrivacyPage() {
             <p>
               While your account is active, we keep your data so the product works. Records like
               invoices and GST filings need to be retained for the periods Indian tax law sets,
-              and both you and we are bound by that — those cannot simply be deleted on request.
+              and both you and we are bound by that. Those cannot simply be deleted on request.
             </p>
             <p>
               If you close your account, you can export your data first (see{" "}

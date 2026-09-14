@@ -19,7 +19,7 @@ export const SITE = {
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://syrupdesk.com",
   tagline: "Pharmacy management software for Indian medical stores",
   description:
-    "SyrupDesk is cloud pharmacy management software for retail pharmacies in India — billing, inventory and expiry, purchases, customers and GST in one system. By Clino Health.",
+    "SyrupDesk is cloud pharmacy management software for retail pharmacies in India: billing, inventory and expiry, purchases, customers and GST in one system. By Clino Health.",
   locale: "en_IN",
   /** Shared Clino Health support line — the same team answers
    *  SyrupDesk and MolarPlus. */
@@ -88,6 +88,28 @@ export type SocialName = (typeof SOCIAL)[number]["name"];
 
 /** Single-line address for display. */
 export const ADDRESS_LINE = `${SITE.address.street}, ${SITE.address.city}, ${SITE.address.state} ${SITE.address.postalCode}`;
+
+/**
+ * Store links for the download badges (hero, phone section, footer).
+ *
+ * `null` = not published yet. The badge still renders — same artwork,
+ * greyed and marked "coming soon", exactly as the MolarPlus site does
+ * for a platform it has not shipped — so the rows keep their shape and
+ * launch day is a URL paste here, nothing else.
+ *
+ * TODO: paste the four store URLs once the listings are live.
+ */
+export const APP_LINKS: {
+  playStore: string | null;
+  appStore: string | null;
+  windows: string | null;
+  mac: string | null;
+} = {
+  playStore: null,
+  appStore: null,
+  windows: null,
+  mac: null,
+};
 
 export const SIGNUP_URL = `${SITE.appUrl}/signup`;
 export const LOGIN_URL = `${SITE.appUrl}/login`;

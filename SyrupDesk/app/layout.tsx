@@ -4,6 +4,7 @@ import "./globals.css";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { JsonLd } from "@/components/JsonLd";
+import { PostHogProvider } from "@/components/PostHogProvider";
 import { organizationSchema, websiteSchema } from "@/lib/jsonld";
 import { SITE } from "@/lib/site";
 
@@ -76,6 +77,8 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <Navbar />
         <main id="main">{children}</main>
         <Footer />
+        {/* Renders and loads nothing unless NEXT_PUBLIC_POSTHOG_KEY is set. */}
+        <PostHogProvider />
       </body>
     </html>
   );

@@ -9,6 +9,7 @@ import { Container } from "./ui/Section";
 import { NAV_LINKS, SIGNUP_URL, whatsappLink } from "@/lib/site";
 import { track } from "@/lib/analytics";
 import { cn } from "@/lib/cn";
+import { WhatsAppIcon } from "@/components/WhatsAppIcon";
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -62,7 +63,7 @@ export function Navbar() {
             scrolled ? "h-16" : "h-20",
           )}
         >
-          <Link href="/" className="text-green-700" aria-label="SyrupDesk — home">
+          <Link href="/" className="text-green-700" aria-label="SyrupDesk home">
             <Logo byline />
           </Link>
 
@@ -94,6 +95,7 @@ export function Navbar() {
               rel="noopener noreferrer"
               onClick={() => track("cta_whatsapp", { placement: "navbar" })}
             >
+              <WhatsAppIcon />
               WhatsApp us
             </ButtonLink>
             <ButtonLink
@@ -131,7 +133,7 @@ export function Navbar() {
         className="fixed inset-0 z-50 flex flex-col bg-surface lg:hidden"
       >
         <div className="flex h-20 shrink-0 items-center justify-between px-4">
-          <Link href="/" className="text-green-700" aria-label="SyrupDesk — home">
+          <Link href="/" className="text-green-700" aria-label="SyrupDesk home">
             <Logo byline />
           </Link>
           <button
@@ -182,6 +184,7 @@ export function Navbar() {
             rel="noopener noreferrer"
             onClick={() => track("cta_whatsapp", { placement: "mobile_nav" })}
           >
+            <WhatsAppIcon />
             Talk to us on WhatsApp
           </ButtonLink>
         </div>

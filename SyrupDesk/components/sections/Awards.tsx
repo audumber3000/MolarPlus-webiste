@@ -42,7 +42,7 @@ export function Awards() {
                     src={award.src}
                     /* Spelled out rather than "award badge": this is the
                        only text a screen reader or an image search gets. */
-                    alt={`${award.platform} ${award.award} ${award.year} — SyrupDesk`}
+                    alt={`SyrupDesk, ${award.platform} ${award.award} ${award.year}`}
                     width={award.width}
                     height={award.height}
                     className="h-auto w-full max-w-[140px]"

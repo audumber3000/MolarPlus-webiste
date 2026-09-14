@@ -29,14 +29,36 @@
   --surface: #ffffff;
   --surface-alt: #f7f9f7;
 
+  /* --- Clino Health, the parent brand ---------------------------
+     Only for the "by Clino Health" lockup. Taken from the MolarPlus
+     site so the parent company reads the same on every product. */
+  --clino-light: #73a942; /* "Clino" on light surfaces */
+  --clino-medium: #245501; /* "Health" on light surfaces */
+  --clino-light-on-dark: #a3d977; /* "Clino" on the green footer */
+  --clino-medium-on-dark: #7eb049; /* "Health" on the green footer */
+
+  /* --- Browser chrome on the product showcase ------------------- */
+  --chrome-close: #ff5f57;
+  --chrome-minimise: #febc2e;
+  --chrome-maximise: #28c840;
+
+  /* --- Third-party brand marks ---------------------------------- */
+  --whatsapp: #25d366; /* the WhatsApp glyph only, never a surface */
+
   /* --- Semantic ------------------------------------------------- */
   --success: #0f7b4f;
   --warning: #b26a00; /* expiry alerts — a real product concept */
   --danger: #b3261e;
   --info: #1b5e8a;
 
-  /* --- Radius — exactly three. More than this is drift. --------- */
-  --radius-sm: 8px; /* inputs, tags, small controls */
+  /* --- Radius — four, and the fourth is on purpose. -------------
+     4px is the product's radius for anything with content in it
+     (app DESIGN-SYSTEM 4.1), so controls that appear on both the site
+     and the app share it. Cards stay soft at 16px: a marketing page is
+     not a counter screen, and the brief's tight-geometry argument is
+     about instrumentation, not about a pricing card. */
+  --radius-xs: 4px; /* buttons and other controls — matches the app */
+  --radius-sm: 8px; /* inputs, tags */
   --radius-md: 16px; /* cards, panels, images */
   --radius-full: 9999px; /* pills and avatars only */
 
@@ -84,11 +106,22 @@
   --color-surface: var(--surface);
   --color-surface-alt: var(--surface-alt);
 
+  --color-clino-light: var(--clino-light);
+  --color-clino-medium: var(--clino-medium);
+  --color-clino-light-on-dark: var(--clino-light-on-dark);
+  --color-clino-medium-on-dark: var(--clino-medium-on-dark);
+
+  --color-whatsapp: var(--whatsapp);
+  --color-chrome-close: var(--chrome-close);
+  --color-chrome-minimise: var(--chrome-minimise);
+  --color-chrome-maximise: var(--chrome-maximise);
+
   --color-success: var(--success);
   --color-warning: var(--warning);
   --color-danger: var(--danger);
   --color-info: var(--info);
 
+  --radius-xs: var(--radius-xs);
   --radius-sm: var(--radius-sm);
   --radius-md: var(--radius-md);
   --radius-full: var(--radius-full);
