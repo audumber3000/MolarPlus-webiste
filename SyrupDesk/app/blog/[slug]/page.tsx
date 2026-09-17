@@ -3,23 +3,36 @@ import { notFound } from "next/navigation";
 import { Container, Section } from "@/components/ui/Section";
 import Image from "next/image";
 import { Prose } from "@/components/blog/Prose";
+import { PostBody } from "@/components/blog/PostBody";
 import { CtaBand } from "@/components/sections/CtaBand";
 import { JsonLd } from "@/components/JsonLd";
 import { articleSchema, breadcrumbSchema } from "@/lib/jsonld";
 import { buildMetadata } from "@/lib/seo";
-import { getAllPosts, getPostBySlug, formatPostDate } from "@/lib/blog";
+import { getAllPostSummaries, getPostBySlug, formatPostDate } from "@/lib/blog";
+
+export const revalidate = 60;
 
 /** Every post is known at build time, so all of /blog is prerendered. */
 export async function generateStaticParams() {
-  return getAllPosts().map((post) => ({ slug: post.slug }));
+  const posts = await getAllPostSummaries();
+  return posts.map((post) => ({ slug: post.slug }));
 }
 
-/** A slug outside generateStaticParams is a 404, not a rendered page. */
-export const dynamicParams = false;
+/**
+ * A slug that was not in the build still renders.
+ *
+ * This was `false` while posts were TSX modules compiled into the site: a
+ * slug outside generateStaticParams could only be a typo. Now that posts
+ * come from Sanity, publishing in the Studio has to put a post on the site
+ * without waiting for a deploy, and `false` made every new post a 404 until
+ * someone pushed. Unknown slugs still 404 through notFound() below, because
+ * the query returns nothing for them.
+ */
+export const dynamicParams = true;
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const post = getPostBySlug(slug);
+  const post = await getPostBySlug(slug);
 
   if (!post) return buildMetadata({ title: "Post not found", description: "", path: "/blog", index: false });
 
@@ -33,12 +46,11 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
 export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const post = getPostBySlug(slug);
+  const post = await getPostBySlug(slug);
 
   if (!post) notFound();
 
-  const Body = post.body;
-  const others = getAllPosts().filter((p) => p.slug !== post.slug);
+  const others = (await getAllPostSummaries()).filter((other) => other.slug !== post.slug);
 
   return (
     <>
@@ -92,7 +104,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           )}
           <article>
             <Prose>
-              <Body />
+              <PostBody value={post.body} />
             </Prose>
           </article>
 

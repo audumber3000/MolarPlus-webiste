@@ -1,61 +1,101 @@
-import type { ComponentType } from "react";
-import { POSTS } from "@/content/blog";
+import type { PortableTextBlock } from "@portabletext/react";
+import { sanityClient } from "@/sanity/lib/client";
+import { urlForImage } from "@/sanity/lib/image";
+import type { Image } from "sanity";
 
-export type BlogPost = {
+/**
+ * Posts come from Sanity.
+ *
+ * They used to be TSX modules in content/blog. Those files are still in the
+ * repo because `scripts/migrate-posts-to-sanity.ts` renders them to produce
+ * what is now in the dataset, but nothing on the site reads them any more:
+ * editing a post means editing it in the Studio.
+ *
+ * The shapes below are deliberately the same ones the components already
+ * took, so the listing, the cards and the sidebar did not need rewriting.
+ * `coverImage` is resolved to a plain URL here rather than passed through as
+ * a Sanity reference, because the listing is a client component and an
+ * image reference means nothing to it.
+ */
+export type BlogPostSummary = {
   slug: string;
   title: string;
-  /** Used for the listing card, the meta description and OG. Keep it
-   *  under ~155 characters so search results don't truncate it. */
   description: string;
   /** ISO date. Shown to readers and emitted in Article JSON-LD. */
   published: string;
   updated?: string;
-  /** Short category label for the listing card. Doubles as the
-   *  filter facet in the blog sidebar. */
+  /** Short topic label. Doubles as the sidebar filter facet. */
   tag: string;
   readingMinutes: number;
-  /** Path under /public, e.g. "/blog/expiry.jpg". Optional — cards
-   *  fall back to a tinted panel when a post has no art, so a missing
-   *  image reads as deliberate rather than broken. */
   coverImage?: string;
-  /** Describes the cover for screen readers on the post page. */
   coverAlt?: string;
-  body: ComponentType;
 };
 
-/**
- * A post minus its body component. The listing is filtered in a
- * client component, and `body` is a function — React cannot serialize
- * it across the server/client boundary, so the listing must never
- * carry it.
- */
-export type BlogPostSummary = Omit<BlogPost, "body">;
+export type BlogPost = BlogPostSummary & {
+  body: PortableTextBlock[];
+};
 
-export function getAllPostSummaries(): BlogPostSummary[] {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  return getAllPosts().map(({ body, ...summary }) => summary);
+type RawPost = {
+  slug: string;
+  title: string;
+  description: string;
+  published: string;
+  updated?: string;
+  tag: string;
+  readingMinutes: number;
+  cover?: Image & { alt?: string };
+  body?: PortableTextBlock[];
+};
+
+const FIELDS = `
+  "slug": slug.current,
+  title,
+  description,
+  "published": publishedAt,
+  "updated": updatedAt,
+  tag,
+  readingMinutes,
+  "cover": coverImage
+`;
+
+/** Cards are 16:10; 1200 wide covers a 2x phone and a 1x card. */
+function summarise(raw: RawPost): BlogPostSummary {
+  return {
+    slug: raw.slug,
+    title: raw.title,
+    description: raw.description,
+    published: raw.published,
+    updated: raw.updated ?? undefined,
+    tag: raw.tag,
+    readingMinutes: raw.readingMinutes,
+    coverImage: raw.cover ? urlForImage(raw.cover, 1200, 750) : undefined,
+    coverAlt: raw.cover?.alt ?? "",
+  };
 }
 
-/** Tag facets with counts, newest-first order preserved. Used by the
- *  sidebar filter. */
-export function getTags(): Array<{ name: string; count: number }> {
-  const counts = new Map<string, number>();
-  for (const post of getAllPosts()) {
-    counts.set(post.tag, (counts.get(post.tag) ?? 0) + 1);
-  }
-  return [...counts.entries()].map(([name, count]) => ({ name, count }));
-}
-
-/** Newest first. The array in content/blog is authored in whatever
- *  order is convenient, so sorting happens here rather than there. */
-export function getAllPosts(): BlogPost[] {
-  return [...POSTS].sort(
-    (a, b) => new Date(b.published).getTime() - new Date(a.published).getTime(),
+/** Newest first. */
+export async function getAllPostSummaries(): Promise<BlogPostSummary[]> {
+  const raw = await sanityClient.fetch<RawPost[]>(
+    `*[_type == "post" && defined(slug.current)] | order(publishedAt desc) { ${FIELDS} }`,
   );
+  return raw.map(summarise);
 }
 
-export function getPostBySlug(slug: string): BlogPost | undefined {
-  return POSTS.find((post) => post.slug === slug);
+export async function getPostBySlug(slug: string): Promise<BlogPost | undefined> {
+  const raw = await sanityClient.fetch<RawPost | null>(
+    `*[_type == "post" && slug.current == $slug][0] { ${FIELDS}, body }`,
+    { slug },
+  );
+  if (!raw) return undefined;
+  return { ...summarise(raw), body: raw.body ?? [] };
+}
+
+/** Tag facets with counts, newest-first order preserved. */
+export async function getTags(): Promise<Array<{ name: string; count: number }>> {
+  const posts = await getAllPostSummaries();
+  const counts = new Map<string, number>();
+  for (const post of posts) counts.set(post.tag, (counts.get(post.tag) ?? 0) + 1);
+  return [...counts.entries()].map(([name, count]) => ({ name, count }));
 }
 
 /** en-IN long form, e.g. "12 February 2026". */
@@ -64,6 +104,6 @@ export function formatPostDate(iso: string): string {
     day: "numeric",
     month: "long",
     year: "numeric",
-    timeZone: "UTC",
+    timeZone: "Asia/Kolkata",
   });
 }

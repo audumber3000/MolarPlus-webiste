@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 import { SITE } from "@/lib/site";
-import { getAllPosts } from "@/lib/blog";
+import { getAllPostSummaries } from "@/lib/blog";
 
 /** Priority reflects commercial intent: pricing and features are the
  *  pages we want ranking, legal pages are there for completeness. */
@@ -15,7 +15,7 @@ const ROUTES: Array<{ path: string; priority: number; changeFrequency: MetadataR
   { path: "/terms", priority: 0.2, changeFrequency: "yearly" },
 ];
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const lastModified = new Date();
 
   const staticRoutes = ROUTES.map(({ path, priority, changeFrequency }) => ({
@@ -27,7 +27,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   // Posts carry their own publish date rather than the build date, so
   // lastmod stays honest and crawlers aren't told everything changed.
-  const postRoutes = getAllPosts().map((post) => ({
+  const postRoutes = (await getAllPostSummaries()).map((post) => ({
     url: `${SITE.url}/blog/${post.slug}`,
     lastModified: new Date(post.updated ?? post.published),
     changeFrequency: "yearly" as const,
