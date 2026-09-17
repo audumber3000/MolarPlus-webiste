@@ -40,7 +40,7 @@ export function Testimonials() {
         <SectionHeader
           eyebrow="Customers"
           title="From pharmacies already running on it"
-          intro="Every quote here is from an owner who agreed to be named, with their shop and their city. We do not run anonymous testimonials. An unnamed pharmacy in an unnamed town proves nothing."
+          intro="Real words from owners running SyrupDesk, printed as they sent them. Names and shops are held back until each owner tells us we can publish them, so nothing here is dressed up as someone it is not."
         />
         <div
           className={cn(

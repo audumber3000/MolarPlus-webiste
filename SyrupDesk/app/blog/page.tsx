@@ -6,6 +6,10 @@ import { breadcrumbSchema, blogSchema } from "@/lib/jsonld";
 import { buildMetadata } from "@/lib/seo";
 import { getAllPostSummaries, getTags } from "@/lib/blog";
 
+/** Posts live in Sanity, so pages rebuild on a schedule rather than only
+ *  on deploy. A new post is live within a minute of publishing. */
+export const revalidate = 60;
+
 export const metadata = buildMetadata({
   title: "Blog: running a retail pharmacy in India",
   description:
@@ -13,9 +17,8 @@ export const metadata = buildMetadata({
   path: "/blog",
 });
 
-export default function BlogIndexPage() {
-  const posts = getAllPostSummaries();
-  const tags = getTags();
+export default async function BlogIndexPage() {
+  const [posts, tags] = await Promise.all([getAllPostSummaries(), getTags()]);
 
   return (
     <>

@@ -42,7 +42,34 @@ export const TRUST_STATS: ReadonlyArray<{ value: string; label: string }> = [];
  * saying "yes, you can use this on your website with my shop's name"
  * is enough, but it has to exist and it has to be kept.
  */
-export const TESTIMONIALS: ReadonlyArray<TestimonialData> = [];
+export const TESTIMONIALS: ReadonlyArray<TestimonialData> = [
+  {
+    quote:
+      "Good software for a small medical shop. Not overloaded with unnecessary features and quite easy to understand.",
+  },
+  {
+    quote:
+      "Been using it for billing and stock. So far the experience has been good, especially the expiry alerts.",
+  },
+  {
+    quote:
+      "Simple, affordable and the support team actually responds. That itself is a big plus \u{1F605}",
+  },
+];
+
+/**
+ * The three quotes above are real customer words, supplied on 2026-09-17.
+ *
+ * They carry no name, shop or city because we do not have permission for
+ * those yet, and the card is built to read properly without them. To
+ * attribute one, add `name`, `pharmacy` and `city` once that owner has
+ * said we can use them, or `source` if the quote is a public review
+ * somewhere a reader could go and check.
+ *
+ * Do not fill those fields with invented names. A real quote under a made
+ * up shop is a fabricated endorsement, and it is the first thing a
+ * careful buyer checks.
+ */
 
 export type Award = {
   /** Review platform, e.g. "Capterra". */

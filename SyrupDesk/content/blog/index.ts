@@ -1,4 +1,23 @@
-import type { BlogPost } from "@/lib/blog";
+import type { ComponentType } from "react";
+
+/**
+ * The original TSX posts. Nothing on the site reads these any more: they are
+ * the input to scripts/migrate-posts-to-sanity.ts, which rendered them into
+ * the Portable Text now held in Sanity. Kept so that migration is repeatable
+ * and auditable. New posts are written in the Studio, not here.
+ */
+export type LegacyPost = {
+  slug: string;
+  title: string;
+  description: string;
+  published: string;
+  updated?: string;
+  tag: string;
+  readingMinutes: number;
+  coverImage?: string;
+  coverAlt?: string;
+  body: ComponentType;
+};
 import { meta as expiryMeta, Body as ExpiryBody } from "./expiry-losses-retail-pharmacy";
 import { meta as buyingMeta, Body as BuyingBody } from "./best-pharmacy-software-india-2026";
 import { meta as gstMeta, Body as GstBody } from "./gst-for-medical-stores-2026";
@@ -17,7 +36,7 @@ import { meta as appMeta, Body as AppBody } from "./pharmacy-app-for-medical-sto
  *
  * Order here does not matter: getAllPosts() sorts by published date.
  */
-export const POSTS: BlogPost[] = [
+export const POSTS: LegacyPost[] = [
   { ...expiryMeta, body: ExpiryBody },
   { ...buyingMeta, body: BuyingBody },
   { ...gstMeta, body: GstBody },

@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 import { SITE } from "@/lib/site";
-import { getAllPosts, getPostBySlug, formatPostDate } from "@/lib/blog";
+import { getAllPostSummaries, getPostBySlug, formatPostDate } from "@/lib/blog";
 
 export const alt = `${SITE.name} blog`;
 export const size = { width: 1200, height: 630 };
@@ -8,7 +8,8 @@ export const contentType = "image/png";
 
 /** One image per post, prerendered alongside the posts themselves. */
 export async function generateStaticParams() {
-  return getAllPosts().map((post) => ({ slug: post.slug }));
+  const posts = await getAllPostSummaries();
+  return posts.map((post) => ({ slug: post.slug }));
 }
 
 /** Same deliberate exception to the no-hardcoded-hex rule as the root
@@ -20,7 +21,7 @@ const GREEN_100 = "#d6efd6";
 
 export default async function BlogOpengraphImage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const post = getPostBySlug(slug);
+  const post = await getPostBySlug(slug);
 
   return new ImageResponse(
     (
