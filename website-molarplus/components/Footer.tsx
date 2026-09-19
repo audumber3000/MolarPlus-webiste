@@ -91,6 +91,7 @@ export default function Footer() {
                 <li><Link href="/about" className="hover:text-white transition-colors">About</Link></li>
                 <li><Link href="/blog" className="hover:text-white transition-colors">Blog</Link></li>
                 <li><Link href="/contact" className="hover:text-white transition-colors">Contact</Link></li>
+                <li><Link href="/compliance" className="hover:text-white transition-colors">Compliance</Link></li>
                 <li><Link href="/find-dentist" className="hover:text-white transition-colors">Find a Dentist</Link></li>
                 <li className="pt-4">
                   <Link href="/privacy-policy" className="hover:text-white transition-colors text-xs">Privacy</Link>

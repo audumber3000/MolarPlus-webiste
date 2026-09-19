@@ -88,6 +88,14 @@ Anything not under `/lab` is clinic. The old `umbrella` context is gone.
 - `lib/constants.ts` — `APP_URL` (app.molarplus.com), `LAB_URL` (lab.molarplus.com). Login/signup CTAs point at `${APP_URL}/login`, `${LAB_URL}/login`, etc.
 - `lib/seo.ts` — `SITE_URL`, `SITE_NAME`, default metadata, and the `colors` object. **Import colors/brand values from here; never inline hex.** See `STYLE_GUIDE.md` for the full design system (Inter font only, `colors.primary` #2a276e as the single accent, no emojis on umbrella/product pages, restrained "serious medical-SaaS" tone).
 
+### Compliance pages (`/compliance`)
+`lib/compliance.ts` is the single source of truth for the hub and the four regional statements
+(`/compliance/dpdp`, `/hipaa`, `/gdpr`, `/popia`), the footer link and the sitemap. Every entry in
+`SAFEGUARDS` and `SUBPROCESSORS` was verified against the live AWS account and the app code in
+September 2026; re-verify before adding one. The HIPAA page deliberately says neither "HIPAA
+compliant" nor "we sign BAAs": no BAA exists with AWS or the vendors that receive PHI. Read the
+file-header comments before changing that. No government emblems or regulator logos, only flags.
+
 ### SEO
 Per-page Metadata API (title/description/canonical/OG/Twitter), JSON-LD structured data on key pages, `app/sitemap.ts` and `app/robots.ts`. OG images are generated dynamically with `next/og` `ImageResponse` at `app/opengraph-image.tsx` and `app/lab/opengraph-image.tsx`.
 

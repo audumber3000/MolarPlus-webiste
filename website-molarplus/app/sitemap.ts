@@ -1,6 +1,7 @@
 import { MetadataRoute } from 'next';
 import { SITE_URL } from '@/lib/seo';
 import { getAllSlugs } from '@/lib/sanity';
+import { FRAMEWORKS } from '@/lib/compliance';
 
 export const revalidate = 60;
 
@@ -37,6 +38,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: '/terms-of-use', changeFrequency: 'yearly', priority: 0.3 },
     { url: '/cookies-policy', changeFrequency: 'yearly', priority: 0.3 },
     { url: '/refund-policy', changeFrequency: 'yearly', priority: 0.3 },
+    { url: '/compliance', changeFrequency: 'monthly', priority: 0.6 },
+    ...FRAMEWORKS.map((f) => ({ url: `/compliance/${f.slug}`, changeFrequency: 'monthly', priority: 0.5 })),
   ];
 
   const staticEntries: MetadataRoute.Sitemap = staticRoutes.map((route) => ({
