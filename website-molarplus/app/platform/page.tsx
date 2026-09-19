@@ -4,6 +4,7 @@ import { Smartphone, Laptop, Tablet, Cloud, Shield, CheckCircle, ArrowRight } fr
 import { SITE_URL, colors, DEFAULT_OG_IMAGE } from '@/lib/seo';
 import { APP_URL } from '@/lib/constants';
 import { SignupLink } from '@/components/TrackedCTA';
+import SystemRequirements from '@/components/SystemRequirements';
 
 export const metadata: Metadata = {
   title: 'Platform - Multi-Device Dental Clinic Management Software',
@@ -123,6 +124,26 @@ export default function PlatformPage() {
               );
             })}
           </div>
+        </div>
+      </section>
+
+      {/* System requirements. Versions come from lib/requirements.ts, which
+          records where each one was read out of the product. */}
+      <section id="system-requirements" className="py-20 bg-slate-50/60 border-y border-gray-100 scroll-mt-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-3xl mb-12">
+            <div className="text-xs font-bold uppercase tracking-[0.2em] text-gray-500 mb-4">
+              System requirements
+            </div>
+            <h2 className="text-3xl md:text-4xl font-extrabold text-[#1a1c4b] tracking-tight leading-[1.1]">
+              What MolarPlus runs on.
+            </h2>
+            <p className="mt-5 text-lg text-gray-600 leading-relaxed">
+              MolarPlus runs on the computers a dental practice already owns. These are the oldest versions
+              still supported, so anything newer works too.
+            </p>
+          </div>
+          <SystemRequirements />
         </div>
       </section>
 
