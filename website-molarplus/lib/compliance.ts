@@ -29,6 +29,8 @@ export type FrameworkSlug = 'dpdp' | 'hipaa' | 'gdpr' | 'popia';
 export interface Framework {
   slug: FrameworkSlug;
   region: string;
+  /** Tight label for cards where the full region name would wrap. */
+  regionShort: string;
   flag: string;
   flagAlt: string;
   /** Short name used in cards and navigation. */
@@ -48,6 +50,7 @@ export const FRAMEWORKS: Framework[] = [
   {
     slug: 'dpdp',
     region: 'India',
+    regionShort: 'India',
     flag: '/flags/in.svg',
     flagAlt: 'Flag of India',
     name: 'DPDP Act',
@@ -62,6 +65,7 @@ export const FRAMEWORKS: Framework[] = [
   {
     slug: 'hipaa',
     region: 'United States',
+    regionShort: 'United States',
     flag: '/flags/us.svg',
     flagAlt: 'Flag of the United States',
     name: 'HIPAA',
@@ -76,6 +80,7 @@ export const FRAMEWORKS: Framework[] = [
   {
     slug: 'gdpr',
     region: 'European Union and United Kingdom',
+    regionShort: 'Europe and UK',
     flag: '/flags/eu.svg',
     flagAlt: 'Flag of the European Union',
     name: 'GDPR',
@@ -90,6 +95,7 @@ export const FRAMEWORKS: Framework[] = [
   {
     slug: 'popia',
     region: 'South Africa',
+    regionShort: 'South Africa',
     flag: '/flags/za.svg',
     flagAlt: 'Flag of South Africa',
     name: 'POPIA',

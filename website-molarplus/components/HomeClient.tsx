@@ -1,8 +1,8 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Link from 'next/link';
 import {
-  ShieldCheck,
   ArrowRight,
   Check,
   Plus,
@@ -11,7 +11,6 @@ import {
   KeyRound,
   DatabaseBackup,
   FileCheck2,
-  Globe2,
 } from 'lucide-react';
 import { colors } from '@/lib/seo';
 import ContactForm from '@/components/ContactForm';
@@ -32,6 +31,8 @@ import HeroMedia from '@/components/hero/HeroMedia';
 import WhatsAppCta from '@/components/WhatsAppCta';
 import DoctorReviews from '@/components/DoctorReviews';
 import TrustBar from '@/components/TrustBar';
+import { RegionCard } from '@/components/Compliance';
+import { FRAMEWORKS } from '@/lib/compliance';
 import FeaturedOn from '@/components/FeaturedOn';
 
 // Derived from APP_URL, never hardcoded — a hardcoded production URL would keep
@@ -51,9 +52,11 @@ const mobileBenefits = [
 
 /* Compliance & data-security trust wall. */
 /*
- * Ordered for the buyer who is actually reading this: an Indian dental practice.
- * DPDP is the law they are accountable under, so it leads; HIPAA and GDPR matter
- * only to international clinics and share the last slot.
+ * The four laws themselves are the flag cards above this list, each linking to
+ * its statement under /compliance; FRAMEWORKS in lib/compliance.ts is their
+ * source of truth. What stays here are the product facts that sit under every
+ * one of those laws, which is why DPDP and "HIPAA & GDPR" are no longer
+ * repeated as icon cards.
  *
  * These are alignment statements about how the product is built, NOT audited
  * certifications. Do not add ISO 27001 or SOC 2 here unless a real audit has
@@ -61,12 +64,10 @@ const mobileBenefits = [
  * procurement. Same standard lib/social-proof.ts applies to award badges.
  */
 const compliance = [
-  { Icon: ShieldCheck, name: 'DPDP Act 2023', note: 'Built for India’s Digital Personal Data Protection Act' },
   { Icon: FileCheck2, name: 'ABDM', note: 'Built for India’s Ayushman Bharat Digital Mission' },
   { Icon: KeyRound, name: 'Encryption', note: 'Encrypted in transit and at rest' },
   { Icon: DatabaseBackup, name: 'Daily backups', note: 'Automatic, redundant and recoverable' },
   { Icon: Lock, name: 'Role-based access', note: 'Every action is permission-controlled' },
-  { Icon: Globe2, name: 'HIPAA & GDPR', note: 'Aligned with US and EU rules for international clinics' },
 ];
 
 
@@ -394,7 +395,14 @@ export default function HomeClient({
             </p>
           </div>
 
-          <div className="grid grid-cols-2 lg:grid-cols-3 gap-4">
+          {/* The four laws, each linking to its own statement. */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {FRAMEWORKS.map((framework) => (
+              <RegionCard key={framework.slug} framework={framework} compact />
+            ))}
+          </div>
+
+          <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {compliance.map(({ Icon, name, note }) => (
               <div
                 key={name}
@@ -413,6 +421,15 @@ export default function HomeClient({
               </div>
             ))}
           </div>
+
+          <Link
+            href="/compliance"
+            className="inline-flex items-center gap-2 mt-8 font-semibold hover:gap-3 transition-all"
+            style={{ color: colors.primary }}
+          >
+            Read how we handle data under each law
+            <span aria-hidden>→</span>
+          </Link>
         </div>
       </section>
 

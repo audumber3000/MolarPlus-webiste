@@ -241,7 +241,29 @@ export function ContactCard({ heading = PRIVACY_CONTACT.role }: { heading?: stri
   );
 }
 
-export function RegionCard({ framework }: { framework: Framework }) {
+/**
+ * `compact` is the homepage variant: flag, region and the law's short name
+ * on one line, no summary, so four sit in a row beside the security cards.
+ */
+export function RegionCard({ framework, compact = false }: { framework: Framework; compact?: boolean }) {
+  if (compact) {
+    return (
+      <Link
+        href={`/compliance/${framework.slug}`}
+        className="group flex items-center gap-4 rounded-2xl border border-gray-200 bg-white p-6 hover:border-blue-100 hover:shadow-lg transition-all"
+      >
+        <Flag framework={framework} size="md" />
+        <div className="min-w-0">
+          <div className="text-xs font-bold uppercase tracking-wider text-gray-500">{framework.regionShort}</div>
+          <div className="font-bold text-[#1a1c4b] leading-tight">{framework.name}</div>
+        </div>
+        <span aria-hidden className="ml-auto text-gray-300 group-hover:text-gray-500 transition-colors">
+          →
+        </span>
+      </Link>
+    );
+  }
+
   return (
     <Link
       href={`/compliance/${framework.slug}`}
