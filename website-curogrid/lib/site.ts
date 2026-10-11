@@ -15,8 +15,9 @@ export const SITE = {
   /** Sister product for dental clinics. Curogrid has no dental
    *  template on purpose, so dentists are sent here. */
   dentalUrl: "https://www.molarplus.com",
-  /** TODO (blocks launch): confirm the production domain. */
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://curogrid.com",
+  /** The live host. The bare domain redirects here, so this is the form
+   *  every canonical URL, the sitemap and the share images must use. */
+  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.curogrid.com",
   tagline: "Clinic management software for Indian clinics",
   description:
     "Curogrid is clinic management software for Indian clinics: tokens and the waiting line, appointments, patient files, prescriptions, billing and stock, on the web and on the phone. It sets itself up for your speciality.",

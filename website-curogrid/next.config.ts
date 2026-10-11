@@ -31,7 +31,7 @@ const SECURITY_HEADERS = [
 
 // The same value as SITE.url in lib/site.ts. Repeated here so the
 // config file does not depend on application code. Keep the two in step.
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://curogrid.com";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.curogrid.com";
 
 const nextConfig: NextConfig = {
   // Do not announce the framework in a response header.
