@@ -75,7 +75,6 @@ Any root URL that is not a listed speciality returns 404 (`dynamicParams = false
 These are marked `TODO (blocks launch)` in `lib/site.ts` or in `content/legal.ts`:
 
 1. Confirm the domain and the app address.
-2. Confirm the phone and WhatsApp numbers. The shared Clino Health numbers are used as a stand-in.
 3. Create the `support@curogrid.com` mailbox.
 4. Set `CONTACT_WEBHOOK_URL`. Until then the forms say they are not connected and point to WhatsApp.
 5. Add the social profile links and the store links (`SOCIAL`, `APP_LINKS`). Store badges stay
