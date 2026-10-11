@@ -4,11 +4,12 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Which directory is live
 
-This repo contains **four** site folders. Most work happens in the first:
+This repo contains **five** site folders. Most work happens in the first:
 
 - **`website-molarplus/`** — the live MolarPlus marketing site (Next.js 15 App Router). **This is the main project.** All commands in the sections below run from inside it.
 - **`website-clinohealth/`** — the Clino Health umbrella/corporate site (clinohealth.com), Next.js 15. Rebuilt from `website/` in August 2026. See "Clino Health umbrella site" below.
 - **`SyrupDesk/`** — the SyrupDesk pharmacy-software marketing site (Next.js). Has its own `CLAUDE.md` and `BRIEF.md`.
+- **`website-curogrid/`** — the Curogrid clinic-software marketing site (curogrid.com), Next.js 16, port **3003**. Built October 2026. See "Curogrid site" below and its `README.md`.
 - **`website/`** — the **superseded** static HTML Clino Health site. Replaced by `website-clinohealth/`; kept only until that is deployed. Do not add to it.
 
 ## Clino Health umbrella site (`website-clinohealth/`)
@@ -35,6 +36,30 @@ The legal pages (`/privacy`, `/terms`, `/security`) were **rewritten, not ported
 static pages claimed local-only storage, HIPAA compliance and ISO 27001 — none of which is true
 of a hosted multi-tenant product. Read the file-header comments before editing them; they record
 what was dropped and why, and which facts still block a lawyer review.
+
+## Curogrid site (`website-curogrid/`)
+
+Next.js 16 App Router, React 19, TypeScript, Tailwind 4, the same stack as SyrupDesk. Runs on
+port **3003**. Fully static apart from `/api/contact`. No test suite: verify with
+`npx tsc --noEmit`, `npm run lint` and `npm run build`.
+
+**`lib/specialities.ts` is the single source of truth for specialities.** Each one has a landing
+page at the site root (`/physiotherapy-clinic-management-software`), all rendered by
+`app/[speciality]/page.tsx`. The header menu, homepage grid, `/specialities`, footer, sitemap and
+`llms.txt` read the same file. Adding a speciality is one entry there.
+
+Every fact in that file (services, prices, medicines, procedures, how a course is booked) is
+copied from the Curogrid app repo at `~/Developer/curogrid`; the file header names the source
+files. `content/pricing.ts` mirrors `curogrid-backend/core/plans.py` the same way. **Never add a
+product claim from memory**: open the app repo and check. The site also says what the product
+does not do (hospital inpatient work is not built; `/hospitals` is an honest holding page).
+
+No invented numbers, ratings, testimonials or customer logos, and only real screenshots
+(`lib/shots.ts`). Colours come from `design/tokens.css` only; corners are square (3px and 4px).
+This is the Curogrid teal, not the MolarPlus blue or the Clino green.
+
+The legal pages are an unreviewed draft and are `noindex`. Read the header of `content/legal.ts`
+before editing them. `README.md` lists what still blocks launch.
 
 > The `website-molarplus/README.md` is **stale**: it claims Next 14 + `output: 'export'` static export with routes at `/features`, `/pricing`. None of that is true anymore — see Architecture below. Trust the code, not that README.
 
