@@ -22,6 +22,9 @@ npm run lint     # eslint
 npx tsc --noEmit # typecheck (there is no test suite)
 ```
 
+After a deploy is live, run `npm run indexnow` to tell Bing which pages exist or changed. The
+key file in `public/` (a 32-character name ending `.txt`) proves ownership; do not delete it.
+
 ## Where things are
 
 | Path | What it holds |
