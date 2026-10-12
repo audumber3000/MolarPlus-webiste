@@ -8,6 +8,7 @@
     "start": "next start",
     "preview": "npx serve out",
     "lint": "next lint",
+    "indexnow": "node scripts/indexnow.mjs",
     "studio:dev": "sanity dev",
     "studio:deploy": "sanity deploy"
   },
