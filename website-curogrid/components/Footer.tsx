@@ -54,6 +54,7 @@ const LEGAL: ReadonlyArray<FooterLink> = [
   { href: "/privacy", label: "Privacy" },
   { href: "/terms", label: "Terms" },
   { href: "/refund-policy", label: "Refunds" },
+  { href: "/delete-account", label: "Delete account" },
   { href: "/security", label: "Security" },
 ];
 

@@ -79,6 +79,7 @@ export function getRouteGroups(): RouteGroup[] {
         { path: "/privacy", label: "Privacy policy", priority: 0.2, index: false },
         { path: "/terms", label: "Terms of service", priority: 0.2, index: false },
         { path: "/refund-policy", label: "Refund policy", priority: 0.2, index: false },
+        { path: "/delete-account", label: "Delete your account", priority: 0.1, index: false },
       ],
     },
   ];
