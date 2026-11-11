@@ -58,7 +58,7 @@ export default function HomePage() {
       {/* Hero */}
       <section className="on-dark bg-teal-900 text-teal-100">
         <div className="relative overflow-hidden pt-12 lg:pt-20">
-          <HeroPhoto src="/photos/doctor-stethoscope.jpg" position="60% 30%" />
+          <HeroPhoto src="/photos/heroes/home.jpg" />
           <Container className="relative">
             <div className="max-w-3xl lg:max-w-[40rem]">
               <h1 className="text-[2.25rem] leading-[1.08] font-extrabold tracking-tight text-white sm:text-display">

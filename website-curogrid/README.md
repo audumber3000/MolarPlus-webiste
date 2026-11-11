@@ -56,9 +56,10 @@ dead end: the logo goes home, the header menu becomes "Other specialities", the 
 Specialities column (only the dental link is left out), and a row of the other editions sits
 above the closing band.
 
-An edition can also have a photograph blended into the right of its hero (`photo` in
-`lib/editions.ts`). Only a licensed photo goes there: a stock photo is bought first (ImagesBazaar
-and the like) and its licence recorded in `public/photos/CREDITS.md`. Until then the slot is empty.
+Each edition has a photograph blended into the right of its hero, from
+`public/photos/heroes/<word>.jpg` (`photo` in `lib/editions.ts`). They are ImagesBazaar photos used
+under Clino Health's agreement; `public/photos/CREDITS.md` lists each image code. To change one,
+replace the file under the same name and update its row there.
 
 A speciality is four pieces, all keyed by the app's speciality key:
 

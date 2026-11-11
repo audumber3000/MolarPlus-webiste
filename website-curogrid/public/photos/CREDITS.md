@@ -24,6 +24,29 @@ without attribution and allows modification. They are credited here anyway.
   quote beside it. If Curogrid photographs its own doctors later, those replace these, with each
   person's written permission.
 
+## Hero photographs — `photos/heroes/`
+
+From [ImagesBazaar](https://www.imagesbazaar.com), used under Clino Health's agreement with
+ImagesBazaar. One for each speciality page's hero and one for the homepage, blended into the teal
+band in black and white (`components/HeroPhoto.tsx`). The files are ImagesBazaar's 900 × 600
+previews; swap in the full-size download under the same name when you have it.
+
+| File | Image code | What it shows |
+|---|---|---|
+| `home.jpg` | SM953161 | A doctor going over a report with an older patient |
+| `general.jpg` | SM636522 | A doctor with an older patient in the consulting room |
+| `paeds.jpg` | SM953200 | A paediatrician listening to a baby's chest, with the mother |
+| `gynae.jpg` | SM670395 | A doctor examining a pregnant woman with a stethoscope |
+| `derma.jpg` | SM189134 | A dermatologist examining a man's face |
+| `ent.jpg` | SM690586 | An ENT doctor looking into a man's ear with an otoscope |
+| `physio.jpg` | SM675244 | A physiotherapist guiding an exercise with dumbbells, gym balls behind |
+| `eye.jpg` | SM706924 | An eye examination at a slit lamp |
+| `ortho.jpg` | SM764477 | A doctor fitting a knee brace on an older man |
+| `surgery.jpg` | SM226434 | A doctor and a patient in a surgical OPD |
+| `diabetes.jpg` | SM752194 | A doctor checking a patient's blood sugar with a glucometer |
+
+The same rule as the Unsplash photos applies: no name, no quote and no endorsement beside any of them.
+
 ## Typeface — `fonts/`
 
 Plus Jakarta Sans, under the [SIL Open Font License 1.1](fonts/OFL.txt); the brand typeface named

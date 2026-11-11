@@ -21,11 +21,11 @@ export type Edition = {
   /** `small` is the compact lockup, for the homepage's speciality tiles. */
   logo: { light: string; dark: string; small: string; width: number };
   /**
-   * The photograph blended into the right of the page's hero. Leave it
-   * out until there is a licensed photo of this kind of clinic: a stock
-   * photo must be bought (ImagesBazaar and the like) before it goes here,
-   * and its licence recorded in public/photos/CREDITS.md. Shown in black
-   * and white under teal, with no name or quote beside it.
+   * The photograph blended into the right of the page's hero, from
+   * public/photos/heroes/<word>.jpg. These are ImagesBazaar photos used
+   * under Clino Health's agreement with ImagesBazaar; each file's image
+   * code is in public/photos/CREDITS.md. Shown in black and white under
+   * teal, with no name or quote beside it.
    */
   photo?: { src: string; position?: string };
 };
@@ -37,7 +37,12 @@ const kit = (word: string) => ({
   width: 538,
 });
 
-const edition = (word: string, name: string): Edition => ({ word, name: `Curogrid ${name}`, logo: kit(word) });
+const edition = (word: string, name: string): Edition => ({
+  word,
+  name: `Curogrid ${name}`,
+  logo: kit(word),
+  photo: { src: `/photos/heroes/${word}.jpg` },
+});
 
 /** By the speciality's `key` in lib/specialities. */
 export const EDITIONS: Readonly<Record<string, Edition>> = {
@@ -46,8 +51,7 @@ export const EDITIONS: Readonly<Record<string, Edition>> = {
     word: "general",
     name: "Curogrid",
     logo: { light: "/logo.svg", dark: "/logo-reversed.svg", small: "/brand/01-logo/svg/curogrid-logo-small-primary.svg", width: 339 },
-    // Unsplash, licensed for commercial use (public/photos/CREDITS.md).
-    photo: { src: "/photos/doctor-stethoscope.jpg" },
+    photo: { src: "/photos/heroes/general.jpg" },
   },
   paediatrics: edition("paeds", "Paeds"),
   obstetrics_gynaecology: edition("gynae", "Gynae"),
