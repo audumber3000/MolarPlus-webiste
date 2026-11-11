@@ -12,6 +12,7 @@ import { SpecialityPills } from "@/components/sections/SpecialityPills";
 import { PainPoints } from "@/components/sections/PainPoints";
 import { ScreenGrid } from "@/components/sections/ScreenGrid";
 import { TrustBand } from "@/components/sections/TrustBand";
+import { ClientWall } from "@/components/sections/ClientWall";
 import { Testimonials } from "@/components/sections/Proof";
 import { PriceStrip } from "@/components/sections/PriceStrip";
 import { FaqSection } from "@/components/sections/FaqSection";
@@ -86,8 +87,10 @@ export default function HomePage() {
         </div>
       </section>
 
+      <ClientWall />
+
       {/* Pick your speciality */}
-      <Section id="specialities">
+      <Section tone="alt" id="specialities">
         <Container>
           <SectionHeader
             eyebrow="Ten editions"
@@ -100,7 +103,7 @@ export default function HomePage() {
       </Section>
 
       {/* What goes wrong, and the fix */}
-      <Section tone="alt">
+      <Section>
         <Container>
           <SectionHeader
             eyebrow="The busy morning"
@@ -111,7 +114,7 @@ export default function HomePage() {
       </Section>
 
       {/* The screens */}
-      <Section>
+      <Section tone="alt">
         <Container>
           <SectionHeader
             eyebrow="The product"

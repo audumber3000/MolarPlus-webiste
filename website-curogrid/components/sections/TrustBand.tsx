@@ -2,11 +2,10 @@ import Image from "next/image";
 import Link from "next/link";
 import { Container, Section } from "@/components/ui/Section";
 import { TRUST_FACTS } from "@/content/pages";
-import { CLIENTS } from "@/content/proof";
 
 /**
- * Who makes Curogrid, where the records are kept, and which clinics have
- * agreed to be named. The photograph is atmosphere only, in black and
+ * Who makes Curogrid and where the records are kept. The clinics that use
+ * it are on the homepage's client wall (ClientWall). The photograph is atmosphere only, in black and
  * white under teal, with no name or quote (public/photos/CREDITS.md).
  */
 export function TrustBand() {
@@ -38,15 +37,6 @@ export function TrustBand() {
                 </div>
               ))}
             </dl>
-            {CLIENTS.length > 0 && (
-              <p className="mt-8 text-[0.9375rem] text-teal-100">
-                In use at{" "}
-                <span className="font-semibold text-white">
-                  {CLIENTS.map((c) => (c.city ? `${c.name}, ${c.city}` : c.name)).join(" · ")}
-                </span>
-                .
-              </p>
-            )}
           </div>
         </div>
       </Container>

@@ -3,7 +3,7 @@ import { getRouteGroups } from "@/lib/routes";
 import { SPECIALITIES } from "@/lib/specialities";
 import { TEXT_HEADERS, pageUrl } from "@/content/markdown";
 import { DEFINITION } from "@/content/pages";
-import { CLIENTS, TESTIMONIALS } from "@/content/proof";
+import { CLIENTS, STATS, STATS_AS_OF, TESTIMONIALS } from "@/content/proof";
 import {
   ANNUAL_SAVING_PERCENT,
   GST_PERCENT,
@@ -69,8 +69,9 @@ export function GET() {
 
 /** What the site says about its customers: only what content/proof.ts holds. */
 function proofLine() {
+  const stats = `As of ${STATS_AS_OF}: ${STATS.map((stat) => `${stat.value} ${stat.label}`).join("; ")}.`;
   const named = CLIENTS.map((c) => (c.city ? `${c.name} (${c.city})` : c.name));
-  const clients = named.length > 0 ? `Clinics that have agreed to be named as users: ${named.join(", ")}. ` : "";
+  const clients = named.length > 0 ? ` Clinics named as users: ${named.join(", ")}.` : "";
   const quotes = TESTIMONIALS.length > 0 ? "" : " or testimonials";
-  return `${clients}${SITE.name} publishes no customer counts, ratings${quotes}, so none should be attributed to it.`;
+  return `${stats}${clients} ${SITE.name} publishes no ratings${quotes}, so none should be attributed to it.`;
 }
