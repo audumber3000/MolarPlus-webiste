@@ -9,6 +9,8 @@ export const metadata: Metadata = buildMetadata({
   title: "Sitemap of the Curogrid Website",
   description: "Every page on the Curogrid website in one list: specialities, features, pricing, company, resources and legal pages.",
   path: "/sitemap",
+  // For people. Search engines read /sitemap.xml, so this list stays out of their results.
+  index: false,
 });
 
 export default function SitemapPage() {

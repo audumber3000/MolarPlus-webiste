@@ -32,12 +32,16 @@ export function StoreBadge({ store, className }: { store: Store; className?: str
   );
 }
 
+/** Before any listing is live every badge shows, unlinked. Once one is
+ *  live only the live ones show: an unlinked "Download on the App Store"
+ *  beside a working Google Play badge reads as a broken link. */
 export function StoreBadges({ className }: { className?: string }) {
+  const stores = (Object.keys(BADGE) as Store[]).filter((store) => !ANY_STORE_LIVE || APP_LINKS[store]);
   return (
     <div className={cn("flex flex-wrap items-center gap-2.5", className)}>
-      <StoreBadge store="playStore" />
-      <StoreBadge store="appStore" />
-      <StoreBadge store="windows" />
+      {stores.map((store) => (
+        <StoreBadge key={store} store={store} />
+      ))}
     </div>
   );
 }

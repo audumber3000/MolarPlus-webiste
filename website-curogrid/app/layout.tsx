@@ -8,6 +8,7 @@ import { PostHogProvider } from "@/components/PostHogProvider";
 import { organizationSchema, websiteSchema } from "@/lib/jsonld";
 import { SITE } from "@/lib/site";
 import { SPECIALITIES } from "@/lib/specialities";
+import { getEdition } from "@/lib/editions";
 
 // Plus Jakarta Sans, the brand face, self-hosted from design/fonts.
 // 500 is the lightest weight in the kit, so it is the body weight.
@@ -68,6 +69,11 @@ export const viewport: Viewport = {
 };
 
 const NAV_SPECIALITIES = SPECIALITIES.map((s) => ({ href: `/${s.slug}`, name: s.name, card: s.card }));
+/** Speciality pages that stand alone under their own logo (lib/editions.ts). */
+const NAV_EDITIONS = SPECIALITIES.flatMap((s) => {
+  const edition = getEdition(s.key);
+  return edition ? [{ href: `/${s.slug}`, name: edition.name, logo: edition.logo }] : [];
+});
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
@@ -78,7 +84,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <a href="#main" className="skip-link rounded-sm bg-teal-700 px-4 py-3 text-body text-white">
           Skip to content
         </a>
-        <Navbar specialities={NAV_SPECIALITIES} />
+        <Navbar specialities={NAV_SPECIALITIES} editions={NAV_EDITIONS} />
         <main id="main">{children}</main>
         <Footer />
         {/* Renders and loads nothing unless NEXT_PUBLIC_POSTHOG_KEY is set. */}

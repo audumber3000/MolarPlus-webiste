@@ -5,7 +5,7 @@ import { PageHero } from "@/components/PageHero";
 import { CtaBand } from "@/components/sections/CtaBand";
 import { buildMetadata } from "@/lib/seo";
 import { ADDRESS_LINE, SITE } from "@/lib/site";
-import { BELIEFS, SPECIALITY_COUNT } from "@/content/pages";
+import { BELIEFS, KEY_FACTS, SPECIALITY_COUNT } from "@/content/pages";
 
 export const metadata: Metadata = buildMetadata({
   title: "About Curogrid: Clinic Software from Clino Health",
@@ -43,7 +43,7 @@ export default function AboutPage() {
             </div>
             <div className="relative aspect-[4/3] overflow-hidden rounded-md">
               {/* No name and no quote beside this photo: see public/photos/CREDITS.md. */}
-              <Image src="/photos/doctor-woman.jpg" alt="" fill sizes="(min-width: 1024px) 480px, 100vw" className="object-cover grayscale" />
+              <Image src="/photos/doctor-woman.jpg" alt="A doctor in a white coat with a stethoscope, arms folded" fill sizes="(min-width: 1024px) 480px, 100vw" className="object-cover grayscale" />
               <div aria-hidden="true" className="absolute inset-0 bg-teal-700/40" />
             </div>
           </div>
@@ -64,7 +64,22 @@ export default function AboutPage() {
         </Container>
       </Section>
 
+      {/* The plain facts, moved here from the homepage. */}
       <Section>
+        <Container>
+          <h2 className="text-[1.75rem] leading-tight font-bold tracking-tight sm:text-h2">Curogrid in short</h2>
+          <dl className="mt-8 max-w-3xl divide-y divide-gray-200 border-y border-gray-200">
+            {KEY_FACTS.map((fact) => (
+              <div key={fact.term} className="grid grid-cols-[8.5rem_1fr] gap-4 py-4">
+                <dt className="text-[0.9375rem] font-semibold text-gray-500">{fact.term}</dt>
+                <dd className="text-body text-gray-900" data-numeric>{fact.detail}</dd>
+              </div>
+            ))}
+          </dl>
+        </Container>
+      </Section>
+
+      <Section tone="alt">
         <Container>
           <h2 className="text-[1.75rem] leading-tight font-bold tracking-tight sm:text-h2">Who makes Curogrid?</h2>
           <p className="measure mt-4 text-body-lg text-gray-700">

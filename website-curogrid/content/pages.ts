@@ -1,6 +1,6 @@
 import { SHOTS, type Shot } from "@/lib/shots";
 import { APP_LINKS, SITE } from "@/lib/site";
-import { ALSO_SUPPORTED, SPECIALITIES } from "@/lib/specialities";
+import { SPECIALITIES } from "@/lib/specialities";
 import { HOSPITAL_PLANS, PLANS, TRIAL_DAYS, TRIAL_PLAN, rupees } from "./pricing";
 
 /**
@@ -16,7 +16,7 @@ import { HOSPITAL_PLANS, PLANS, TRIAL_DAYS, TRIAL_PLAN, rupees } from "./pricing
  * beside each list. Do not add a capability from memory.
  */
 
-export const SPECIALITY_COUNT = SPECIALITIES.length + ALSO_SUPPORTED.length;
+export const SPECIALITY_COUNT = SPECIALITIES.length;
 
 /**
  * Added to any answer that says there is a phone app, for as long as
@@ -25,7 +25,11 @@ export const SPECIALITY_COUNT = SPECIALITIES.length + ALSO_SUPPORTED.length;
  * before a doctor can.
  */
 export const STORE_NOTE =
-  APP_LINKS.playStore || APP_LINKS.appStore ? "" : " The apps are being listed on Google Play and the App Store, and are not in the stores yet.";
+  APP_LINKS.playStore && APP_LINKS.appStore
+    ? ""
+    : APP_LINKS.playStore
+      ? " The Android app is on Google Play. The iPhone app is not in the App Store yet."
+      : " The apps are being listed on Google Play and the App Store, and are not in the stores yet.";
 
 /** The one-paragraph answer to "what is Curogrid?". 40 to 60 words, and
  *  it stands alone when quoted. */
@@ -165,4 +169,69 @@ export const BELIEFS: ReadonlyArray<{ title: string; body: string }> = [
     title: "The dose is the doctor's",
     body: "Curogrid offers the name of a medicine as you type. It does not suggest a dose and it does not make clinical decisions. Over time it remembers how you write each medicine.",
   },
+];
+
+/* ── Homepage: what goes wrong, and who makes it ───────────────────────── */
+
+/**
+ * The homepage's six problems, each answered by something the app does
+ * today. Every `fix` is taken from content/features.ts or a speciality
+ * file, which name their sources in the app repo; keep the wording within
+ * what those files say. Checked 11 November 2026.
+ */
+export const PAIN_POINTS: ReadonlyArray<{ problem: string; fix: string; href: string; label: string }> = [
+  {
+    problem: "A crowd at the desk asking who is next",
+    // features.ts, tokens-and-queue: "Wait times that change colour".
+    fix: "Every walk-in gets a token. The Today screen shows the whole line, and a wait over 30 minutes turns orange.",
+    href: "/features/tokens-and-queue",
+    label: "Tokens and the waiting line",
+  },
+  {
+    problem: "Nobody is sure who still owes money",
+    // features.ts, billing: part payments, the Who owes list, money split by UPI, cash and card.
+    fix: "Part payments stay on the bill, Who owes is one list, and today's money is counted by UPI, cash and card.",
+    href: "/features/billing",
+    label: "Billing",
+  },
+  {
+    problem: "A course of sessions quietly falls apart",
+    // features.ts, appointments: a course booked in one go, each booking showing its place.
+    fix: "Book the whole course in one go. Every booking shows its place, such as Session 3 of 6.",
+    href: "/features/appointments",
+    label: "Appointments",
+  },
+  {
+    problem: "An allergy nobody remembered",
+    // features.ts, patient-records: allergies on top; the "Check before giving" line.
+    fix: "Allergies sit at the top of every file, and a medicine that matches one gets a red “Check before giving” line.",
+    href: "/features/patient-records",
+    label: "Patient files",
+  },
+  {
+    problem: "The doctor is tied to the desk computer",
+    // MOBILE_SCREENS above: My line with Call next, the same files as the desk.
+    fix: "On the phone app the doctor sees the line, taps Call next and opens the same file the desk sees.",
+    href: "/mobile-app",
+    label: "The phone app",
+  },
+  {
+    problem: "New software arrives empty",
+    // faq.ts, "What does sets itself up for your speciality mean?".
+    fix: "Pick your speciality in setup and its services, starter prices, medicines, tests and consent forms are made for you.",
+    href: "/specialities",
+    label: "Speciality setups",
+  },
+];
+
+/**
+ * Who makes Curogrid and where the records live, from the security page
+ * (content/legal.ts) and the plans (content/pricing.ts). README lists a
+ * re-check of the hosting facts against the AWS account before launch.
+ */
+export const TRUST_FACTS: ReadonlyArray<{ term: string; detail: string; href?: string }> = [
+  { term: "Made in Pune", detail: `By ${SITE.parent}, the company behind MolarPlus.`, href: "/about" },
+  { term: "Records kept in India", detail: "On Amazon Web Services in Mumbai, encrypted, and backed up every day.", href: "/security" },
+  { term: "One price for the clinic", detail: "Not per doctor. Every feature and every speciality setup is in both plans.", href: "/pricing" },
+  { term: "Yours to take out", detail: "Patients, bills and payments export, and the whole clinic downloads as one file.", href: "/faq" },
 ];

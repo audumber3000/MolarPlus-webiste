@@ -51,8 +51,8 @@ export const PLANS: Plan[] = [
     name: "Plus",
     tagline: "Everything a solo or small clinic needs to run its day",
     popular: true,
-    monthly: 399,
-    annual: 3830,
+    monthly: 420,
+    annual: 4032,
     features: [
       "1,000 new patients a month",
       "6 staff logins",

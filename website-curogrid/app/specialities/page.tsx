@@ -8,11 +8,11 @@ import { FaqSection } from "@/components/sections/FaqSection";
 import { JsonLd } from "@/components/JsonLd";
 import { buildMetadata } from "@/lib/seo";
 import { getPost } from "@/lib/blog";
-import { ALSO_SUPPORTED, DIAGNOSIS_COUNT, SPECIALITIES, courseWords } from "@/lib/specialities";
+import { DIAGNOSIS_COUNT, SPECIALITIES, courseWords } from "@/lib/specialities";
 import { FACTS_CHECKED, SITE } from "@/lib/site";
 import { PLANS, TRIAL_DAYS, TRIAL_PLAN, rupees } from "@/content/pricing";
 
-const TOTAL = SPECIALITIES.length + ALSO_SUPPORTED.length;
+const TOTAL = SPECIALITIES.length;
 
 export const metadata: Metadata = buildMetadata({
   title: "Clinic Management Software by Speciality",
@@ -47,7 +47,7 @@ const [PLUS, PRO] = PLANS;
 const FAQS = [
   {
     q: "Which specialities does Curogrid support?",
-    a: `Ten. ${SPECIALITIES.map((s) => s.appLabel).join(", ")}, and ${ALSO_SUPPORTED.map((s) => s.name.toLowerCase()).join(", ")}. The first six have a full page on this site. There is no dental setup: dentists are sent to MolarPlus.`,
+    a: `${TOTAL}: ${SPECIALITIES.map((s) => s.appLabel).join(", ")}. Each has a full page on this site. There is no dental setup: dentists are sent to MolarPlus.`,
   },
   {
     q: "What does choosing a speciality change?",
@@ -98,7 +98,7 @@ export default function SpecialitiesPage() {
       <PageHero
         trail={[{ name: "Specialities", path: "/specialities" }]}
         title="Clinic software, set up for your speciality"
-        lead={`Curogrid is clinic management software with a ready setup for ${TOTAL} medical specialities. Choose yours in clinic setup and it adds your departments, a starter price list and your consent forms, offers your medicines, tests and procedures first, and books a course of visits the way your clinic does. Six specialities are described in full below.`}
+        lead={`Curogrid is clinic management software with a ready setup for ${TOTAL} medical specialities. Choose yours in clinic setup and it adds your departments, a starter price list and your consent forms, offers your medicines, tests and procedures first, and books a course of visits the way your clinic does. Each is described in full below.`}
       >
         <TrialCta placement="specialities_hero" tone="dark" />
       </PageHero>
@@ -106,7 +106,7 @@ export default function SpecialitiesPage() {
       <Section>
         <Container>
           <SectionHeader
-            title="Six specialities, in detail"
+            title={`${TOTAL} specialities, in detail`}
             intro="Each page lists exactly what Curogrid sets up: every service, every medicine and every procedure, and what it does not do."
           />
           <ul className="border-t border-gray-200">
@@ -138,7 +138,7 @@ export default function SpecialitiesPage() {
           <div className="overflow-x-auto rounded-md border border-gray-200 bg-gray-0">
             <table className="w-full min-w-[56rem] border-collapse text-left text-[0.9375rem]">
               <caption className="sr-only">
-                Curogrid&rsquo;s setup for six specialities: starter services, medicine names, tests and scans,
+                Curogrid&rsquo;s setup for each speciality: starter services, medicine names, tests and scans,
                 procedures, how a course is booked and the first card in the patient&rsquo;s file
               </caption>
               <thead>
@@ -207,19 +207,8 @@ export default function SpecialitiesPage() {
 
       <Section tone="alt">
         <Container>
-          <SectionHeader
-            title="Also supported"
-            intro="Curogrid has the same kind of setup for these specialities. Their pages are being written; the setup is in the product today."
-          />
-          <ul className="grid gap-px overflow-hidden rounded-md border border-gray-200 bg-gray-200 sm:grid-cols-2 lg:grid-cols-4">
-            {ALSO_SUPPORTED.map((s) => (
-              <li key={s.name} className="bg-gray-0 p-6">
-                <h3 className="text-h4">{s.name}</h3>
-                <p className="mt-2 text-[0.9375rem] text-gray-600">{s.note}</p>
-              </li>
-            ))}
-          </ul>
-          <div className="mt-10 grid gap-8 border-t border-gray-200 pt-8 lg:grid-cols-2 lg:gap-16">
+          <SectionHeader title="Good to know" />
+          <div className="grid gap-8 lg:grid-cols-2 lg:gap-16">
             <div>
               <h3 className="text-h4">More than one speciality under one roof?</h3>
               <p className="mt-2 text-body text-gray-700">

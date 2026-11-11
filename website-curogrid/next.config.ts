@@ -51,6 +51,9 @@ const nextConfig: NextConfig = {
         source: "/pricing.md",
         headers: [{ key: "Link", value: `<${SITE_URL}/pricing>; rel="canonical"` }],
       },
+      // The same for the other two Markdown twins.
+      { source: "/faq.md", headers: [{ key: "Link", value: `<${SITE_URL}/faq>; rel="canonical"` }] },
+      { source: "/features.md", headers: [{ key: "Link", value: `<${SITE_URL}/features>; rel="canonical"` }] },
     ];
   },
 };

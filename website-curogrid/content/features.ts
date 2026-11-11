@@ -1,8 +1,8 @@
 import { SHOTS, type Shot } from "@/lib/shots";
-import { ALSO_SUPPORTED, SPECIALITIES } from "@/lib/specialities";
+import { SPECIALITIES } from "@/lib/specialities";
 import { OWN_WHATSAPP_ADDON, PLANS, PLAN_LIMITS, REPORTS, TRIAL_DAYS, TRIAL_PLAN, rupees } from "./pricing";
 
-const SPECIALITY_COUNT = SPECIALITIES.length + ALSO_SUPPORTED.length;
+const SPECIALITY_COUNT = SPECIALITIES.length;
 
 /**
  * What the product does, in the site's words.

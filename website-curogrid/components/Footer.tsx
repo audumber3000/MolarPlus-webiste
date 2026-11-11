@@ -6,8 +6,11 @@ import { ANY_STORE_LIVE, StoreBadges } from "./StoreBadges";
 import { WhatsAppIcon } from "./WhatsAppIcon";
 import { ADDRESS_LINE, SITE, whatsappLink } from "@/lib/site";
 import { SPECIALITIES } from "@/lib/specialities";
+import { getEdition } from "@/lib/editions";
+import { HideOnPaths } from "./HideOnPaths";
 
-type FooterLink = { href: string; label: string; external?: boolean };
+/** `otherSpeciality`: the link is about another kind of clinic, so an edition's page leaves it out. */
+type FooterLink = { href: string; label: string; external?: boolean; otherSpeciality?: boolean };
 
 const COLUMNS: ReadonlyArray<{ heading: string; links: ReadonlyArray<FooterLink> }> = [
   {
@@ -45,10 +48,14 @@ const COLUMNS: ReadonlyArray<{ heading: string; links: ReadonlyArray<FooterLink>
       { href: "/blog", label: "Blog" },
       { href: "/faq", label: "Questions and answers" },
       { href: "/sitemap", label: "Sitemap" },
-      { href: SITE.dentalUrl, label: "MolarPlus, for dental clinics", external: true },
+      { href: SITE.dentalUrl, label: "MolarPlus, for dental clinics", external: true, otherSpeciality: true },
     ],
   },
 ];
+
+/** Pages written for one speciality, where the dental link is left out (lib/editions.ts). The
+ *  Specialities column stays on them, so a reader can still reach the other nine. */
+const EDITION_PATHS = SPECIALITIES.filter((s) => getEdition(s.key)).map((s) => `/${s.slug}`);
 
 const LEGAL: ReadonlyArray<FooterLink> = [
   { href: "/privacy", label: "Privacy" },
@@ -105,16 +112,23 @@ export function Footer() {
           </div>
 
           {COLUMNS.map((column) => (
-            <nav key={column.heading} aria-label={column.heading}>
-              <h2 className="text-micro font-bold tracking-wider text-teal-300 uppercase">{column.heading}</h2>
-              <ul className="mt-3">
-                {column.links.map((link) => (
-                  <li key={link.href}>
-                    <FooterAnchor link={link} />
-                  </li>
-                ))}
-              </ul>
-            </nav>
+              <nav key={column.heading} aria-label={column.heading}>
+                <h2 className="text-micro font-bold tracking-wider text-teal-300 uppercase">{column.heading}</h2>
+                <ul className="mt-3">
+                  {column.links.map((link) => {
+                    const item = (
+                      <li key={link.href}>
+                        <FooterAnchor link={link} />
+                      </li>
+                    );
+                    return link.otherSpeciality ? (
+                      <HideOnPaths key={link.href} paths={EDITION_PATHS}>{item}</HideOnPaths>
+                    ) : (
+                      item
+                    );
+                  })}
+                </ul>
+              </nav>
           ))}
         </div>
 

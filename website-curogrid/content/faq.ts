@@ -10,7 +10,7 @@ import {
   TRIAL_PLAN,
   rupees,
 } from "./pricing";
-import { ALSO_SUPPORTED, SPECIALITIES } from "@/lib/specialities";
+import { SPECIALITIES } from "@/lib/specialities";
 import { STORE_NOTE } from "./pages";
 
 /**
@@ -32,7 +32,7 @@ const [plus, pro] = PLANS;
 function rupeesExact(amount: number) {
   return `₹${amount.toLocaleString("en-IN", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
 }
-const allSpecialities = [...SPECIALITIES.map((s) => s.name.toLowerCase()), ...ALSO_SUPPORTED.map((s) => s.name.toLowerCase())];
+const allSpecialities = SPECIALITIES.map((s) => s.name.toLowerCase());
 
 export const ABOUT_FAQS: Faq[] = [
   {
@@ -127,7 +127,8 @@ export const PRODUCT_FAQS: Faq[] = [
   },
 ];
 
-export const HOME_FAQS: Faq[] = [ABOUT_FAQS[0], ABOUT_FAQS[1], PRICING_FAQS[0], PRICING_FAQS[1], PRODUCT_FAQS[0], ABOUT_FAQS[4]];
+/** Four on the home page: the phone has its own section there, and the hero already says what Curogrid is. */
+export const HOME_FAQS: Faq[] = [ABOUT_FAQS[1], PRICING_FAQS[0], PRICING_FAQS[1], ABOUT_FAQS[4]];
 
 /** The groups on /faq, in order. /faq.md and /llms-full.txt print the same. */
 export const FAQ_GROUPS: ReadonlyArray<{ title: string; items: ReadonlyArray<Faq> }> = [

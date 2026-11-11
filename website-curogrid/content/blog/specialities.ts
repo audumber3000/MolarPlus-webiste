@@ -12,9 +12,11 @@ import { SPECIALITIES, gapWords, type Speciality } from "@/lib/specialities";
  * post cannot drift from the speciality page it supports. What the
  * product does NOT do was checked against the app repo on 11 October
  * 2026: the visit screen has seven vitals and no head circumference
- * (`onboarding/templates/packs.py::VITALS`); there is no vaccination
- * schedule, no due-date calculator and no link between a billed package
- * and a booked course.
+ * (`onboarding/templates/packs.py::VITALS`); there is no due-date
+ * calculator and no link between a billed package and a booked course.
+ * Paediatrics has since gained a 13-step IAP vaccine plan
+ * (profiles/paediatrics/care_plans.py, checked 11 November 2026), so the
+ * "no vaccination schedule" line that stood here is no longer true.
  *
  * No post states a clinical schedule, a dose or a third-party number.
  * None cites an outside source, because none could be opened and read
@@ -61,6 +63,7 @@ export const SPECIALITY_POSTS: ReadonlyArray<Post> = [
     description:
       "Five clinic habits that keep physiotherapy patients to the end of a course: book it all at once, fix the slot and follow up a missed session the same day.",
     published: "2026-10-11",
+    updated: "2026-10-17",
     related: [
       { href: `/${PHYSIO.slug}`, label: "Curogrid for physiotherapy clinics" },
       { href: "/features/appointments", label: "Booking a course of visits in Curogrid" },
@@ -99,7 +102,7 @@ export const SPECIALITY_POSTS: ReadonlyArray<Post> = [
       { type: "p", text: "Count three things each month: courses started, courses finished, and missed sessions that were never rebooked. We have no sourced benchmark to offer for a normal completion rate, so compare your own months with each other. A rise in sessions that were never rebooked tells you the follow-up routine has slipped." },
       { type: "h2", text: "How Curogrid does it" },
       { type: "p", text: `In Curogrid, a physiotherapy clinic turns on “${PHYSIO.course.title}” while booking. The course is booked in one step: ${PHYSIO.course.count} sessions, ${gapWords(PHYSIO.course.everyDays)}, ${PHYSIO.course.minutes} minutes each, at the same time of day, unless you change the number or the gap. Each booking shows its place, such as “Session 3 of ${PHYSIO.course.count}”. The patient's file opens on a Sessions card that shows how many are done and when the next one is booked, and flags a missed session that was never rebooked. Reminders for booked sessions go out by WhatsApp and email.` },
-      { type: "p", text: `A “10 session package” is one of the starter services, at ${price(PHYSIO, "10 session package")}, and you can change the price or add your own packages. The package is a bill and the course is a set of bookings: Curogrid does not deduct sessions from a paid package for you, so book the course to the same length as the package. It has no library of exercise videos. ${PLAN_LINE}` },
+      { type: "p", text: `A “10 session package” is one of the starter services, at ${price(PHYSIO, "10 session package")}, and you can change the price or add your own packages. The package is a bill and the course is a set of bookings: Curogrid does not deduct sessions from a paid package for you, so book the course to the same length as the package. The first visit is a physiotherapy assessment with a pain score and a body map, and home exercises are picked from a library of 31 by their photograph and printed for the patient. There are no exercise videos. ${PLAN_LINE}` },
     ],
   },
 
@@ -110,6 +113,7 @@ export const SPECIALITY_POSTS: ReadonlyArray<Post> = [
     description:
       "A practical way to run antenatal visits in a clinic: book the visits ahead, track each scan and test to its result, and keep a weekly list of who has missed.",
     published: "2026-10-11",
+    updated: "2026-10-17",
     related: [
       { href: `/${GYNAE.slug}`, label: "Curogrid for gynaecology clinics" },
       { href: "/features/appointments", label: "Booking a course of visits in Curogrid" },
@@ -150,7 +154,7 @@ export const SPECIALITY_POSTS: ReadonlyArray<Post> = [
       { type: "p", text: "Decide a rule for the waiting room and tell the desk. A woman late in pregnancy should not sit for an hour behind routine follow-ups. Mark her token at the desk so the doctor sees it in the line and decides the order." },
       { type: "h2", text: "How Curogrid does it" },
       { type: "p", text: `In Curogrid, a gynaecology clinic turns on “${GYNAE.course.title}” while booking. The visits are booked together, ${GYNAE.course.count} visits ${gapWords(GYNAE.course.everyDays)} unless you change the number or the gap, and each is labelled, for example “Visit 2 of ${GYNAE.course.count}”. The patient's file opens on a Visits and care card that shows the antenatal visits booked and done. ${GYNAE.scans.length} scans and ${GYNAE.tests.length} tests are one-tap orders, and each order and its result sit under Tests and scans in the file. A token can be marked “Pregnant”. An “Antenatal package, full term” is a starter service at ${price(GYNAE, "Antenatal package, full term")}, a price you change to your own, and a bill can be paid in parts.` },
-      { type: "p", text: `Curogrid does not work out the due date or the weeks of pregnancy for you. The gap it fills in is only a starting point, and the schedule is yours to set. A clinic that scans gets a PCPNDT registration task on its setup checklist, but Curogrid does not generate or file Form F. It is for the clinic and the OPD: admitted patients, beds and the discharge summary are not built yet. ${PLAN_LINE}` },
+      { type: "p", text: `The last period is asked once at registration, and the patient's Pregnancy tab works out the weeks and the due date from it, with the baby's stage for the week. The pregnancy plan lays out the visits and the scans' windows from the LMP to 40 weeks, and the dashboard lists who is due this week. A clinic that scans gets a PCPNDT registration task on its setup checklist, but Curogrid does not generate or file Form F. It is for the clinic and the OPD: admitted patients, beds and the discharge summary are not built yet. ${PLAN_LINE}` },
     ],
   },
 
@@ -161,6 +165,7 @@ export const SPECIALITY_POSTS: ReadonlyArray<Post> = [
     description:
       "How a skin clinic keeps laser and peel packages straight: what to write down at the sale, how to count sessions done against sessions paid, and consent.",
     published: "2026-10-11",
+    updated: "2026-10-17",
     related: [
       { href: `/${SKIN.slug}`, label: "Curogrid for skin and hair clinics" },
       { href: "/features/billing", label: "Part payments and who owes in Curogrid" },
@@ -213,7 +218,7 @@ export const SPECIALITY_POSTS: ReadonlyArray<Post> = [
         "Missed sessions that were never rebooked.",
       ] },
       { type: "h2", text: "How Curogrid does it" },
-      { type: "p", text: `In Curogrid, a skin clinic turns on “${SKIN.course.title}” while booking. The course is booked together: ${SKIN.course.count} sessions ${gapWords(SKIN.course.everyDays)}, ${SKIN.course.minutes} minutes each, unless you change it, and each booking shows its place, such as “Session 2 of ${SKIN.course.count}”. The patient's file opens on a Treatment card that shows how many sessions are done and when the next one is booked. Chemical peel, Laser session and PRP session are one-tap procedures on the visit. A bill can be part paid, and one tab lists every patient who still owes. The Clinical photographs consent form is part of the setup and is signed on screen, and photographs are kept in the file.` },
+      { type: "p", text: `In Curogrid, a skin clinic turns on “${SKIN.course.title}” while booking. The course is booked together: ${SKIN.course.count} sessions ${gapWords(SKIN.course.everyDays)}, ${SKIN.course.minutes} minutes each, unless you change it, and each booking shows its place, such as “Session 2 of ${SKIN.course.count}”. The patient's file opens on a Treatment card that shows how many sessions are done and when the next one is booked. Chemical peel, Laser session and PRP session are one-tap procedures on the visit. A bill can be part paid, and one tab lists every patient who still owes. The Clinical photographs consent form is part of the setup and is signed on screen. Photos are taken at six standard angles, each with a guide picture, and any two dates of an angle open side by side.` },
       { type: "p", text: `The starter price list has a chemical peel at ${price(SKIN, "Chemical peel")}. It has no laser service and no package, so you add those with your own prices. Curogrid does not deduct sessions from a paid package for you: the bill and the course are separate, so book the course to the length of the package you sold. ${PLAN_LINE}` },
     ],
   },
@@ -225,6 +230,7 @@ export const SPECIALITY_POSTS: ReadonlyArray<Post> = [
     description:
       "What a paediatric clinic should write down at a growth check and at a vaccination visit, who should do it, and how to bill the visit and the vaccine.",
     published: "2026-10-11",
+    updated: "2026-10-17",
     related: [
       { href: `/${PAEDS.slug}`, label: "Curogrid for paediatric clinics" },
       { href: "/features/patient-records", label: "The patient's file in Curogrid" },
@@ -272,7 +278,7 @@ export const SPECIALITY_POSTS: ReadonlyArray<Post> = [
       { type: "p", text: "If your space or your timings allow, give vaccination and growth visits their own hour or their own corner of the waiting room. A well baby who has come for a vaccine then does not sit beside children who have come with a fever. Where that is not possible, mark the baby's token so the doctor can see it and call the family in sooner." },
       { type: "h2", text: "How Curogrid does it" },
       { type: "p", text: `In Curogrid, weight and height are saved at each visit, and the sister can enter them before the doctor starts. A child's file opens on a Growth card that draws weight over the last five visits as a small chart, with the latest height beside it. Vaccination and Growth check are one-tap procedures on the visit. The visit is billed as “Immunisation, visit charge”, a starter service at ${price(PAEDS, "Immunisation, visit charge")}, and the vaccine is kept as stock with its batch and expiry and added to the same bill. A token can be marked “Baby under 2”. Reminders for booked visits go out by WhatsApp and email.` },
-      { type: "p", text: `Curogrid does not plot percentile growth charts, and the visit screen has no separate field for head circumference. It does not hold a vaccination schedule or work out which vaccine is due: the doctor sets the next date and the desk books it. ${PLAN_LINE}` },
+      { type: "p", text: `Curogrid draws weight, length and head circumference on the WHO growth charts from birth to two years, with the centile of each, and the child's visit has a box for head circumference. The vaccine plan lays out the IAP schedule from the date of birth, and the dashboard lists the children due this week. It does not work out a dose. ${PLAN_LINE}` },
     ],
   },
 
@@ -283,6 +289,7 @@ export const SPECIALITY_POSTS: ReadonlyArray<Post> = [
     description:
       "How an ENT clinic fits hearing tests, endoscopy and ear procedures around a walk-in OPD without stalling the line: slots, rooms, reports and billing.",
     published: "2026-10-11",
+    updated: "2026-10-17",
     related: [
       { href: `/${ENT.slug}`, label: "Curogrid for ENT clinics" },
       { href: "/features/tokens-and-queue", label: "Tokens and the waiting line in Curogrid" },
@@ -325,7 +332,7 @@ export const SPECIALITY_POSTS: ReadonlyArray<Post> = [
       { type: "p", text: "The last step is the one that finds the ear clean that was done between two patients and never charged." },
       { type: "h2", text: "How Curogrid does it" },
       { type: "p", text: `Choosing ENT in Curogrid sets up an Audiology department apart from the ENT OPD, and ${ENT.services.length} starter services with a price each, including pure tone audiometry at ${price(ENT, "Pure tone audiometry")} and nasal endoscopy at ${price(ENT, "Nasal endoscopy")}. You change every price. ${ENT.procedures.length} procedures, from ear wash to nasal packing, are added to the visit in one tap. “In the right ear”, “In the left ear” and “In each nostril” are one-tap directions on the prescription. A patient who steps out keeps their token, and one tap brings them back into the line. The audiologist has their own login.` },
-      { type: "p", text: `Curogrid does not draw the audiogram: you order the test, bill it, mark it done and attach the report to the patient's file. It does not connect to the endoscope, so you add the saved pictures yourself. ${PLAN_LINE} ${PLUS_LOGINS}.` },
+      { type: "p", text: `The thresholds for each ear are typed into the visit, and the patient's Hearing tab draws the audiogram, with each ear's WHO grade and the change since the last test; the hearing test prints for the patient. Curogrid does not read the audiometer or connect to the endoscope, so you add the saved pictures yourself. ${PLAN_LINE} ${PLUS_LOGINS}.` },
     ],
   },
 

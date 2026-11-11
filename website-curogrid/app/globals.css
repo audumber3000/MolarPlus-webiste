@@ -13,6 +13,35 @@
 :root {
   --whatsapp: #25d366; /* the WhatsApp glyph only, never a surface */
   --measure: 65ch;
+
+  /* Each edition's word colour, as in its logo ("Curogrid Physio"), on
+     white and on teal-900. Copied from curogrid-app/src/ui/edition.ts;
+     change it there first. A general clinic uses the brand teal. An
+     edition page sets --accent and --accent-on-dark to its pair (see
+     components/speciality/ShowcasePage.tsx). On white these are for thin
+     rules and large type only: Derma's pink is under 4.5:1 for small text. */
+  --edition-general: var(--teal-700);
+  --edition-general-on-dark: var(--teal-300);
+  --edition-derma: #c94862;
+  --edition-derma-on-dark: #f4a7b9;
+  --edition-physio: #c2410c;
+  --edition-physio-on-dark: #fdba74;
+  --edition-paeds: #2563eb;
+  --edition-paeds-on-dark: #93c5fd;
+  --edition-eye: #6d28d9;
+  --edition-eye-on-dark: #c4b5fd;
+  --edition-ent: #b45309;
+  --edition-ent-on-dark: #fcd34d;
+  --edition-gynae: #be185d;
+  --edition-gynae-on-dark: #f9a8d4;
+  --edition-diabetes: #4338ca;
+  --edition-diabetes-on-dark: #a5b4fc;
+  --edition-ortho: #4d7c0f;
+  --edition-ortho-on-dark: #bef264;
+  --edition-surgery: #0e7490;
+  --edition-surgery-on-dark: #67e8f9;
+  --accent: var(--teal-700);
+  --accent-on-dark: var(--teal-300);
 }
 
 @theme inline {
@@ -42,7 +71,12 @@
   --color-gray-900: var(--gray-900);
 
   --color-danger: var(--red-600);
+  --color-amber-50: var(--amber-50);
+  --color-amber-700: var(--amber-700);
+
   --color-whatsapp: var(--whatsapp);
+  --color-accent: var(--accent);
+  --color-accent-on-dark: var(--accent-on-dark);
 
   --radius-xs: var(--radius-xs);
   --radius-sm: var(--radius-sm);

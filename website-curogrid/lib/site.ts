@@ -15,18 +15,17 @@ export const SITE = {
   /** Sister product for dental clinics. Curogrid has no dental
    *  template on purpose, so dentists are sent here. */
   dentalUrl: "https://www.molarplus.com",
-  /** The live host. The bare domain redirects here, so this is the form
-   *  every canonical URL, the sitemap and the share images must use. */
+  /** TODO (blocks launch): confirm the production domain. */
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.curogrid.com",
   tagline: "Clinic management software for Indian clinics",
   description:
     "Curogrid is clinic management software for Indian clinics: tokens and the waiting line, appointments, patient files, prescriptions, billing and stock, on the web and on the phone. It sets itself up for your speciality.",
   locale: "en_IN",
-  /** One number for everything: WhatsApp and calls. Confirmed by the
-   *  owner on 11 October 2026. */
+  /** TODO (blocks launch): these are the shared Clino Health support
+   *  numbers, used as a stand-in. Confirm them, or set Curogrid's own. */
   whatsapp: process.env.NEXT_PUBLIC_WHATSAPP || "919594078777",
-  phone: process.env.NEXT_PUBLIC_SUPPORT_PHONE || "+919594078777",
-  phoneDisplay: "+91 95940 78777",
+  phone: process.env.NEXT_PUBLIC_SUPPORT_PHONE || "+918766742410",
+  phoneDisplay: "+91 87667 42410",
   /** TODO (blocks launch): create this mailbox. Until it exists the
    *  address does not receive mail. */
   email: process.env.NEXT_PUBLIC_SUPPORT_EMAIL || "support@curogrid.com",
@@ -73,7 +72,8 @@ export const APP_LINKS: {
   appStore: string | null;
   windows: string | null;
 } = {
-  playStore: null,
+  // Live since November 2026 (ClinoHealth Systems, com.curogrid.app).
+  playStore: "https://play.google.com/store/apps/details?id=com.curogrid.app",
   appStore: null,
   windows: null,
 };

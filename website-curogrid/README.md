@@ -29,7 +29,7 @@ key file in `public/` (a 32-character name ending `.txt`) proves ownership; do n
 
 | Path | What it holds |
 |---|---|
-| `lib/specialities.ts` | **The single source of truth for specialities.** See below. |
+| `lib/specialities/` | **The single source of truth for specialities**, one file each. See below. |
 | `content/pricing.ts` | Plans and prices. Mirrors `core/plans.py` in the app repo. |
 | `content/features.ts` | The four feature pages and the smaller feature list. |
 | `content/faq.ts` | General questions for home, pricing and `/faq`. |
@@ -41,25 +41,43 @@ key file in `public/` (a 32-character name ending `.txt`) proves ownership; do n
 | `lib/routes.ts` | Every public page. Feeds `sitemap.xml`, `/sitemap` and `llms.txt`. |
 | `lib/seo.ts`, `lib/jsonld.ts` | Page metadata and structured data builders. |
 | `lib/shots.ts` | The screenshots, each with its alt text. |
-| `app/[speciality]/page.tsx` | One template that renders every speciality page. |
+| `app/[speciality]/page.tsx` | Renders every speciality page through `components/speciality/ShowcasePage.tsx`. |
+| `content/showcases/` | Each speciality page's own sections: its screens, its clinic flow, its rules in India. |
+| `lib/editions.ts` | Each speciality's edition of Curogrid: its logo and colour. |
 | `design/tokens.css` | The app's design tokens, copied from the app repo. Never type a hex. |
 
 ## Specialities
 
-Each speciality has a landing page at the site root, such as
-`/physiotherapy-clinic-management-software`. All of them are rendered by
-`app/[speciality]/page.tsx` from `lib/specialities.ts`. The header menu, the homepage grid,
-`/specialities`, the footer, the sitemap and `llms.txt` read the same file, so **adding a
-speciality is one entry there** and nothing else.
+The app supports ten specialities, and each has a landing page at the site root, such as
+`/physiotherapy-clinic-management-software`. Each page is that speciality's own edition of
+Curogrid ("Curogrid Physio", "Curogrid Derma"; a general practice is plain "Curogrid"). It wears
+the edition's logo in the header and its body is about that speciality only, but it is never a
+dead end: the logo goes home, the header menu becomes "Other specialities", the footer keeps its
+Specialities column (only the dental link is left out), and a row of the other editions sits
+above the closing band.
 
-Every list in that file (services, prices, medicines, tests, procedures, how a course is booked)
-is copied from the app repo. The file's header names the exact source files. When the app
-changes, change the site; a page that promises something the app no longer does is a broken
-promise to a doctor on day one.
+An edition can also have a photograph blended into the right of its hero (`photo` in
+`lib/editions.ts`). Only a licensed photo goes there: a stock photo is bought first (ImagesBazaar
+and the like) and its licence recorded in `public/photos/CREDITS.md`. Until then the slot is empty.
 
-The app supports ten specialities. Six have pages. The other four (eye, orthopaedics, general
-surgery, diabetes) are in `ALSO_SUPPORTED` and are named on the site without a link. Eye clinics
-are the largest group without a page and should be next.
+A speciality is four pieces, all keyed by the app's speciality key:
+
+- `lib/specialities/<key>.ts`: the shared facts (services, prices, medicines, tests, procedures,
+  how a course is booked, what it does not do, its questions). The header menu, the homepage grid,
+  `/specialities`, the footer, the sitemap and `llms.txt` read these.
+- `content/showcases/<key>.ts`: the page's own sections (the speciality's screens, the clinic's
+  flow step by step, an optional dark band such as home visits, and the rules in India).
+  Rules shared by several specialities are written once in `content/showcases/rules.ts`.
+- `lib/editions.ts`: the logo (from `public/brand/05-specialty-logos/<word>/`) and the colour
+  pair in `app/globals.css` (`--edition-<word>`, from `curogrid-app/src/ui/edition.ts`).
+- `public/screenshots/<word>/`: the edition's screenshots, built by `editionShots()` and
+  `editionShot()` in `lib/shots.ts`.
+
+Every product claim in those files is checked against the app repo, and each file's header names
+the sources. When the app changes, change the site; a page that promises something the app no
+longer does is a broken promise to a doctor on day one. The rules sections were read from public
+sources on 17 October 2026 and say they are not legal advice; re-check them before changing that
+date.
 
 Any root URL that is not a listed speciality returns 404 (`dynamicParams = false`).
 
@@ -78,15 +96,20 @@ Any root URL that is not a listed speciality returns 404 (`dynamicParams = false
 These are marked `TODO (blocks launch)` in `lib/site.ts` or in `content/legal.ts`:
 
 1. Confirm the domain and the app address.
+2. Confirm the phone and WhatsApp numbers. The shared Clino Health numbers are used as a stand-in.
 3. Create the `support@curogrid.com` mailbox.
 4. Set `CONTACT_WEBHOOK_URL`. Until then the forms say they are not connected and point to WhatsApp.
-5. Add the social profile links and the store links (`SOCIAL`, `APP_LINKS`). Store badges stay
-   out of the footer until one is set.
+5. Add the social profile links (`SOCIAL` in `lib/site.ts`). The Google Play link is set (the
+   Android app is live); add the App Store link when the iPhone app is listed. Once any store is
+   live, only the badges that link are shown.
 6. Have a lawyer review the legal pages, decide the refund terms, then remove `index: false`
    from `/privacy`, `/terms` and `/refund-policy` and from `lib/routes.ts`.
 7. Re-check the hosting facts on `/security` against the live AWS account.
-8. Retake screenshots for each speciality (see below), so a physiotherapy page shows a
-   physiotherapy clinic.
+8. Take the phone screenshots that are missing. Eye, ortho and general practice have none. ENT,
+   diabetes and surgery have only some: their captures of 18 October 2026 were mislabelled
+   (the "today" file held the home screen) or caught still loading, so only the correct ones
+   are in `public/screenshots/<word>/phone/` and listed in their `editionShots()` call.
+   Physio, derma, gynae and paeds have all five.
 9. Set `NEXT_PUBLIC_POSTHOG_KEY` for analytics.
 
 ## Assets in `public/`
@@ -100,6 +123,7 @@ These are marked `TODO (blocks launch)` in `lib/site.ts` or in `content/legal.ts
 | `screenshots/tablet/` | The same screens on an iPad | 6 |
 | `screenshots/phone-android/` | The phone app on Android: home, today, line, appointments, patients, patient file, bills | 7 |
 | `screenshots/phone-ios/` | The phone app on iPhone | 6 |
+| `screenshots/in-progress/` | Newer screens not yet retaken on the staged clinic: roles and permissions, devices, month calendar, dashboard | 16 |
 | `store/` | Finished store pictures with headlines and doctor photos: Google Play, App Store (iPhone and iPad), desktop, and a contact sheet | 26 |
 | `photos/` | Five doctor photographs from Unsplash, with `CREDITS.md` | 5 |
 | `elements/` | Small brand shapes used in the store pictures: cross, pill, ticket | 3 |
@@ -107,7 +131,7 @@ These are marked `TODO (blocks launch)` in `lib/site.ts` or in `content/legal.ts
 
 ## Before these go on a public page
 
-- **`design/screenshots-not-for-publishing/in-progress/` is kept out of `public/` on purpose.** Anything in `public/` is served to the world at its URL, linked or not. Those pictures come from test runs, with
+- **`screenshots/in-progress/` is not publishable.** Those pictures come from test runs, with
   test clinic names ("Roles Clinic", "Devices Clinic") and an emulator's device name. Retake them
   on the staged clinic first.
 - **The four clean screenshot sets show made-up data.** The clinic is "Sanjeevani Clinic" and
@@ -117,8 +141,9 @@ These are marked `TODO (blocks launch)` in `lib/site.ts` or in `content/legal.ts
   a quote beside any of them.
 - **The store badges are the official artwork.** Never redraw them. A badge becomes a link when
   its URL is set in `APP_LINKS` in `lib/site.ts`.
-- **The clean screenshots show a general clinic.** No speciality has its own set yet. Stage a
-  clinic of each kind and retake them, using the store-listing tools in the Curogrid repo.
+- **Each speciality has its own screenshots** in `screenshots/<word>/`, taken on a demo clinic of
+  that kind with invented patients (`~/Developer/curogrid/marketing/screenshots`). The older
+  `screenshots/web/` set shows a general clinic and is used on the home and feature pages.
 
 ## Where the assets come from
 

@@ -8,7 +8,7 @@ import { CtaBand } from "@/components/sections/CtaBand";
 import { JsonLd } from "@/components/JsonLd";
 import { softwareApplicationSchema } from "@/lib/jsonld";
 import { buildMetadata } from "@/lib/seo";
-import { PRICING_FAQS, PRODUCT_FAQS } from "@/content/faq";
+import { PRICING_FAQS } from "@/content/faq";
 import { FACTS_CHECKED, SITE } from "@/lib/site";
 import {
   ANNUAL_SAVING_PERCENT,
@@ -17,9 +17,7 @@ import {
   OWN_WHATSAPP_ADDON,
   PLANS,
   PLAN_COMPARISON,
-  PLAN_LIMITS,
   TRIAL_DAYS,
-  TRIAL_PLAN,
   rupees,
 } from "@/content/pricing";
 
@@ -45,7 +43,7 @@ export default function PricingPage() {
       <PageHero
         trail={[{ name: "Pricing", path: "/pricing" }]}
         title="Curogrid pricing: two plans for the whole clinic"
-        lead={`Curogrid costs ${rupees(plus.monthly)} a month on ${plus.name} or ${rupees(pro.monthly)} a month on ${pro.name}. The price is for the whole clinic, however many doctors and patients it has. Paying for the year costs ${ANNUAL_SAVING_PERCENT}% less, and every clinic starts with ${TRIAL_DAYS} days of ${TRIAL_PLAN}, free.`}
+        lead={`Curogrid costs ${rupees(plus.monthly)} a month on ${plus.name} or ${rupees(pro.monthly)} a month on ${pro.name}, for the whole clinic, however many doctors it has.`}
       />
 
       <Section>
@@ -53,9 +51,7 @@ export default function PricingPage() {
           {/* h2 here: on this page the plan names come straight after the h1. */}
           <PricingCards placement="pricing" as="h2" />
           <p className="measure mt-6 text-[0.9375rem] text-gray-600">
-            Prices are in rupees for clinics in India, before GST. GST of {GST_PERCENT}% is added
-            at checkout. Nothing clinical is held back for the higher plan: {plus.name} and{" "}
-            {pro.name} have the same features and differ in their limits. Prices last checked on{" "}
+            Rupees, before {GST_PERCENT}% GST, which is added at checkout. Checked on{" "}
             <time dateTime={FACTS_CHECKED.iso}>{FACTS_CHECKED.text}</time>.
           </p>
         </Container>
@@ -65,7 +61,7 @@ export default function PricingPage() {
         <Container>
           <SectionHeader
             title={`What is the difference between ${plus.name} and ${pro.name}?`}
-            intro={`The limits. ${plus.name} allows ${PLAN_LIMITS.plus.patientsAMonth.toLocaleString("en-IN")} new patients a month, ${PLAN_LIMITS.plus.staff} staff logins and ${PLAN_LIMITS.plus.branches} branch. ${pro.name} has unlimited patients, ${PLAN_LIMITS.pro.staff} staff logins and up to ${PLAN_LIMITS.pro.branches} branches. Every feature is in both.`}
+            intro="Only the limits. Every feature is in both plans."
           />
           <div className="overflow-x-auto rounded-md border border-gray-200 bg-gray-0">
             <table className="w-full min-w-[560px] border-collapse text-left text-[0.9375rem]">
@@ -100,11 +96,8 @@ export default function PricingPage() {
         <Container>
           <div className="grid gap-10 lg:grid-cols-[1fr_2fr] lg:gap-16">
             <div>
-              <h2 className="text-[1.75rem] leading-tight font-bold tracking-tight sm:text-h2">What is included in both plans?</h2>
-              <p className="mt-4 text-body text-gray-700">
-                Every feature. A small clinic on {plus.name} has the same software as a busy clinic on{" "}
-                {pro.name}, and every speciality setup is included.
-              </p>
+              <h2 className="text-[1.75rem] leading-tight font-bold tracking-tight sm:text-h2">In both plans</h2>
+              <p className="mt-4 text-body text-gray-700">Every feature and every speciality setup.</p>
             </div>
             <ul className="grid gap-x-10 border-t border-gray-200 sm:grid-cols-2">
               {INCLUDED_IN_EVERY_PLAN.map((item) => (
@@ -119,7 +112,8 @@ export default function PricingPage() {
         </Container>
       </Section>
 
-      <FaqSection items={[...PRICING_FAQS, ...PRODUCT_FAQS.slice(0, 4)]} title="Questions about Curogrid's price" tone="alt" />
+      {/* Price questions only. The product questions are on /faq and /features. */}
+      <FaqSection items={PRICING_FAQS} title="Questions about Curogrid's price" tone="alt" />
       <CtaBand placement="pricing_footer" />
     </>
   );

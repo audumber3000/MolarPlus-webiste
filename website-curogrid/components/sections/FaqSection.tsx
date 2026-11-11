@@ -1,4 +1,7 @@
-import { Accordion, type FaqItem } from "@/components/ui/Accordion";
+import { Accordion } from "@/components/ui/Accordion";
+
+/** Plain-text answers: the same strings go into the FAQPage structured data. */
+export type FaqText = { q: string; a: string };
 import { Container, Section } from "@/components/ui/Section";
 import { JsonLd } from "@/components/JsonLd";
 import { faqSchema } from "@/lib/jsonld";
@@ -10,7 +13,7 @@ export function FaqSection({
   title = "Questions doctors ask",
   tone = "default",
 }: {
-  items: ReadonlyArray<FaqItem>;
+  items: ReadonlyArray<FaqText>;
   title?: string;
   tone?: "default" | "alt";
 }) {

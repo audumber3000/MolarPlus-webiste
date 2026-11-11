@@ -41,3 +41,12 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Dev-only proof samples and unverified logos. Never published: see
+# components/sections/Proof.tsx and public/clients/README.md.
+/public/samples/
+/public/listings/
+/public/clients/
+
+# iCloud conflict copies ("today 2.png"). Never referenced.
+* [0-9].*

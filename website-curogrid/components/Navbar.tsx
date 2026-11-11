@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
-import { Logo } from "./Logo";
+import { Logo, type LogoEdition } from "./Logo";
 import { ButtonLink } from "./ui/Button";
 import { Container } from "./ui/Section";
 import { LOGIN_URL, NAV_LINKS, SIGNUP_URL } from "@/lib/site";
@@ -11,14 +11,26 @@ import { track } from "@/lib/analytics";
 import { cn } from "@/lib/cn";
 
 export type NavSpeciality = { href: string; name: string; card: string };
+/** A speciality page that wears its own edition's logo (lib/editions.ts). */
+export type NavEdition = LogoEdition & { href: string };
 
 /**
  * `specialities` is passed in by the layout, not imported here: the
  * data file carries every medicine list, and importing it from a client
- * component would ship all of it to the browser for the sake of six
+ * component would ship all of it to the browser for the sake of ten
  * menu rows.
+ *
+ * On an edition's page ("Curogrid Physio") the header wears that logo,
+ * but the logo still goes home and the menu becomes "Other specialities"
+ * (every speciality but this one), so the page is never a dead end.
  */
-export function Navbar({ specialities }: { specialities: ReadonlyArray<NavSpeciality> }) {
+export function Navbar({
+  specialities,
+  editions = [],
+}: {
+  specialities: ReadonlyArray<NavSpeciality>;
+  editions?: ReadonlyArray<NavEdition>;
+}) {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
   const closeButtonRef = useRef<HTMLButtonElement>(null);
@@ -44,6 +56,10 @@ export function Navbar({ specialities }: { specialities: ReadonlyArray<NavSpecia
     };
   }, [open]);
 
+  const edition = editions.find((e) => e.href === pathname);
+  const home = { href: "/", label: "Curogrid home" };
+  const menu = edition ? specialities.filter((s) => s.href !== pathname) : specialities;
+  const menuLabel = edition ? "Other specialities" : "Specialities";
   const onSpeciality = pathname === "/specialities" || specialities.some((s) => s.href === pathname);
   const linkClass = (active: boolean) =>
     cn(
@@ -55,8 +71,8 @@ export function Navbar({ specialities }: { specialities: ReadonlyArray<NavSpecia
     <header className="on-dark sticky top-0 z-50 bg-teal-900">
       <Container>
         <div className="flex h-16 items-center justify-between gap-6">
-          <Link href="/" aria-label="Curogrid home" className="shrink-0">
-            <Logo tone="dark" />
+          <Link href={home.href} aria-label={home.label} className="shrink-0">
+            <Logo tone="dark" edition={edition} />
           </Link>
 
           <nav aria-label="Main" className="hidden items-center gap-7 lg:flex">
@@ -69,7 +85,7 @@ export function Navbar({ specialities }: { specialities: ReadonlyArray<NavSpecia
                 aria-current={pathname === "/specialities" ? "page" : undefined}
                 className={cn(linkClass(onSpeciality), "gap-1.5")}
               >
-                Specialities
+                {menuLabel}
                 <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true">
                   <path d="M2.5 4.5 6 8l3.5-3.5" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
@@ -77,7 +93,7 @@ export function Navbar({ specialities }: { specialities: ReadonlyArray<NavSpecia
               <div className="invisible absolute top-full left-0 w-[30rem] pt-2 opacity-0 transition-opacity duration-150 group-focus-within:visible group-focus-within:opacity-100 group-hover:visible group-hover:opacity-100">
                 <div className="rounded-md border border-gray-200 bg-gray-0 p-2 shadow-lg">
                   <ul>
-                    {specialities.map((s) => (
+                    {menu.map((s) => (
                       <li key={s.href}>
                         <Link href={s.href} className="block rounded-sm px-3 py-2.5 hover:bg-teal-50">
                           <span className="block text-[0.9375rem] font-semibold text-gray-900">{s.name}</span>
@@ -150,8 +166,8 @@ export function Navbar({ specialities }: { specialities: ReadonlyArray<NavSpecia
         }}
       >
         <div className="flex h-16 shrink-0 items-center justify-between px-4">
-          <Link href="/" aria-label="Curogrid home">
-            <Logo tone="dark" />
+          <Link href={home.href} aria-label={home.label}>
+            <Logo tone="dark" edition={edition} />
           </Link>
           <button
             ref={closeButtonRef}
@@ -170,9 +186,9 @@ export function Navbar({ specialities }: { specialities: ReadonlyArray<NavSpecia
         </div>
 
         <nav aria-label="Mobile" className="flex-1 overflow-y-auto px-4 pb-6">
-          <p className="pt-4 pb-2 text-micro font-bold tracking-wider text-teal-300 uppercase">Specialities</p>
+          <p className="pt-4 pb-2 text-micro font-bold tracking-wider text-teal-300 uppercase">{menuLabel}</p>
           <ul className="divide-y divide-white/10 border-y border-white/10">
-            {specialities.map((s) => (
+            {menu.map((s) => (
               <li key={s.href}>
                 <Link href={s.href} className="flex min-h-12 items-center text-body font-semibold text-white">
                   {s.name}

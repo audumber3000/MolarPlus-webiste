@@ -43,12 +43,18 @@ Next.js 16 App Router, React 19, TypeScript, Tailwind 4, the same stack as Syrup
 port **3003**. Fully static apart from `/api/contact`. No test suite: verify with
 `npx tsc --noEmit`, `npm run lint` and `npm run build`.
 
-**`lib/specialities.ts` is the single source of truth for specialities.** Each one has a landing
-page at the site root (`/physiotherapy-clinic-management-software`), all rendered by
-`app/[speciality]/page.tsx`. The header menu, homepage grid, `/specialities`, footer, sitemap and
-`llms.txt` read the same file. Adding a speciality is one entry there.
+**`lib/specialities/` is the single source of truth for specialities**, one file per speciality.
+All ten have a landing page at the site root (`/physiotherapy-clinic-management-software`),
+rendered by `app/[speciality]/page.tsx` through `components/speciality/ShowcasePage.tsx`. Each page
+is that speciality's own edition ("Curogrid Physio", logo and colour in `lib/editions.ts`). Its body
+is about that speciality only, but it is never a dead end: the logo goes home, the header menu
+becomes "Other specialities" and the footer keeps its Specialities column. Its own sections
+(screens, clinic flow, rules in India) are in `content/showcases/<key>.ts`.
 
-Every fact in that file (services, prices, medicines, procedures, how a course is booked) is
+Real proof (clinics that agreed to be named, quotes with consent) lives in `content/proof.ts`, never
+in `public/clients/` (those logos were copied from hospitals' own sites; none is a customer).
+
+Every fact in those files (services, prices, medicines, procedures, how a course is booked) is
 copied from the Curogrid app repo at `~/Developer/curogrid`; the file header names the source
 files. `content/pricing.ts` mirrors `curogrid-backend/core/plans.py` the same way. **Never add a
 product claim from memory**: open the app repo and check. The site also says what the product

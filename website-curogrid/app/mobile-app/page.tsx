@@ -7,6 +7,7 @@ import { TrialCta } from "@/components/Cta";
 import { FaqSection } from "@/components/sections/FaqSection";
 import { CtaBand } from "@/components/sections/CtaBand";
 import { buildMetadata } from "@/lib/seo";
+import { APP_LINKS } from "@/lib/site";
 import { MOBILE_FAQS, MOBILE_SCREENS, MOBILE_TASKS } from "@/content/pages";
 
 export const metadata: Metadata = buildMetadata({
@@ -29,6 +30,12 @@ export default function MobileAppPage() {
 
       <Section>
         <Container>
+          {ANY_STORE_LIVE && !APP_LINKS.appStore && (
+            <p className="mb-12 text-body text-gray-700">
+              The Android app is on Google Play. The iPhone app is not in the App Store yet. On an iPhone,
+              Curogrid works in the web browser.
+            </p>
+          )}
           {!ANY_STORE_LIVE && (
             <div className="mb-12 rounded-md border border-gray-200 bg-gray-50 p-6">
               <h2 className="text-h4">The store listings are on their way</h2>

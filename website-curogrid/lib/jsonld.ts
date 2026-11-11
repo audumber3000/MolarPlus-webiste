@@ -1,4 +1,4 @@
-import { SITE, SOCIAL } from "./site";
+import { APP_LINKS, SITE, SOCIAL } from "./site";
 import { SHOTS } from "./shots";
 import { PLANS } from "@/content/pricing";
 
@@ -23,6 +23,12 @@ import { PLANS } from "@/content/pricing";
  */
 
 const ORG_ID = `${SITE.url}/#organization`;
+/** The product itself. Home and /pricing describe this one entity; an
+ *  edition page ("Curogrid Physio") is its own entity based on it. */
+const SOFTWARE_ID = `${SITE.url}/#software`;
+
+/** Social profiles and live store listings: the pages that are Curogrid's own. */
+const SAME_AS = [...SOCIAL.map((profile) => profile.href), ...Object.values(APP_LINKS).filter((href): href is string => !!href)];
 
 export function organizationSchema() {
   return {
@@ -34,7 +40,7 @@ export function organizationSchema() {
     logo: { "@type": "ImageObject", url: `${SITE.url}/icon-512.png`, width: 512, height: 512 },
     description: SITE.description,
     parentOrganization: { "@type": "Organization", name: SITE.parent, url: SITE.parentUrl },
-    ...(SOCIAL.length > 0 && { sameAs: SOCIAL.map((profile) => profile.href) }),
+    ...(SAME_AS.length > 0 && { sameAs: SAME_AS }),
     areaServed: { "@type": "Country", name: "India" },
     address: {
       "@type": "PostalAddress",
@@ -80,14 +86,18 @@ export function softwareApplicationSchema(page?: {
   category?: string;
   features?: string[];
 }) {
+  const edition = !!page?.name;
+  const url = `${SITE.url}${page?.path ?? ""}`;
   return {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
+    "@id": edition ? `${url}#software` : SOFTWARE_ID,
+    ...(edition && { isBasedOn: { "@id": SOFTWARE_ID } }),
     name: page?.name ?? SITE.name,
     applicationCategory: "BusinessApplication",
     applicationSubCategory: page?.category ?? "Clinic management software",
     operatingSystem: "Web, Android, iOS, Windows",
-    url: `${SITE.url}${page?.path ?? ""}`,
+    url: edition ? url : SITE.url,
     description: page?.description ?? SITE.description,
     inLanguage: "en-IN",
     image: `${SITE.url}/icon-512.png`,

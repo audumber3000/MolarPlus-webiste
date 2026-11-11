@@ -1,5 +1,5 @@
 import { ADDRESS_LINE, FACTS_CHECKED, SIGNUP_URL, SITE } from "@/lib/site";
-import { ALSO_SUPPORTED, SPECIALITIES, gapWords, type Speciality } from "@/lib/specialities";
+import { SPECIALITIES, gapWords, type Speciality } from "@/lib/specialities";
 import { getAllPosts } from "@/lib/blog";
 import { FAQ_GROUPS, PRICING_FAQS, type Faq } from "./faq";
 import { BUYING_QUESTIONS, FEATURE_PAGES, MORE_FEATURES, type FeaturePage } from "./features";
@@ -233,10 +233,6 @@ export function specialitiesMarkdown(level = 2): string[] {
     `${SITE.name} has a ready setup for ${SPECIALITY_COUNT} specialities. The clinic picks its speciality in clinic setup and gets that speciality's departments, a starter list of services with prices, the medicines, tests and procedures offered on the doctor's screen, and its consent forms. A clinic with more than one speciality can pick several.`,
     "",
     ...SPECIALITIES.flatMap((s) => specialityMarkdown(s, level + 1)),
-    h(level + 1, "Also supported, without a page on this site yet"),
-    "",
-    ...ALSO_SUPPORTED.map((s) => `- ${s.name}: ${s.note}`),
-    "",
     `Dental clinics are not supported. Dentists should use MolarPlus (${SITE.dentalUrl}), from the same company.`,
     "",
   ];

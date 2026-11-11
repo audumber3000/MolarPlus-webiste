@@ -1,8 +1,9 @@
 import { ADDRESS_LINE, FACTS_CHECKED, SIGNUP_URL, SITE } from "@/lib/site";
 import { getRouteGroups } from "@/lib/routes";
-import { ALSO_SUPPORTED, SPECIALITIES } from "@/lib/specialities";
+import { SPECIALITIES } from "@/lib/specialities";
 import { TEXT_HEADERS, pageUrl } from "@/content/markdown";
 import { DEFINITION } from "@/content/pages";
+import { CLIENTS, TESTIMONIALS } from "@/content/proof";
 import {
   ANNUAL_SAVING_PERCENT,
   GST_PERCENT,
@@ -24,7 +25,7 @@ import {
 export const dynamic = "force-static";
 
 export function GET() {
-  const all = [...SPECIALITIES.map((s) => s.name), ...ALSO_SUPPORTED.map((s) => s.name)];
+  const all = SPECIALITIES.map((s) => s.name);
   const [plus, pro] = PLANS;
 
   const lines = [
@@ -32,7 +33,7 @@ export function GET() {
     "",
     `> ${DEFINITION}`,
     "",
-    `Facts on this site were last checked against the product on ${FACTS_CHECKED.text}. ${SITE.name} publishes no customer counts, ratings or testimonials, so none should be attributed to it.`,
+    `Facts on this site were last checked against the product on ${FACTS_CHECKED.text}. ${proofLine()}`,
     "",
     "## Key facts",
     "",
@@ -64,4 +65,12 @@ export function GET() {
   ];
 
   return new Response(lines.join("\n"), { headers: TEXT_HEADERS });
+}
+
+/** What the site says about its customers: only what content/proof.ts holds. */
+function proofLine() {
+  const named = CLIENTS.map((c) => (c.city ? `${c.name} (${c.city})` : c.name));
+  const clients = named.length > 0 ? `Clinics that have agreed to be named as users: ${named.join(", ")}. ` : "";
+  const quotes = TESTIMONIALS.length > 0 ? "" : " or testimonials";
+  return `${clients}${SITE.name} publishes no customer counts, ratings${quotes}, so none should be attributed to it.`;
 }
