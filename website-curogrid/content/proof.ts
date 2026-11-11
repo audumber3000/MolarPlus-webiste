@@ -33,9 +33,9 @@ export const CLIENTS: ReadonlyArray<Client> = [
   {
     // Moved from MolarPlus to Curogrid on 4 November 2026
     // (curogrid/docs/architecture/05-OPEN-DECISIONS.md).
-    // TODO: add the city, and confirm "dermatology" is the setup it uses.
     speciality: "dermatology",
     name: "Skintonik",
+    city: "Bengaluru",
     confirmed: { date: "2026-11-11", via: "Owner confirmed the clinic agreed to be named" },
   },
 ];

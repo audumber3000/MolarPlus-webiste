@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
-import { SITE } from "./site";
+import { SITE, SOCIAL } from "./site";
 import { getSpeciality } from "./specialities";
+
+/** "@Curogrid_health", from the X profile in lib/site.ts. */
+const X_HANDLE = SOCIAL.find((profile) => profile.name === "X")?.handle;
 
 type PageSeo = {
   title: string;
@@ -78,6 +81,7 @@ export function buildMetadata({ title, description, path, index = true, article 
     },
     twitter: {
       card: "summary_large_image",
+      ...(X_HANDLE && { site: X_HANDLE, creator: X_HANDLE }),
       title,
       description,
       ...images,

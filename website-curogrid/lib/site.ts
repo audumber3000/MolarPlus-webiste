@@ -21,14 +21,12 @@ export const SITE = {
   description:
     "Curogrid is clinic management software for Indian clinics: tokens and the waiting line, appointments, patient files, prescriptions, billing and stock, on the web and on the phone. It sets itself up for your speciality.",
   locale: "en_IN",
-  /** TODO (blocks launch): these are the shared Clino Health support
-   *  numbers, used as a stand-in. Confirm them, or set Curogrid's own. */
+  /** Curogrid's number for calls and WhatsApp, confirmed 11 November 2026. */
   whatsapp: process.env.NEXT_PUBLIC_WHATSAPP || "919594078777",
-  phone: process.env.NEXT_PUBLIC_SUPPORT_PHONE || "+918766742410",
-  phoneDisplay: "+91 87667 42410",
-  /** TODO (blocks launch): create this mailbox. Until it exists the
-   *  address does not receive mail. */
-  email: process.env.NEXT_PUBLIC_SUPPORT_EMAIL || "support@curogrid.com",
+  phone: process.env.NEXT_PUBLIC_SUPPORT_PHONE || "+919594078777",
+  phoneDisplay: "+91 95940 78777",
+  /** Confirmed 11 November 2026. */
+  email: process.env.NEXT_PUBLIC_SUPPORT_EMAIL || "hello@curogrid.com",
   /** Clino Health HQ. TODO (blocks launch): confirm this is the
    *  address to publish for Curogrid. */
   address: {
@@ -47,10 +45,17 @@ export const SITE = {
  * search engine ties the accounts to Curogrid. A wrong URL there is a
  * broken claim, so the list is empty until real profiles exist.
  *
- * TODO: add each profile's public URL once the account is created.
+ * Checked 11 November 2026: X, Facebook and Instagram open to Curogrid's
+ * profiles. LinkedIn shows a sign-in wall to a logged-out visitor, so its
+ * page could not be opened from outside; the URL is the company page's ID.
  */
-export type SocialName = "LinkedIn" | "Instagram" | "Facebook" | "YouTube";
-export const SOCIAL: ReadonlyArray<{ name: SocialName; handle: string; href: string }> = [];
+export type SocialName = "LinkedIn" | "Instagram" | "Facebook" | "X" | "YouTube";
+export const SOCIAL: ReadonlyArray<{ name: SocialName; handle: string; href: string }> = [
+  { name: "LinkedIn", handle: "Curogrid", href: "https://www.linkedin.com/company/145282727" },
+  { name: "Instagram", handle: "@curogrid", href: "https://www.instagram.com/curogrid/" },
+  { name: "Facebook", handle: "Curogrid", href: "https://www.facebook.com/people/Curogrid/61595304722286/" },
+  { name: "X", handle: "@Curogrid_health", href: "https://x.com/Curogrid_health" },
+];
 
 /**
  * When the product facts on the site (services, prices, lists, plans)

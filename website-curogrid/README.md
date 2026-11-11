@@ -97,21 +97,20 @@ Any root URL that is not a listed speciality returns 404 (`dynamicParams = false
 These are marked `TODO (blocks launch)` in `lib/site.ts` or in `content/legal.ts`:
 
 1. Confirm the domain and the app address.
-2. Confirm the phone and WhatsApp numbers. The shared Clino Health numbers are used as a stand-in.
-3. Create the `support@curogrid.com` mailbox.
-4. Set `CONTACT_WEBHOOK_URL`. Until then the forms say they are not connected and point to WhatsApp.
-5. Add the social profile links (`SOCIAL` in `lib/site.ts`). The Google Play link is set (the
-   Android app is live); add the App Store link when the iPhone app is listed. Once any store is
+2. Phone, WhatsApp (+91 95940 78777) and email (`hello@curogrid.com`) are confirmed.
+3. Set `CONTACT_WEBHOOK_URL`. Until then the forms say they are not connected and point to WhatsApp.
+4. Social profiles (LinkedIn, Instagram, Facebook, X) and the Google Play link are set in
+   `lib/site.ts`; add the App Store link when the iPhone app is listed. Once any store is
    live, only the badges that link are shown.
-6. Have a lawyer review the legal pages, decide the refund terms, then remove `index: false`
+5. Have a lawyer review the legal pages, decide the refund terms, then remove `index: false`
    from `/privacy`, `/terms` and `/refund-policy` and from `lib/routes.ts`.
-7. Re-check the hosting facts on `/security` against the live AWS account.
-8. Take the phone screenshots that are missing. Eye, ortho and general practice have none. ENT,
+6. Re-check the hosting facts on `/security` against the live AWS account.
+7. Take the phone screenshots that are missing. Eye, ortho and general practice have none. ENT,
    diabetes and surgery have only some: their captures of 18 October 2026 were mislabelled
    (the "today" file held the home screen) or caught still loading, so only the correct ones
    are in `public/screenshots/<word>/phone/` and listed in their `editionShots()` call.
    Physio, derma, gynae and paeds have all five.
-9. Set `NEXT_PUBLIC_POSTHOG_KEY` for analytics.
+8. Set `NEXT_PUBLIC_POSTHOG_KEY` for analytics.
 
 ## Assets in `public/`
 
