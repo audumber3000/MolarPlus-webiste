@@ -5,8 +5,11 @@
  *
  * The `confirmed` and `consent` fields are required on purpose: an entry
  * cannot be added without a record of who agreed to it, when and how.
- * Do not add a clinic because its logo is in public/clients/: those files
- * were copied from the clinics' own websites and none is a customer.
+ * Logos live in public/customers/<word>/ as transparent PNGs. Do not add a
+ * clinic because its logo is in public/clients/: those files were copied
+ * from the clinics' own websites and none is a customer.
+ *
+ * The order inside a speciality matters: the homepage shows the first two.
  */
 export type Client = {
   /** A speciality key from lib/specialities, or "general" when it is not one speciality. */
@@ -31,6 +34,7 @@ export type Testimonial = {
 
 /** Clinics and logos the owner supplied as current customers. */
 const OWNER_11_NOV = { date: "2026-11-11", via: "Owner supplied the logo as a current Curogrid customer" } as const;
+const OWNER_LOGO = { date: "2026-11-12", via: "Owner supplied the logo as a current Curogrid customer" } as const;
 
 export const CLIENTS: ReadonlyArray<Client> = [
   {
@@ -75,7 +79,93 @@ export const CLIENTS: ReadonlyArray<Client> = [
     speciality: "dermatology",
     name: "Skintonik",
     city: "Bengaluru",
-    confirmed: { date: "2026-11-11", via: "Owner confirmed the clinic agreed to be named" },
+    logo: "/customers/derma/skintonik.png",
+    confirmed: OWNER_LOGO,
+  },
+  {
+    speciality: "dermatology",
+    name: "Kleoderma Clinic",
+    logo: "/customers/derma/kleoderma-clinic.png",
+    confirmed: OWNER_LOGO,
+  },
+  {
+    speciality: "dermatology",
+    name: "SkinCure Skin and Hair Clinic",
+    logo: "/customers/derma/skincure.png",
+    confirmed: OWNER_LOGO,
+  },
+  {
+    speciality: "dermatology",
+    name: "Renaissance Derma Clinic",
+    logo: "/customers/derma/renaissance-derma-clinic.png",
+    confirmed: OWNER_LOGO,
+  },
+  {
+    speciality: "dermatology",
+    name: "Dr. Sandhya's Skin and Hair Clinic",
+    logo: "/customers/derma/dr-sandhyas-skin-hair-clinic.png",
+    confirmed: OWNER_LOGO,
+  },
+  {
+    speciality: "dermatology",
+    name: "Sparsh Skin, Hair & Laser",
+    logo: "/customers/derma/sparsh-skin-hair-laser.png",
+    confirmed: OWNER_LOGO,
+  },
+  {
+    speciality: "dermatology",
+    name: "DermaConsult",
+    logo: "/customers/derma/dermaconsult.png",
+    confirmed: OWNER_LOGO,
+  },
+  {
+    speciality: "dermatology",
+    name: "Revive Skin, Hair, Laser & Cosmetology Clinic",
+    logo: "/customers/derma/revive-skin-hair-clinic.png",
+    confirmed: OWNER_LOGO,
+  },
+  {
+    speciality: "general_practice",
+    name: "Dr. Chandhere's Clinic",
+    logo: "/customers/general/dr-chandheres-clinic.png",
+    confirmed: OWNER_LOGO,
+  },
+  {
+    speciality: "general_practice",
+    name: "Setu Clinic",
+    logo: "/customers/general/setu-clinic.png",
+    confirmed: OWNER_LOGO,
+  },
+  {
+    // Pain clinics, filed under general practice as the owner grouped them.
+    speciality: "general_practice",
+    name: "Pune Pain Clinic",
+    logo: "/customers/general/pune-pain-clinic.png",
+    confirmed: OWNER_LOGO,
+  },
+  {
+    speciality: "general_practice",
+    name: "Praanaa Pain Clinic",
+    logo: "/customers/general/praanaa-pain-clinic.png",
+    confirmed: OWNER_LOGO,
+  },
+  {
+    speciality: "orthopaedics",
+    name: "Shreekunj Clinic",
+    logo: "/customers/ortho/shreekunj-clinic.png",
+    confirmed: OWNER_LOGO,
+  },
+  {
+    speciality: "ophthalmology",
+    name: "S.P. Deshpande Eye Clinic",
+    logo: "/customers/eye/sp-deshpande-eye-clinic.png",
+    confirmed: OWNER_LOGO,
+  },
+  {
+    speciality: "ophthalmology",
+    name: "Deshpande Eye Care Center",
+    logo: "/customers/eye/deshpande-eye-care-center.png",
+    confirmed: OWNER_LOGO,
   },
 ];
 

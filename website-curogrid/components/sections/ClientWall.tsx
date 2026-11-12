@@ -18,15 +18,15 @@ export function ClientWall() {
   return (
     <Section className="py-12 lg:py-16">
       <Container>
-        <dl className="grid grid-cols-1 divide-y divide-gray-200 border-y border-gray-200 sm:grid-cols-3 sm:divide-x sm:divide-y-0">
+        <dl className="grid grid-cols-3 divide-x divide-gray-200 border-y border-gray-200">
           {STATS.map((stat) => (
-            <div key={stat.label} className="px-2 py-6 text-center sm:py-8">
+            <div key={stat.label} className="px-1 py-5 text-center sm:px-2 sm:py-8">
               <dt className="sr-only">{stat.label}</dt>
               <dd>
-                <span className="block text-[2.5rem] leading-none font-extrabold tracking-tight text-teal-700" data-numeric>
+                <span className="block text-[1.625rem] leading-none font-extrabold tracking-tight text-teal-700 sm:text-[2.5rem]" data-numeric>
                   {stat.value}
                 </span>
-                <span className="mt-2 block text-[0.9375rem] text-gray-600">{stat.label}</span>
+                <span className="mt-2 block text-small text-gray-600 sm:text-[0.9375rem]">{stat.label}</span>
               </dd>
             </div>
           ))}
@@ -40,7 +40,7 @@ export function ClientWall() {
               {picked.map((c) => (
                 <li
                   key={c.name}
-                  className="flex h-20 w-[calc(50%-0.375rem)] items-center justify-center rounded-md border border-gray-200 bg-gray-0 px-4 sm:w-44"
+                  className="flex h-24 w-[calc(50%-0.375rem)] items-center justify-center rounded-md border border-gray-200 bg-gray-0 px-4 py-3 sm:w-48"
                 >
                   {c.logo ? (
                     // eslint-disable-next-line @next/next/no-img-element
@@ -48,7 +48,7 @@ export function ClientWall() {
                       src={c.logo}
                       alt={c.city ? `${c.name}, ${c.city}` : c.name}
                       loading="lazy"
-                      className="max-h-12 w-auto max-w-full object-contain"
+                      className="max-h-16 w-auto max-w-full object-contain"
                     />
                   ) : (
                     <span className="text-center text-small leading-snug font-semibold text-gray-700">
