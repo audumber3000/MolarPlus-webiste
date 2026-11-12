@@ -1,4 +1,5 @@
 import { SHOTS, type Shot } from "@/lib/shots";
+import type { IconName } from "@/components/icons/CuroIcon";
 import { APP_LINKS, SITE } from "@/lib/site";
 import { SPECIALITIES } from "@/lib/specialities";
 import { HOSPITAL_PLANS, PLANS, TRIAL_DAYS, TRIAL_PLAN, rupees } from "./pricing";
@@ -179,13 +180,14 @@ export const BELIEFS: ReadonlyArray<{ title: string; body: string }> = [
  * file, which name their sources in the app repo; keep the wording within
  * what those files say. Checked 11 November 2026.
  */
-export const PAIN_POINTS: ReadonlyArray<{ problem: string; fix: string; href: string; label: string }> = [
+export const PAIN_POINTS: ReadonlyArray<{ problem: string; fix: string; href: string; label: string; icon: IconName }> = [
   {
     problem: "A crowd at the desk asking who is next",
     // features.ts, tokens-and-queue: "Wait times that change colour".
     fix: "Every walk-in gets a token. The Today screen shows the whole line, and a wait over 30 minutes turns orange.",
     href: "/features/tokens-and-queue",
     label: "Tokens and the waiting line",
+    icon: "token",
   },
   {
     problem: "Nobody is sure who still owes money",
@@ -193,6 +195,7 @@ export const PAIN_POINTS: ReadonlyArray<{ problem: string; fix: string; href: st
     fix: "Part payments stay on the bill, Who owes is one list, and today's money is counted by UPI, cash and card.",
     href: "/features/billing",
     label: "Billing",
+    icon: "rupee",
   },
   {
     problem: "A course of sessions quietly falls apart",
@@ -200,6 +203,7 @@ export const PAIN_POINTS: ReadonlyArray<{ problem: string; fix: string; href: st
     fix: "Book the whole course in one go. Every booking shows its place, such as Session 3 of 6.",
     href: "/features/appointments",
     label: "Appointments",
+    icon: "course",
   },
   {
     problem: "An allergy nobody remembered",
@@ -207,6 +211,7 @@ export const PAIN_POINTS: ReadonlyArray<{ problem: string; fix: string; href: st
     fix: "Allergies sit at the top of every file, and a medicine that matches one gets a red “Check before giving” line.",
     href: "/features/patient-records",
     label: "Patient files",
+    icon: "allergy",
   },
   {
     problem: "The doctor is tied to the desk computer",
@@ -214,6 +219,7 @@ export const PAIN_POINTS: ReadonlyArray<{ problem: string; fix: string; href: st
     fix: "On the phone app the doctor sees the line, taps Call next and opens the same file the desk sees.",
     href: "/mobile-app",
     label: "The phone app",
+    icon: "phone",
   },
   {
     problem: "New software arrives empty",
@@ -221,6 +227,7 @@ export const PAIN_POINTS: ReadonlyArray<{ problem: string; fix: string; href: st
     fix: "Pick your speciality in setup and its services, starter prices, medicines, tests and consent forms are made for you.",
     href: "/specialities",
     label: "Speciality setups",
+    icon: "setup",
   },
 ];
 
@@ -229,9 +236,9 @@ export const PAIN_POINTS: ReadonlyArray<{ problem: string; fix: string; href: st
  * (content/legal.ts) and the plans (content/pricing.ts). README lists a
  * re-check of the hosting facts against the AWS account before launch.
  */
-export const TRUST_FACTS: ReadonlyArray<{ term: string; detail: string; href?: string }> = [
-  { term: "Made in Pune", detail: `By ${SITE.parent}, the company behind MolarPlus.`, href: "/about" },
-  { term: "Records kept in India", detail: "On Amazon Web Services in Mumbai, encrypted, and backed up every day.", href: "/security" },
-  { term: "One price for the clinic", detail: "Not per doctor. Every feature and every speciality setup is in both plans.", href: "/pricing" },
-  { term: "Yours to take out", detail: "Patients, bills and payments export, and the whole clinic downloads as one file.", href: "/faq" },
+export const TRUST_FACTS: ReadonlyArray<{ term: string; detail: string; href?: string; icon: IconName }> = [
+  { term: "Made in Pune", detail: `By ${SITE.parent}, the company behind MolarPlus.`, href: "/about", icon: "pin" },
+  { term: "Records kept in India", detail: "On Amazon Web Services in Mumbai, encrypted, and backed up every day.", href: "/security", icon: "lock" },
+  { term: "One price for the clinic", detail: "Not per doctor. Every feature and every speciality setup is in both plans.", href: "/pricing", icon: "tag" },
+  { term: "Yours to take out", detail: "Patients, bills and payments export, and the whole clinic downloads as one file.", href: "/faq", icon: "export" },
 ];

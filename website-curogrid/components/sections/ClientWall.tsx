@@ -1,6 +1,6 @@
 import { Container, Section } from "@/components/ui/Section";
 import { SPECIALITIES } from "@/lib/specialities";
-import { CLIENTS, STATS, STATS_AS_OF } from "@/content/proof";
+import { CLIENTS, LISTINGS, STATS, STATS_AS_OF } from "@/content/proof";
 
 /** At most this many clinics from each speciality, so no one kind of clinic fills the wall. */
 const PER_SPECIALITY = 2;
@@ -60,6 +60,21 @@ export function ClientWall() {
               ))}
             </ul>
           </>
+        )}
+
+        {LISTINGS.length > 0 && (
+          <div className="mt-10 flex flex-col items-center gap-4 border-t border-gray-200 pt-8 sm:flex-row sm:justify-center sm:gap-10">
+            <p className="text-small font-semibold text-gray-600">Listed on</p>
+            <ul className="flex flex-wrap items-center justify-center gap-x-10 gap-y-4">
+              {LISTINGS.map((l) => (
+                <li key={l.name}>
+                  {/* Logos only, no link: visitors stay on the site. */}
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={l.logo} alt={`Curogrid is listed on ${l.name}`} width={l.width} height={l.height} loading="lazy" className={l.width === l.height ? "h-10 w-auto" : "h-7 w-auto"} />
+                </li>
+              ))}
+            </ul>
+          </div>
         )}
       </Container>
     </Section>

@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Container, Section } from "@/components/ui/Section";
 import { TRUST_FACTS } from "@/content/pages";
+import { IconTile } from "@/components/icons/CuroIcon";
 
 /**
  * Who makes Curogrid and where the records are kept. The clinics that use
@@ -14,7 +15,7 @@ export function TrustBand() {
       <Container>
         <div className="grid items-center gap-10 lg:grid-cols-[1fr_1.2fr] lg:gap-16">
           <div className="relative aspect-[3/2] overflow-hidden rounded-md">
-            <Image src="/photos/doctor-corridor.jpg" alt="" fill sizes="(min-width: 1024px) 520px, 100vw" className="object-cover grayscale" />
+            <Image src="/photos/heroes/trust.jpg" alt="" fill sizes="(min-width: 1024px) 520px, 100vw" className="object-cover grayscale" />
             <div aria-hidden="true" className="absolute inset-0 bg-teal-700/45" />
           </div>
           <div>
@@ -23,7 +24,9 @@ export function TrustBand() {
             </h2>
             <dl className="mt-8 grid gap-x-8 gap-y-6 sm:grid-cols-2">
               {TRUST_FACTS.map((fact) => (
-                <div key={fact.term} className="border-t border-white/15 pt-4">
+                <div key={fact.term} className="flex gap-4 border-t border-white/15 pt-4">
+                  <IconTile name={fact.icon} tone="dark" />
+                  <div>
                   <dt className="font-semibold text-white">
                     {fact.href ? (
                       <Link href={fact.href} className="underline-offset-4 hover:underline">
@@ -34,6 +37,7 @@ export function TrustBand() {
                     )}
                   </dt>
                   <dd className="mt-1 text-[0.9375rem] text-teal-100">{fact.detail}</dd>
+                  </div>
                 </div>
               ))}
             </dl>

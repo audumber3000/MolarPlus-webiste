@@ -174,15 +174,30 @@ export const TESTIMONIALS: ReadonlyArray<Testimonial> = [];
 /**
  * The headline numbers, as the owner gave them on 11 November 2026 from
  * the live product. Update them from the app's own counts; never round
- * up beyond what the app shows. The third is a fact of the product until
- * a third usage number is supplied.
+ * up beyond what the app shows.
  */
 export const STATS: ReadonlyArray<{ value: string; label: string }> = [
   { value: "800+", label: "clinics run their day on Curogrid" },
   { value: "40,000+", label: "patients managed" },
-  { value: "10", label: "specialities, set up on day one" },
+  { value: "75,000+", label: "appointments booked" },
 ];
 export const STATS_AS_OF = "November 2026";
+
+/**
+ * Review sites where Curogrid has a listing, as the owner confirmed on
+ * 12 November 2026 (Capterra was also found through search; the sites
+ * block automated visits, so the others could not be opened from here).
+ * Shown as logos only, with no link: the owner does not want visitors
+ * sent off the site. Each logo is the platform's own artwork, in
+ * public/badges/, never redrawn. Remove a row if a listing is taken down.
+ */
+export const LISTINGS: ReadonlyArray<{ name: string; logo: string; width: number; height: number }> = [
+  { name: "Capterra", logo: "/badges/capterra.png", width: 443, height: 108 },
+  { name: "Software Advice", logo: "/badges/software-advice.png", width: 1067, height: 138 },
+  { name: "G2", logo: "/badges/g2.png", width: 568, height: 568 },
+  { name: "Product Hunt", logo: "/badges/product-hunt.png", width: 3094, height: 568 },
+  { name: "Trustpilot", logo: "/badges/trustpilot.svg", width: 1133, height: 278 },
+];
 
 /** Clients for one speciality page, or every client for "all". */
 export function clientsFor(speciality: string) {

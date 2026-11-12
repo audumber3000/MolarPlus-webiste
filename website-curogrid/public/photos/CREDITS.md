@@ -44,6 +44,19 @@ previews; swap in the full-size download under the same name when you have it.
 | `ortho.jpg` | SM764477 | A doctor fitting a knee brace on an older man |
 | `surgery.jpg` | SM226434 | A doctor and a patient in a surgical OPD |
 | `diabetes.jpg` | SM752194 | A doctor checking a patient's blood sugar with a glucometer |
+| `trust.jpg` | SM1108045 | A doctor going over a report with a couple (homepage trust band) |
+| `general-2.jpg` | SM1105797 | A doctor and a patient talking across the desk |
+| `paeds-2.jpg` | SM681344 | Parents with a newborn and the paediatrician |
+| `gynae-2.jpg` | SM926847 | A doctor with a pregnant woman in the clinic |
+| `derma-2.jpg` | SM189132 | A dermatologist examining a man's face |
+| `ent-2.jpg` | SM657052 | An ENT doctor checking a girl's ear |
+| `physio-2.jpg` | SM449419 | A physiotherapist exercising an older man's arm with a dumbbell |
+| `eye-2.jpg` | SM706914 | A child's eye test with trial frames |
+| `ortho-2.jpg` | SM1077133 | A doctor examining an older man's knee |
+| `surgery-2.jpg` | SM891344 | Two surgeons reading scans |
+| `diabetes-2.jpg` | SM752197 | A doctor going over glucometer readings with a patient |
+
+The `-2` photos sit in each speciality page's closing band (`bandPhoto` in `lib/editions.ts`).
 
 The same rule as the Unsplash photos applies: no name, no quote and no endorsement beside any of them.
 

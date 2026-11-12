@@ -28,6 +28,8 @@ export type Edition = {
    * teal, with no name or quote beside it.
    */
   photo?: { src: string; position?: string };
+  /** A second photo of the same kind of clinic, blended into the closing band. */
+  bandPhoto?: string;
 };
 
 const kit = (word: string) => ({
@@ -42,6 +44,7 @@ const edition = (word: string, name: string): Edition => ({
   name: `Curogrid ${name}`,
   logo: kit(word),
   photo: { src: `/photos/heroes/${word}.jpg` },
+  bandPhoto: `/photos/heroes/${word}-2.jpg`,
 });
 
 /** By the speciality's `key` in lib/specialities. */
@@ -52,6 +55,7 @@ export const EDITIONS: Readonly<Record<string, Edition>> = {
     name: "Curogrid",
     logo: { light: "/logo.svg", dark: "/logo-reversed.svg", small: "/brand/01-logo/svg/curogrid-logo-small-primary.svg", width: 339 },
     photo: { src: "/photos/heroes/general.jpg" },
+    bandPhoto: "/photos/heroes/general-2.jpg",
   },
   paediatrics: edition("paeds", "Paeds"),
   obstetrics_gynaecology: edition("gynae", "Gynae"),

@@ -456,6 +456,7 @@ export function ShowcasePage({ s, showcase: x, edition }: { s: Speciality; showc
       </Section>
 
       <CtaBand
+        photo={edition.bandPhoto}
         placement={`speciality_footer_${s.key}`}
         title={x.closing.title}
         body={`${TRIAL_DAYS} days of ${TRIAL_PLAN}, free. Pick “${s.appLabel}” in setup and ${x.closing.ready} are ready before your first patient.`}
