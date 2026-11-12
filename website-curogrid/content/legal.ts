@@ -3,7 +3,7 @@ import { ADDRESS_LINE, SITE } from "@/lib/site";
 import { PLANS, TRIAL_DAYS, TRIAL_PLAN, rupees } from "./pricing";
 
 /**
- * The four legal pages.
+ * The legal pages.
  *
  * READ THIS BEFORE EDITING OR LAUNCHING.
  *
@@ -15,8 +15,9 @@ import { PLANS, TRIAL_DAYS, TRIAL_PLAN, rupees } from "./pricing";
  * What still blocks a review, and is deliberately left general here
  * rather than guessed:
  *
- * 1. The registered legal name of the company. "Clino Health" is the
- *    trading name; the contracting entity needs its full name and CIN.
+ * 1. The contracting entity is SITE.legalName (Upclick Labs (OPC) Pvt.
+ *    Ltd.), the same wording as the MolarPlus site. Its CIN is not yet
+ *    printed anywhere; add it once confirmed.
  * 2. A named Grievance Officer. The DPDP Act and the IT Rules expect a
  *    named person with contact details. Only the support address is
  *    given.
@@ -24,8 +25,10 @@ import { PLANS, TRIAL_DAYS, TRIAL_PLAN, rupees } from "./pricing";
  *    payment gateway, analytics). They are described by kind, not by
  *    name, because the list has not been verified against the live
  *    account. Name them once it has.
- * 4. The refund terms. The refund page commits to nothing numeric,
- *    because no refund policy has been decided. Decide it, then write it.
+ * 4. The refund window is 3 days from payment or renewal for every plan,
+ *    on every site the company runs (MolarPlus, Clino Health, Curogrid,
+ *    SyrupDesk), set by the owner on 12 November 2026. Change it on all
+ *    four together.
  * 5. Governing law and courts are given as Pune, from the office
  *    address. Confirm.
  *
@@ -38,15 +41,15 @@ import { PLANS, TRIAL_DAYS, TRIAL_PLAN, rupees } from "./pricing";
  * live AWS account before launch.
  */
 
-export const LEGAL_UPDATED = "11 October 2026";
+export const LEGAL_UPDATED = "12 November 2026";
 
-const CONTACT = `Write to ${SITE.email}, or to ${SITE.parent}, ${ADDRESS_LINE}.`;
+const CONTACT = `Write to ${SITE.email}, or to ${SITE.legalName}, ${ADDRESS_LINE}.`;
 
 export const PRIVACY: LegalSection[] = [
   {
     heading: "Who we are",
     paragraphs: [
-      `Curogrid is clinic management software made by ${SITE.parent}, with its office at ${ADDRESS_LINE}. In this policy “we” means ${SITE.parent} and “Curogrid” means the software and this website.`,
+      `Curogrid is clinic management software from ${SITE.parent}, operated by ${SITE.legalName}, with its office at ${ADDRESS_LINE}. In this policy “we” means ${SITE.legalName} and “Curogrid” means the software and this website.`,
       "This policy covers two different things: this public website, and the Curogrid software that clinics use. They handle very different information, so they are described separately.",
     ],
   },
@@ -107,7 +110,7 @@ export const TERMS: LegalSection[] = [
   {
     heading: "The agreement",
     paragraphs: [
-      `These terms are between ${SITE.parent} (“we”) and the clinic or person that creates a Curogrid account (“you”). By creating an account you agree to them.`,
+      `These terms are between ${SITE.legalName} (“we”), which operates Curogrid, and the clinic or person that creates a Curogrid account (“you”). By creating an account you agree to them.`,
       "If you create an account for a clinic, you confirm that you are allowed to do so on its behalf.",
     ],
   },
@@ -130,7 +133,7 @@ export const TERMS: LegalSection[] = [
     heading: "Plans and payment",
     paragraphs: [
       `New clinics receive a ${TRIAL_DAYS}-day trial of the ${TRIAL_PLAN} plan. After the trial, continued use needs a paid plan: ${PLANS.map((plan) => `${plan.name} at ${rupees(plan.monthly)} a month or ${rupees(plan.annual)} a year`).join(", or ")}.`,
-      "Plans are paid in advance, by the month or by the year. Prices may change; a change applies from your next renewal, and we will tell you before it does. Taxes are added where they apply.",
+      `Plans are paid in advance, by the month or by the year, to ${SITE.legalName}. A plan starts as soon as its payment succeeds. Prices may change; a change applies from your next renewal, and we will tell you before it does. Taxes are added where they apply.`,
       "Refunds are covered by the refund policy.",
     ],
   },
@@ -176,27 +179,119 @@ export const TERMS: LegalSection[] = [
 
 export const REFUNDS: LegalSection[] = [
   {
-    heading: "Try before you pay",
+    heading: "Overview",
     paragraphs: [
-      `Every clinic starts with a ${TRIAL_DAYS}-day trial of the ${TRIAL_PLAN} plan, without paying. The trial exists so that you can decide whether Curogrid suits your clinic before any money changes hands.`,
+      `Curogrid is sold and operated by ${SITE.legalName}. This policy explains when a paid plan is refunded and how cancelling works. It covers every paid plan, ${PLANS.map((plan) => plan.name).join(" and ")}, on monthly and yearly billing.`,
+      `Every clinic starts with a ${TRIAL_DAYS}-day trial of the ${TRIAL_PLAN} plan, without paying. The trial is not charged, so it is not covered by this policy: if you do not choose a plan when it ends, nothing is billed and no refund is needed.`,
+    ],
+  },
+  {
+    heading: "Refund eligibility",
+    list: [
+      "Every paid plan, monthly or yearly, can be refunded in full if you ask within 3 days of the payment. The same 3-day window applies from the date of every renewal. Requests after 3 days are not eligible.",
+      "Charged by mistake, charged twice, or charged after you cancelled: tell us and we refund it in full, whatever the date.",
+    ],
+  },
+  {
+    heading: "When a refund is not given",
+    list: [
+      "The request is made more than 3 days after the payment or renewal.",
+      "The account was suspended or closed for breaking the terms of service.",
+      "Part of a month already used on a monthly plan.",
+      "Onboarding, data import or training that has already been delivered.",
+      "Usage-based charges already consumed, such as WhatsApp or SMS messages already sent.",
+      "A move to a smaller plan in the middle of a billing period. It takes effect at the next renewal, and the difference is not refunded.",
+      "Goods and Services Tax already paid to the government, where the refund falls outside the refund window.",
+    ],
+  },
+  {
+    heading: "How to ask for a refund",
+    paragraphs: [
+      `Email ${SITE.email} with the subject "Refund request" and your clinic's name, the plan, the mobile number you sign in with, and the payment date. You can also message us on WhatsApp or call ${SITE.phoneDisplay}.`,
+      "We reply within 2 business days. An approved refund goes back to the original payment method within 7 to 10 business days, depending on your bank or payment provider.",
     ],
   },
   {
     heading: "Cancelling",
     paragraphs: [
-      "You can cancel a plan at any time. Cancelling stops the next renewal. Your plan stays active until the end of the period you have already paid for.",
+      "You can cancel a plan at any time, from the Subscription page in Curogrid or by writing to us. Cancelling stops the next renewal. It does not by itself refund the current period: your plan stays active until the end of the period you have already paid for.",
+      "Cancelling does not delete your records. You can export them from Settings, Data backup. Closing the account and deleting its records is a separate request, described on the Delete your account page.",
     ],
   },
   {
-    heading: "Refunds",
+    heading: "Delivery of the service",
     paragraphs: [
-      "If you were charged by mistake, charged twice, or charged after you cancelled, tell us and we will put it right.",
-      "For any other refund request, write to us with your clinic's name and the reason. We look at each request and reply.",
+      "Curogrid is software delivered online. Nothing is shipped. Payment is taken on Cashfree's secure page, and your plan is switched on in your account as soon as the payment succeeds, usually within minutes. If a paid plan is not active within 24 hours of payment, contact us and we will activate it or refund you.",
     ],
   },
   {
-    heading: "How to ask",
-    paragraphs: [CONTACT, `You can also message us on WhatsApp or call ${SITE.phoneDisplay}.`],
+    heading: "Payment disputes",
+    paragraphs: [
+      "If you believe a charge is wrong, please contact us before raising a chargeback with your bank. A chargeback raised without contacting us first may lead to the account being paused while it is looked into.",
+    ],
+  },
+  {
+    heading: "Contact",
+    paragraphs: [CONTACT, `WhatsApp or call ${SITE.phoneDisplay}.`],
+  },
+];
+
+/**
+ * Written from what this site loads: PostHog analytics (only when
+ * NEXT_PUBLIC_POSTHOG_KEY is set, default persistence, so a first-party
+ * cookie plus local storage) and no advertising tags. If an ads or other
+ * analytics script is added, change "This website" with it.
+ */
+export const COOKIES: LegalSection[] = [
+  {
+    heading: "What cookies are",
+    paragraphs: [
+      "Cookies are small text files a website stores on your computer or phone. They let a site remember things, such as that you are signed in.",
+      `This policy explains how ${SITE.legalName} (“we”) uses cookies and similar storage on this website and in the Curogrid software.`,
+    ],
+  },
+  {
+    heading: "This website",
+    paragraphs: ["This website uses one kind of cookie:"],
+    list: [
+      "Analytics (PostHog): a first-party cookie and browser storage that count visits and show which pages and buttons are used, so we can improve the site. Anything typed into a form is masked. It is not used for advertising.",
+    ],
+    after: ["This website does not use advertising or cross-site tracking cookies."],
+  },
+  {
+    heading: "The Curogrid software",
+    paragraphs: ["Once you sign in, Curogrid uses cookies and browser storage only for things it cannot work without:"],
+    list: [
+      "Keeping you signed in.",
+      "Security, such as protecting forms from being submitted by another site.",
+      "Remembering settings you choose, such as language or layout.",
+    ],
+    after: ["There are no advertising cookies in the software, and none on any screen that shows patient information."],
+  },
+  {
+    heading: "Third parties",
+    paragraphs: [
+      "When you pay for a plan, the payment page is run by Cashfree, which may set its own cookies to process the payment safely and prevent fraud. Those cookies are covered by Cashfree's own policy.",
+    ],
+  },
+  {
+    heading: "How long they last",
+    list: [
+      "Session cookies: deleted when you close the browser.",
+      "Sign-in: until you sign out, or the session expires.",
+      "Analytics: up to 1 year.",
+      "Settings: up to 1 year.",
+    ],
+  },
+  {
+    heading: "Controlling cookies",
+    paragraphs: [
+      "Every browser lets you see, block and delete cookies in its settings: in Chrome, Settings, then Privacy and security; in Safari, Settings, then Privacy; in Firefox, Settings, then Privacy and Security; in Edge, Settings, then Cookies and site permissions. Blocking analytics cookies does not affect the site. Blocking the software's own cookies will sign you out.",
+    ],
+  },
+  {
+    heading: "Contact",
+    paragraphs: [CONTACT],
   },
 ];
 
@@ -256,7 +351,7 @@ export const DELETE_ACCOUNT: LegalSection[] = [
   {
     heading: "Who this is for",
     paragraphs: [
-      `This page is for people who sign in to Curogrid (the app "Curogrid: Clinic Management" on Android and iPhone, and app.curogrid.com), made by ${SITE.parent}: clinic owners, doctors and clinic staff.`,
+      `This page is for people who sign in to Curogrid (the app "Curogrid: Clinic Management" on Android and iPhone, and app.curogrid.com), made by ${SITE.parent} and operated by ${SITE.legalName}: clinic owners, doctors and clinic staff.`,
       "If you are a patient, your record belongs to your clinic. Ask your clinic to correct or remove it; we will help the clinic do it.",
     ],
   },

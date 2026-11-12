@@ -12,6 +12,10 @@ export const SITE = {
    *  house as MolarPlus and SyrupDesk. */
   parent: "Clino Health",
   parentUrl: "https://clinohealth.com",
+  /** The registered company that operates Curogrid and takes the
+   *  payments. Same wording as the MolarPlus and Clino Health sites, so
+   *  the payment gateway sees one entity across every site. */
+  legalName: "Upclick Labs (OPC) Pvt. Ltd.",
   /** Sister product for dental clinics. Curogrid has no dental
    *  template on purpose, so dentists are sent here. */
   dentalUrl: "https://www.molarplus.com",

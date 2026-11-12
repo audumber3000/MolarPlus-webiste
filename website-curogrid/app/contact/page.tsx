@@ -50,7 +50,7 @@ export default function ContactPage() {
               <div className="py-5">
                 <dt className="text-[0.9375rem] font-semibold text-gray-500">Office</dt>
                 <dd className="mt-1 text-body text-gray-900">
-                  {SITE.parent}
+                  {SITE.legalName}
                   <br />
                   {ADDRESS_LINE}
                 </dd>

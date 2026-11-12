@@ -94,6 +94,10 @@ export default function AboutPage() {
               </dd>
             </div>
             <div className="grid gap-1 py-4 sm:grid-cols-[10rem_1fr] sm:gap-4">
+              <dt className="text-[0.9375rem] font-semibold text-gray-500">Operated by</dt>
+              <dd className="text-body text-gray-900">{SITE.legalName}</dd>
+            </div>
+            <div className="grid gap-1 py-4 sm:grid-cols-[10rem_1fr] sm:gap-4">
               <dt className="text-[0.9375rem] font-semibold text-gray-500">Office</dt>
               <dd className="text-body text-gray-900">{ADDRESS_LINE}</dd>
             </div>

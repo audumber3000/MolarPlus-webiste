@@ -37,6 +37,7 @@ export function organizationSchema() {
     "@id": ORG_ID,
     name: SITE.name,
     alternateName: "Curogrid Clinic Software",
+    legalName: SITE.legalName,
     url: SITE.url,
     logo: { "@type": "ImageObject", url: `${SITE.url}/icon-512.png`, width: 512, height: 512 },
     description: SITE.description,

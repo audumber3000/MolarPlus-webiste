@@ -85,12 +85,14 @@ export default function Footer() {
               <li><Link href="/security" className="hover:text-clino-medium">Security</Link></li>
               <li><Link href="/privacy" className="hover:text-clino-medium">Privacy</Link></li>
               <li><Link href="/terms" className="hover:text-clino-medium">Terms</Link></li>
+              <li><Link href="/refund-policy" className="hover:text-clino-medium">Refunds and cancellation</Link></li>
+              <li><Link href="/cookies-policy" className="hover:text-clino-medium">Cookies</Link></li>
             </ul>
           </div>
         </div>
 
         <div className="mt-12 flex flex-col gap-3 border-t border-clino-edge pt-6 text-sm text-ink-muted sm:flex-row sm:items-center sm:justify-between">
-          <p>© {year} {SITE.name}. Built in Pune, for Indian healthcare.</p>
+          <p>© {year} {SITE.name}, operated by {SITE.legalName}. Built in Pune, for Indian healthcare.</p>
           <p>Support in Hindi and English, on WhatsApp and by phone.</p>
         </div>
       </div>

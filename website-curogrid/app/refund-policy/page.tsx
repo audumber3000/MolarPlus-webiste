@@ -15,8 +15,8 @@ export default function Page() {
   return (
     <LegalDoc
       path="/refund-policy"
-      title="Refund policy"
-      lead="How the free trial, cancelling and refunds work."
+      title="Refund and cancellation policy"
+      lead="When you can get your money back, how to cancel, and how your plan is delivered."
       updated={LEGAL_UPDATED}
       sections={REFUNDS}
     />

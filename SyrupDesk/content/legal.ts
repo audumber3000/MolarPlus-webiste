@@ -14,15 +14,18 @@
 
 /** Shown at the top of both pages. Update whenever the text changes —
  *  a stale date on a privacy policy is itself a compliance problem. */
-export const LAST_UPDATED = "20 July 2026";
+export const LAST_UPDATED = "12 November 2026";
 
 export const LEGAL = {
-  /** TODO (blocks launch): the registered legal entity, exactly as
-   *  incorporated — e.g. "Clino Health Private Limited" — plus its CIN.
-   *  "Clino Health" is a brand name and is not sufficient in a contract
-   *  or a privacy notice. */
-  entity: "Clino Health",
-  entityTodo: true,
+  /** The registered company that operates SyrupDesk and takes the
+   *  payments. Same wording as the MolarPlus, Clino Health and Curogrid
+   *  sites. TODO: add its CIN once confirmed. */
+  entity: "Upclick Labs (OPC) Pvt. Ltd.",
+  entityTodo: false,
+
+  /** Refund window, for every paid plan. The same 3 days on every site
+   *  the company runs; set by the owner on 12 November 2026. */
+  refundDays: 3,
 
   /** TODO (blocks launch): the DPDP Act 2023 requires a published
    *  contact for grievances, and the IT (Reasonable Security Practices)

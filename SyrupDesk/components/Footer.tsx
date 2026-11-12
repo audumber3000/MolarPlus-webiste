@@ -5,6 +5,7 @@ import { SocialLinks } from "./SocialLinks";
 import { StoreBadge } from "./StoreBadges";
 import { SITE, whatsappLink } from "@/lib/site";
 import { WhatsAppIcon } from "@/components/WhatsAppIcon";
+import { LEGAL } from "@/content/legal";
 
 const COLUMNS = [
   {
@@ -26,6 +27,7 @@ const COLUMNS = [
     links: [
       { href: "/privacy", label: "Privacy policy" },
       { href: "/terms", label: "Terms of service" },
+      { href: "/refund-policy", label: "Refund policy" },
     ],
   },
 ] as const;
@@ -103,7 +105,7 @@ export function Footer() {
 
         <div className="flex flex-col gap-2 border-t border-green-600 py-8 text-small text-green-200 sm:flex-row sm:items-center sm:justify-between">
           <p>
-            © {new Date().getFullYear()} {SITE.name}, a {SITE.parent} product. Made in India.
+            © {new Date().getFullYear()} {SITE.name}, a {SITE.parent} product, operated by {LEGAL.entity}. Made in India.
           </p>
           <p className="flex flex-wrap items-center gap-x-4 gap-y-1">
             <a

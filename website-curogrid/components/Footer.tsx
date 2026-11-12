@@ -61,6 +61,7 @@ const LEGAL: ReadonlyArray<FooterLink> = [
   { href: "/privacy", label: "Privacy" },
   { href: "/terms", label: "Terms" },
   { href: "/refund-policy", label: "Refunds" },
+  { href: "/cookies-policy", label: "Cookies" },
   { href: "/delete-account", label: "Delete account" },
   { href: "/security", label: "Security" },
 ];
@@ -139,7 +140,7 @@ export function Footer() {
             <a href={SITE.parentUrl} target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:text-white">
               {SITE.parent}
             </a>{" "}
-            product. {ADDRESS_LINE}.
+            product, operated by {SITE.legalName}. {ADDRESS_LINE}.
           </p>
           <nav aria-label="Legal">
             <ul className="flex flex-wrap gap-x-5">

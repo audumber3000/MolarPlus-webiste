@@ -14,6 +14,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ['/security', 0.6],
     ['/privacy', 0.4],
     ['/terms', 0.3],
+    ['/refund-policy', 0.3],
+    ['/cookies-policy', 0.2],
   ];
 
   return [

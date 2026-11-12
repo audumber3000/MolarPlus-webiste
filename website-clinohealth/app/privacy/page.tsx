@@ -43,9 +43,10 @@ export default function PrivacyPage() {
     >
       <Clause heading="1. Who we are">
         <p>
-          {SITE.name} (&quot;we&quot;, &quot;our&quot;, &quot;us&quot;) builds practice
-          management software for Indian healthcare, including MolarPlus and SyrupDesk.
-          This policy covers this website and those products.
+          {SITE.name} builds practice management software for Indian healthcare, including
+          MolarPlus and SyrupDesk. It is operated by{' '}
+          <strong className="font-semibold text-ink">{SITE.legalName}</strong> (&quot;we&quot;,
+          &quot;our&quot;, &quot;us&quot;). This policy covers this website and those products.
         </p>
         <p>
           In data-protection terms: for the patient records inside your practice,{' '}
@@ -166,7 +167,7 @@ export default function PrivacyPage() {
           </p>
         ) : null}
         <p>
-          {CONTACT.address.street}, {CONTACT.address.city}, {CONTACT.address.state}{' '}
+          {SITE.legalName}, {CONTACT.address.street}, {CONTACT.address.city}, {CONTACT.address.state}{' '}
           {CONTACT.address.postalCode}, {CONTACT.address.countryName}.
         </p>
         <p>

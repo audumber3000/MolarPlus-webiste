@@ -26,8 +26,12 @@ export default function TermsPage() {
     >
       <Clause heading="1. Agreement">
         <p>
-          By using a {SITE.name} product you agree to these terms. If you are accepting on
-          behalf of a practice, you confirm you are authorised to bind it.
+          {SITE.name} and its products are operated by{' '}
+          <strong className="font-semibold text-ink">{SITE.legalName}</strong> (&quot;we&quot;,
+          &quot;our&quot;, &quot;us&quot;), {CONTACT.address.street}, {CONTACT.address.city},{' '}
+          {CONTACT.address.state} {CONTACT.address.postalCode}. By using a {SITE.name} product
+          you agree to these terms. If you are accepting on behalf of a practice, you confirm
+          you are authorised to bind it.
         </p>
       </Clause>
 
@@ -43,8 +47,13 @@ export default function TermsPage() {
         <p>
           Products are sold on subscription. Fees, billing period and included features are
           those shown on the relevant product&apos;s pricing page at the time you subscribe.
-          Access continues to the end of a paid period; we do not refund part-periods unless
-          the product was unavailable through our fault.
+          Payments are made to {SITE.legalName}. Access starts as soon as a payment succeeds
+          and continues to the end of the paid period. Refunds and cancellation are covered by
+          the{' '}
+          <Link href="/refund-policy" className="font-semibold text-clino-medium hover:text-clino-dark">
+            refund and cancellation policy
+          </Link>
+          .
         </p>
       </Clause>
 

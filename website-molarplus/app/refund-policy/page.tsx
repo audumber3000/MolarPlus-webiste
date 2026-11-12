@@ -5,7 +5,7 @@ import { SITE_URL, DEFAULT_OG_IMAGE } from '@/lib/seo';
 export const metadata: Metadata = {
   title: 'Refund Policy - MolarPlus Dental Clinic Management Software',
   description:
-    'MolarPlus Refund Policy. Our refund and cancellation terms for the Plus and Pro dental clinic management software subscriptions, including the 7-day free trial.',
+    'MolarPlus Refund Policy. Our refund and cancellation terms for the Plus and Pro dental clinic management software subscriptions, including the 3-day refund window and the 7-day free trial.',
   keywords: 'MolarPlus refund policy, dental software refund, subscription cancellation, clinic software money back',
   alternates: { canonical: `${SITE_URL}/refund-policy` },
   openGraph: {
@@ -23,7 +23,7 @@ export default function RefundPolicyPage() {
       <section className="pt-12 pb-24">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4">Refund Policy</h1>
-          <p className="text-gray-500 mb-10">Last updated: January 2025</p>
+          <p className="text-gray-500 mb-10">Last updated: November 2026</p>
 
           <div className="prose prose-lg max-w-none space-y-8 text-gray-700">
 
@@ -36,8 +36,7 @@ export default function RefundPolicyPage() {
                 subscriptions.
               </p>
               <p className="mt-4">
-                This policy applies to both paid subscriptions, <strong>Plus</strong> and <strong>Pro</strong>,
-                on monthly and annual billing. The 7-day free trial is not charged and is therefore not subject to
+                This policy applies to every paid plan, on monthly and annual billing. The 7-day free trial is not charged and is therefore not subject to
                 this policy: if you do not select a plan when it ends, nothing is billed and no refund is required.
               </p>
             </section>
@@ -45,22 +44,14 @@ export default function RefundPolicyPage() {
             <section>
               <h2 className="text-2xl font-bold text-gray-900 mb-4">2. Refund Eligibility</h2>
 
-              <h3 className="text-xl font-semibold text-gray-900 mt-6 mb-3">2.1 Monthly Subscriptions</h3>
               <p>
-                If you subscribed to Plus or Pro on a monthly basis and are not satisfied with the Service,
-                you may request a full refund within <strong>7 days</strong> of your initial payment or renewal date.
-                Refund requests received after 7 days will not be eligible.
-              </p>
-
-              <h3 className="text-xl font-semibold text-gray-900 mt-6 mb-3">2.2 Annual Subscriptions</h3>
-              <p>
-                If you subscribed to Plus or Pro on an annual basis, you may request a full refund within{' '}
-                <strong>14 days</strong> of your initial annual payment. After 14 days, refunds for annual
-                subscriptions are issued on a pro-rata basis for the remaining unused months, subject to a processing
-                review.
+                Every paid plan, monthly or annual, can be refunded in full if you ask within{' '}
+                <strong>3 days</strong> of the payment. The same 3-day window applies from the date of every
+                renewal. Refund requests received after 3 days are not eligible.
               </p>
               <p className="mt-4">
-                Annual subscription renewals follow the same 14-day refund window from the renewal date.
+                If you were charged by mistake, charged twice, or charged after you cancelled, tell us and we will
+                refund it in full, whatever the date.
               </p>
             </section>
 
@@ -68,7 +59,7 @@ export default function RefundPolicyPage() {
               <h2 className="text-2xl font-bold text-gray-900 mb-4">3. Non-Refundable Situations</h2>
               <p>Refunds will <strong>not</strong> be issued in the following circumstances:</p>
               <ul className="list-disc pl-6 space-y-2 mt-4">
-                <li>The refund request is made after the applicable refund window (7 days for monthly, 14 days for annual)</li>
+                <li>The refund request is made more than 3 days after the payment or renewal</li>
                 <li>The account has been suspended or terminated due to violation of our Terms of Use</li>
                 <li>Partial months of usage in a monthly subscription cycle</li>
                 <li>Add-on services, onboarding support, or custom development work already delivered</li>

@@ -6,6 +6,10 @@
  */
 export const SITE = {
   name: 'Clino Health',
+  /** The registered company that operates Clino Health and its products,
+   *  and the name customers pay. Same wording as the MolarPlus site, so the
+   *  payment gateway sees one entity across every site. */
+  legalName: 'Upclick Labs (OPC) Pvt. Ltd.',
   url: 'https://clinohealth.com',
   tagline: 'Healthcare software for Indian practices',
   description:

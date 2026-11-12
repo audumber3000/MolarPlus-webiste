@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { ArrowUpRight, Clock, Mail, MapPin, MessageCircle, Phone } from 'lucide-react';
 import { BRANDS } from '@/lib/brands';
 import { pageMetadata } from '@/lib/seo';
-import { CONTACT, whatsappLink } from '@/lib/site';
+import { CONTACT, SITE, whatsappLink } from '@/lib/site';
 
 export const metadata = pageMetadata({
   title: 'Contact',
@@ -111,6 +111,7 @@ export default function ContactPage() {
               </span>
               <h2 className="mt-5 text-xl font-bold text-ink">Where we are</h2>
               <address className="mt-2 space-y-1 not-italic leading-relaxed text-ink-muted">
+                <p className="font-semibold text-ink">{SITE.legalName}</p>
                 <p>{CONTACT.address.street}</p>
                 <p>
                   {CONTACT.address.city}, {CONTACT.address.state} {CONTACT.address.postalCode}

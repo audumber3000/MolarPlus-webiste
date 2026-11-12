@@ -112,6 +112,11 @@ export default function TermsPage() {
               renewal rather than immediately.
             </p>
             <p>
+              Payments are made to {LEGAL.entity}. Refunds and cancellation are covered by the{" "}
+              <Link href="/refund-policy">refund policy</Link>: every paid plan can be refunded in
+              full within {LEGAL.refundDays} days of the payment.
+            </p>
+            <p>
               If a payment fails we will try again and tell you. Continued non-payment may lead to
               the account moving to read-only, as described below.
             </p>
