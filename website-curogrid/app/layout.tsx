@@ -26,7 +26,7 @@ const jakarta = localFont({
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
   title: {
-    default: "Clinic Management Software for Indian Clinics | Curogrid",
+    default: "Curogrid: Clinic Management Software for Indian Clinics",
     template: `%s | ${SITE.name}`,
   },
   description: SITE.description,
@@ -34,6 +34,12 @@ export const metadata: Metadata = {
   authors: [{ name: SITE.parent }],
   creator: SITE.parent,
   publisher: SITE.parent,
+  // Google Search Console's HTML-tag check. Set GOOGLE_SITE_VERIFICATION
+  // in Vercel to the code Search Console gives (only the content="..."
+  // part). Not needed if the site is verified through DNS instead.
+  ...(process.env.GOOGLE_SITE_VERIFICATION && {
+    verification: { google: process.env.GOOGLE_SITE_VERIFICATION },
+  }),
   // No canonical and no og:url here. Each page sets its own through
   // buildMetadata; a default at this level is inherited by any page that
   // sets none, which made the 404 page declare the homepage as its

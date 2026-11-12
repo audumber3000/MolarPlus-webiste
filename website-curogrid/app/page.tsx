@@ -28,7 +28,7 @@ import { DEFINITION, SPECIALITY_COUNT } from "@/content/pages";
 import { PLANS, TRIAL_DAYS, rupees } from "@/content/pricing";
 
 const seo = buildMetadata({
-  title: "Clinic Management Software for Indian Clinics | Curogrid",
+  title: "Curogrid: Clinic Management Software for Indian Clinics",
   description:
     "Curogrid runs your clinic's tokens, appointments, patient files and bills, and sets itself up for your speciality. Web and phone. From ₹420 a month.",
   path: "/",
@@ -36,8 +36,10 @@ const seo = buildMetadata({
 
 export const metadata: Metadata = {
   ...seo,
+  // Brand first: a search for "curogrid" should find this page, and a new
+  // name needs the help (Google otherwise reads it as "Curogram").
   // The layout's title template would append the brand a second time.
-  title: { absolute: "Clinic Management Software for Indian Clinics | Curogrid" },
+  title: { absolute: "Curogrid: Clinic Management Software for Indian Clinics" },
   // Tells an AI assistant where the whole site is as plain Markdown.
   alternates: { ...seo.alternates, types: { "text/markdown": `${SITE.url}/llms-full.txt` } },
 };

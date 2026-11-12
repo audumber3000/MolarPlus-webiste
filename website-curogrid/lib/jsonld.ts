@@ -36,6 +36,7 @@ export function organizationSchema() {
     "@type": "Organization",
     "@id": ORG_ID,
     name: SITE.name,
+    alternateName: "Curogrid Clinic Software",
     url: SITE.url,
     logo: { "@type": "ImageObject", url: `${SITE.url}/icon-512.png`, width: 512, height: 512 },
     description: SITE.description,
@@ -65,7 +66,9 @@ export function websiteSchema() {
     "@context": "https://schema.org",
     "@type": "WebSite",
     "@id": `${SITE.url}/#website`,
+    // What Google shows as the site's name in results.
     name: SITE.name,
+    alternateName: ["Curogrid Clinic Software", "curogrid.com"],
     url: SITE.url,
     inLanguage: "en-IN",
     publisher: { "@id": ORG_ID },
