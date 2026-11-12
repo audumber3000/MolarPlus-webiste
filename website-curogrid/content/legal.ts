@@ -244,3 +244,54 @@ export const SECURITY: LegalSection[] = [
     paragraphs: [`If you believe you have found a security problem in Curogrid, write to ${SITE.email}. We will reply.`],
   },
 ];
+
+/**
+ * Deleting an account, for the app stores: Google Play requires a page that
+ * says how a user of the app asks for their account and data to be deleted,
+ * what is deleted, and what is kept and for how long. Deletion is done by
+ * support on request today; there is no delete button in the app. Keep this
+ * in step with "Where it is kept, and for how long" in PRIVACY.
+ */
+export const DELETE_ACCOUNT: LegalSection[] = [
+  {
+    heading: "Who this is for",
+    paragraphs: [
+      `This page is for people who sign in to Curogrid (the app "Curogrid: Clinic Management" on Android and iPhone, and app.curogrid.com), made by ${SITE.parent}: clinic owners, doctors and clinic staff.`,
+      "If you are a patient, your record belongs to your clinic. Ask your clinic to correct or remove it; we will help the clinic do it.",
+    ],
+  },
+  {
+    heading: "If you work at a clinic",
+    paragraphs: ["Your account belongs to your clinic. To delete it:"],
+    list: [
+      "Ask the clinic's owner or admin to remove you in Staff. You can no longer sign in from that moment.",
+      `Or write to us yourself, from the mobile number you sign in with: WhatsApp ${SITE.phoneDisplay}, or email ${SITE.email}, with "Delete my Curogrid account" and your clinic's name.`,
+    ],
+  },
+  {
+    heading: "If you own the clinic",
+    paragraphs: ["Deleting the owner's account closes the clinic's account and deletes its records. To do it:"],
+    list: [
+      "Download what you need first. Indian law requires doctors to keep patient records for a period of years, and that duty is yours. Ask us and we will send you an export of your patients, visits and bills.",
+      `Write to us from the clinic owner's mobile number: WhatsApp ${SITE.phoneDisplay}, or email ${SITE.email}, with "Delete my clinic's Curogrid account" and the clinic's name.`,
+      "We confirm it is you with a code sent to that number, and tell you when it is done.",
+    ],
+  },
+  {
+    heading: "What is deleted",
+    list: [
+      "Your account: your name, mobile number, email, PIN and the phones and computers you signed in on.",
+      "For a clinic that closes: its patients, visits, prescriptions, case papers, bills, appointments, staff, uploaded files and photos.",
+      "We delete within 30 days of confirming the request. Copies in our automatic backups expire within a further 7 days.",
+    ],
+  },
+  {
+    heading: "What is kept, and for how long",
+    list: [
+      "The invoices and payments for your Curogrid subscription, for as long as Indian tax law requires (up to 8 years).",
+      "A record that you asked for deletion and when it was done, so we can show it was done.",
+      "Nothing else. We do not keep patient records after a clinic's account is deleted.",
+    ],
+    after: [CONTACT],
+  },
+];
