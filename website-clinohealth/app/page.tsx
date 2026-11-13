@@ -125,13 +125,13 @@ export default function HomePage() {
 
             <div className="mt-9 flex flex-wrap items-center gap-4">
               <Link
-                href="/products"
+                href="/products/"
                 className="inline-flex items-center gap-2 rounded-full bg-clino-medium px-7 py-3.5 text-base font-semibold text-white transition-colors hover:bg-clino-dark"
               >
                 See what we build <ArrowRight className="h-4 w-4" />
               </Link>
               <Link
-                href="/contact"
+                href="/contact/"
                 className="inline-flex items-center gap-2 rounded-full border border-clino-medium bg-white/70 px-7 py-3.5 text-base font-semibold text-clino-medium backdrop-blur-sm transition-colors hover:bg-white"
               >
                 Book a demo
@@ -342,13 +342,13 @@ export default function HomePage() {
               </p>
               <div className="mt-8 flex flex-wrap gap-4">
                 <Link
-                  href="/security"
+                  href="/security/"
                   className="inline-flex items-center gap-2 rounded-full bg-clino-medium px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-clino-dark"
                 >
                   How we secure data <ArrowRight className="h-4 w-4" />
                 </Link>
                 <Link
-                  href="/privacy"
+                  href="/privacy/"
                   className="inline-flex items-center gap-2 rounded-full border border-clino-edge px-6 py-3 text-sm font-semibold text-ink transition-colors hover:border-clino-medium hover:text-clino-medium"
                 >
                   Read the privacy policy
@@ -416,13 +416,13 @@ export default function HomePage() {
           </p>
           <div className="mt-9 flex flex-wrap items-center justify-center gap-4">
             <Link
-              href="/contact"
+              href="/contact/"
               className="inline-flex items-center gap-2 rounded-full bg-white px-7 py-3.5 text-base font-semibold text-clino-dark transition-colors hover:bg-clino-wash"
             >
               Book a demo <ArrowRight className="h-4 w-4" />
             </Link>
             <Link
-              href="/products"
+              href="/products/"
               className="inline-flex items-center gap-2 rounded-full border border-white/30 px-7 py-3.5 text-base font-semibold text-white transition-colors hover:bg-white/10"
             >
               Browse all products

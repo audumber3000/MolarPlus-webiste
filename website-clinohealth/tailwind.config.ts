@@ -24,6 +24,15 @@ const config: Config = {
           wash: '#f4f9f0',
           edge: '#e3efd9',
         },
+        // MolarPlus's own identity, for its product page (website-molarplus/lib/seo.ts colors).
+        molar: {
+          DEFAULT: '#2a276e',
+          deep: '#1c1a52',
+          tint: '#eeedf6',
+          edge: '#d8d6e8',
+        },
+        // WhatsApp's green, for buttons that open a chat.
+        wa: '#1faa53',
         ink: {
           DEFAULT: '#12200a',
           muted: '#4a5a41',

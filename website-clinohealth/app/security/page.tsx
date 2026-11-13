@@ -144,11 +144,11 @@ export default function SecurityPage() {
         <Clause heading="Related">
           <p>
             See the{' '}
-            <Link href="/privacy" className="font-semibold text-clino-medium hover:text-clino-dark">
+            <Link href="/privacy/" className="font-semibold text-clino-medium hover:text-clino-dark">
               privacy policy
             </Link>{' '}
             for what we collect and why, and{' '}
-            <Link href="/platform" className="font-semibold text-clino-medium hover:text-clino-dark">
+            <Link href="/platform/" className="font-semibold text-clino-medium hover:text-clino-dark">
               how we build
             </Link>{' '}
             for the engineering decisions underneath all of this.

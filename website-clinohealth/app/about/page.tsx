@@ -89,7 +89,7 @@ export default function AboutPage() {
                     </span>
                     <span>
                       <Link
-                        href={`/brands/${brand.slug}`}
+                        href={`/products/${brand.slug}/`}
                         className="font-bold text-ink hover:text-clino-medium"
                       >
                         {brand.name}
@@ -161,7 +161,7 @@ export default function AboutPage() {
             If you run a practice we have not built for yet, we would like to hear about it.
           </h2>
           <Link
-            href="/contact"
+            href="/contact/"
             className="inline-flex shrink-0 items-center gap-2 rounded-full bg-clino-medium px-7 py-3.5 text-base font-semibold text-white transition-colors hover:bg-clino-dark"
           >
             Get in touch <ArrowRight className="h-4 w-4" />

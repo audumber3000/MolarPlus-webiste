@@ -3,11 +3,12 @@ import { notFound } from 'next/navigation';
 import { ArrowRight, ArrowUpRight, Check } from 'lucide-react';
 import BrandLockup from '@/components/BrandLockup';
 import { BRANDS, getBrand } from '@/lib/brands';
-import { pageMetadata } from '@/lib/seo';
+import { absoluteUrl, pageMetadata } from '@/lib/seo';
 import { SITE } from '@/lib/site';
 
 export function generateStaticParams() {
-  return BRANDS.map((b) => ({ slug: b.slug }));
+  // MolarPlus has its own page at app/products/molarplus, which wins over this route.
+  return BRANDS.filter((b) => b.slug !== 'molarplus').map((b) => ({ slug: b.slug }));
 }
 
 export async function generateMetadata({
@@ -21,7 +22,7 @@ export async function generateMetadata({
   return pageMetadata({
     title: `${brand.name} — ${brand.tagline}`,
     description: brand.description,
-    path: `/brands/${brand.slug}`,
+    path: `/products/${brand.slug}/`,
   });
 }
 
@@ -53,7 +54,7 @@ export default async function BrandPage({
             name: brand.name,
             applicationCategory: 'HealthApplication',
             description: brand.description,
-            url: brand.url ?? `${SITE.url}/brands/${brand.slug}`,
+            url: brand.url ?? absoluteUrl(`/products/${brand.slug}`),
             operatingSystem: 'Web, Windows, macOS, Android, iOS',
             publisher: { '@type': 'Organization', name: SITE.name, url: SITE.url },
           }),
@@ -65,7 +66,7 @@ export default async function BrandPage({
           <nav className="mb-8 flex items-center gap-2 text-sm text-ink-muted">
             <Link href="/" className="hover:text-clino-medium">Home</Link>
             <span>/</span>
-            <Link href="/products" className="hover:text-clino-medium">Products</Link>
+            <Link href="/products/" className="hover:text-clino-medium">Products</Link>
             <span>/</span>
             <span className="text-ink">{brand.name}</span>
           </nav>
@@ -115,7 +116,7 @@ export default async function BrandPage({
                       Go to {brand.name} <ArrowUpRight className="h-4 w-4" />
                     </a>
                     <Link
-                      href="/contact"
+                      href="/contact/"
                       className="inline-flex items-center gap-2 rounded-full border px-7 py-3.5 text-base font-semibold transition-colors hover:bg-white"
                       style={{ borderColor: accent, color: accent }}
                     >
@@ -124,7 +125,7 @@ export default async function BrandPage({
                   </>
                 ) : (
                   <Link
-                    href="/contact"
+                    href="/contact/"
                     className="inline-flex items-center gap-2 rounded-full px-7 py-3.5 text-base font-semibold text-white transition-opacity hover:opacity-90"
                     style={{ backgroundColor: accent }}
                   >
@@ -229,7 +230,7 @@ export default async function BrandPage({
             {others.map((b) => (
               <Link
                 key={b.slug}
-                href={`/brands/${b.slug}`}
+                href={`/products/${b.slug}/`}
                 className="group rounded-2xl border border-clino-edge bg-white p-6 transition-shadow hover:shadow-lg"
               >
                 <div className="flex items-center gap-3">

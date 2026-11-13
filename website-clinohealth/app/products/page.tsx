@@ -51,7 +51,7 @@ export default function ProductsPage() {
             </p>
           </div>
           <Link
-            href="/contact"
+            href="/contact/"
             className="inline-flex shrink-0 items-center gap-2 rounded-full bg-clino-medium px-7 py-3.5 text-base font-semibold text-white transition-colors hover:bg-clino-dark"
           >
             Talk to us <ArrowRight className="h-4 w-4" />

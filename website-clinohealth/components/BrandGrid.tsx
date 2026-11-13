@@ -65,7 +65,7 @@ export default function BrandGrid() {
 
               <div className="mt-6 flex flex-wrap items-center gap-4">
                 <Link
-                  href={`/brands/${brand.slug}`}
+                  href={`/products/${brand.slug}/`}
                   className="inline-flex items-center gap-1.5 text-sm font-semibold transition-opacity hover:opacity-75"
                   style={{ color: accent }}
                 >

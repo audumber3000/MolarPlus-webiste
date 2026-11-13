@@ -106,7 +106,7 @@ export default function CookiesPolicyPage() {
         </p>
         <p>
           See also the{' '}
-          <Link href="/privacy" className="font-semibold text-clino-medium hover:text-clino-dark">
+          <Link href="/privacy/" className="font-semibold text-clino-medium hover:text-clino-dark">
             privacy policy
           </Link>
           .

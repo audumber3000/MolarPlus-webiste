@@ -50,7 +50,7 @@ export default function TermsPage() {
           Payments are made to {SITE.legalName}. Access starts as soon as a payment succeeds
           and continues to the end of the paid period. Refunds and cancellation are covered by
           the{' '}
-          <Link href="/refund-policy" className="font-semibold text-clino-medium hover:text-clino-dark">
+          <Link href="/refund-policy/" className="font-semibold text-clino-medium hover:text-clino-dark">
             refund and cancellation policy
           </Link>
           .
@@ -61,7 +61,7 @@ export default function TermsPage() {
         <p>
           Your practice&apos;s data remains yours. We claim no ownership of it and use it
           only to provide the service, as set out in the{' '}
-          <Link href="/privacy" className="font-semibold text-clino-medium hover:text-clino-dark">
+          <Link href="/privacy/" className="font-semibold text-clino-medium hover:text-clino-dark">
             privacy policy
           </Link>
           . You may export it at any time.

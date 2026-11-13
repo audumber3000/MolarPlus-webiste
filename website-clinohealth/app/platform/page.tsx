@@ -96,7 +96,7 @@ export default function PlatformPage() {
                 that changes: it is whoever that practice has to talk to.
               </p>
               <Link
-                href="/products"
+                href="/products/"
                 className="mt-8 inline-flex items-center gap-2 rounded-full bg-clino-medium px-7 py-3.5 text-base font-semibold text-white transition-colors hover:bg-clino-dark"
               >
                 See all four, per brand <ArrowRight className="h-4 w-4" />
@@ -117,7 +117,7 @@ export default function PlatformPage() {
                       <tr key={brand.slug} className="border-b border-clino-edge last:border-0">
                         <td className="p-4">
                           <Link
-                            href={`/brands/${brand.slug}`}
+                            href={`/products/${brand.slug}/`}
                             className="font-semibold text-ink hover:text-clino-medium"
                           >
                             {brand.name}

@@ -150,7 +150,7 @@ export default function ContactPage() {
                   </a>
                 ) : (
                   <Link
-                    href={`/brands/${brand.slug}`}
+                    href={`/products/${brand.slug}/`}
                     className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-clino-medium hover:text-clino-dark"
                   >
                     In development →

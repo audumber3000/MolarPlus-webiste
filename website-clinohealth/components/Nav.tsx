@@ -105,7 +105,7 @@ export default function Nav() {
                   have no hover — a real destination listing every brand,
                   which is exactly what the panel was going to show them. */}
               <Link
-                href="/products"
+                href="/products/"
                 aria-expanded={menuOpen}
                 aria-haspopup="true"
                 onMouseEnter={openMenu}
@@ -121,17 +121,17 @@ export default function Nav() {
                 />
               </Link>
 
-              <Link href="/platform" className={navLink(pathname === '/platform')}>
+              <Link href="/platform/" className={navLink(pathname?.replace(/\/$/, '') === '/platform')}>
                 Platform
               </Link>
-              <Link href="/security" className={navLink(pathname === '/security')}>
+              <Link href="/security/" className={navLink(pathname?.replace(/\/$/, '') === '/security')}>
                 Security
               </Link>
-              <Link href="/about" className={navLink(pathname === '/about')}>
+              <Link href="/about/" className={navLink(pathname?.replace(/\/$/, '') === '/about')}>
                 Company
               </Link>
               <Link
-                href="/contact"
+                href="/contact/"
                 className="ml-3 rounded-full bg-clino-medium px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-clino-dark"
               >
                 Talk to us
@@ -165,7 +165,7 @@ export default function Nav() {
                     Our brands
                   </p>
                   <Link
-                    href="/products"
+                    href="/products/"
                     className="flex items-center gap-1 text-xs font-semibold text-clino-medium hover:text-clino-dark"
                   >
                     All products <ArrowUpRight className="h-3 w-3" />
@@ -177,7 +177,7 @@ export default function Nav() {
                     return (
                       <li key={brand.slug}>
                         <Link
-                          href={`/brands/${brand.slug}`}
+                          href={`/products/${brand.slug}/`}
                           onMouseEnter={() => setActiveSlug(brand.slug)}
                           onFocus={() => setActiveSlug(brand.slug)}
                           className="flex w-full items-start gap-3 rounded-lg border p-3 text-left transition-colors"
@@ -278,13 +278,13 @@ export default function Nav() {
                 </div>
 
                 <div className="mt-6 flex items-center gap-6 border-t border-clino-edge pt-5 text-sm">
-                  <Link href="/products" className="font-semibold text-clino-medium hover:text-clino-dark">
+                  <Link href="/products/" className="font-semibold text-clino-medium hover:text-clino-dark">
                     Compare all products
                   </Link>
-                  <Link href="/platform" className="text-ink-muted hover:text-ink">
+                  <Link href="/platform/" className="text-ink-muted hover:text-ink">
                     How we build
                   </Link>
-                  <Link href="/contact" className="ml-auto font-semibold text-clino-medium hover:text-clino-dark">
+                  <Link href="/contact/" className="ml-auto font-semibold text-clino-medium hover:text-clino-dark">
                     Book a demo →
                   </Link>
                 </div>
@@ -306,7 +306,7 @@ export default function Nav() {
                 <div className="space-y-4">
                   {BRANDS.map((brand) => (
                     <div key={brand.slug} className="rounded-xl border border-clino-edge p-4">
-                      <Link href={`/brands/${brand.slug}`} className="flex items-center gap-3">
+                      <Link href={`/products/${brand.slug}/`} className="flex items-center gap-3">
                         <span
                           className="flex h-9 w-9 items-center justify-center rounded-lg"
                           style={{ backgroundColor: brand.theme.tint, color: brand.theme.accent }}
@@ -353,7 +353,7 @@ export default function Nav() {
               </div>
 
               <Link
-                href="/contact"
+                href="/contact/"
                 className="block rounded-full bg-clino-medium px-5 py-3 text-center text-sm font-semibold text-white"
               >
                 Talk to us

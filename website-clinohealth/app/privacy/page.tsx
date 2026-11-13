@@ -172,7 +172,7 @@ export default function PrivacyPage() {
         </p>
         <p>
           See also our{' '}
-          <Link href="/security" className="font-semibold text-clino-medium hover:text-clino-dark">
+          <Link href="/security/" className="font-semibold text-clino-medium hover:text-clino-dark">
             security page
           </Link>{' '}
           for the technical controls behind these commitments.

@@ -132,11 +132,11 @@ export default function RefundPolicyPage() {
         </p>
         <p>
           See also the{' '}
-          <Link href="/terms" className="font-semibold text-clino-medium hover:text-clino-dark">
+          <Link href="/terms/" className="font-semibold text-clino-medium hover:text-clino-dark">
             terms of use
           </Link>{' '}
           and the{' '}
-          <Link href="/privacy" className="font-semibold text-clino-medium hover:text-clino-dark">
+          <Link href="/privacy/" className="font-semibold text-clino-medium hover:text-clino-dark">
             privacy policy
           </Link>
           .

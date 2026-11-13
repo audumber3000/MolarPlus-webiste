@@ -49,7 +49,7 @@ export default function Footer() {
             {BRANDS.map((brand) => (
               <div key={brand.slug}>
                 <Link
-                  href={`/brands/${brand.slug}`}
+                  href={`/products/${brand.slug}/`}
                   className="text-sm font-bold text-ink hover:text-clino-medium"
                 >
                   {brand.name}
@@ -78,15 +78,15 @@ export default function Footer() {
           <div className="lg:col-span-2">
             <p className="text-sm font-bold text-ink">Company</p>
             <ul className="mt-3 space-y-2 text-sm text-ink-muted">
-              <li><Link href="/products" className="hover:text-clino-medium">All products</Link></li>
-              <li><Link href="/platform" className="hover:text-clino-medium">How we build</Link></li>
-              <li><Link href="/about" className="hover:text-clino-medium">About</Link></li>
-              <li><Link href="/contact" className="hover:text-clino-medium">Contact</Link></li>
-              <li><Link href="/security" className="hover:text-clino-medium">Security</Link></li>
-              <li><Link href="/privacy" className="hover:text-clino-medium">Privacy</Link></li>
-              <li><Link href="/terms" className="hover:text-clino-medium">Terms</Link></li>
-              <li><Link href="/refund-policy" className="hover:text-clino-medium">Refunds and cancellation</Link></li>
-              <li><Link href="/cookies-policy" className="hover:text-clino-medium">Cookies</Link></li>
+              <li><Link href="/products/" className="hover:text-clino-medium">All products</Link></li>
+              <li><Link href="/platform/" className="hover:text-clino-medium">How we build</Link></li>
+              <li><Link href="/about/" className="hover:text-clino-medium">About</Link></li>
+              <li><Link href="/contact/" className="hover:text-clino-medium">Contact</Link></li>
+              <li><Link href="/security/" className="hover:text-clino-medium">Security</Link></li>
+              <li><Link href="/privacy/" className="hover:text-clino-medium">Privacy</Link></li>
+              <li><Link href="/terms/" className="hover:text-clino-medium">Terms</Link></li>
+              <li><Link href="/refund-policy/" className="hover:text-clino-medium">Refunds and cancellation</Link></li>
+              <li><Link href="/cookies-policy/" className="hover:text-clino-medium">Cookies</Link></li>
             </ul>
           </div>
         </div>

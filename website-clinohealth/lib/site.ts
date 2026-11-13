@@ -10,7 +10,12 @@ export const SITE = {
    *  and the name customers pay. Same wording as the MolarPlus site, so the
    *  payment gateway sees one entity across every site. */
   legalName: 'Upclick Labs (OPC) Pvt. Ltd.',
-  url: 'https://clinohealth.com',
+  /** The company that develops and operates the products. Named on the product pages and in
+   *  their structured data; the footer and legal pages keep `legalName` (owner's call,
+   *  13 November 2026). */
+  company: 'ClinoHealth Systems LLP',
+  /** The canonical host. clinohealth.com redirects here (next.config.js). */
+  url: 'https://www.clinohealth.com',
   tagline: 'Healthcare software for Indian practices',
   description:
     'Clino Health builds practice management software for Indian healthcare — MolarPlus for dental clinics and labs, SyrupDesk for retail pharmacies, with a hospital management system and imaging software in development.',

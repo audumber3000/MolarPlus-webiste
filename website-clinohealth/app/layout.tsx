@@ -46,8 +46,9 @@ function OrganizationJsonLd() {
   const data = {
     '@context': 'https://schema.org',
     '@type': 'Organization',
+    '@id': `${SITE.url}/#organization`,
     name: SITE.name,
-    url: SITE.url,
+    url: `${SITE.url}/`,
     logo: `${SITE.url}/logo-wordmark.svg`,
     description: SITE.description,
     foundingDate: SITE.founded,
