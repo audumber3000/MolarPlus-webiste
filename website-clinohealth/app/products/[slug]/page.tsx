@@ -7,8 +7,8 @@ import { absoluteUrl, pageMetadata } from '@/lib/seo';
 import { SITE } from '@/lib/site';
 
 export function generateStaticParams() {
-  // MolarPlus has its own page at app/products/molarplus, which wins over this route.
-  return BRANDS.filter((b) => b.slug !== 'molarplus').map((b) => ({ slug: b.slug }));
+  // MolarPlus and Curogrid have their own pages (app/products/<slug>), which win over this route.
+  return BRANDS.filter((b) => !['molarplus', 'curogrid'].includes(b.slug)).map((b) => ({ slug: b.slug }));
 }
 
 export async function generateMetadata({

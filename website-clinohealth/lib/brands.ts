@@ -161,6 +161,43 @@ export const BRANDS: Brand[] = [
     ],
   },
   {
+    slug: 'curogrid',
+    name: 'Curogrid',
+    tagline: 'Clinics of every speciality',
+    description:
+      'Curogrid is clinic management software for Indian clinics: tokens and the waiting line, appointments, patient files, prescriptions, tests and scans, billing, stock and reports, on the web and on the phone. It sets itself up for the clinic\u2019s speciality, from general practice and paediatrics to physiotherapy and eye care.',
+    category: 'Multi-specialty clinics',
+    status: 'live',
+    url: 'https://www.curogrid.com',
+    Icon: Stethoscope,
+    // --teal-600 (primary), --teal-50 and --teal-200 from website-curogrid/design/tokens.css.
+    theme: { accent: '#256F72', tint: '#F0F8F8', edge: '#B8DDDF', onAccentLight: true },
+    // curogrid-logo-primary.svg from website-curogrid/public/brand/01-logo, a full lockup.
+    logo: {
+      src: '/brands/curogrid.svg',
+      width: 339,
+      height: 108,
+      heightClass: 'h-8',
+      hasWordmark: true,
+    },
+    apps: [
+      {
+        name: 'Curogrid Web',
+        desc: 'Tokens, appointments, patient files, prescriptions, billing and reports',
+        audience: 'Doctors and front desk',
+        Icon: Monitor,
+        url: 'https://app.curogrid.com',
+      },
+      {
+        name: 'Curogrid for Android',
+        desc: 'The token line, the day and the clinic\u2019s numbers from a phone',
+        audience: 'Doctors on the move',
+        Icon: Smartphone,
+        url: 'https://play.google.com/store/apps/details?id=com.curogrid.app',
+      },
+    ],
+  },
+  {
     slug: 'syrupdesk',
     name: 'SyrupDesk',
     tagline: 'Retail pharmacies and medical stores',

@@ -21,7 +21,7 @@ export default function StickyCta({
     <>
       <style>{`@media (max-width: 767px) { body { padding-bottom: calc(4.75rem + env(safe-area-inset-bottom)); } }`}</style>
       <div
-        className="fixed inset-x-0 bottom-0 z-40 border-t border-molar-edge bg-white/95 px-4 pt-3 backdrop-blur md:hidden"
+        className="fixed inset-x-0 bottom-0 z-40 border-t border-black/10 bg-white/95 px-4 pt-3 backdrop-blur md:hidden"
         style={{ paddingBottom: 'calc(0.75rem + env(safe-area-inset-bottom))' }}
       >
         <div className="grid grid-cols-2 gap-3">

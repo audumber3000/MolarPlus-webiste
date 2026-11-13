@@ -31,6 +31,13 @@ const config: Config = {
           tint: '#eeedf6',
           edge: '#d8d6e8',
         },
+        // Curogrid's teal, for its product page (website-curogrid/design/tokens.css).
+        curo: {
+          DEFAULT: '#256F72',
+          deep: '#1A3C3E',
+          tint: '#F0F8F8',
+          edge: '#B8DDDF',
+        },
         // WhatsApp's green, for buttons that open a chat.
         wa: '#1faa53',
         ink: {

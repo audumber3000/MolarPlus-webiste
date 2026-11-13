@@ -8,7 +8,10 @@ const nextConfig = {
   images: {
     // The product screenshots are hosted once, on molarplus.com/product-images, and shared by
     // the MolarPlus site, the product feeds and these pages. next/image resizes them per screen.
-    remotePatterns: [{ protocol: 'https', hostname: 'www.molarplus.com', pathname: '/product-images/**' }],
+    remotePatterns: [
+      { protocol: 'https', hostname: 'www.molarplus.com', pathname: '/product-images/**' },
+      { protocol: 'https', hostname: 'www.curogrid.com', pathname: '/product-images/**' },
+    ],
   },
   async redirects() {
     return [

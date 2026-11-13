@@ -1,4 +1,5 @@
 import { LIVE_BRANDS } from '@/lib/brands';
+import { CUROGRID, CUROGRID_DOWNLOADS, CUROGRID_FAQ, CUROGRID_PLANS } from '@/lib/products/curogrid';
 import { DOWNLOADS, FAQ, MOLARPLUS, PLANS, inr } from '@/lib/products/molarplus';
 import { absoluteUrl } from '@/lib/seo';
 import { CONTACT, SITE } from '@/lib/site';
@@ -28,6 +29,15 @@ export function GET() {
     `Pricing in India, excluding 18% GST: ${PLANS.map((p) => `${p.name} ${inr(p.monthly)} a month or ${inr(p.annualTotal)} a year`).join('; ')}. 7-day free trial of Pro, no card needed. Details: ${MOLARPLUS.pricingUrl}`,
     '',
     ...FAQ.flatMap((item) => [`### ${item.q}`, '', item.a, '']),
+    '## Curogrid',
+    '',
+    `Curogrid is clinic management software for Indian clinics of every specialty, developed and operated by ${SITE.company}. Official website: ${CUROGRID.url}. Product page: ${absoluteUrl('/products/curogrid')}`,
+    '',
+    `Platforms: web (${CUROGRID_DOWNLOADS.web}) and Android (${CUROGRID_DOWNLOADS.android}). iPhone and Windows apps are not released yet.`,
+    '',
+    `Pricing in India, before 18% GST: ${CUROGRID_PLANS.map((p) => `${p.name} ${inr(p.monthly)} a month or ${inr(p.annual)} a year`).join('; ')}. 5-day free trial of Pro. Details: ${CUROGRID.pricingUrl}`,
+    '',
+    ...CUROGRID_FAQ.flatMap((item) => [`### ${item.q}`, '', item.a, '']),
     '## Contact',
     '',
     `- WhatsApp: https://wa.me/${MOLARPLUS.whatsapp}`,

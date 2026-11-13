@@ -14,19 +14,28 @@ import PlatformIcon from './PlatformIcon';
  * Images keep their own aspect ratio (16:9 on Windows, 16:10 on Mac): nothing is cropped or
  * stretched. Each opens the full-size original.
  */
+// Literal class names per brand, so Tailwind's JIT can see them.
+const TONE = {
+  molar: { edge: 'border-molar-edge', hover: 'hover:border-molar' },
+  curo: { edge: 'border-curo-edge', hover: 'hover:border-curo' },
+} as const;
+
 export default function DesktopGallery({
   sets,
   accent,
+  tone = 'molar',
 }: {
-  sets: { key: Extract<PlatformKey, 'windows' | 'mac'>; label: string; shots: Shot[] }[];
+  sets: { key: Extract<PlatformKey, 'windows' | 'mac' | 'web'>; label: string; shots: Shot[] }[];
   accent: string;
+  tone?: keyof typeof TONE;
 }) {
+  const t = TONE[tone];
   const [active, setActive] = useState(sets[0].key);
   const id = useId();
 
   return (
     <div>
-      <div role="tablist" aria-label="Desktop platform" className="inline-flex rounded-full border border-molar-edge bg-white p-1">
+      <div role="tablist" aria-label="Desktop platform" hidden={sets.length < 2} className={`inline-flex rounded-full border ${t.edge} bg-white p-1`}>
         {sets.map((set) => {
           const selected = set.key === active;
           return (
@@ -64,7 +73,7 @@ export default function DesktopGallery({
                   href={shot.src}
                   target="_blank"
                   rel="noopener"
-                  className="block overflow-hidden rounded-xl border border-molar-edge bg-white transition-colors hover:border-molar"
+                  className={`block overflow-hidden rounded-xl border ${t.edge} bg-white transition-colors ${t.hover}`}
                 >
                   <Image
                     src={shot.src}
