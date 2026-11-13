@@ -8,8 +8,12 @@
  * "Other specialities", the footer keeps its Specialities column, and a
  * row of the other editions sits above the closing band.
  *
- * Logos are the kit's own files (CuroGrid-Logo-Kit/05-specialty-logos),
- * never redrawn. `word` also names the edition's colour pair in
+ * Logos are built from Curogrid Brand Kit v2 by scripts/brand-lockups.py,
+ * into public/brand/lockups/<word>/: the kit's wordmark copied path for
+ * path, and the speciality word in the wordmark's own face. An edition's
+ * logo has no mark: beside the speciality's name the mark made the header
+ * logo too big. The plain logo (/logo.svg) keeps it. Re-run that script,
+ * never hand-edit the SVGs. `word` also names the edition's colour pair in
  * app/globals.css (`--edition-<word>`) and its screenshot folder in
  * public/screenshots/<word>/.
  */
@@ -18,8 +22,9 @@ export type Edition = {
   word: string;
   /** "Curogrid Physio": the logo's alt text and the product's name on the page. */
   name: string;
-  /** `small` is the compact lockup, for the homepage's speciality tiles. */
-  logo: { light: string; dark: string; small: string; width: number };
+  /** `light` and `dark` are the header's logo, `width` and `height`
+   *  their files' own size. `small` is the homepage's speciality tile. */
+  logo: { light: string; dark: string; width: number; height: number; small: Lockup };
   /**
    * The photograph blended into the right of the page's hero, from
    * public/photos/heroes/<word>.jpg. These are ImagesBazaar photos used
@@ -32,17 +37,25 @@ export type Edition = {
   bandPhoto?: string;
 };
 
-const kit = (word: string) => ({
-  light: `/brand/05-specialty-logos/${word}/curogrid-${word}-logo-primary.svg`,
-  dark: `/brand/05-specialty-logos/${word}/curogrid-${word}-logo-reversed.svg`,
-  small: `/brand/05-specialty-logos/${word}/curogrid-${word}-logo-small-primary.svg`,
-  width: 538,
+type Lockup = { src: string; width: number; height: number };
+
+/** File sizes, as scripts/brand-lockups.py prints them. */
+export const LOGO_WIDTH = 576; // the plain logo, with the mark
+export const LOGO_HEIGHT = 153;
+const WORDMARK_HEIGHT = 97; // every lockup without the mark
+
+const kit = (word: string, width: number) => ({
+  light: `/brand/lockups/${word}/color.svg`,
+  dark: `/brand/lockups/${word}/on-dark.svg`,
+  width,
+  height: WORDMARK_HEIGHT,
+  small: { src: `/brand/lockups/${word}/small.svg`, width, height: WORDMARK_HEIGHT },
 });
 
-const edition = (word: string, name: string): Edition => ({
+const edition = (word: string, name: string, width: number): Edition => ({
   word,
   name: `Curogrid ${name}`,
-  logo: kit(word),
+  logo: kit(word, width),
   photo: { src: `/photos/heroes/${word}.jpg` },
   bandPhoto: `/photos/heroes/${word}-2.jpg`,
 });
@@ -53,19 +66,25 @@ export const EDITIONS: Readonly<Record<string, Edition>> = {
   general_practice: {
     word: "general",
     name: "Curogrid",
-    logo: { light: "/logo.svg", dark: "/logo-reversed.svg", small: "/brand/01-logo/svg/curogrid-logo-small-primary.svg", width: 339 },
+    logo: {
+      light: "/logo.svg",
+      dark: "/logo-reversed.svg",
+      width: LOGO_WIDTH,
+      height: LOGO_HEIGHT,
+      small: { src: "/brand/lockups/general/small.svg", width: 395, height: WORDMARK_HEIGHT },
+    },
     photo: { src: "/photos/heroes/general.jpg" },
     bandPhoto: "/photos/heroes/general-2.jpg",
   },
-  paediatrics: edition("paeds", "Paeds"),
-  obstetrics_gynaecology: edition("gynae", "Gynae"),
-  dermatology: edition("derma", "Derma"),
-  ent: edition("ent", "ENT"),
-  physiotherapy: edition("physio", "Physio"),
-  ophthalmology: edition("eye", "Eye"),
-  orthopaedics: edition("ortho", "Ortho"),
-  general_surgery: edition("surgery", "Surgery"),
-  diabetology: edition("diabetes", "Diabetes"),
+  paediatrics: edition("paeds", "Paeds", 618),
+  obstetrics_gynaecology: edition("gynae", "Gynae", 630),
+  dermatology: edition("derma", "Derma", 633),
+  ent: edition("ent", "ENT", 558),
+  physiotherapy: edition("physio", "Physio", 632),
+  ophthalmology: edition("eye", "Eye", 539),
+  orthopaedics: edition("ortho", "Ortho", 612),
+  general_surgery: edition("surgery", "Surgery", 681),
+  diabetology: edition("diabetes", "Diabetes", 705),
 };
 
 export function getEdition(key: string): Edition | undefined {

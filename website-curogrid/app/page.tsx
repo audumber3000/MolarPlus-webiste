@@ -12,6 +12,7 @@ import { SpecialityPills } from "@/components/sections/SpecialityPills";
 import { PainPoints } from "@/components/sections/PainPoints";
 import { ScreenGrid } from "@/components/sections/ScreenGrid";
 import { TrustBand } from "@/components/sections/TrustBand";
+import { TrustMarks } from "@/components/sections/TrustMarks";
 import { ClientWall } from "@/components/sections/ClientWall";
 import { Testimonials } from "@/components/sections/Proof";
 import { PriceStrip } from "@/components/sections/PriceStrip";
@@ -75,6 +76,7 @@ export default function HomePage() {
               <p className="mt-4 text-small text-teal-200" data-numeric>
                 {TRIAL_DAYS}-day free trial. Then from {rupees(PLANS[0].monthly)} a month for the whole clinic, before GST.
               </p>
+              <StoreBadges className="mt-6" />
             </div>
             <div className="mt-10 lg:max-w-[52rem]">
               <SpecialityPills tone="dark" label="Pick your speciality" />
@@ -88,6 +90,8 @@ export default function HomePage() {
           </Container>
         </div>
       </section>
+
+      <TrustMarks />
 
       <ClientWall />
 

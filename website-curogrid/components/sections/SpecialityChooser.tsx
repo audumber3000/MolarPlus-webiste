@@ -38,7 +38,7 @@ export function SpecialityChooser() {
               <span className="flex flex-1 flex-col p-4">
                 {edition && (
                   // eslint-disable-next-line @next/next/no-img-element
-                  <img src={edition.logo.small} alt="" width={538} height={108} className="h-5 w-auto self-start" loading="lazy" />
+                  <img src={edition.logo.small.src} alt="" width={edition.logo.small.width} height={edition.logo.small.height} className="h-4.5 w-auto self-start" loading="lazy" />
                 )}
                 <span className="mt-3 block text-[1.0625rem] font-bold text-gray-900">{s.name}</span>
                 <span className="mt-1 block flex-1 text-small text-gray-600">{s.card}</span>

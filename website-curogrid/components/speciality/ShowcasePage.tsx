@@ -13,6 +13,8 @@ import { PriceStrip } from "@/components/sections/PriceStrip";
 import { ScreenGrid } from "@/components/sections/ScreenGrid";
 import { SpecialityPills } from "@/components/sections/SpecialityPills";
 import { HeroPhoto } from "@/components/HeroPhoto";
+import { StoreBadges } from "@/components/StoreBadges";
+import { TrustMarks } from "@/components/sections/TrustMarks";
 import { JsonLd } from "@/components/JsonLd";
 import { sharedFaqs } from "./parts";
 import { softwareApplicationSchema } from "@/lib/jsonld";
@@ -271,12 +273,15 @@ export function ShowcasePage({ s, showcase: x, edition }: { s: Speciality; showc
           <p className="mt-4 text-small text-teal-200" data-numeric>
             From {rupees(plus.monthly)} a month for the whole clinic. {TRIAL_DAYS} days free.
           </p>
+          <StoreBadges className="mt-6" />
           <figure className="mt-12 pb-10 lg:mt-16 lg:pb-16">
             <Picture shot={x.hero.web} phone={x.hero.phone} priority />
             <figcaption className="sr-only">{x.hero.caption}</figcaption>
           </figure>
         </Container>
       </section>
+
+      <TrustMarks />
 
       <ProofStrip speciality={s.key} clinicWord={`${s.clinic}s`} />
 

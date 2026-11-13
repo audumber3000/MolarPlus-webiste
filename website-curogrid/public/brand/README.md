@@ -1,47 +1,40 @@
-# CuroGrid logo kit
+# Curogrid — Brand Kit v2
 
-All lettering is converted to vector shapes, so the logo looks identical everywhere and needs no font installed.
-Use the **SVG** files wherever you can (website, dashboard, print); use **PNG** where SVG isn't accepted.
+The mark is traced from the original artwork (outline match ~98%) and recoloured to the brand palette.
 
-## What's inside
+## Logo
+- **Mark**: the folded "C" with a person inside. It replaces the old "+" grid symbol everywhere.
+- **Wordmark**: "Curo" + "grid", Red Hat Display ExtraBold, converted to outlines (no font needed).
+- **Lockups**: horizontal (default) and stacked, in 4 schemes:
+  - `color`: white or light backgrounds (with the gradient fold)
+  - `on-dark`: on #1A3C3E
+  - `mono-dark` / `mono-white`: one colour, for print, stamps, photos, teal backgrounds
+- `curogrid-mark-color-flat`: no gradients, for embroidery, small print, single-pass printing.
+- The person is a see-through cut-out, so the background shows through it.
+- **Clear space**: at least the head-circle diameter × 1.5 on every side.
+- **Minimum size**: horizontal logo 100px wide on screen (25 mm in print); mark alone 24px.
+- At 16px use `favicon-16x16.png` (the C shape without the person; already wired into favicon.ico).
 
-| Folder | Use it for |
-|---|---|
-| `01-logo/` | Full logo. `primary` on white/light, `reversed` on dark teal, `mono-dark` / `mono-white` for one-colour printing, faxes, stamps, photos. `small-*` = version with the simplified cross for anything under ~140px wide (dashboard header, sidebar, email signature). |
-| `02-mark/` | The cross on its own (`mark`), and the C + cross monogram (`monogram`). Use the monogram for a collapsed dashboard sidebar, loading screens, avatars. `mark-small` is the solid cross for tiny sizes. |
-| `03-app-icons/ios/` | `AppIcon-1024.png` → upload to Xcode / App Store Connect. iOS rounds the corners itself, so the file is square. |
-| `03-app-icons/android/` | `play-store-icon-512.png` for Google Play. Adaptive icon: `adaptive-foreground-432.png` + `adaptive-background-432.png` (or background colour `#256F72`); `adaptive-monochrome-432.png` for Android 13 themed icons. |
-| `03-app-icons/svg/` | Editable vector app icons, including a rounded preview. |
-| `04-web/` | Favicons, Apple touch icon, PWA icons, `site.webmanifest`, and `og-image-1200x630.png` for link previews (WhatsApp, LinkedIn, Slack). |
-
-## Website / dashboard setup
-
-Copy the files in `04-web/` to your site's root folder, then add this inside `<head>`:
-
-```html
-<link rel="icon" href="/favicon.ico" sizes="48x48">
-<link rel="icon" href="/favicon.svg" type="image/svg+xml">
-<link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<link rel="manifest" href="/site.webmanifest">
-<meta name="theme-color" content="#256F72">
-<meta property="og:image" content="https://YOUR-DOMAIN/og-image-1200x630.png">
-```
-
-Dashboard header: `curogrid-logo-small-primary.svg` at 28–32px tall. Collapsed sidebar: `curogrid-monogram.svg` at 28–32px.
-
-## Logo colours
-
-| Part | Light background | Dark background |
+## Colours
+| Token | Hex | Use |
 |---|---|---|
-| "Curo" | `#1A3C3E` (teal 900) | `#FFFFFF` |
-| "grid" + cross | `#57A8AB` (teal 400) | `#8AC6C8` (teal 300) |
-| App icon tile | `#256F72` (teal 600) | |
+| primary | #256F72 | Buttons, links, app icon background |
+| dark | #1A3C3E | Logo text, headers, dark backgrounds |
+| text | #1F5A5D | Body text on white |
+| light | #57A8AB | "grid" in the logo, mark band |
+| lighter | #8AC6C8 | Accents; text on dark backgrounds only |
+| light-text-safe | #4A9A9D | "grid" or teal text at small sizes |
+| white | #FFFFFF | |
 
-Font for headings and UI: **Plus Jakarta Sans** (free, Google Fonts). Weights 400 / 500 / 700 / 800.
+Do not use #57A8AB or #8AC6C8 for small text on white; contrast is too low.
 
-## Simple rules
-
-- **Clear space:** keep empty space around the logo at least the height of the cross on every side.
-- **Minimum size:** full logo 100px wide on screen (25mm in print). Below 140px use the `small` version.
-- **Backgrounds:** primary on white or very light teal (`#F0F8F8`); reversed on `#1A3C3E` or `#256F72`. On photos, use mono-white on a dark area.
-- **Don't** stretch, rotate, recolour outside the palette, add shadows or outlines, separate the cross and move it elsewhere, or retype the name in another font.
+## Folders
+- `01-logo/`: SVG masters + PNG (1000/2000 px wide), mark-only versions
+- `02-app-icons/ios/`: AppIcon-1024.png + all Xcode sizes
+- `02-app-icons/android/`: play-store-icon-512.png and `res/` for `app/src/main/res` (adaptive, themed monochrome, legacy)
+- `02-app-icons/desktop/`: 32–1024 px (for Tauri: `tauri icon icon-1024.png`)
+- `02-app-icons/alt-light/`: optional white-background icon with the full-colour mark
+- `03-web/`: favicon.ico, favicon.svg, apple-touch-icon, PWA icons, site.webmanifest, head-snippet.html
+- `04-social/`: link-preview image, profile picture, LinkedIn cover
+- `05-splash/`: light and dark splash screens (2732 px)
+- `06-tokens/`: colors.css / colors.json

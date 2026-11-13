@@ -1,5 +1,8 @@
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
 import { ImageResponse } from "next/og";
 import { SITE } from "./site";
+import { LOGO_HEIGHT, LOGO_WIDTH } from "./editions";
 import { PLANS, TRIAL_DAYS, rupees } from "@/content/pricing";
 
 /**
@@ -17,6 +20,11 @@ const TEAL_100 = "#DBEEEF";
 const WHITE = "#ffffff";
 
 export const OG_SIZE = { width: 1200, height: 630 } as const;
+
+/** The reversed logo (public/logo-reversed.svg), inlined: satori cannot
+ *  fetch a site-relative URL while the site is being built. */
+const LOGO_SRC = `data:image/svg+xml;base64,${readFileSync(join(process.cwd(), "public/logo-reversed.svg")).toString("base64")}`;
+const LOGO_H = 64;
 export const OG_CONTENT_TYPE = "image/png";
 
 /** The price line at the foot of every card. Read from the plans, so it
@@ -54,10 +62,11 @@ export function shareImage({
           fontFamily: "sans-serif",
         }}
       >
-        <div style={{ display: "flex", alignItems: "baseline", color: WHITE, fontSize: 40, fontWeight: 700 }}>
-          {SITE.name}
+        <div style={{ display: "flex", alignItems: "center" }}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={LOGO_SRC} alt={SITE.name} width={Math.round((LOGO_WIDTH / LOGO_HEIGHT) * LOGO_H)} height={LOGO_H} />
           {label && (
-            <div style={{ display: "flex", color: TEAL_300, fontSize: 26, fontWeight: 400, marginLeft: 20 }}>{label}</div>
+            <div style={{ display: "flex", color: TEAL_300, fontSize: 26, fontWeight: 400, marginLeft: 24 }}>{label}</div>
           )}
         </div>
 

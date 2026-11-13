@@ -69,7 +69,8 @@ A speciality is four pieces, all keyed by the app's speciality key:
 - `content/showcases/<key>.ts`: the page's own sections (the speciality's screens, the clinic's
   flow step by step, an optional dark band such as home visits, and the rules in India).
   Rules shared by several specialities are written once in `content/showcases/rules.ts`.
-- `lib/editions.ts`: the logo (from `public/brand/05-specialty-logos/<word>/`) and the colour
+- `lib/editions.ts`: the logo (from `public/brand/lockups/<word>/`, built by
+  `scripts/brand-lockups.py`; add the edition there and re-run it) and the colour
   pair in `app/globals.css` (`--edition-<word>`, from `curogrid-app/src/ui/edition.ts`).
 - `public/screenshots/<word>/`: the edition's screenshots, built by `editionShots()` and
   `editionShot()` in `lib/shots.ts`.
@@ -116,9 +117,10 @@ These are marked `TODO (blocks launch)` in `lib/site.ts` or in `content/legal.ts
 
 | Path | What | Count |
 |---|---|---|
-| `logo.svg`, `logo-reversed.svg`, `mark.svg` | The logo for light and dark backgrounds, and the mark alone | 3 |
-| `favicon.*`, `icon-*.png`, `apple-touch-icon.png`, `og-image-1200x630.png`, `site.webmanifest` | Browser and share icons | 10 |
-| `brand/01-logo`, `02-mark`, `03-app-icons` | The full logo kit, SVG and PNG, with its `README.md` (colours, clear space, what not to do) | 44, plus an overview sheet |
+| `logo.svg`, `logo-reversed.svg`, `mark.svg` | The logo for light and dark backgrounds (Brand Kit v2, cropped to the artwork by `scripts/brand-lockups.py`), and the mark alone | 3 |
+| `favicon.*`, `favicon-*.png`, `icon-*.png`, `apple-touch-icon.png`, `og-image-1200x630.png`, `site.webmanifest` | Browser and share icons, from the kit's `03-web/` and `04-social/` | 11 |
+| `brand/01-logo`, `04-social`, `06-tokens` | Curogrid Brand Kit v2: lockups and mark in SVG and PNG, social images, colour tokens, with its `README.md` (clear space, minimum sizes). The app icons and splash screens belong in the app repos, not here | kit files plus an overview sheet |
+| `brand/lockups/` | Each edition's lockup (`color`, `on-dark`, `small`), built from the kit by `scripts/brand-lockups.py`. Never hand-edit | 28 |
 | `screenshots/web/` | The web app at desktop size: dashboard, today, appointments, patients, patient file, billing | 6 |
 | `screenshots/tablet/` | The same screens on an iPad | 6 |
 | `screenshots/phone-android/` | The phone app on Android: home, today, line, appointments, patients, patient file, bills | 7 |

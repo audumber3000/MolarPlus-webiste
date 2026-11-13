@@ -56,9 +56,11 @@ export const metadata: Metadata = {
   },
   twitter: { card: "summary_large_image" },
   icons: {
+    // Curogrid Brand Kit v2 (03-web/head-snippet.html). The .ico carries
+    // the kit's 16px drawing, the C without the person, for tab bars.
     icon: [
+      { url: "/favicon.ico", sizes: "48x48" },
       { url: "/favicon.svg", type: "image/svg+xml" },
-      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
     ],
     apple: "/apple-touch-icon.png",
   },
