@@ -7,6 +7,7 @@ import { APP_URL } from '@/lib/constants';
 import { SignupLink } from '@/components/TrackedCTA';
 import PricingPlans from '@/components/PricingPlans';
 import PlanComparison from '@/components/PlanComparison';
+import AiAssistantAddon from '@/components/AiAssistantAddon';
 
 // The date the legacy free single-clinic accounts move onto a paid plan.
 // Referenced in the FAQ here and in /terms-of-use — keep the two in step.
@@ -59,6 +60,10 @@ const faqs = [
   {
     q: 'Whose WhatsApp number do reminders come from?',
     a: 'On Plus they are sent from a verified MolarPlus number, and email notifications from a verified MolarPlus address — patients see the message, you send nothing yourself, and there is nothing to set up. Pro and Growth connect your clinic\u2019s own WhatsApp number instead, so reminders, invoices and prescriptions arrive from the number your patients already have saved. Connecting your own number is a one-time setup inside the app.',
+  },
+  {
+    q: 'Is there an AI assistant that answers patients on WhatsApp?',
+    a: 'It is coming soon, as an add-on. The AI WhatsApp assistant will reply to your patients on your clinic’s own WhatsApp number, answering questions about timings, fees, treatments and booking from what your clinic tells it, and it will follow up after visits and remind patients about their next sitting. Anything medical, urgent or unhappy will go straight to your team. Pricing will be announced at launch, and you can ask for early access on WhatsApp now.',
   },
   {
     q: 'What happens if I go over the patient or appointment limit?',
@@ -228,6 +233,8 @@ export default function PricingPage() {
           <PlanComparison />
         </div>
       </section>
+
+      <AiAssistantAddon />
 
       {/* FAQ */}
       <section className="py-16 bg-white" aria-labelledby="faq-heading">

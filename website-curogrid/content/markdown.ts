@@ -16,6 +16,7 @@ import {
   STORE_NOTE,
 } from "./pages";
 import {
+  AI_ASSISTANT_ADDON,
   ANNUAL_SAVING_PERCENT,
   CHECKOUT_METHODS,
   GST_PERCENT,
@@ -107,6 +108,7 @@ export function pricingMarkdown(level = 1): string[] {
     h(level + 1, "Add-on"),
     "",
     `- ${OWN_WHATSAPP_ADDON.name}: ${rupees(OWN_WHATSAPP_ADDON.monthly)} a month or ${rupees(OWN_WHATSAPP_ADDON.annual)} a year on ${plus.name}, for each clinic location. Included in ${pro.name}.`,
+    `- ${AI_ASSISTANT_ADDON.name} (${AI_ASSISTANT_ADDON.status.toLowerCase()}, not on sale yet, pricing announced at launch): ${AI_ASSISTANT_ADDON.summary}`,
     "",
     h(level + 1, "Hospitals (planned, not on sale yet)"),
     "",

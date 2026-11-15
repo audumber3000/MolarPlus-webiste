@@ -1,4 +1,5 @@
 import {
+  AI_ASSISTANT_ADDON,
   ANNUAL_SAVING_PERCENT,
   CHECKOUT_METHODS,
   GST_PERCENT,
@@ -88,7 +89,11 @@ export const PRICING_FAQS: Faq[] = [
   },
   {
     q: "Are there any add-ons?",
-    a: `One. A clinic on ${plus.name} can add its own WhatsApp number for ${rupees(OWN_WHATSAPP_ADDON.monthly)} a month or ${rupees(OWN_WHATSAPP_ADDON.annual)} a year, so reminders go out from the clinic's number. ${pro.name} includes it.`,
+    a: `One is on sale today. A clinic on ${plus.name} can add its own WhatsApp number for ${rupees(OWN_WHATSAPP_ADDON.monthly)} a month or ${rupees(OWN_WHATSAPP_ADDON.annual)} a year, so reminders go out from the clinic's number. ${pro.name} includes it. A second add-on, the ${AI_ASSISTANT_ADDON.name}, is coming soon, with pricing announced at launch.`,
+  },
+  {
+    q: "Is there an AI assistant that answers patients on WhatsApp?",
+    a: `It is coming soon, as an add-on. The ${AI_ASSISTANT_ADDON.name} will reply to your patients on your clinic's own WhatsApp number, answering questions about timings, fees, services and booking from what your clinic tells it, and it will follow up after visits. Anything medical, urgent or unhappy will go straight to your team. Pricing will be announced at launch, and you can ask for early access on WhatsApp now.`,
   },
   {
     q: "Does the speciality setup cost extra?",

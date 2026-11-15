@@ -125,6 +125,20 @@ export const INCLUDED_IN_EVERY_PLAN = [
 export const OWN_WHATSAPP_ADDON = { name: "Your own WhatsApp number", monthly: 289, annual: 2774 } as const;
 
 /**
+ * Planned, NOT built and not on sale: the AI WhatsApp assistant for clinics.
+ * As of 15 Nov 2026 the AI only answers ClinoHealth's own sales WhatsApp, in
+ * shadow mode (WA Reach backend/agent/). Keep every line about it in the future
+ * tense, marked Coming soon, with no price, until a clinic can switch it on.
+ */
+export const AI_ASSISTANT_ADDON = {
+  name: "AI WhatsApp assistant",
+  status: "Coming soon",
+  summary:
+    "It will reply to your patients on your clinic's own WhatsApp number, day and night, answering questions about timings, fees, services and booking from what your clinic tells it. It will follow up after visits, remind patients about their next visit or test, and pass anything medical, urgent or unhappy straight to your team. A person can take over any chat at any time.",
+  earlyAccessMessage: "Hi, I'd like early access to the AI WhatsApp assistant for my clinic.",
+} as const;
+
+/**
  * Plus and Pro side by side. One list feeds the table on /pricing,
  * /pricing.md and /llms-full.txt. The limits mirror `limits` in plans.py.
  */

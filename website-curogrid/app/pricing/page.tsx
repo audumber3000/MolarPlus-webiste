@@ -9,8 +9,9 @@ import { JsonLd } from "@/components/JsonLd";
 import { softwareApplicationSchema } from "@/lib/jsonld";
 import { buildMetadata } from "@/lib/seo";
 import { PRICING_FAQS } from "@/content/faq";
-import { FACTS_CHECKED, SITE } from "@/lib/site";
+import { FACTS_CHECKED, SITE, whatsappLink } from "@/lib/site";
 import {
+  AI_ASSISTANT_ADDON,
   ANNUAL_SAVING_PERCENT,
   GST_PERCENT,
   INCLUDED_IN_EVERY_PLAN,
@@ -85,10 +86,28 @@ export default function PricingPage() {
             </table>
           </div>
           <p className="measure mt-6 text-[0.9375rem] text-gray-600">
-            The one add-on is a WhatsApp number of your own. On {plus.name} it costs{" "}
+            The add-on on sale today is a WhatsApp number of your own. On {plus.name} it costs{" "}
             {rupees(OWN_WHATSAPP_ADDON.monthly)} a month or {rupees(OWN_WHATSAPP_ADDON.annual)} a year for
             each clinic location. {pro.name} includes it.
           </p>
+          <div className="mt-6 rounded-md border border-gray-200 bg-gray-0 p-6">
+            <p className="text-[0.8125rem] font-semibold uppercase tracking-wide text-teal-700">
+              Add-on, {AI_ASSISTANT_ADDON.status.toLowerCase()}
+            </p>
+            <h3 className="mt-1 text-h4 text-gray-900">{AI_ASSISTANT_ADDON.name}</h3>
+            <p className="measure mt-2 text-body text-gray-700">{AI_ASSISTANT_ADDON.summary}</p>
+            <p className="mt-3 text-[0.9375rem] text-gray-600">
+              Pricing will be announced at launch.{" "}
+              <a
+                href={whatsappLink(AI_ASSISTANT_ADDON.earlyAccessMessage)}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-semibold text-teal-700 underline underline-offset-4"
+              >
+                Get early access on WhatsApp
+              </a>
+            </p>
+          </div>
         </Container>
       </Section>
 
