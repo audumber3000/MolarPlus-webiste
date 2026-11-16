@@ -27,7 +27,7 @@ export default function TermsOfUsePage() {
       <section className="pt-12 pb-24">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4">Terms of Use</h1>
-          <p className="text-gray-500 mb-10">Last updated: January 2025</p>
+          <p className="text-gray-500 mb-10">Last updated: 16 November 2026</p>
 
           <div className="prose prose-lg max-w-none space-y-8 text-gray-700">
 
@@ -193,7 +193,30 @@ export default function TermsOfUsePage() {
             </section>
 
             <section>
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">13. Contact Us</h2>
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">13. Connected Services</h2>
+              <p>
+                The Service lets a clinic connect accounts it holds with other providers, such as Google Calendar or
+                the clinic&apos;s own WhatsApp number. Connecting one is optional. By connecting a service you:
+              </p>
+              <ul className="list-disc pl-6 space-y-2 mt-4">
+                <li>
+                  Confirm that you are authorised to connect that account on behalf of the clinic, and allow MolarPlus
+                  to access it only as described when you connect it and in our{' '}
+                  <Link href="/privacy-policy" className="text-blue-600 hover:text-blue-700">Privacy Policy</Link>
+                </li>
+                <li>Remain bound by that provider&apos;s own terms and policies, which also govern your account with them</li>
+                <li>Can disconnect it at any time from Control Center &gt; Integrations, which revokes our access</li>
+              </ul>
+              <p className="mt-4">
+                For Google Calendar, MolarPlus shows events from the calendars you choose as read-only busy time, and
+                writes your MolarPlus appointments only to a calendar it creates for that purpose in your Google
+                account. Connected services are run by their providers, and we are not responsible for their
+                availability, changes they make, or how they handle data under their own policies.
+              </p>
+            </section>
+
+            <section>
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">14. Contact Us</h2>
               <p>For any questions regarding these Terms of Use, please contact:</p>
               <p className="mt-2">
                 <strong>Email:</strong> support@molarplus.com<br />
