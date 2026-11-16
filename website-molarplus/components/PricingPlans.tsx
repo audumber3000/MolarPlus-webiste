@@ -309,6 +309,10 @@ export default function PricingPlans() {
         Every new account begins with <strong className="font-semibold text-gray-700">7 days of Pro</strong>,
         no credit card required. Nothing is charged until you choose a plan.
       </p>
+      <p className="text-center text-xs text-gray-400 mt-2 max-w-2xl mx-auto">
+        * WhatsApp and email messages are charged per message from your clinic&apos;s prepaid message credit,
+        which you top up inside MolarPlus.
+      </p>
     </div>
   );
 }
