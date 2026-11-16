@@ -15,7 +15,7 @@ const PLUS_FEATURES = [
   'One clinic — 500 patients & 500 appointments a month',
   'Dental charting, treatment plans & prescriptions',
   'Billing, invoices, payments, expenses & inventory',
-  'WhatsApp & email reminders from a verified MolarPlus sender',
+  'WhatsApp & email reminders from a verified MolarPlus sender*',
   'Google Calendar linking, synced both ways',
   'Digital consent forms with e-signature',
   'Public online booking page',
