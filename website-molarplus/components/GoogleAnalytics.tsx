@@ -2,6 +2,12 @@
 
 import Script from 'next/script';
 
+// Google Ads account (Clinohealth Systems LLP). Configuring it on the same
+// gtag.js as GA4 stores the ad-click id in a first-party `_gcl_aw` cookie on
+// `.molarplus.com`, which the app on app.molarplus.com reads when it reports
+// the "MolarPlus Signup Completed" conversion.
+const GOOGLE_ADS_ID = 'AW-18548710131';
+
 export default function GoogleAnalytics({ gaId }: { gaId: string }) {
   const id = gaId || 'G-TB31DJC76Y';
 
@@ -24,6 +30,7 @@ export default function GoogleAnalytics({ gaId }: { gaId: string }) {
             gtag('config', '${id}', {
               page_path: window.location.pathname,
             });
+            gtag('config', '${GOOGLE_ADS_ID}');
           `,
         }}
       />
